@@ -99,3 +99,12 @@ div.wait-message
     left: 0px;
     width: 100%;
 }
+
+div.error
+{
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid red;
+    color: red;
+    font-weight: bold;
+}
