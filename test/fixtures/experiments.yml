@@ -1,5 +1,7 @@
 normal:
+  id: 1
   name: Normal Experiment
 
 context_neutral:
+  id: 99
   name: Context-Neutral Experiment

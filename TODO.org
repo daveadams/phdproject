@@ -2,22 +2,39 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* Sunday, August 9
-** TODO Add div.error class to default.css
-** TODO Experiment model [0/2]
-   - [ ] Fields: name
-   - [ ] Fixtures: just the one for now
-** TODO ExperimentalSession model [0/4]
-   - [ ] Fields: starts_at, ends_at, experiment_id
-   - [ ] is_active method
-   - [ ] Fixtures: dynamic fixture to create an active and inactive session
-   - [ ] Tests: test is_active, participant list
-** TODO Link experiment -> experimentalsession -> participant [0/3]
-   - [ ] experiment.rb
-   - [ ] experimental_session.rb
-   - [ ] participant.rb
-** TODO Login: require participant to be part of an active experimental session [0/2]
-   - [ ] login_controller.rb
-   - [ ] participant_test.rb
 
-* Later
+* Upcoming
+** TODO Tutorial controller check for session [0/2]
+   - [ ] Login controller create session
+   - [ ] Tutorial controller before_filter redirect to /login with a flash error if no session
+** TODO Update participant fields as appropriate [0/3]
+   - [ ] first_login
+   - [ ] last_access
+   - [ ] is_active
+
+
+* Sunday, August 9
+** DONE Add div.error class to default.css
+   CLOSED: [2009-08-09 Sun 17:02]
+** DONE Experiment model [2/2]
+   CLOSED: [2009-08-09 Sun 17:07]
+   - [X] Fields: name
+   - [X] Fixtures: normal, context_neutral
+** DONE ExperimentalSession model [3/3]
+   CLOSED: [2009-08-09 Sun 17:42]
+   - [X] Fields: starts_at, ends_at, experiment_id
+   - [X] is_active method
+   - [X] test is_active
+** DONE Link experiment -> experimentalsession -> participant [3/3]
+   CLOSED: [2009-08-09 Sun 17:37]
+   - [X] experiment.rb
+   - [X] experimental_session.rb
+   - [X] participant.rb
+** DONE Login: require participant to be part of an active experimental session [4/4]
+   CLOSED: [2009-08-09 Sun 17:56]
+   - [X] Test for inactive failure
+   - [X] Test for active success
+   - [X] Participant.find_active(pn)
+   - [X] login_controller.rb
+
+

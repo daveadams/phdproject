@@ -3,11 +3,19 @@ Alice:
   first_login:
   last_access:
   is_active: false
-  experimental_session_id:
+  experimental_session_id: 1
 
 Bob:
   participant_number: BD0745
   first_login:
   last_access:
   is_active: false
-  experimental_session_id:
+  experimental_session_id: 1
+
+Isabelle:
+  participant_number: QQ9988
+  first_login:
+  last_access:
+  is_active: false
+  experimental_session_id: 2
+

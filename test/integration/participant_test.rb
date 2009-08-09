@@ -27,12 +27,23 @@ class ParticipantTest < ActionController::IntegrationTest
     assert_select "div[class=error]", "Invalid participant number."
   end
 
-  test "simple login" do
+  test "active login attempt" do
     get "/"
     assert_response :success
 
-    post "/", :participant_number => participants("Alice")[:participant_number]
+    active_participant = experimental_sessions("active").participants.first
+    post "/", :participant_number => active_participant[:participant_number]
     assert_response :redirect
     assert_redirected_to(:controller => "tutorial")
+  end
+
+  test "inactive login attempt" do
+    get "/"
+    assert_response :success
+
+    inactive_participant = experimental_sessions("inactive").participants.first
+    post "/", :participant_number => inactive_participant[:participant_number]
+    assert_response :success
+    assert_select "div[class=error]", "Invalid participant number."
   end
 end
