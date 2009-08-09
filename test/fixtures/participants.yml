@@ -1,0 +1,13 @@
+Alice:
+  participant_number: GG8044
+  first_login:
+  last_access:
+  is_active: false
+  experimental_session_id:
+
+Bob:
+  participant_number: BD0745
+  first_login:
+  last_access:
+  is_active: false
+  experimental_session_id:
