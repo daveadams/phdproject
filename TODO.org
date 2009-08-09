@@ -1,0 +1,23 @@
+#+STARTUP: content
+#+STARTUP: hidestars
+#+STARTUP: indent
+
+* Sunday, August 9
+** TODO Add div.error class to default.css
+** TODO Experiment model [0/2]
+   - [ ] Fields: name
+   - [ ] Fixtures: just the one for now
+** TODO ExperimentalSession model [0/4]
+   - [ ] Fields: starts_at, ends_at, experiment_id
+   - [ ] is_active method
+   - [ ] Fixtures: dynamic fixture to create an active and inactive session
+   - [ ] Tests: test is_active, participant list
+** TODO Link experiment -> experimentalsession -> participant [0/3]
+   - [ ] experiment.rb
+   - [ ] experimental_session.rb
+   - [ ] participant.rb
+** TODO Login: require participant to be part of an active experimental session [0/2]
+   - [ ] login_controller.rb
+   - [ ] participant_test.rb
+
+* Later
