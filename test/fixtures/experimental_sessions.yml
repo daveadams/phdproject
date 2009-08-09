@@ -1,0 +1,11 @@
+active:
+  name: Active Session
+  starts_at: 2009-08-01 00:00:00
+  ends_at: 2012-08-01 00:00:00
+  experiment_id: <%= Experiment.find_by_name("Normal Experiment") %>
+
+inactive:
+  name: Inactive Session
+  starts_at: 2015-01-01 00:00:00
+  ends_at: 2016-01-01 00:00:00
+  experiment_id: <%= Experiment.find_by_name("Context-Neutral Experiment") %>
