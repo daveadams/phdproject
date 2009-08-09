@@ -8,12 +8,13 @@ class ParticipantTest < ActionController::IntegrationTest
     get "/"
     assert_response :success
     assert_template :login
-    assert_select "title", "Login"
+    assert_select "title", "Log In"
     assert_select "form" do
       assert_select "input", :count => 2
       assert_select "input[name=?]", "participant_number"
-      assert_select "input[type=submit][value=?]", "Login"
+      assert_select "input[type=submit][value=?]", "Log In"
     end
+    # TODO: no warning message should appear at this point
   end
 
   # an invalid participant number should be rejected

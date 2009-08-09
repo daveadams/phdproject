@@ -4,8 +4,7 @@ class LoginControllerTest < ActionController::TestCase
   test "get index" do
     get :index
     assert_response :success
-    assert_select "title", "Login"
-    # TODO: no warning message should appear at this point
+    assert_select "title", "Log In"
   end
 
   test "simple post" do
