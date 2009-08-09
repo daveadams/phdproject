@@ -7,9 +7,9 @@ class LoginControllerTest < ActionController::TestCase
     assert_select "title", "Log In"
   end
 
-  test "simple post" do
+  test "empty post" do
     post :index
-    assert_response :redirect
-    assert_redirected_to(:controller => "tutorial")
+    assert_response :success
+    assert_select "div[class=error]", "Invalid participant number."
   end
 end

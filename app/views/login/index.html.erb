@@ -1,5 +1,9 @@
 <h1>Log In</h1>
 
+<% if flash[:error] %>
+<div class="error"><%= flash[:error] %></div>
+<% end %>
+
 <p>Please enter your participant number to log in:</p>
 <% form_tag do %>
   <%= text_field_tag("participant_number") %>

@@ -14,7 +14,7 @@ class ParticipantTest < ActionController::IntegrationTest
       assert_select "input[name=?]", "participant_number"
       assert_select "input[type=submit][value=?]", "Log In"
     end
-    # TODO: no warning message should appear at this point
+    assert_select "div[class=error]", 0
   end
 
   # an invalid participant number should be rejected
@@ -24,5 +24,15 @@ class ParticipantTest < ActionController::IntegrationTest
 
     post "/", :participant_number => "invalid"
     assert_response :success
+    assert_select "div[class=error]", "Invalid participant number."
+  end
+
+  test "simple login" do
+    get "/"
+    assert_response :success
+
+    post "/", :participant_number => participants("Alice")[:participant_number]
+    assert_response :redirect
+    assert_redirected_to(:controller => "tutorial")
   end
 end
