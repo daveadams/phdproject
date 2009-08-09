@@ -1,0 +1,4 @@
+log/
+vendor/
+db/test.sqlite3
+tmp/
