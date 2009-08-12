@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ParticipantTest < ActionController::IntegrationTest
+class LoginTest < ActionController::IntegrationTest
   fixtures :all
 
   INVALID_TEXT = "Invalid participant number. Please try again."
