@@ -2,15 +2,22 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-
-* Upcoming
-** TODO Tutorial controller check for session [0/2]
-   - [ ] Login controller create session
-   - [ ] Tutorial controller before_filter redirect to /login with a flash error if no session
-** TODO Update participant fields as appropriate [0/3]
-   - [ ] first_login
-   - [ ] last_access
-   - [ ] is_active
+* Future
+** TODO Figure out weird flash issue
+** TODO Tutorial text model [0/3]
+   - [ ] Model creation
+   - [ ] Link to experiment? Or (new) experiment_group?
+   - [ ] Verify participants in different experiment(_group)s get different text
+** TODO Admin interface beginnings [0/4]
+   - [ ] Create/manage experiments
+   - [ ] Create/manage experimental sessions
+   - [ ] Generate participant IDs
+   - [ ] See status of participants
+** TODO Move error messages out of controller/test to stay DRY [0/4]
+   - [ ] Find out the Rails Way
+   - [ ] Implement it
+   - [ ] Replace strings in controllers
+   - [ ] Replace strings in tests
 
 
 * Sunday, August 9
@@ -36,5 +43,44 @@
    - [X] Test for active success
    - [X] Participant.find_active(pn)
    - [X] login_controller.rb
+
+
+
+* Wednesday, August 12
+** DONE Participant model fillout [5/5]
+   CLOSED: [2009-08-12 Wed 14:26]
+   - [X] Test creation
+   - [X] Test validation
+   - [X] Method to generate participant numbers
+   - [X] Login method
+   - [X] Visit method
+** DONE Session support [6/6]
+   CLOSED: [2009-08-12 Wed 15:38]
+   - [X] Login controller create session
+   - [X] Test for session existence
+   - [X] Session tracks participant ID
+   - [X] Check cookie contents to be sure it's not possible to modify
+   - [X] Tutorial session check
+         Redirect to /login with a flash error if no session
+   - [X] Test for tutorial session check
+** DONE Update participant fields as appropriate [3/3]
+   CLOSED: [2009-08-12 Wed 14:42]
+   - [X] first_login
+   - [X] last_access
+   - [X] is_active
+** DONE Further integration testing [4/4]
+   CLOSED: [2009-08-12 Wed 15:45]
+   - [X] DB session checks after login
+   - [X] Should refuse repeat logins
+   - [X] Tutorial allows you through on correct login
+   - [X] Tutorial bounces on expired experimental_session
+** DONE In browser testing [2/2]
+   CLOSED: [2009-08-12 Wed 16:02]
+   - [X] Tutorial allows you in if you use a valid participant number
+   - [X] Tutorial bounces you with an error if you don't
+** DONE Simplest possible admin page to list valid participant numbers, etc [2/2]
+   CLOSED: [2009-08-12 Wed 15:53]
+   - [X] admin controller
+   - [X] list of currently active participant numbers
 
 
