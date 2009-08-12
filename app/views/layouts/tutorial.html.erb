@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta http-equiv="Expires" content="0" />
+    <title>Tutorial</title>
+    <%= stylesheet_link_tag("default", :media => :all) %>
+    <%= stylesheet_link_tag("tutorial", :media => :all) %>
+  </head>
+
+  <body>
+    <div class="content">
+      <%= yield :layout %>
+    </div>
+  </body>
+</html>
