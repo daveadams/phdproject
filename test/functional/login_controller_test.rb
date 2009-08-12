@@ -10,6 +10,6 @@ class LoginControllerTest < ActionController::TestCase
   test "empty post" do
     post :index
     assert_response :success
-    assert_select "div[class=error]", "Invalid participant number."
+    assert_select "div[class=error]", "Invalid participant number. Please try again."
   end
 end
