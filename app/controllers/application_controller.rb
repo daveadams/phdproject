@@ -1,10 +1,21 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  helper :all
+  protect_from_forgery
 
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  before_filter :require_valid_session
+
+ private
+  def require_valid_session
+    p = Participant.find(:first, :conditions => ["id=? and is_active=?",
+                                                 session[:participant_id],
+                                                 true])
+
+    if session[:participant_id].nil? or p.nil?
+      flash[:error] = ErrorStrings::MUST_LOGIN
+      redirect_to(:controller => "login")
+    elsif not p.experimental_session.is_active?
+      flash[:error] = ErrorStrings::INACTIVE_SESSION
+      redirect_to(:controller => "login")
+    end
+  end
 end

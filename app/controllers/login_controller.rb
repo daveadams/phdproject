@@ -1,4 +1,6 @@
 class LoginController < ApplicationController
+  skip_before_filter :require_valid_session
+
   def index
   end
 
@@ -6,7 +8,7 @@ class LoginController < ApplicationController
     if request.post?
       participant = Participant.find_active(request[:participant_number])
       if participant.nil?
-        flash[:error] = "Invalid participant number. Please try again."
+        flash[:error] = ErrorStrings::INVALID_PARTICIPANT
         redirect_to(:action => :index)
       else
         begin
@@ -14,7 +16,7 @@ class LoginController < ApplicationController
           session[:participant_id] = participant.id
           redirect_to(:controller => :tutorial)
         rescue ParticipantAlreadyActive
-          flash[:error] = "That participant number is already in use. Please notify the staff."
+          flash[:error] = ErrorStrings::ALREADY_ACTIVE
           redirect_to(:action => :index)
         end
       end

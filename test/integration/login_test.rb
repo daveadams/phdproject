@@ -3,9 +3,6 @@ require 'test_helper'
 class LoginTest < ActionController::IntegrationTest
   fixtures :all
 
-  INVALID_TEXT = "Invalid participant number. Please try again."
-  ALREADY_ACTIVE_TEXT = "That participant number is already in use. Please notify the staff."
-
   # / should get us to the login page
   test "first visit" do
     get "/"
@@ -29,7 +26,7 @@ class LoginTest < ActionController::IntegrationTest
     assert_response :success
     assert_equal "/", path
     assert_select "title", "Log In"
-    assert_select "div[class=error]", INVALID_TEXT
+    assert_select "div[class=error]", ErrorStrings::INVALID_PARTICIPANT
   end
 
   test "active login attempt" do
@@ -51,7 +48,7 @@ class LoginTest < ActionController::IntegrationTest
     assert_response :success
     assert_equal "/", path
     assert_select "title", "Log In"
-    assert_select "div[class=error]", INVALID_TEXT
+    assert_select "div[class=error]", ErrorStrings::INVALID_PARTICIPANT
   end
 
   test "session setup" do
@@ -93,6 +90,6 @@ class LoginTest < ActionController::IntegrationTest
     assert_response :success
     assert_equal "/", path
     assert_select "title", "Log In"
-    assert_select "div[class=error]", ALREADY_ACTIVE_TEXT
+    assert_select "div[class=error]", ErrorStrings::ALREADY_ACTIVE
   end
 end

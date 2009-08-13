@@ -14,5 +14,6 @@ class LoginControllerTest < ActionController::TestCase
 
     get :index
     assert_response :success
-    assert_select "div[class=error]", "Invalid participant number. Please try again."  end
+    assert_select "div[class=error]", ErrorStrings::INVALID_PARTICIPANT
+  end
 end

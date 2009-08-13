@@ -3,9 +3,6 @@ require 'test_helper'
 class TutorialTest < ActionController::IntegrationTest
   fixtures :all
 
-  MUST_LOGIN_TEXT = "You must login before using the application."
-  INACTIVE_SESSION_TEXT = "This experimental session has ended. Please see the staff."
-
   test "require session" do
     get "/tutorial"
     assert_response :redirect
@@ -18,7 +15,7 @@ class TutorialTest < ActionController::IntegrationTest
     assert_equal "/", path
     assert_template :login
     assert_select "title", "Log In"
-    assert_select "div[class=error]", MUST_LOGIN_TEXT
+    assert_select "div[class=error]", ErrorStrings::MUST_LOGIN
   end
 
   test "success with session" do
@@ -58,6 +55,6 @@ class TutorialTest < ActionController::IntegrationTest
     assert_equal "/", path
     assert_template :login
     assert_select "title", "Log In"
-    assert_select "div[class=error]", INACTIVE_SESSION_TEXT
+    assert_select "div[class=error]", ErrorStrings::INACTIVE_SESSION
   end
 end
