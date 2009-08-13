@@ -5,7 +5,7 @@
 <% end %>
 
 <p>Please enter your participant number to log in:</p>
-<% form_tag do %>
+<% form_tag(:action => :login) do %>
   <%= text_field_tag("participant_number") %>
   <%= submit_tag("Log In") %>
 <% end %>

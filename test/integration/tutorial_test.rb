@@ -26,7 +26,7 @@ class TutorialTest < ActionController::IntegrationTest
     assert_response :success
 
     p = experimental_sessions(:active).participants.first
-    post_via_redirect "/", :participant_number => p.participant_number
+    post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_template :tutorial
     assert_equal "/tutorial", path
@@ -39,7 +39,7 @@ class TutorialTest < ActionController::IntegrationTest
 
     xs = experimental_sessions(:active)
     p = xs.participants.last
-    post_via_redirect "/", :participant_number => p.participant_number
+    post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_template :tutorial
     assert_equal "/tutorial", path

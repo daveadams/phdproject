@@ -8,8 +8,11 @@ class LoginControllerTest < ActionController::TestCase
   end
 
   test "empty post" do
-    post :index
+    post :login
+    assert_response :redirect
+    assert_redirected_to(:action => :index)
+
+    get :index
     assert_response :success
-    assert_select "div[class=error]", "Invalid participant number. Please try again."
-  end
+    assert_select "div[class=error]", "Invalid participant number. Please try again."  end
 end
