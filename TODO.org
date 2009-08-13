@@ -2,22 +2,54 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
+* Thursday, August 13
+** DONE Figure out weird flash issue [2/2]
+   CLOSED: [2009-08-13 Thu 12:21]
+   - [X] Add some trace statements to login/index
+   - [X] Analyze the log output
+   The problem is that it was setting flash within the same request so it got
+   displayed once and not cleared until the second time.
+** DONE Fix flash issue [3/3]
+   CLOSED: [2009-08-13 Thu 12:50]
+   - [X] Create new action login/login
+         - [X] Move login logic to there
+         - [X] Redirects on fail back to login/index
+   - [X] Update login/index view to post to login/login
+   - [X] Update tests to post to login/login instead of login/index
+** DONE Get started on tutorial [3/3]
+   CLOSED: [2009-08-13 Thu 16:26]
+   - [X] Encode page sequence somehow
+   - [X] Create get_text helper to map group and page names correctly
+   - [X] Create next/back buttons
+** DONE TutorialText model [2/2]
+   CLOSED: [2009-08-13 Thu 15:43]
+   - [X] Create model: group_name, page_name, text_key, text
+   - [X] Populate fixtures
+** DONE Move error messages out of controller/test to stay DRY [5/5]
+   CLOSED: [2009-08-13 Thu 13:22]
+   - [X] Find out the Rails Way
+         No good.
+   - [X] Come up with a new way
+   - [X] Create class ErrorStrings in lib/error_strings.rb
+   - [X] Replace strings in controllers
+   - [X] Replace strings in tests
+** DONE Move require_valid_session to application_controller [2/2]
+   CLOSED: [2009-08-13 Thu 13:32]
+   - [X] Figure out how to specify before_filter excepting login controller
+   - [X] Move before_filter and require_valid_session into application_controller
+
+
 * Future
-** TODO Figure out weird flash issue
-** TODO Tutorial text model [0/3]
-   - [ ] Model creation
-   - [ ] Link to experiment? Or (new) experiment_group?
-   - [ ] Verify participants in different experiment(_group)s get different text
+** TODO Experimental groups, mapping to participants and texts
+** TODO Determine how to track participant status [0/4]
+   - [ ] Phase (unseen, tutorial, experiment, survey, complete)
+   - [ ] Round (applicable only to experiment)
+   - [ ] Page (applicable in each phase)
 ** TODO Admin interface beginnings [0/4]
    - [ ] Create/manage experiments
    - [ ] Create/manage experimental sessions
    - [ ] Generate participant IDs
    - [ ] See status of participants
-** TODO Move error messages out of controller/test to stay DRY [0/4]
-   - [ ] Find out the Rails Way
-   - [ ] Implement it
-   - [ ] Replace strings in controllers
-   - [ ] Replace strings in tests
 
 
 * Sunday, August 9
@@ -43,7 +75,6 @@
    - [X] Test for active success
    - [X] Participant.find_active(pn)
    - [X] login_controller.rb
-
 
 
 * Wednesday, August 12
