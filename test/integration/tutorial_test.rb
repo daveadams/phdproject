@@ -26,8 +26,7 @@ class TutorialTest < ActionController::IntegrationTest
     post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_template :tutorial
-    assert_equal "/tutorial", path
-    assert_select "p", /filler/
+    assert_equal "/tutorial/intro", path
   end
 
   test "failure when experimental session expires" do
@@ -39,8 +38,7 @@ class TutorialTest < ActionController::IntegrationTest
     post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_template :tutorial
-    assert_equal "/tutorial", path
-    assert_select "p", /filler/
+    assert_equal "/tutorial/intro", path
 
     # update the experimental session so that it's no longer valid
     xs.ends_at = 1.hour.ago

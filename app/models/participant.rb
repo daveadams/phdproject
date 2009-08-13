@@ -39,6 +39,10 @@ class Participant < ActiveRecord::Base
     self.save
   end
 
+  def group_name
+    "neutral"
+  end
+
  private
   def self.generate_potential_participant_number
     alphaset = ("A".."Z").to_a

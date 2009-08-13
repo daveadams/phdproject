@@ -9,6 +9,15 @@
   <body>
     <div class="content">
       <%= yield :layout %>
+
+      <div class="tutorial-navigation">
+        <% if prev_page -%>
+          <%= link_button("<< Back", :action => prev_page) %>
+        <% end -%>
+        <% if next_page -%>
+          <%= link_button("Next >>", :action => next_page) %>
+        <% end -%>
+      </div>
     </div>
   </body>
 </html>
