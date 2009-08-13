@@ -1,13 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+p1t1gx:
+  group_name:
+  page_name: intro
+  text_key: title
+  text: Introduction
 
-one:
-  group_name: MyString
-  page_name: MyString
-  text_key: MyString
-  text: MyText
+p1t2g1:
+  group_name: tax
+  page_name: intro
+  text_key: body
+  text: Hello to the tax folks.
 
-two:
-  group_name: MyString
-  page_name: MyString
-  text_key: MyString
-  text: MyText
+p1t2g2:
+  group_name: neutral
+  page_name: intro
+  text_key: body
+  text: Hello to the context-neutral folks.
