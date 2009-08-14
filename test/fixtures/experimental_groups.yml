@@ -1,7 +1,19 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+control:
+  id: 1
+  name: control
+  tutorial_text_group_id: 1
 
-one:
-  name: MyString
+context_neutral:
+  id: 2
+  name: context_neutral
+  tutorial_text_group_id: 2
 
-two:
-  name: MyString
+experimental_one:
+  id: 3
+  name: experimental_one
+  tutorial_text_group_id: 1
+
+experimental_two:
+  id: 4
+  name: experimental_two
+  tutorial_text_group_id: 1

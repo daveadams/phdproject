@@ -1,95 +1,95 @@
 p1t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: intro
   text_key: title
   text: Introduction
 
 p1t2g1:
-  group_name: tax
+  tutorial_text_group_id: 1
   page_name: intro
   text_key: body
   text: Hello to the tax folks.
 
 p1t2g2:
-  group_name: neutral
+  tutorial_text_group_id: 2
   page_name: intro
   text_key: body
   text: Hello to the context-neutral folks.
 
 p2t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: earnings
   text_key: title
   text: Earnings
 
 p2t2:
-  group_name:
+  tutorial_text_group_id:
   page_name: earnings
   text_key: body
   text: This is the body text about earnings.
 
 p3t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: taxes
   text_key: title
   text: Taxes
 
 p3t2:
-  group_name:
+  tutorial_text_group_id:
   page_name: taxes
   text_key: body
   text: This is the body text about taxes.
 
 p4t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: report
   text_key: title
   text: Reporting
 
 p4t2:
-  group_name:
+  tutorial_text_group_id:
   page_name: report
   text_key: body
   text: This is the body text about reporting.
 
 p5t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: audit
   text_key: title
   text: Audit
 
 p5t2:
-  group_name:
+  tutorial_text_group_id:
   page_name: audit
   text_key: body
   text: This is the body text about audits.
 
 p6t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: doublecheck
   text_key: title
   text: Doublecheck
 
 p6t2:
-  group_name:
+  tutorial_text_group_id:
   page_name: doublecheck
   text_key: body
   text: Doublechecking text is what this is here.
 
 p7t1:
-  group_name:
+  tutorial_text_group_id:
   page_name: complete
   text_key: title
   text: Complete
 
 p7t2g1:
-  group_name: tax
+  tutorial_text_group_id: 1
   page_name: complete
   text_key: body
   text: You completed the tutorial for tax folks.
 
 p7t2g2:
-  group_name: neutral
+  tutorial_text_group_id: 2
   page_name: complete
   text_key: body
   text: You completed the tutorial for neutral folks.

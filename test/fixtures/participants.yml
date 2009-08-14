@@ -4,6 +4,7 @@ Alice:
   last_access:
   is_active: false
   experimental_session_id: 1
+  experimental_group_id: 1
 
 Bob:
   participant_number: BD0745
@@ -11,6 +12,7 @@ Bob:
   last_access:
   is_active: false
   experimental_session_id: 1
+  experimental_group_id: 2
 
 Isabelle:
   participant_number: QQ9988
@@ -18,4 +20,13 @@ Isabelle:
   last_access:
   is_active: false
   experimental_session_id: 2
+  experimental_group_id: 3
+
+Mabel:
+  participant_number: QQ9999
+  first_login:
+  last_access:
+  is_active: false
+  experimental_session_id: 2
+  experimental_group_id: 4
 

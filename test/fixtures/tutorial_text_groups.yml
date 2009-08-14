@@ -1,7 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+normal:
+  id: 1
+  name: Normal
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+context_neutral:
+  id: 2
+  name: Context-Neutral
