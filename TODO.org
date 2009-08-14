@@ -3,56 +3,14 @@
 #+STARTUP: indent
 
 
-* Friday, August 14
-** DONE ExperimentalGroup model [21/21]
-   CLOSED: [2009-08-14 Fri 15:31]
-   - [X] New git branch
-   - [X] Create model: name:string
-   - [X] Create fixtures: control, context_neutral, x1, x2
-   - [X] Create TutorialTextGroup model: name:string
-   - [X] Add tutorial_text_group_id field to ExperimentalGroup
-   - [X] Link TutorialTextGroup and ExperimentalGroup
-   - [X] Link TutorialTextGroup and TutorialTexts
-   - [X] Update fixtures for experimental_groups
-   - [X] Create fixtures for tutorial_text_groups
-   - [X] TutorialText migration: drop group_name
-   - [X] TutorialText migration: add group_id
-   - [X] Update tutorial_text fixtures
-   - [X] Link Participants to ExperimentalGroup
-   - [X] Update participant fixtures
-   - [X] Require experimental_group in participant
-   - [X] Update participant unit tests
-   - [X] Move text lookup into TutorialText model
-   - [X] Update tutorial_helper accordingly
-   - [X] Update functional tests if necessary
-   - [X] Update login integration test if necessary
-   - [X] Update tutorial integration test if necessary
-** TODO Mass-creation of participant methods [0/3]
-   - [ ] New method on ExperimentalSession
-         Takes number of participants, experimental group name
-   - [ ] Tests for this new feature
-   - [ ] Bring into testing
-** TODO Figure out how to merge git branches [3/4]
-   - [X] Find reference
-         http://blog.jrock.us/articles/Git%20merging%20by%20example.pod
-   - [X] Copy tree to a temp working space
-   - [X] Try merging ExperimentalGroup branch into TutorialText
-   - [ ] Once we understand it, do it for real
-** TODO ParticipantState model [0/3]
-   - [ ] Create model: phase:string page:string round:integer
-                       cash:???
-   - [ ] Link to Participant
-   - [ ] Write some tests
-** TODO Switch ExperimentalSession active to a toggle [0/3]
-   - [ ] Update model with a boolean, remove ends_at, begins_at
-   - [ ] Update fixtures
-   - [ ] Fix any broken tests
 
 * Future
-** TODO Determine how to track participant status [0/4]
-   - [ ] Phase (unseen, tutorial, experiment, survey, complete)
-   - [ ] Round (applicable only to experiment)
-   - [ ] Page (applicable in each phase)
+** TODO Participant state tracking [0/4]
+   - [ ] Create ParticipantStatemodel:
+         phase:string page:string round:integer cash:currency?
+   - [ ] Link to Participant
+   - [ ] Update in global filter
+   - [ ] Write some tests
 ** TODO Admin interface beginnings [0/4]
    - [ ] Create/manage experiments
    - [ ] Create/manage experimental sessions
@@ -157,3 +115,49 @@
    CLOSED: [2009-08-13 Thu 13:32]
    - [X] Figure out how to specify before_filter excepting login controller
    - [X] Move before_filter and require_valid_session into application_controller
+
+* Friday, August 14
+** DONE ExperimentalGroup model [21/21]
+   CLOSED: [2009-08-14 Fri 15:31]
+   - [X] New git branch
+   - [X] Create model: name:string
+   - [X] Create fixtures: control, context_neutral, x1, x2
+   - [X] Create TutorialTextGroup model: name:string
+   - [X] Add tutorial_text_group_id field to ExperimentalGroup
+   - [X] Link TutorialTextGroup and ExperimentalGroup
+   - [X] Link TutorialTextGroup and TutorialTexts
+   - [X] Update fixtures for experimental_groups
+   - [X] Create fixtures for tutorial_text_groups
+   - [X] TutorialText migration: drop group_name
+   - [X] TutorialText migration: add group_id
+   - [X] Update tutorial_text fixtures
+   - [X] Link Participants to ExperimentalGroup
+   - [X] Update participant fixtures
+   - [X] Require experimental_group in participant
+   - [X] Update participant unit tests
+   - [X] Move text lookup into TutorialText model
+   - [X] Update tutorial_helper accordingly
+   - [X] Update functional tests if necessary
+   - [X] Update login integration test if necessary
+   - [X] Update tutorial integration test if necessary
+** DONE Mass-creation of participants method [2/2]
+   CLOSED: [2009-08-14 Fri 16:16]
+   - [X] New method on ExperimentalSession
+         Takes number of participants, experimental group
+   - [X] Tests for this new feature
+** DONE Figure out how to merge git branches [4/4]
+   CLOSED: [2009-08-14 Fri 16:00]
+   - [X] Find reference
+         http://blog.jrock.us/articles/Git%20merging%20by%20example.pod
+   - [X] Copy tree to a temp working space
+   - [X] Try merging ExperimentalGroup branch into TutorialText
+   - [X] Once we understand it, do it for real
+** DONE Switch ExperimentalSession active to a toggle [5/5]
+   CLOSED: [2009-08-14 Fri 16:38]
+   - [X] Update model with a boolean, remove ends_at, begins_at
+   - [X] Update is_active? method
+   - [X] Update fixtures
+   - [X] Update unit tests
+   - [X] Update integration tests
+
+
