@@ -24,10 +24,10 @@ class TutorialController < ApplicationController
 
  private
   def determine_page_sequence
-    @page_sequence = case @participant.group_name
-                     when "tax":
+    @page_sequence = case @participant.experimental_group.tutorial_text_group.name
+                     when "Normal":
                          ["intro","earnings","taxes","audit","complete"]
-                     when "neutral":
+                     when "Context-Neutral":
                          ["intro","earnings","report","doublecheck","complete"]
                      end
   end
