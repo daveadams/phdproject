@@ -40,8 +40,8 @@ class TutorialTest < ActionController::IntegrationTest
     assert_template :tutorial
     assert_equal "/tutorial/intro", path
 
-    # update the experimental session so that it's no longer valid
-    xs.ends_at = 1.hour.ago
+    # update the experimental session so that it's no longer active
+    xs.is_active = false
     assert xs.save
 
     get "/tutorial"
