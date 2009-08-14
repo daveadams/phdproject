@@ -2,45 +2,53 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* Thursday, August 13
-** DONE Figure out weird flash issue [2/2]
-   CLOSED: [2009-08-13 Thu 12:21]
-   - [X] Add some trace statements to login/index
-   - [X] Analyze the log output
-   The problem is that it was setting flash within the same request so it got
-   displayed once and not cleared until the second time.
-** DONE Fix flash issue [3/3]
-   CLOSED: [2009-08-13 Thu 12:50]
-   - [X] Create new action login/login
-         - [X] Move login logic to there
-         - [X] Redirects on fail back to login/index
-   - [X] Update login/index view to post to login/login
-   - [X] Update tests to post to login/login instead of login/index
-** DONE Get started on tutorial [3/3]
-   CLOSED: [2009-08-13 Thu 16:26]
-   - [X] Encode page sequence somehow
-   - [X] Create get_text helper to map group and page names correctly
-   - [X] Create next/back buttons
-** DONE TutorialText model [2/2]
-   CLOSED: [2009-08-13 Thu 15:43]
-   - [X] Create model: group_name, page_name, text_key, text
-   - [X] Populate fixtures
-** DONE Move error messages out of controller/test to stay DRY [5/5]
-   CLOSED: [2009-08-13 Thu 13:22]
-   - [X] Find out the Rails Way
-         No good.
-   - [X] Come up with a new way
-   - [X] Create class ErrorStrings in lib/error_strings.rb
-   - [X] Replace strings in controllers
-   - [X] Replace strings in tests
-** DONE Move require_valid_session to application_controller [2/2]
-   CLOSED: [2009-08-13 Thu 13:32]
-   - [X] Figure out how to specify before_filter excepting login controller
-   - [X] Move before_filter and require_valid_session into application_controller
 
+* Friday, August 14
+** DONE ExperimentalGroup model [21/21]
+   CLOSED: [2009-08-14 Fri 15:31]
+   - [X] New git branch
+   - [X] Create model: name:string
+   - [X] Create fixtures: control, context_neutral, x1, x2
+   - [X] Create TutorialTextGroup model: name:string
+   - [X] Add tutorial_text_group_id field to ExperimentalGroup
+   - [X] Link TutorialTextGroup and ExperimentalGroup
+   - [X] Link TutorialTextGroup and TutorialTexts
+   - [X] Update fixtures for experimental_groups
+   - [X] Create fixtures for tutorial_text_groups
+   - [X] TutorialText migration: drop group_name
+   - [X] TutorialText migration: add group_id
+   - [X] Update tutorial_text fixtures
+   - [X] Link Participants to ExperimentalGroup
+   - [X] Update participant fixtures
+   - [X] Require experimental_group in participant
+   - [X] Update participant unit tests
+   - [X] Move text lookup into TutorialText model
+   - [X] Update tutorial_helper accordingly
+   - [X] Update functional tests if necessary
+   - [X] Update login integration test if necessary
+   - [X] Update tutorial integration test if necessary
+** TODO Mass-creation of participant methods [0/3]
+   - [ ] New method on ExperimentalSession
+         Takes number of participants, experimental group name
+   - [ ] Tests for this new feature
+   - [ ] Bring into testing
+** TODO Figure out how to merge git branches [3/4]
+   - [X] Find reference
+         http://blog.jrock.us/articles/Git%20merging%20by%20example.pod
+   - [X] Copy tree to a temp working space
+   - [X] Try merging ExperimentalGroup branch into TutorialText
+   - [ ] Once we understand it, do it for real
+** TODO ParticipantState model [0/3]
+   - [ ] Create model: phase:string page:string round:integer
+                       cash:???
+   - [ ] Link to Participant
+   - [ ] Write some tests
+** TODO Switch ExperimentalSession active to a toggle [0/3]
+   - [ ] Update model with a boolean, remove ends_at, begins_at
+   - [ ] Update fixtures
+   - [ ] Fix any broken tests
 
 * Future
-** TODO Experimental groups, mapping to participants and texts
 ** TODO Determine how to track participant status [0/4]
    - [ ] Phase (unseen, tutorial, experiment, survey, complete)
    - [ ] Round (applicable only to experiment)
@@ -75,7 +83,6 @@
    - [X] Test for active success
    - [X] Participant.find_active(pn)
    - [X] login_controller.rb
-
 
 * Wednesday, August 12
 ** DONE Participant model fillout [5/5]
@@ -115,3 +122,38 @@
    - [X] list of currently active participant numbers
 
 
+* Thursday, August 13
+** DONE Figure out weird flash issue [2/2]
+   CLOSED: [2009-08-13 Thu 12:21]
+   - [X] Add some trace statements to login/index
+   - [X] Analyze the log output
+   The problem is that it was setting flash within the same request so it got
+   displayed once and not cleared until the second time.
+** DONE Fix flash issue [3/3]
+   CLOSED: [2009-08-13 Thu 12:50]
+   - [X] Create new action login/login
+         - [X] Move login logic to there
+         - [X] Redirects on fail back to login/index
+   - [X] Update login/index view to post to login/login
+   - [X] Update tests to post to login/login instead of login/index
+** DONE Get started on tutorial [3/3]
+   CLOSED: [2009-08-13 Thu 16:26]
+   - [X] Encode page sequence somehow
+   - [X] Create get_text helper to map group and page names correctly
+   - [X] Create next/back buttons
+** DONE TutorialText model [2/2]
+   CLOSED: [2009-08-13 Thu 15:43]
+   - [X] Create model: group_name, page_name, text_key, text
+   - [X] Populate fixtures
+** DONE Move error messages out of controller/test to stay DRY [5/5]
+   CLOSED: [2009-08-13 Thu 13:22]
+   - [X] Find out the Rails Way
+         No good.
+   - [X] Come up with a new way
+   - [X] Create class ErrorStrings in lib/error_strings.rb
+   - [X] Replace strings in controllers
+   - [X] Replace strings in tests
+** DONE Move require_valid_session to application_controller [2/2]
+   CLOSED: [2009-08-13 Thu 13:32]
+   - [X] Figure out how to specify before_filter excepting login controller
+   - [X] Move before_filter and require_valid_session into application_controller
