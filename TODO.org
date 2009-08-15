@@ -12,14 +12,18 @@
          - [X] ExperimentalSession.current_participants
          - [X] ExperimentalSession.unseen_participants
          - [X] Split up participant list displays
-** TODO Enforce page ordering [0/7]
-   - [ ] PageOrder model?
-   - [ ] Approved page order for tutorial
-   - [ ] Approved page order for experiment
-   - [ ] Approved page order for survey
-   - [ ] Filter for out-of-sequence paging and redirect with flash
-   - [ ] Every layout needs a flash area
-   - [ ] Tutorial, experiment, and survey page titles in layout, using get_text helper
+** DONE Database-based page ordering [6/6]
+   CLOSED: [2009-08-15 Sat 09:56]
+   - [X] PageOrder branch
+   - [X] PageOrder model: phase, experimental_group_id, page_order (serialized array)
+   - [X] PageOrder fixtures for tutorial
+         - [X] control
+         - [X] experimental_one
+         - [X] experimental_two
+         - [X] context_neutral
+   - [X] Update tutorial_controller likewise
+   - [X] Every layout needs a flash area
+   - [X] Tutorial page titles in layout
 ** DONE Participant state tracking [4/4]
    CLOSED: [2009-08-15 Sat 07:01]
    - [X] Add to Participant model:
@@ -29,13 +33,29 @@
    - [X] Upon login, redirect back to page specified by state
 
 
+** DONE Add configuration rules to experimental_groups [4/4]
+   CLOSED: [2009-08-15 Sat 10:20]
+   - [X] Earnings per
+   - [X] Tax rate
+   - [X] Audit penalty rate
+   - [X] Rounds
+
 
 * Future
-** TODO More admin [/]
+** TODO More admin [0/3]
    - [ ] Create/manage experimental groups
    - [ ] Create/manage experimental sessions
    - [ ] Generate participant IDs
-
+** TODO Beginnings of experiment controller [0/3]
+   - [ ] Layout: start from tutorial
+   - [ ] get_text helper
+   - [ ] Page order fixtures
+** TODO Start survey controller [0/3]
+   - [ ] Layout: start from tutorial
+   - [ ] get_text helper
+   - [ ] Page order fixtures
+** TODO Enforce page order
+** TODO Add rule support to get_text (templify style?)
 
 * Sunday, August 9
 ** DONE Add div.error class to default.css
@@ -97,7 +117,6 @@
    CLOSED: [2009-08-12 Wed 15:53]
    - [X] admin controller
    - [X] list of currently active participant numbers
-
 
 * Thursday, August 13
 ** DONE Figure out weird flash issue [2/2]
