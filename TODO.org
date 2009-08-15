@@ -4,18 +4,29 @@
 
 
 
-* Future
-** TODO Participant state tracking [0/4]
-   - [ ] Create ParticipantStatemodel:
-         phase:string page:string round:integer cash:currency?
-   - [ ] Link to Participant
-   - [ ] Update in global filter
-   - [ ] Write some tests
-** TODO Admin interface beginnings [0/4]
-   - [ ] Create/manage experiments
+* Saturday, August 15
+** TODO Admin interface beginnings [0/5]
+   - [ ] Drop login requirement
+   - [ ] Create/manage experimental groups
    - [ ] Create/manage experimental sessions
    - [ ] Generate participant IDs
    - [ ] See status of participants
+** TODO Enforce page ordering [0/7]
+   - [ ] PageOrder model?
+   - [ ] Approved page order for tutorial
+   - [ ] Approved page order for experiment
+   - [ ] Approved page order for survey
+   - [ ] Filter for out-of-sequence paging and redirect with flash
+   - [ ] Every layout needs a flash area
+   - [ ] Tutorial, experiment, and survey page titles in layout, using get_text helper
+** DONE Participant state tracking [4/4]
+   CLOSED: [2009-08-15 Sat 07:01]
+   - [X] Add to Participant model:
+         phase:string page:string round:integer cash:decimal
+   - [X] Update in global filter
+   - [X] Write some tests
+   - [X] Upon login, redirect back to page specified by state
+
 
 
 * Sunday, August 9
