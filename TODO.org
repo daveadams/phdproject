@@ -5,12 +5,13 @@
 
 
 * Saturday, August 15
-** TODO Admin interface beginnings [0/5]
-   - [ ] Drop login requirement
-   - [ ] Create/manage experimental groups
-   - [ ] Create/manage experimental sessions
-   - [ ] Generate participant IDs
-   - [ ] See status of participants
+** DONE Admin interface beginnings [2/2]
+   CLOSED: [2009-08-15 Sat 08:35]
+   - [X] Drop login requirement
+   - [X] See status of participants
+         - [X] ExperimentalSession.current_participants
+         - [X] ExperimentalSession.unseen_participants
+         - [X] Split up participant list displays
 ** TODO Enforce page ordering [0/7]
    - [ ] PageOrder model?
    - [ ] Approved page order for tutorial
@@ -27,6 +28,13 @@
    - [X] Write some tests
    - [X] Upon login, redirect back to page specified by state
 
+
+
+* Future
+** TODO More admin [/]
+   - [ ] Create/manage experimental groups
+   - [ ] Create/manage experimental sessions
+   - [ ] Generate participant IDs
 
 
 * Sunday, August 9
