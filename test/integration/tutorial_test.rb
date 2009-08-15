@@ -27,6 +27,10 @@ class TutorialTest < ActionController::IntegrationTest
     assert_response :success
     assert_template :tutorial
     assert_equal "/tutorial/intro", path
+
+    p.reload
+    assert_equal("tutorial", p.phase)
+    assert_equal("intro", p.page)
   end
 
   test "failure when experimental session expires" do

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :require_valid_session
+  before_filter :update_participant_state
 
  private
   def require_valid_session
@@ -16,6 +17,14 @@ class ApplicationController < ActionController::Base
     elsif not @participant.experimental_session.is_active?
       flash[:error] = ErrorStrings::INACTIVE_SESSION
       redirect_to(:controller => "login")
+    end
+  end
+
+  def update_participant_state
+    if @participant
+      @participant.phase = controller_name
+      @participant.page = action_name
+      @participant.save
     end
   end
 end

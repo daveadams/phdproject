@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090814202935) do
+ActiveRecord::Schema.define(:version => 20090815102328) do
 
   create_table "experimental_groups", :force => true do |t|
     t.string   "name"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(:version => 20090814202935) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "experimental_group_id"
+    t.string   "phase"
+    t.string   "page"
+    t.integer  "round",                                                 :default => 0
+    t.decimal  "cash",                    :precision => 8, :scale => 2, :default => 0.0
   end
 
   create_table "tutorial_text_groups", :force => true do |t|
