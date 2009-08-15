@@ -92,4 +92,39 @@ class LoginTest < ActionController::IntegrationTest
     assert_select "title", "Log In"
     assert_select "div[class=error]", ErrorStrings::ALREADY_ACTIVE
   end
+
+  test "login redirect to saved location" do
+    get "/"
+    assert_response :success
+
+    p = experimental_sessions(:active).participants.first
+    post_via_redirect "/login/login", :participant_number => p.participant_number
+    assert_response :success
+    assert_equal("/tutorial/intro", path)
+
+    p.reload
+    assert_equal("tutorial", p.phase)
+    assert_equal("intro", p.page)
+
+    p.is_active = false
+    p.page = "complete"
+    assert(p.save)
+
+    post_via_redirect("/login/login", :participant_number => p.participant_number)
+    assert_response :success
+    assert_equal("/tutorial/complete", path)
+
+    p.reload
+    assert_equal("tutorial", p.phase)
+    assert_equal("complete", p.page)
+
+    p.is_active = false
+    p.phase = "survey"
+    p.page = "page4"
+    assert(p.save)
+
+    post("/login/login", :participant_number => p.participant_number)
+    assert_response :redirect
+    assert_redirected_to(:controller => "survey", :action => "page4")
+  end
 end

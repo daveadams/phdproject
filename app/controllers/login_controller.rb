@@ -14,7 +14,13 @@ class LoginController < ApplicationController
         begin
           participant.login
           session[:participant_id] = participant.id
-          redirect_to(:controller => :tutorial)
+          if participant.phase? and participant.page?
+            # they've been here before, send them back
+            redirect_to(:controller => participant.phase,
+                        :action => participant.page)
+          else
+            redirect_to(:controller => :tutorial)
+          end
         rescue ParticipantAlreadyActive
           flash[:error] = ErrorStrings::ALREADY_ACTIVE
           redirect_to(:action => :index)
