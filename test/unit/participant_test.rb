@@ -134,19 +134,16 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_nil(Participant.find_active(p2.participant_number))
   end
 
-  test "login and visit" do
+  test "login" do
     p = Participant.create(:experimental_session => experimental_sessions(:active),
                            :experimental_group => experimental_groups(:control))
     assert(p.valid?)
     assert_nil(p.first_login)
     assert_nil(p.last_access)
-    assert_raise(ParticipantNotActive) { p.visit }
     assert_nothing_raised { p.login }
     assert_not_nil(p.first_login)
     assert_not_nil(p.last_access)
     assert_equal(p.first_login, p.last_access)
     assert_raise(ParticipantAlreadyActive) { p.login }
-    assert_nothing_raised { p.visit }
-    assert_not_equal(p.first_login, p.last_access)
   end
 end

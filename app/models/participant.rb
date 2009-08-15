@@ -35,13 +35,6 @@ class Participant < ActiveRecord::Base
     self.save
   end
 
-  def visit
-    raise ParticipantNotActive unless self.is_active
-
-    self.last_access = Time.now
-    self.save
-  end
-
  private
   def self.generate_potential_participant_number
     alphaset = ("A".."Z").to_a

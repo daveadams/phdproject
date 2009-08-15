@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
 
   def update_participant_state
     if @participant
+      @participant.last_access = Time.now
       @participant.phase = controller_name
       @participant.page = action_name
       @participant.save

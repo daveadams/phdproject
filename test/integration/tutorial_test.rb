@@ -33,6 +33,34 @@ class TutorialTest < ActionController::IntegrationTest
     assert_equal("intro", p.page)
   end
 
+  test "participant timestamps" do
+    get "/"
+    assert_response :success
+
+    p = experimental_sessions(:active).participants.last
+    post("/login/login", :participant_number => p.participant_number)
+    assert_response :redirect
+    assert_redirected_to(:controller => :tutorial)
+
+    p.reload
+    assert_not_nil(p.first_login)
+    assert_not_nil(p.last_access)
+    assert_equal(p.first_login, p.last_access)
+    assert(p.first_login.past?)
+    assert(p.first_login > 1.second.ago)
+
+    # wait long enough that timestamp will be different
+    sleep 1
+
+    get_via_redirect "/tutorial"
+    assert_response :success
+
+    p.reload
+    assert_not_equal(p.first_login, p.last_access)
+    assert(p.last_access > p.first_login)
+    assert(p.last_access.past?)
+  end
+
   test "failure when experimental session expires" do
     get "/"
     assert_response :success
