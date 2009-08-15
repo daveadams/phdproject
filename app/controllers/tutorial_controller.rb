@@ -1,8 +1,8 @@
 class TutorialController < ApplicationController
-  before_filter :determine_page_sequence
+  before_filter :establish_page_order
 
   def index
-    redirect_to(:action => @page_sequence[0])
+    redirect_to(:action => @page_order[0])
   end
 
   def intro
@@ -23,12 +23,10 @@ class TutorialController < ApplicationController
   end
 
  private
-  def determine_page_sequence
-    @page_sequence = case @participant.experimental_group.tutorial_text_group.name
-                     when "Normal":
-                         ["intro","earnings","taxes","audit","complete"]
-                     when "Context-Neutral":
-                         ["intro","earnings","report","doublecheck","complete"]
-                     end
+  def establish_page_order
+    @page_order = PageOrder.find(:first,
+                                 :conditions => ["experimental_group_id=? and phase=?",
+                                                 @participant.experimental_group.id,
+                                                 controller_name]).page_order
   end
 end

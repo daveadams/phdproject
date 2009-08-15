@@ -1,0 +1,39 @@
+control_tutorial:
+  phase: tutorial
+  experimental_group_id: 1
+  page_order:
+    - intro
+    - earnings
+    - taxes
+    - audit
+    - complete
+
+context_neutral_tutorial:
+  phase: tutorial
+  experimental_group_id: 2
+  page_order:
+    - intro
+    - earnings
+    - report
+    - doublecheck
+    - complete
+
+experimental_one_tutorial:
+  phase: tutorial
+  experimental_group_id: 3
+  page_order:
+    - intro
+    - earnings
+    - taxes
+    - audit
+    - complete
+
+experimental_two_tutorial:
+  phase: tutorial
+  experimental_group_id: 4
+  page_order:
+    - intro
+    - earnings
+    - taxes
+    - audit
+    - complete
