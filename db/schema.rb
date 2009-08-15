@@ -9,13 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090815132739) do
+ActiveRecord::Schema.define(:version => 20090815141452) do
 
   create_table "experimental_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tutorial_text_group_id"
+    t.decimal  "earnings",               :precision => 8, :scale => 2, :default => 0.35
+    t.integer  "tax_rate",                                             :default => 20
+    t.decimal  "penalty_rate",           :precision => 8, :scale => 2, :default => 1.5
+    t.integer  "rounds",                                               :default => 20
   end
 
   create_table "experimental_sessions", :force => true do |t|
