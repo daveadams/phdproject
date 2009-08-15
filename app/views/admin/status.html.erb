@@ -1,0 +1,19 @@
+<h1>Current Status</h1>
+<% @sessions.each do |session| %>
+<h2><%=h session.name %></h2>
+<table class="participants">
+<% session.current_participants.each do |p| %>
+<tr class="current-participant">
+  <td class="participant-number"><%=h p.participant_number %></td>
+  <td><%=h p.experimental_group.name %></td>
+  <td>/<%=h p.phase %>/<%=h p.page %></td>
+  <td><%=h time_ago_in_words(p.last_access, true) %> ago</td>
+</tr>
+<% end %>
+<% if session.unseen_participants.length > 0 %>
+<tr class="unseen-participant-header">
+  <td colspan="4">&gt;&gt; <%=h session.unseen_participants.length %> unseen participants</td>
+</tr>
+<% end %>
+</table>
+<% end %>

@@ -12,4 +12,12 @@ class ExperimentalSession < ActiveRecord::Base
 
     Participant.create(spec)
   end
+
+  def current_participants
+    participants.reject { |p| p.last_access.nil? }
+  end
+
+  def unseen_participants
+    participants.reject { |p| p.last_access? }
+  end
 end
