@@ -6,4 +6,5 @@ class ActivityLog < ActiveRecord::Base
   OUT_OF_SEQUENCE = "seqerror"
   WARNING = "warning"
   LOGIN = "login"
+  CRITICAL = "critical"
 end
