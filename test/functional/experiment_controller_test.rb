@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class ExperimentControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "get index with no session" do
+    get :index
+    assert_response :redirect
+    assert_redirected_to(:controller => "login")
   end
 end

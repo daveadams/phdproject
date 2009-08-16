@@ -37,3 +37,31 @@ experimental_two_tutorial:
     - taxes
     - audit
     - complete
+
+control_experiment:
+  phase: experiment
+  experimental_group_id: 1
+  page_order:
+    - index
+    - complete
+
+context_neutral_experiment:
+  phase: experiment
+  experimental_group_id: 2
+  page_order:
+    - index
+    - complete
+
+experimental_one_experiment:
+  phase: experiment
+  experimental_group_id: 3
+  page_order:
+    - index
+    - complete
+
+experimental_two_experiment:
+  phase: experiment
+  experimental_group_id: 4
+  page_order:
+    - index
+    - complete
