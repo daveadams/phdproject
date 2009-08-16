@@ -3,42 +3,93 @@
 #+STARTUP: indent
 
 
-
-* Saturday, August 15
-** DONE Admin interface beginnings [2/2]
-   CLOSED: [2009-08-15 Sat 08:35]
-   - [X] Drop login requirement
-   - [X] See status of participants
-         - [X] ExperimentalSession.current_participants
-         - [X] ExperimentalSession.unseen_participants
-         - [X] Split up participant list displays
-** DONE Database-based page ordering [6/6]
-   CLOSED: [2009-08-15 Sat 09:56]
-   - [X] PageOrder branch
-   - [X] PageOrder model: phase, experimental_group_id, page_order (serialized array)
-   - [X] PageOrder fixtures for tutorial
-         - [X] control
-         - [X] experimental_one
-         - [X] experimental_two
-         - [X] context_neutral
-   - [X] Update tutorial_controller likewise
-   - [X] Every layout needs a flash area
-   - [X] Tutorial page titles in layout
-** DONE Participant state tracking [4/4]
-   CLOSED: [2009-08-15 Sat 07:01]
-   - [X] Add to Participant model:
-         phase:string page:string round:integer cash:decimal
-   - [X] Update in global filter
-   - [X] Write some tests
-   - [X] Upon login, redirect back to page specified by state
-
-
-** DONE Add configuration rules to experimental_groups [4/4]
-   CLOSED: [2009-08-15 Sat 10:20]
-   - [X] Earnings per
-   - [X] Tax rate
-   - [X] Audit penalty rate
-   - [X] Rounds
+* Sunday, August 16
+** DONE Experiment controller skeleton [5/5]
+   CLOSED: [2009-08-16 Sun 08:36]
+   - [X] Generate experiment controller
+   - [X] Create layout based on tutorial
+   - [X] Create get_text helper skeleton
+   - [X] Create page_order fixtures
+   - [X] Simple functional test
+** DONE ActivityLog [9/9]
+   CLOSED: [2009-08-16 Sun 10:16]
+   - [X] ActivityLog model: event:string participant_id controller action (created_at)
+   - [X] ActivityLog constants: pageload, error, out-of-sequence, warnings, login, etc
+   - [X] Create application_controller method for logging events
+   - [X] Create application filter to log pageload events automatically
+   - [X] Add request dump to details on pageload log
+   - [X] Login pageload logging with nil participant_id
+   - [X] Login failure logging with nil participant_id
+   - [X] Validate existing tests
+   - [X] Add integration tests
+         - [X] Login page
+         - [X] Login failure
+         - [X] Login success
+         - [X] Tutorial visits
+         - [X] Check pageload params in details
+** DONE Friendlier error page [6/6]
+   CLOSED: [2009-08-16 Sun 13:21]
+   - [X] Figure out how to intercept errors
+   - [X] Create generic error page
+   - [X] Figure out where to put generic error page
+   - [X] New event type: critical
+   - [X] Attempt to create a new ActivityLog
+   - [X] Log to logger as well
+** TODO Tutorial structure worth viewing [11/12]
+   - [X] Get comprehensive list from prototypes of two major page orders
+   - [X] Update page_order fixtures
+   - [X] Fill in missing actions
+   - [X] How do we do default templates? -- can't
+   - [X] Fill in missing view skeletons
+   - [X] Filler tutorial_text fixtures
+   - [X] Check sequences by hand
+   - [X] Test sequences in integration/tutorial_test
+   - [X] Create a templify application_helper
+   - [X] Update get_text to call templify against ruleset
+   - [X] Markdown/textile rendering
+   - [-] Correct tutorial_texts and template for each tutorial page
+         - [X] intro
+         - [X] overview
+         - [ ] earnings_intro
+         - [ ] earnings_task
+         - [ ] earnings_report
+         - [ ] tax_intro
+         - [ ] tax_return
+         - [ ] disclosure_intro
+         - [ ] disclosure_report
+         - [ ] audit_intro
+         - [ ] audit_notify
+         - [ ] audit_ok
+         - [ ] audit_error
+         - [ ] doublecheck_intro
+         - [ ] doublecheck_notify
+         - [ ] doublecheck_ok
+         - [ ] doublecheck_error
+         - [ ] completing
+         - [ ] complete
+** DONE Start enforcing phase order [3/3]
+   CLOSED: [2009-08-16 Sun 18:11]
+   - [X] Create enforce_order filter in application_controller
+   - [X] Exclude it from admin_controller
+   - [X] First implement only for login
+         - [X] Detect existing session/participant_id
+         - [X] Redirect to correct phase/page
+         - [X] Write the test
+         - [X] Correct broken tests
+** DONE Survey controller skeleton [6/6]
+   CLOSED: [2009-08-16 Sun 08:48]
+   - [X] Generate survey controller
+   - [X] Create layout based on tutorial
+   - [X] Create get_text helper skeleton
+   - [X] Create filler action and view
+   - [X] Create page_order fixtures
+   - [X] Simple functional test
+** DONE Complete controller skeleton [4/4]
+   CLOSED: [2009-08-16 Sun 08:54]
+   - [X] Generate complete controller
+   - [X] Index view is complete page, no layout necessary
+   - [X] Skeletons for testing for actual completeness and marking complete
+   - [X] Simple functional test
 
 
 * Future
@@ -46,16 +97,29 @@
    - [ ] Create/manage experimental groups
    - [ ] Create/manage experimental sessions
    - [ ] Generate participant IDs
-** TODO Beginnings of experiment controller [0/3]
-   - [ ] Layout: start from tutorial
-   - [ ] get_text helper
-   - [ ] Page order fixtures
-** TODO Start survey controller [0/3]
-   - [ ] Layout: start from tutorial
-   - [ ] get_text helper
-   - [ ] Page order fixtures
-** TODO Enforce page order
-** TODO Add rule support to get_text (templify style?)
+** TODO Experimental session round tracking [0/2]
+   - [ ] Add round field to experimental_session model
+   - [ ] Experiment controller should hold participants at wait controller
+         until round is incremented by the admin or by all participants completing
+         the prior round.
+** TODO Complete controller functionality [0/3]
+   - [ ] Test for completed_tutorial, completed_experiment, completed_survey
+   - [ ] Mark completed_all
+   - [ ] Kill session
+** TODO More phase order enforcement [0/8]
+   - [ ] Add progress fields to Participant:
+         - [ ] completed_tutorial
+         - [ ] completed_experiment
+         - [ ] completed_survey
+         - [ ] completed_all
+   - [ ] Update completed_tutorial field when tutorial is complete
+   - [ ] Check for completed_tutorial before starting experiment
+   - [ ] Update completed_experiment field when experiment is complete
+   - [ ] Check for completed_experiment before starting survey
+   - [ ] Update completed_survey field with survey is complete
+   - [ ] Check for completed_survey before killing session
+   - [ ] Update complete_all field in complete controller
+
 
 * Sunday, August 9
 ** DONE Add div.error class to default.css
@@ -197,5 +261,41 @@
    - [X] Update fixtures
    - [X] Update unit tests
    - [X] Update integration tests
+
+
+* Saturday, August 15
+** DONE Admin interface beginnings [2/2]
+   CLOSED: [2009-08-15 Sat 08:35]
+   - [X] Drop login requirement
+   - [X] See status of participants
+         - [X] ExperimentalSession.current_participants
+         - [X] ExperimentalSession.unseen_participants
+         - [X] Split up participant list displays
+** DONE Database-based page ordering [6/6]
+   CLOSED: [2009-08-15 Sat 09:56]
+   - [X] PageOrder branch
+   - [X] PageOrder model: phase, experimental_group_id, page_order (serialized array)
+   - [X] PageOrder fixtures for tutorial
+         - [X] control
+         - [X] experimental_one
+         - [X] experimental_two
+         - [X] context_neutral
+   - [X] Update tutorial_controller likewise
+   - [X] Every layout needs a flash area
+   - [X] Tutorial page titles in layout
+** DONE Participant state tracking [4/4]
+   CLOSED: [2009-08-15 Sat 07:01]
+   - [X] Add to Participant model:
+         phase:string page:string round:integer cash:decimal
+   - [X] Update in global filter
+   - [X] Write some tests
+   - [X] Upon login, redirect back to page specified by state
+
+** DONE Add configuration rules to experimental_groups [4/4]
+   CLOSED: [2009-08-15 Sat 10:20]
+   - [X] Earnings per
+   - [X] Tax rate
+   - [X] Audit penalty rate
+   - [X] Rounds
 
 
