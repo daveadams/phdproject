@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
                        :details => details)
   end
 
-  def log_error(error_message)
+  def log_app_error(error_message)
     log_event(ActivityLog::ERROR, error_message)
   end
 end

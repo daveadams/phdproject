@@ -10,7 +10,7 @@ class LoginController < ApplicationController
     if request.post?
       @participant = Participant.find_active(params[:participant_number])
       if @participant.nil?
-        log_error("Invalid participant number: #{params[:participant_number]}")
+        log_app_error("Invalid participant number: #{params[:participant_number]}")
         flash[:error] = ErrorStrings::INVALID_PARTICIPANT
         redirect_to(:action => :index)
       else
@@ -26,7 +26,7 @@ class LoginController < ApplicationController
             redirect_to(:controller => :tutorial)
           end
         rescue ParticipantAlreadyActive
-          log_error("Participant already active: #{@participant.participant_number}")
+          log_app_error("Participant already active: #{@participant.participant_number}")
           flash[:error] = ErrorStrings::ALREADY_ACTIVE
           redirect_to(:action => :index)
         end
