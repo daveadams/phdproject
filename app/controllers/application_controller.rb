@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_valid_session
   before_filter :update_participant_state
+  before_filter :establish_page_order
 
  private
   def require_valid_session
@@ -27,5 +28,12 @@ class ApplicationController < ActionController::Base
       @participant.page = action_name
       @participant.save
     end
+  end
+
+  def establish_page_order
+    @page_order = PageOrder.find(:first,
+                                 :conditions => ["experimental_group_id=? and phase=?",
+                                                 @participant.experimental_group.id,
+                                                 controller_name]).page_order
   end
 end

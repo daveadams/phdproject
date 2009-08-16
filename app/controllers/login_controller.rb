@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
   skip_before_filter :require_valid_session
   skip_before_filter :update_participant_state
+  skip_before_filter :establish_page_order
 
   def index
   end
