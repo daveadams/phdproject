@@ -7,6 +7,23 @@ class ApplicationController < ActionController::Base
   before_filter :establish_page_order
   before_filter :log_page_load
 
+ protected
+  # override default error handling
+  def rescue_action_in_public(exception)
+    logger.error "CRITICAL ERROR: #{exception.class}: #{exception}"
+    begin
+      ActivityLog.create!(:event => ActivityLog::CRITICAL,
+                          :participant_id => @participant.nil? ? nil : @participant.id,
+                          :controller => controller_name,
+                          :action => action_name,
+                          :details => "#{exception.class}: #{exception}")
+    rescue => e
+      logger.fatal "FATAL ERROR: Could not create error record in activity log."
+      logger.fatal "             #{e.class}: #{e}"
+    end
+    render :file => File.join(Rails.public_path, "error.html")
+  end
+
  private
   def require_valid_session
     @participant = Participant.find(:first, :conditions => ["id=? and is_active=?",
