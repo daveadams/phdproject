@@ -27,6 +27,8 @@ class LoginTest < ActionController::IntegrationTest
     assert_equal "/", path
     assert_select "title", "Log In"
     assert_select "div[class=error]", ErrorStrings::INVALID_PARTICIPANT
+
+    assert_equal(ActivityLog.count, 0)
   end
 
   test "active login attempt" do

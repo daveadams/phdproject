@@ -27,6 +27,8 @@ class ApplicationController < ActionController::Base
       @participant.phase = controller_name
       @participant.page = action_name
       @participant.save
+
+      log_event(ActivityLog::PAGE_LOADED, params.to_yaml)
     end
   end
 
@@ -35,5 +37,13 @@ class ApplicationController < ActionController::Base
                                  :conditions => ["experimental_group_id=? and phase=?",
                                                  @participant.experimental_group.id,
                                                  controller_name]).page_order
+  end
+
+  def log_event(event, details = nil)
+    ActivityLog.create(:event => event,
+                       :participant_id => @participant.id,
+                       :controller => controller_name,
+                       :action => action_name,
+                       :details => details)
   end
 end
