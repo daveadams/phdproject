@@ -1,8 +1,4 @@
 module TutorialHelper
-  def get_text(text_key)
-    TutorialText.get_text(@participant, action_name, text_key)
-  end
-
   def next_page
     current_index = @page_order.index(action_name)
     if current_index >= (@page_order.length - 1)
