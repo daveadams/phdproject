@@ -1,6 +1,8 @@
 class AdminController < ApplicationController
   skip_before_filter :require_valid_session
   skip_before_filter :update_participant_state
+  skip_before_filter :establish_page_order
+  skip_before_filter :log_page_load
 
   def participants
     @participants = Participant.find(:all)
