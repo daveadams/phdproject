@@ -7,8 +7,10 @@ intro_body_default:
   page_name: intro
   text_key: body
   text: |
-    This is the filler text for the body of page 'intro'. This can be very big.
-    
+    This is a markdown and templify test. There will be {{{rounds}}} rounds. The tax
+    rate is {{{tax_rate}}}%, the penalty rate is {{{penalty_rate}}}, and you will earn
+    {{{earnings}}} per correction.
+
     Like, this big.
 
 overview_default_title:
@@ -21,7 +23,7 @@ overview_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'overview'. This can be very big.
-    
+
     Like, this big.
 
 earnings_intro_default_title:
@@ -34,7 +36,7 @@ earnings_intro_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'earnings_intro'. This can be very big.
-    
+
     Like, this big.
 
 earnings_task_default_title:
@@ -47,7 +49,7 @@ earnings_task_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'earnings_task'. This can be very big.
-    
+
     Like, this big.
 
 earnings_report_default_title:
@@ -60,7 +62,7 @@ earnings_report_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'earnings_report'. This can be very big.
-    
+
     Like, this big.
 
 tax_intro_default_title:
@@ -73,7 +75,7 @@ tax_intro_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'tax_intro'. This can be very big.
-    
+
     Like, this big.
 
 tax_return_default_title:
@@ -86,7 +88,7 @@ tax_return_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'tax_return'. This can be very big.
-    
+
     Like, this big.
 
 disclosure_intro_default_title:
@@ -99,7 +101,7 @@ disclosure_intro_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'disclosure_intro'. This can be very big.
-    
+
     Like, this big.
 
 disclosure_report_default_title:
@@ -112,7 +114,7 @@ disclosure_report_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'disclosure_report'. This can be very big.
-    
+
     Like, this big.
 
 audit_intro_default_title:
@@ -125,7 +127,7 @@ audit_intro_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'audit_intro'. This can be very big.
-    
+
     Like, this big.
 
 audit_notify_default_title:
@@ -138,7 +140,7 @@ audit_notify_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'audit_notify'. This can be very big.
-    
+
     Like, this big.
 
 audit_ok_default_title:
@@ -151,7 +153,7 @@ audit_ok_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'audit_ok'. This can be very big.
-    
+
     Like, this big.
 
 audit_error_default_title:
@@ -164,7 +166,7 @@ audit_error_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'audit_error'. This can be very big.
-    
+
     Like, this big.
 
 doublecheck_intro_default_title:
@@ -177,7 +179,7 @@ doublecheck_intro_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'doublecheck_intro'. This can be very big.
-    
+
     Like, this big.
 
 doublecheck_notify_default_title:
@@ -190,7 +192,7 @@ doublecheck_notify_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'doublecheck_notify'. This can be very big.
-    
+
     Like, this big.
 
 doublecheck_ok_default_title:
@@ -203,7 +205,7 @@ doublecheck_ok_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'doublecheck_ok'. This can be very big.
-    
+
     Like, this big.
 
 doublecheck_error_default_title:
@@ -216,7 +218,7 @@ doublecheck_error_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'doublecheck_error'. This can be very big.
-    
+
     Like, this big.
 
 completing_default_title:
@@ -229,7 +231,7 @@ completing_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'completing'. This can be very big.
-    
+
     Like, this big.
 
 complete_default_title:
@@ -242,6 +244,6 @@ complete_body_default:
   text_key: body
   text: |
     This is the filler text for the body of page 'complete'. This can be very big.
-    
+
     Like, this big.
 
