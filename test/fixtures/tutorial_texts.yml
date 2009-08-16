@@ -1,32 +1,36 @@
-intro_default_title:
+intro_title:
   page_name: intro
   text_key: title
-  text: Filler Title for intro
+  text: Introduction
 
-intro_body_default:
+intro_body:
   page_name: intro
   text_key: body
   text: |
-    This is a markdown and templify test. There will be {{{rounds}}} rounds. The tax
-    rate is {{{tax_rate}}}%, the penalty rate is {{{penalty_rate}}}, and you will earn
-    {{{earnings}}} per correction.
+    This is an experiment in decision making. You will have an opportunity to earn a considerable amount of cash through your participation in this experiment. You will be required to complete the experiment individually by interacting with the computer terminal that you are seated at. You are not allowed to communicate with any other participant at any point during the course of the experiment. At the end of the experiment, you will be paid the balance of your bank account as calculated by the computer. You may withdraw from the experiment at any time. If you withdraw from the experiment before its completion, you will be paid for the portion of the experiment that you have completed.  You should feel free to try to make as much money as you can during the course of the experiment.  All responses and decisions will be anonymous and the only piece of experimental material that will contain your identity will be your receipt of payment at the end of the experiment.
 
-    Like, this big.
+    Next, you will be asked to complete a short tutorial. The tutorial will provide the full set of instuctions for the experiment, plus an opportunity to interact with the experimental software. Please make sure that you understand the instructions and feel comfortable with the user interface before you begin the experiment. You may move both forward and backwards through the tutorial screens. Once you have completed the tutorial, please indicate that you have completed the tutorial and understand the instructions by clicking the "Begin Experiment" button on the last page of the tutorial.
 
-overview_default_title:
+overview_title:
   page_name: overview
   text_key: title
-  text: Filler Title for overview
+  text: Overview
 
-overview_body_default:
+overview_body_normal:
+  tutorial_text_group_id: 1
   page_name: overview
   text_key: body
   text: |
-    This is the filler text for the body of page 'overview'. This can be very big.
+    This is an experiment specifically in tax decision making. The experiment will repeat for an undetermined number of periods. Each period will follow the same procedures. In each period, you will complete a task and earn income based on your performance of the task. You will then be asked to report your earnings for that period on a tax return and you will be charged an income tax on your reported earnings. You will be taxed on the income you report on your tax return, not your actual earned income. Your tax return may, however, be audited. If you are audited and have not reported the full amount of your income, you will have to pay the additional tax due on unreported income plus a penalty. You will start out with a balance of $0.00 in your bank account. Each period the income you earn will be added to your bank account and the taxes and any penalties you pay will be subtracted from your bank account. At the end of the experiment you will be paid the accumulated balance in your bank account. Funding for this experiment comes from the Accounting and Information Systems departmental budget. Funds from this budget are used to pay for the activities and programs of the Accounting and Information Systems department at Virginia Tech.
 
-    Like, this big.
+overview_body_cn:
+  tutorial_text_group_id: 2
+  page_name: overview
+  text_key: body
+  text: |
+    The experiment will repeat for an undetermined number of periods. Each period will follow the same procedures. In each period, you will complete a task and will earn money based on your performance of the task. You will then be asked to disclose your earnings for that period and you will be charged a set percentage of your reported earnings. You will be charged on the amount you disclose, not the actual amount of your earnings. The amount disclosed may, however, be double-checked. If the amount disclosed is double-checked and you have not disclosed the full amount earned, you will have to pay the additional amount that would have been charged on the undisclosed amount plus a penalty. You will start out with a balance of $0.00 in your bank account. Each period the money you earn will be added to your bank account and the amounts you are charged plus any penalties you pay will be subtracted from your bank account. At the end of the experiment, you will be paid the accumulated balance in your bank account. Funding for this experiment comes from the Accounting and Information Systems departmental budget. Funds from this budget are used to pay for the activities and programs of the Accounting and Information Systems department at Virginia Tech.
 
-earnings_intro_default_title:
+earnings_intro_title:
   page_name: earnings_intro
   text_key: title
   text: Filler Title for earnings_intro
@@ -39,7 +43,7 @@ earnings_intro_body_default:
 
     Like, this big.
 
-earnings_task_default_title:
+earnings_task_title:
   page_name: earnings_task
   text_key: title
   text: Filler Title for earnings_task
@@ -52,7 +56,7 @@ earnings_task_body_default:
 
     Like, this big.
 
-earnings_report_default_title:
+earnings_report_title:
   page_name: earnings_report
   text_key: title
   text: Filler Title for earnings_report
@@ -65,7 +69,7 @@ earnings_report_body_default:
 
     Like, this big.
 
-tax_intro_default_title:
+tax_intro_title:
   page_name: tax_intro
   text_key: title
   text: Filler Title for tax_intro
@@ -78,7 +82,7 @@ tax_intro_body_default:
 
     Like, this big.
 
-tax_return_default_title:
+tax_return_title:
   page_name: tax_return
   text_key: title
   text: Filler Title for tax_return
@@ -91,7 +95,7 @@ tax_return_body_default:
 
     Like, this big.
 
-disclosure_intro_default_title:
+disclosure_intro_title:
   page_name: disclosure_intro
   text_key: title
   text: Filler Title for disclosure_intro
@@ -104,7 +108,7 @@ disclosure_intro_body_default:
 
     Like, this big.
 
-disclosure_report_default_title:
+disclosure_report_title:
   page_name: disclosure_report
   text_key: title
   text: Filler Title for disclosure_report
@@ -117,7 +121,7 @@ disclosure_report_body_default:
 
     Like, this big.
 
-audit_intro_default_title:
+audit_intro_title:
   page_name: audit_intro
   text_key: title
   text: Filler Title for audit_intro
@@ -130,7 +134,7 @@ audit_intro_body_default:
 
     Like, this big.
 
-audit_notify_default_title:
+audit_notify_title:
   page_name: audit_notify
   text_key: title
   text: Filler Title for audit_notify
@@ -143,7 +147,7 @@ audit_notify_body_default:
 
     Like, this big.
 
-audit_ok_default_title:
+audit_ok_title:
   page_name: audit_ok
   text_key: title
   text: Filler Title for audit_ok
@@ -156,7 +160,7 @@ audit_ok_body_default:
 
     Like, this big.
 
-audit_error_default_title:
+audit_error_title:
   page_name: audit_error
   text_key: title
   text: Filler Title for audit_error
@@ -169,7 +173,7 @@ audit_error_body_default:
 
     Like, this big.
 
-doublecheck_intro_default_title:
+doublecheck_intro_title:
   page_name: doublecheck_intro
   text_key: title
   text: Filler Title for doublecheck_intro
@@ -182,7 +186,7 @@ doublecheck_intro_body_default:
 
     Like, this big.
 
-doublecheck_notify_default_title:
+doublecheck_notify_title:
   page_name: doublecheck_notify
   text_key: title
   text: Filler Title for doublecheck_notify
@@ -195,7 +199,7 @@ doublecheck_notify_body_default:
 
     Like, this big.
 
-doublecheck_ok_default_title:
+doublecheck_ok_title:
   page_name: doublecheck_ok
   text_key: title
   text: Filler Title for doublecheck_ok
@@ -208,7 +212,7 @@ doublecheck_ok_body_default:
 
     Like, this big.
 
-doublecheck_error_default_title:
+doublecheck_error_title:
   page_name: doublecheck_error
   text_key: title
   text: Filler Title for doublecheck_error
@@ -221,7 +225,7 @@ doublecheck_error_body_default:
 
     Like, this big.
 
-completing_default_title:
+completing_title:
   page_name: completing
   text_key: title
   text: Filler Title for completing
@@ -234,7 +238,7 @@ completing_body_default:
 
     Like, this big.
 
-complete_default_title:
+complete_title:
   page_name: complete
   text_key: title
   text: Filler Title for complete

@@ -2,10 +2,12 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
 
+  before_filter :check_session
   before_filter :require_valid_session
   before_filter :update_participant_state
   before_filter :establish_page_order
   before_filter :log_page_load
+  before_filter :enforce_order
 
  protected
   # override default error handling
@@ -25,15 +27,19 @@ class ApplicationController < ActionController::Base
   end
 
  private
-  def require_valid_session
+  def check_session
     @participant = Participant.find(:first, :conditions => ["id=? and is_active=?",
                                                             session[:participant_id],
                                                             true])
+  end
 
+  def require_valid_session
     if session[:participant_id].nil? or @participant.nil?
       flash[:error] = ErrorStrings::MUST_LOGIN
       redirect_to(:controller => "login")
     elsif not @participant.experimental_session.is_active?
+      @participant = nil
+      reset_session
       flash[:error] = ErrorStrings::INACTIVE_SESSION
       redirect_to(:controller => "login")
     end
@@ -56,7 +62,23 @@ class ApplicationController < ActionController::Base
   end
 
   def log_page_load
-      log_event(ActivityLog::PAGE_LOADED, params.to_yaml)
+    log_event(ActivityLog::PAGE_LOADED, params.to_yaml)
+  end
+
+  def enforce_order
+    if controller_name == "login"
+      if @participant
+        if @participant.phase.nil? or @participant.page.nil?
+          log_event(ActivityLog::OUT_OF_SEQUENCE, "Redirecting to /tutorial")
+          redirect_to(:controller => :tutorial)
+        else
+          log_event(ActivityLog::OUT_OF_SEQUENCE,
+                    "Redirecting to /#{@participant.phase}/#{@participant.page}")
+          redirect_to(:controller => @participant.phase,
+                      :action => @participant.page)
+        end
+      end
+    end
   end
 
   def log_event(event, details = nil)
