@@ -3,9 +3,17 @@ control_tutorial:
   experimental_group_id: 1
   page_order:
     - intro
-    - earnings
-    - taxes
-    - audit
+    - overview
+    - earnings_intro
+    - earnings_task
+    - earnings_report
+    - tax_intro
+    - tax_return
+    - audit_intro
+    - audit_notify
+    - audit_ok
+    - audit_error
+    - completing
     - complete
 
 context_neutral_tutorial:
@@ -13,9 +21,17 @@ context_neutral_tutorial:
   experimental_group_id: 2
   page_order:
     - intro
-    - earnings
-    - report
-    - doublecheck
+    - overview
+    - earnings_intro
+    - earnings_task
+    - earnings_report
+    - disclosure_intro
+    - disclosure_report
+    - doublecheck_intro
+    - doublecheck_notify
+    - doublecheck_ok
+    - doublecheck_error
+    - completing
     - complete
 
 experimental_one_tutorial:
@@ -23,9 +39,17 @@ experimental_one_tutorial:
   experimental_group_id: 3
   page_order:
     - intro
-    - earnings
-    - taxes
-    - audit
+    - overview
+    - earnings_intro
+    - earnings_task
+    - earnings_report
+    - tax_intro
+    - tax_return
+    - audit_intro
+    - audit_notify
+    - audit_ok
+    - audit_error
+    - completing
     - complete
 
 experimental_two_tutorial:
@@ -33,9 +57,17 @@ experimental_two_tutorial:
   experimental_group_id: 4
   page_order:
     - intro
-    - earnings
-    - taxes
-    - audit
+    - overview
+    - earnings_intro
+    - earnings_task
+    - earnings_report
+    - tax_intro
+    - tax_return
+    - audit_intro
+    - audit_notify
+    - audit_ok
+    - audit_error
+    - completing
     - complete
 
 control_experiment:
