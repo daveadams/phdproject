@@ -4,6 +4,7 @@ class ParticipantNotActive < ActiveRecord::ActiveRecordError; end
 class Participant < ActiveRecord::Base
   belongs_to :experimental_session
   belongs_to :experimental_group
+  has_many :activity_logs
 
   validates_presence_of :participant_number
   validates_uniqueness_of :participant_number

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :require_valid_session
   before_filter :update_participant_state
   before_filter :establish_page_order
+  before_filter :log_page_load
 
  private
   def require_valid_session
@@ -27,8 +28,6 @@ class ApplicationController < ActionController::Base
       @participant.phase = controller_name
       @participant.page = action_name
       @participant.save
-
-      log_event(ActivityLog::PAGE_LOADED, params.to_yaml)
     end
   end
 
@@ -39,11 +38,19 @@ class ApplicationController < ActionController::Base
                                                  controller_name]).page_order
   end
 
+  def log_page_load
+      log_event(ActivityLog::PAGE_LOADED, params.to_yaml)
+  end
+
   def log_event(event, details = nil)
     ActivityLog.create(:event => event,
-                       :participant_id => @participant.id,
+                       :participant_id => @participant.nil? ? nil : @participant.id,
                        :controller => controller_name,
                        :action => action_name,
                        :details => details)
+  end
+
+  def log_error(error_message)
+    log_event(ActivityLog::ERROR, error_message)
   end
 end

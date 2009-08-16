@@ -7,6 +7,7 @@ class TutorialTest < ActionController::IntegrationTest
     get "/tutorial"
     assert_response :redirect
     assert_redirected_to(:controller => "login")
+    assert_equal(ActivityLog.count, 0)
   end
 
   test "require session follow redirect" do
@@ -31,6 +32,9 @@ class TutorialTest < ActionController::IntegrationTest
     p.reload
     assert_equal("tutorial", p.phase)
     assert_equal("intro", p.page)
+
+    assert_equal(ActivityLog.count, 5)
+    assert_equal(p.activity_logs.count, 3)
   end
 
   test "participant timestamps" do
