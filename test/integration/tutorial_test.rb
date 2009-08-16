@@ -91,4 +91,47 @@ class TutorialTest < ActionController::IntegrationTest
     assert_select "title", "Log In"
     assert_select "div[class=error]", ErrorStrings::INACTIVE_SESSION
   end
+
+  test "forward sequence" do
+    experimental_sessions(:active).participants.each do |p|
+      post_via_redirect("/login/login",
+                        :participant_number => p.participant_number)
+      assert_response(:success)
+      assert_template(:tutorial)
+
+      po = PageOrder.find(:first,
+                          :conditions => ["experimental_group_id=? and phase=?",
+                                          p.experimental_group.id, "tutorial"]).page_order
+
+      po.each do |page|
+        i = po.index(page)
+        first_page = (i == 0)
+        last_page = (i == (po.length - 1))
+        prev_page_name = first_page ? nil : po[i-1]
+        next_page_name = last_page ? nil : po[i+1]
+
+        assert_equal("/tutorial/#{page}", path)
+        unless last_page
+          assert_select "form[method=get][action=/tutorial/#{next_page_name}]" do
+            assert_select "input[value='Next >>']", 1
+          end
+        end
+        unless first_page
+          assert_select "form[method=get][action=/tutorial/#{prev_page_name}]" do
+            assert_select "input[value='<< Back']", 1
+          end
+        end
+
+        unless last_page
+          get "/tutorial/#{next_page_name}"
+          assert_response(:success)
+          assert_template(:tutorial)
+        end
+      end
+
+      p.reload
+      assert_equal("tutorial", p.phase)
+      assert_equal("complete", p.page)
+    end
+  end
 end
