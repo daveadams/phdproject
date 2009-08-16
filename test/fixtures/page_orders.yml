@@ -65,3 +65,31 @@ experimental_two_experiment:
   page_order:
     - index
     - complete
+
+control_survey:
+  phase: survey
+  experimental_group_id: 1
+  page_order:
+    - index
+    - complete
+
+context_neutral_survey:
+  phase: survey
+  experimental_group_id: 2
+  page_order:
+    - index
+    - complete
+
+experimental_one_survey:
+  phase: survey
+  experimental_group_id: 3
+  page_order:
+    - index
+    - complete
+
+experimental_two_survey:
+  phase: survey
+  experimental_group_id: 4
+  page_order:
+    - index
+    - complete
