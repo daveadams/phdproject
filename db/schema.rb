@@ -9,7 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090815141452) do
+ActiveRecord::Schema.define(:version => 20090816130145) do
+
+  create_table "activity_logs", :force => true do |t|
+    t.integer  "participant_id"
+    t.string   "event"
+    t.string   "controller"
+    t.string   "action"
+    t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "experimental_groups", :force => true do |t|
     t.string   "name"
