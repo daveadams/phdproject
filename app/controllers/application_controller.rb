@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :check_session
+  before_filter :log_page_load
+  before_filter :enforce_order
   before_filter :require_valid_session
   before_filter :update_participant_state
   before_filter :establish_page_order
-  before_filter :log_page_load
-  before_filter :enforce_order
 
  protected
   # override default error handling
@@ -33,34 +33,6 @@ class ApplicationController < ActionController::Base
                                                             true])
   end
 
-  def require_valid_session
-    if session[:participant_id].nil? or @participant.nil?
-      flash[:error] = ErrorStrings::MUST_LOGIN
-      redirect_to(:controller => "login")
-    elsif not @participant.experimental_session.is_active?
-      @participant = nil
-      reset_session
-      flash[:error] = ErrorStrings::INACTIVE_SESSION
-      redirect_to(:controller => "login")
-    end
-  end
-
-  def update_participant_state
-    if @participant
-      @participant.last_access = Time.now
-      @participant.phase = controller_name
-      @participant.page = action_name
-      @participant.save
-    end
-  end
-
-  def establish_page_order
-    @page_order = PageOrder.find(:first,
-                                 :conditions => ["experimental_group_id=? and phase=?",
-                                                 @participant.experimental_group.id,
-                                                 controller_name]).page_order
-  end
-
   def log_page_load
     log_event(ActivityLog::PAGE_LOADED, params.to_yaml)
   end
@@ -79,6 +51,32 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def require_valid_session
+    if session[:participant_id].nil? or @participant.nil?
+      flash[:error] = ErrorStrings::MUST_LOGIN
+      redirect_to(:controller => "login")
+    elsif not @participant.experimental_session.is_active?
+      @participant = nil
+      reset_session
+      flash[:error] = ErrorStrings::INACTIVE_SESSION
+      redirect_to(:controller => "login")
+    end
+  end
+
+  def update_participant_state
+    @participant.last_access = Time.now
+    @participant.phase = controller_name
+    @participant.page = action_name
+    @participant.save
+  end
+
+  def establish_page_order
+    @page_order = PageOrder.find(:first,
+                                 :conditions => ["experimental_group_id=? and phase=?",
+                                                 @participant.experimental_group.id,
+                                                 controller_name]).page_order
   end
 
   def log_event(event, details = nil)
