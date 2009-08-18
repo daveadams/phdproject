@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090816130145) do
+ActiveRecord::Schema.define(:version => 20090818005319) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -67,6 +67,10 @@ ActiveRecord::Schema.define(:version => 20090816130145) do
     t.string   "page"
     t.integer  "round",                                                 :default => 0
     t.decimal  "cash",                    :precision => 8, :scale => 2, :default => 0.0
+    t.boolean  "tutorial_complete",                                     :default => false
+    t.boolean  "experiment_complete",                                   :default => false
+    t.boolean  "survey_complete",                                       :default => false
+    t.boolean  "all_complete",                                          :default => false
   end
 
   create_table "tutorial_text_groups", :force => true do |t|
