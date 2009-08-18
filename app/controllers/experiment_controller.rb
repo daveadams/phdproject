@@ -1,10 +1,25 @@
 class ExperimentController < ApplicationController
   def index
+    if @participant.tutorial_complete
+      if not @participant.experiment_complete
+        redirect_to(:action => :wait)
+      else
+        redirect_to(:controller => :survey)
+      end
+    end
   end
 
   def wait
-    # TODO: add reload to layout for this action
-    # TODO: check phase/round status and advance as appropriate
+    if @participant.experimental_session.phase == "experiment" and
+        @participant.experimental_session.round == @participant.round
+      redirect_to(:action => :start)
+    else
+      render :layout => "reload"
+    end
+  end
+
+  def start
+
   end
 
   def complete
