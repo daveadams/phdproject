@@ -29,7 +29,10 @@ class TutorialController < ApplicationController
   def completing; end
 
   def complete
-    @participant.tutorial_complete = true
-    @participant.save
+    if request.post?
+      @participant.tutorial_complete = true
+      @participant.save
+      redirect_to(:controller => :experiment)
+    end
   end
 end
