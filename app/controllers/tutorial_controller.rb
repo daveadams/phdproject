@@ -27,5 +27,9 @@ class TutorialController < ApplicationController
   def doublecheck_error; end
 
   def completing; end
-  def complete; end
+
+  def complete
+    @participant.tutorial_complete = true
+    @participant.save
+  end
 end
