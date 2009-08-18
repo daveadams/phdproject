@@ -17,3 +17,9 @@ experimental_two:
   id: 4
   name: experimental_two
   tutorial_text_group_id: 1
+
+ten_rounds:
+  id: 5
+  name: ten_rounds
+  tutorial_text_group_id: 1
+  rounds: 10

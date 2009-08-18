@@ -36,4 +36,29 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
       assert_equal(Participant.find(p.id), p)
     end
   end
+
+  test "round counts" do
+    x = ExperimentalSession.new(:name => "Testing Round Counts",
+                                :is_active => true)
+    assert x.valid?
+    assert x.save
+
+    assert_equal(0, x.max_rounds)
+
+    x.create_participants(2, experimental_groups(:control))
+    x.create_participants(2, experimental_groups(:experimental_one))
+
+    x.reload
+    x.participants.each do |p|
+      assert_equal(20, p.experimental_group.rounds)
+    end
+
+    assert_equal(20, x.max_rounds)
+
+    x.create_participants(2, experimental_groups(:ten_rounds))
+    x.reload
+
+    assert(!x.valid?)
+    assert_nil(x.max_rounds)
+  end
 end
