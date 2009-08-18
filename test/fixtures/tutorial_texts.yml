@@ -33,41 +33,51 @@ overview_body_cn:
 earnings_intro_title:
   page_name: earnings_intro
   text_key: title
-  text: Filler Title for earnings_intro
+  text: Earnings Task and Earnings Report
 
-earnings_intro_body_default:
+earnings_intro_body_normal:
+  tutorial_text_group_id: 1
   page_name: earnings_intro
   text_key: body
   text: |
-    This is the filler text for the body of page 'earnings_intro'. This can be very big.
+    You will earn income in this experiment by proofreading a paragraph of text and correcting any spelling or typographical errors contained in the text. You will have a maximum of 2 minutes to complete this task. You may exit the task and view your earnings report before the end of the 2 minute period by clicking the "Submit Corrections" button. Be sure you have completed the task before submitting the corrections, you may not return to the task once you have clicked the "Submit Corrections" button. If you have not manually submitted the corrections by the end of the 2 minute period, your corrections will automatically be submitted and you will be redirected to the earnings report. You will be paid ${{{earnings}}} for each error that you correct properly. You will not be paid for errors that are not properly corrected. You will not be penalized for changes made to portions of the text that did not originally contain an error. There are a total of 5 errors in each paragraph.
 
-    Like, this big.
+    The earnings report will identify the errors that you corrected properly and your total income from the task. Be sure to remember the amount of income earned. The amount of income earned will be automatically added to your bank account.
+
+    The next two screens will present demonstrations of the earnings task and the earnings report.
+
+earnings_intro_body_cn:
+  tutorial_text_group_id: 2
+  page_name: earnings_intro
+  text_key: body
+  text: |
+    You will earn income in this experiment by proofreading a paragraph of text and correcting any spelling or typographical errors contained in the text. You will have a maximum of 2 minutes to complete this task. You may exit the task and view your earnings report before the end of the 2 minute period by clicking the "Submit Corrections" button. Be sure you have completed the task before submitting the corrections, you may not return to the task once you have clicked the "Submit Corrections" button. If you have not manually submitted the corrections by the end of the 2 minute period, your corrections will automatically be submitted and you will be redirected to the earnings report. You will be paid ${{{earnings}}} for each error that you correct properly. You will not be paid for errors that are not properly corrected. You will not be penalized for changes made to portions of the text that did not originally contain an error. There are a total of 5 errors in each paragraph.
+
+    The earnings report will identify the errors that you corrected properly and the total earnings from the task. Be sure to remember the amount earned. The amount earned will be automatically added to your bank account.
+
+    The next two screens will present demonstrations of the earnings task and the earnings report.
 
 earnings_task_title:
   page_name: earnings_task
   text_key: title
-  text: Filler Title for earnings_task
+  text: Earnings Task Example
 
-earnings_task_body_default:
+earnings_task_body:
   page_name: earnings_task
   text_key: body
   text: |
-    This is the filler text for the body of page 'earnings_task'. This can be very big.
-
-    Like, this big.
+    This __is filler__ yet to come.
 
 earnings_report_title:
   page_name: earnings_report
   text_key: title
-  text: Filler Title for earnings_report
+  text: Earnings Report Example
 
-earnings_report_body_default:
+earnings_report_body:
   page_name: earnings_report
   text_key: body
   text: |
-    This is the filler text for the body of page 'earnings_report'. This can be very big.
-
-    Like, this big.
+    This is **filler** __yet__ to come.
 
 tax_intro_title:
   page_name: tax_intro
@@ -228,26 +238,28 @@ doublecheck_error_body_default:
 completing_title:
   page_name: completing
   text_key: title
-  text: Filler Title for completing
+  text: Completing the Experiment
 
-completing_body_default:
+completing_body:
   page_name: completing
   text_key: body
   text: |
-    This is the filler text for the body of page 'completing'. This can be very big.
+    ## Demographics and Additional Information
 
-    Like, this big.
+    Once you have completed all rounds of the experiment, you will be asked to complete a survey questionnaire that will collect demographics, beliefs, and attitudes that will help us analyze the data from the experiment.
+
+    ## Checkout Procedures
+
+    After you have completed the survey questionnaire, you will be released from the experiment and will check out at the reception desk where you will be paid in cash the ending balance in your electronic bank account. All payments will be made in private.
 
 complete_title:
   page_name: complete
   text_key: title
-  text: Filler Title for complete
+  text: Complete
 
-complete_body_default:
+complete_body:
   page_name: complete
   text_key: body
   text: |
-    This is the filler text for the body of page 'complete'. This can be very big.
-
-    Like, this big.
+    This completes the tutorial. If you understand the instructions and are ready to proceed to the experiment, please do so by clicking the "Begin Experiment" button. If any part of the instructions are still unclear, please feel free to go back and review any of the tutorial screens. You will not be allowed to return to the tutorial once you have clicked the "Begin Experiment" button.
 
