@@ -3,8 +3,18 @@
 #+STARTUP: indent
 
 
-
-* Monday, August 17
+* Tuesday, August 18
+** DONE Move enforce_order up higher in the filter chain
+   CLOSED: [2009-08-18 Tue 19:22]
+   eg, so the phase and page attributes in participant don't get updated before
+   they are given a sequence error.
+** TODO Transition from tutorial to experiment [3/5]
+   - [X] Button on tutorial/complete which actually marks participant.tutorial_complete
+         and redirects to experiment/wait
+   - [ ] Admin page to monitor participants' completion of the tutorial
+   - [ ] Admin button to advance phase, enabled when all participants are there
+   - [X] At that point, experiment/wait redirects to experiment/start or whatever
+   - [X] experiment/wait should reload every 5 seconds or so
 ** TODO Tutorial structure worth viewing [11/12]
    - [X] Get comprehensive list from prototypes of two major page orders
    - [X] Update page_order fixtures
@@ -39,24 +49,6 @@
          - [ ] doublecheck_error
          - [X] completing
          - [X] complete
-** TODO More admin [0/3]
-   - [ ] Create/manage experimental groups
-   - [ ] Create/manage experimental sessions
-   - [ ] Generate participant IDs
-** DONE More phase order enforcement [7/7]
-   CLOSED: [2009-08-17 Mon 22:18]
-   - [X] Add progress fields to Participant:
-         - [X] completed_tutorial
-         - [X] completed_experiment
-         - [X] completed_survey
-         - [X] completed_all
-   - [X] Update completed_tutorial field when tutorial is complete
-   - [X] experimental_session.phase_complete? method checks current .phase against
-         participants' phase status
-   - [X] Add phase and round fields to experimental_session model
-   - [X] Update completed_experiment field when experiment is complete
-   - [X] Update completed_survey field with survey is complete
-   - [X] Update complete_all field in complete controller
 
 
 * Future
@@ -71,16 +63,11 @@
    - [ ] doublecheck_ok
    - [ ] audit_error
    - [ ] doublecheck_error
-** TODO Move enforce_order up higher in the filter chain
-   eg, so the phase and page attributes in participant don't get updated before
-   they are given a sequence error.
-** TODO Transition from tutorial to experiment [0/5]
-   - [ ] Button on tutorial/complete which actually marks participant.tutorial_complete
-         and redirects to experiment/wait
-   - [ ] Admin page to monitor participants' completion of the tutorial
-   - [ ] Admin button to advance phase, enabled when all participants are there
-   - [ ] At that point, experiment/wait redirects to experiment/start or whatever
-   - [ ] experiment/wait should reload every 5 seconds or so
+** TODO More admin [0/3]
+   - [ ] Create/manage experimental groups
+   - [ ] Create/manage experimental sessions
+   - [ ] Generate participant IDs
+
 
 * Sunday, August 9
 ** DONE Add div.error class to default.css
@@ -259,7 +246,6 @@
    - [X] Rounds
 
 
-
 * Sunday, August 16
 ** DONE Experiment controller skeleton [5/5]
    CLOSED: [2009-08-16 Sun 08:36]
@@ -316,4 +302,20 @@
    - [X] Skeletons for testing for actual completeness and marking complete
    - [X] Simple functional test
 
+
+* Monday, August 17
+** DONE More phase order enforcement [7/7]
+   CLOSED: [2009-08-17 Mon 22:18]
+   - [X] Add progress fields to Participant:
+         - [X] completed_tutorial
+         - [X] completed_experiment
+         - [X] completed_survey
+         - [X] completed_all
+   - [X] Update completed_tutorial field when tutorial is complete
+   - [X] experimental_session.phase_complete? method checks current .phase against
+         participants' phase status
+   - [X] Add phase and round fields to experimental_session model
+   - [X] Update completed_experiment field when experiment is complete
+   - [X] Update completed_survey field with survey is complete
+   - [X] Update complete_all field in complete controller
 
