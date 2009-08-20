@@ -2,19 +2,71 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
+* Wednesday, August 19
+** TODO Enable lockdown functionality in admin/status [0/4]
+   - [ ] Confirmation dialog
+   - [ ] New action on admin controller
+   - [ ] Lockdown method on experimental_session model
+     - [ ] New locked_down field in model
+     - [ ] Deletes unseen participants
+     - [ ] Refuses to add new participants
+     - [ ] Refuses to be deleted
+     - [ ] Write tests
+   - [ ] Wire up button
 
-* Tuesday, August 18
-** DONE Move enforce_order up higher in the filter chain
-   CLOSED: [2009-08-18 Tue 19:22]
-   eg, so the phase and page attributes in participant don't get updated before
-   they are given a sequence error.
-** TODO Transition from tutorial to experiment [3/5]
-   - [X] Button on tutorial/complete which actually marks participant.tutorial_complete
-         and redirects to experiment/wait
-   - [ ] Admin page to monitor participants' completion of the tutorial
-   - [ ] Admin button to advance phase, enabled when all participants are there
-   - [X] At that point, experiment/wait redirects to experiment/start or whatever
-   - [X] experiment/wait should reload every 5 seconds or so
+** TODO Enable begin experiment button in admin/status [0/3]
+   - [ ] New action on admin controller
+   - [ ] The button and controller should only work when all participants are done
+         experimental_session.phase_complete?
+   - [ ] Verify that participants see change in wait page
+
+** TODO Move div#session-control to partial [0/2]
+   - [ ] _session_control
+   - [ ] Render partial in view
+
+** TODO Move participant table rows to partials [0/3]
+   - [ ] _current_participant
+   - [ ] _unseen_participant
+   - [ ] render partial collection
+
+** TODO Experimental session management page [1/6]
+   - [X] Action "sessions"
+   - [-] View "sessions"
+     - [X] Current active on top of list
+     - [X] Link to status page
+     - [X] Columns: name, number of participants
+     - [ ] Participant counts grouped by exp-group
+     - [X] Link to delete if unused (current_participants.count == 0)
+     - [X] Link to create participants
+     - [X] Link to mark active if no other is
+   - [ ] Action "set_active_session"
+     - [ ] Check no current active
+     - [ ] call set active
+     - [ ] redirect back
+   - [-] Action "add_session"
+     - [ ] Form for adding a session (just title for now)
+     - [ ] partial
+     - [X] empty div
+     - [ ] ajax
+     - [ ] ajax hide
+   - [ ] Action "delete_session"
+     - [ ] Refuse to delete sessions that have been used
+       - [ ] Enforce in model
+       - [ ] Write tests
+     - [ ] Cascade-delete participants
+   - [ ] Action "create_participants"
+     - [ ] UI for create participants
+       - [ ] number field
+       - [ ] dropdown experimental group selection
+       - [ ] partial
+       - [ ] empty div
+       - [ ] ajax
+       - [ ] ajax hide
+     - [ ] Refuse on locked-down sessions
+       - [ ] Enforce in model
+       - [ ] Write tests
+     - [ ] Also should work from status page
+
 ** TODO Tutorial structure worth viewing [11/12]
    - [X] Get comprehensive list from prototypes of two major page orders
    - [X] Update page_order fixtures
@@ -49,6 +101,22 @@
          - [ ] doublecheck_error
          - [X] completing
          - [X] complete
+
+
+** DONE Admin POC functionality for advancing from tutorial to experiment [5/5]
+   CLOSED: [2009-08-19 Wed 21:16]
+   - [X] Update admin/status with a header showing the session's current phase
+   - [X] Better show each participant's status (more columns)
+   - [X] Include inactive participants in gray at the bottom of the list
+   - [X] Button to advance to experiment phase, enabled when all participants are there
+   - [X] Lockdown button
+
+** DONE Single session at a time [4/4]
+   CLOSED: [2009-08-19 Wed 22:13]
+   - [X] self.active to find that session
+   - [X] set_active method
+   - [X] Enforce in model
+   - [X] Write tests
 
 
 * Future
@@ -245,7 +313,6 @@
    - [X] Audit penalty rate
    - [X] Rounds
 
-
 * Sunday, August 16
 ** DONE Experiment controller skeleton [5/5]
    CLOSED: [2009-08-16 Sun 08:36]
@@ -302,7 +369,6 @@
    - [X] Skeletons for testing for actual completeness and marking complete
    - [X] Simple functional test
 
-
 * Monday, August 17
 ** DONE More phase order enforcement [7/7]
    CLOSED: [2009-08-17 Mon 22:18]
@@ -319,3 +385,15 @@
    - [X] Update completed_survey field with survey is complete
    - [X] Update complete_all field in complete controller
 
+* Tuesday, August 18
+** DONE Move enforce_order up higher in the filter chain
+   CLOSED: [2009-08-18 Tue 19:22]
+   eg, so the phase and page attributes in participant don't get updated before
+   they are given a sequence error.
+
+** DONE Transition from tutorial to experiment [3/3]
+   CLOSED: [2009-08-19 Wed 20:08]
+   - [X] Button on tutorial/complete which actually marks participant.tutorial_complete
+         and redirects to experiment/wait
+   - [X] At that point, experiment/wait redirects to experiment/start or whatever
+   - [X] experiment/wait should reload every 5 seconds or so
