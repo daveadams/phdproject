@@ -1,6 +1,8 @@
 class ExperimentalSession < ActiveRecord::Base
   belongs_to :experiment
   has_many :participants
+  validates_uniqueness_of :name
+  validates_presence_of :name
 
   def self.active
     find_by_is_active(true)
@@ -66,12 +68,6 @@ class ExperimentalSession < ActiveRecord::Base
 
  protected
   def validate
-    if self.id
-      logger.info "DAVE validating session '#{self.id}'"
-    else
-      logger.info "DAVE validating new session"
-    end
-
     errors.add_to_base("The number of rounds in the experimental groups of the participants in this session do not match.") if max_rounds.nil?
 
     if self.is_active
@@ -80,12 +76,9 @@ class ExperimentalSession < ActiveRecord::Base
                             else
                               ["is_active = ?", true]
                             end
-      logger.info "DAVE active #{validate_conditions[0]}"
       if ExperimentalSession.count(:conditions => validate_conditions) > 0
         errors.add_to_base("Only one experimental session may be active at a time.")
       end
-    else
-      logger.info "DAVE not active"
     end
   end
 end

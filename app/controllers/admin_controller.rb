@@ -11,11 +11,21 @@ class AdminController < ApplicationController
   end
 
   def sessions
+    @page_title = "Experimental Sessions"
+
     @active_session = ExperimentalSession.active
     @sessions = ExperimentalSession.find(:all) - [@active_session]
   end
 
   def add_session
+    if request.post?
+      xs = ExperimentalSession.new(:name => request['name'],
+                                   :is_active => false)
+      unless xs.save
+        flash[:error] = xs.errors.full_messages.join("<br />")
+      end
+    end
+    redirect_to(:action => :sessions)
   end
 
   def delete_session
