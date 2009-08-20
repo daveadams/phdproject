@@ -2,6 +2,15 @@ class ExperimentalSession < ActiveRecord::Base
   belongs_to :experiment
   has_many :participants
 
+  def self.active
+    find_by_is_active(true)
+  end
+
+  def set_active
+    self.is_active = true
+    self.save!
+  end
+
   def create_participants(n, group)
     properties = {
       :experimental_session => self,
@@ -30,12 +39,14 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def next_phase
-    self.phase = case phase
-                   when "tutorial" then "experiment"
-                   when "experiment" then "survey"
-                   when "survey" then "complete"
-                 end
-    self.save
+    if self.phase_complete?
+      self.phase = case phase
+                     when "tutorial" then "experiment"
+                     when "experiment" then "survey"
+                     when "survey" then "complete"
+                   end
+      self.save
+    end
   end
 
   def next_round
@@ -55,6 +66,26 @@ class ExperimentalSession < ActiveRecord::Base
 
  protected
   def validate
-    errors.add_to_base("The number of rounds in the experimental groups of the participants in this session is ") if max_rounds.nil?
+    if self.id
+      logger.info "DAVE validating session '#{self.id}'"
+    else
+      logger.info "DAVE validating new session"
+    end
+
+    errors.add_to_base("The number of rounds in the experimental groups of the participants in this session do not match.") if max_rounds.nil?
+
+    if self.is_active
+      validate_conditions = if self.id
+                              ["is_active = ? and id != ?", true, self.id]
+                            else
+                              ["is_active = ?", true]
+                            end
+      logger.info "DAVE active #{validate_conditions[0]}"
+      if ExperimentalSession.count(:conditions => validate_conditions) > 0
+        errors.add_to_base("Only one experimental session may be active at a time.")
+      end
+    else
+      logger.info "DAVE not active"
+    end
   end
 end

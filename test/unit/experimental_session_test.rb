@@ -11,6 +11,9 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "new active" do
+    ExperimentalSession.destroy_all
+    assert_equal(0, ExperimentalSession.count)
+
     x = ExperimentalSession.new(:name => "Test Active Session",
                                 :is_active => true)
     assert x.is_active
@@ -20,6 +23,9 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "create participants" do
+    ExperimentalSession.destroy_all
+    assert_equal(0, ExperimentalSession.count)
+
     x = ExperimentalSession.new(:name => "A Test Session",
                                 :is_active => true)
     assert x.valid?
@@ -38,6 +44,9 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "round counts" do
+    ExperimentalSession.destroy_all
+    assert_equal(0, ExperimentalSession.count)
+
     x = ExperimentalSession.new(:name => "Testing Round Counts",
                                 :is_active => true)
     assert x.valid?
@@ -60,5 +69,29 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
 
     assert(!x.valid?)
     assert_nil(x.max_rounds)
+  end
+
+  test "only one active" do
+    ExperimentalSession.destroy_all
+    assert_equal(0, ExperimentalSession.count)
+
+    x1 = ExperimentalSession.new(:name => "Test1", :is_active => false)
+    assert(x1.save)
+
+    x2 = ExperimentalSession.new(:name => "Test1", :is_active => false)
+    assert(x2.save)
+
+    x3 = ExperimentalSession.new(:name => "Test1", :is_active => false)
+    assert(x3.save)
+
+    assert_nothing_raised { x1.set_active }
+    x1.reload
+    assert(x1.is_active)
+    assert_equal(x1, ExperimentalSession.active)
+
+    assert_raise(ActiveRecord::RecordInvalid) { x2.set_active }
+    x2.reload
+    assert(!x2.is_active)
+    assert_equal(x1, ExperimentalSession.active)
   end
 end
