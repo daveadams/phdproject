@@ -3,7 +3,7 @@ body
     background: white;
 }
 
-body, td
+body, td, th
 {
     font-family: Verdana, Helvetica, Arial, sans-serif;
     font-size: 80%;

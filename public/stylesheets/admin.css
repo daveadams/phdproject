@@ -1,0 +1,42 @@
+div#session-control
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+table.participants td
+{
+    padding-left: 4px;
+}
+
+tr.unseen-participants-header th
+{
+    padding-top: 10px;
+}
+
+tr.unseen-participant
+{
+    background: #DDD;
+    color: #999;
+}
+
+tr.participants-header th
+{
+    border-bottom: 1px solid #DDD;
+}
+
+tr.current-participant td
+{
+    border-bottom: 1px solid #DDD;
+}
+
+th
+{
+    padding-right: 20px;
+    text-align: left;
+}
+
+td.participant-number
+{
+    font-family: Inconsolata, monospace;
+}
