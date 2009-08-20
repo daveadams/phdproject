@@ -1,0 +1,46 @@
+<h1>Experimental Sessions</h1>
+
+<div id="session-control">
+  <%= link_to_function("New Session", nil, :id => "new-session-toggle") do |page|
+        page["new-session-form"].visual_effect :toggle_slide
+        page["new-session-toggle"].replace_html "Close Form"
+      end %>
+  <div id="new-session-form">
+    <h3>Hello</h3>
+    <p>Something goes here</p>
+    <p>That isn't here yet</p>
+  </div>
+</div>
+
+<table>
+<% if @active_session %>
+  <tr class="active-session">
+    <td><b>ACTIVE</b></td>
+    <td><%=h @active_session.name %></td>
+    <td><%= @active_session.participants.count %> participants</td>
+    <td class="session-tools"><%= link_to("Status", :action => :status) %></td>
+  </tr>
+<% end %>
+<% @sessions.each do |session| %>
+  <tr class="inactive-session">
+    <td>&nbsp;</td>
+    <td><%=h session.name %></td>
+    <td><%= session.participants.count %> participants</td>
+    <td class="session-tools">
+      <% if session.current_participants.count == 0 %>
+        <%= link_to("Delete",
+                    { :action => :delete_session, :id => session.id },
+                    :method => :post,
+                    :confirm => "Do you want to delete the '#{session.name}' session?") %>
+      <% end %>
+      <%= link_to("Add Participants", :action => :add_participants) %>
+      <% if session.unseen_participants.count > 0 and !@active_session %>
+        <%= link_to("Set Active",
+                    { :action => :set_active_session, :id => session.id },
+                    :method => :post,
+                    :confirm => "Do you want to make the '#{session.name}' session active?") %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>

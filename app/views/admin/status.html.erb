@@ -1,19 +1,19 @@
 <h1>Current Status</h1>
 
-<h2><%=h @current_session.name %></h2>
+<h2><%=h @active_session.name %></h2>
 
 <div id="session-control">
-<% if @current_session.phase == "tutorial" %>
+<% if @active_session.phase == "tutorial" %>
   <b>Current Phase: Tutorial</b>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="button" value="Lockdown" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="button" value="Begin Experiment"
-     <% if !@current_session.phase_complete? %>disabled="true"<% end %> />
-<% elsif @current_session.phase == "experiment" %>
-  <b>Current Round: <%= @current_session.round %></b>
+     <% if !@active_session.phase_complete? %>disabled="true"<% end %> />
+<% elsif @active_session.phase == "experiment" %>
+  <b>Current Round: <%= @active_session.round %></b>
   <input type="button" value="Advance Round"
-    <% if !@current_session.round_complete? %>disabled="true"<% end %> />
+    <% if !@active_session.round_complete? %>disabled="true"<% end %> />
 <% end %>
 </div>
 
@@ -26,7 +26,7 @@
   <th>Last Access</th>
 </tr>
 
-<% @current_session.current_participants.each do |p| %>
+<% @active_session.current_participants.each do |p| %>
 <tr class="current-participant" id="<%= p.participant_number %>">
   <td class="participant-number"><%=h p.participant_number %></td>
   <td><%=h p.experimental_group.name %></td>
@@ -36,13 +36,13 @@
 </tr>
 <% end %>
 
-<% if @current_session.unseen_participants.length > 0 %>
+<% if @active_session.unseen_participants.length > 0 %>
   <tr class="unseen-participants-header">
     <th colspan="5">Unseen Participants</th>
   </tr>
 <% end %>
 
-<% @current_session.unseen_participants.each do |p| %>
+<% @active_session.unseen_participants.each do |p| %>
 <tr class="unseen-participant">
   <td class="participant-number"><%=h p.participant_number %></td>
   <td><%=h p.experimental_group.name %></td>

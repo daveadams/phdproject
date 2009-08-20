@@ -11,10 +11,20 @@ class AdminController < ApplicationController
   end
 
   def sessions
-    @sessions = ExperimentalSession.find(:all)
+    @active_session = ExperimentalSession.active
+    @sessions = ExperimentalSession.find(:all) - [@active_session]
+  end
+
+  def add_session
+  end
+
+  def delete_session
+  end
+
+  def create_participants
   end
 
   def status
-    @current_session = ExperimentalSession.find_by_is_active(true)
+    @active_session = ExperimentalSession.active
   end
 end
