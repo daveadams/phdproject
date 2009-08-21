@@ -1,3 +1,8 @@
+class ExperimentalSessionNotActive < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionAlreadyActive < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionAlreadyLockedDown < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionAlreadyComplete < ActiveRecord::ActiveRecordError; end
+
 class ExperimentalSession < ActiveRecord::Base
   belongs_to :experiment
   has_many :participants
@@ -9,22 +14,37 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def set_active
-    unless self.is_active
-      self.is_active = true
-      self.started_at = Time.now
-      self.save!
-    end
+    raise ExperimentalSessionAlreadyComplete.new if self.is_complete
+    raise ExperimentalSessionAlreadyActive.new if self.is_active
+
+    self.is_active = true
+    self.started_at = Time.now
+    self.save!
   end
 
   def set_complete
-    unless self.is_complete or not self.is_active
-      self.is_complete = true
-      self.ended_at = Time.now
-      self.save!
-    end
+    raise ExperimentalSessionNotActive.new unless self.is_active
+    raise ExperimentalSessionAlreadyComplete.new if self.is_complete
+
+    self.is_complete = true
+    self.is_active = false
+    self.ended_at = Time.now
+    self.save!
+  end
+
+  def lockdown
+    raise ExperimentalSessionAlreadyComplete.new if self.is_complete
+    raise ExperimentalSessionNotActive.new unless self.is_active
+    raise ExperimentalSessionAlreadyLockedDown.new if self.is_locked_down
+
+    Participant.destroy(self.unseen_participants)
+    self.is_locked_down = true
+    self.save!
   end
 
   def create_participants(n, group)
+    raise ExperimentalSessionAlreadyLockedDown.new if self.is_locked_down
+
     properties = {
       :experimental_session => self,
       :experimental_group => ExperimentalGroup.find(group)
@@ -52,6 +72,8 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def next_phase
+    raise ExperimentalSessionNotActive.new unless self.is_active
+
     if self.phase_complete?
       self.phase = case phase
                      when "tutorial" then "experiment"
@@ -63,6 +85,8 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def next_round
+    raise ExperimentalSessionNotActive.new unless self.is_active
+
     if phase == "experiment"
       round += 1
     end

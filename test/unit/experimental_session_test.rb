@@ -111,23 +111,86 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
     assert_nil(x.started_at)
     assert_nil(x.ended_at)
 
+    assert_raise(ExperimentalSessionNotActive) { x.set_complete }
+
     assert_nothing_raised { x.set_active }
     assert_equal(true, x.is_active)
     assert_equal(false, x.is_complete)
     assert_not_nil(x.started_at)
     assert_nil(x.ended_at)
 
+    assert_raise(ExperimentalSessionAlreadyActive) { x.set_active }
+
     sleep 1
     assert(x.started_at < Time.now)
 
     assert_nothing_raised { x.set_complete }
-    assert_equal(true, x.is_active)
+    assert_equal(false, x.is_active)
     assert_equal(true, x.is_complete)
     assert_not_nil(x.started_at)
     assert_not_nil(x.ended_at)
 
+    assert_raise(ExperimentalSessionAlreadyComplete) { x.set_active }
+
     sleep 1
     assert(x.started_at < Time.now)
     assert(x.ended_at < Time.now)
+  end
+
+  test "lockdown" do
+    ExperimentalSession.destroy_all
+    assert_equal(0, ExperimentalSession.count)
+
+    x = ExperimentalSession.new(:name => "Test1")
+    assert(x.save)
+    assert_equal(false, x.is_active)
+    assert_equal(false, x.is_locked_down)
+    assert_equal(false, x.is_complete)
+
+    assert_raise(ExperimentalSessionNotActive) { x.lockdown }
+
+    assert_nothing_raised { x.create_participants(100, experimental_groups(:control)) }
+    x.reload
+
+    assert_equal(100, x.participants.count)
+    assert_equal(20, x.max_rounds)
+
+    assert_nothing_raised { x.set_active }
+    assert_equal(true, x.is_active)
+    assert_equal(false, x.is_locked_down)
+    assert_equal(false, x.is_complete)
+    assert_equal(0, x.current_participants.count)
+    assert_equal(100, x.unseen_participants.count)
+
+    0.upto 19 do |i|
+      assert_nothing_raised { x.participants[i].login }
+    end
+
+    x.reload
+    assert_equal(20, x.current_participants.count)
+    assert_equal(80, x.unseen_participants.count)
+
+    assert_nothing_raised { x.lockdown }
+    x.reload
+    assert_equal(true, x.is_locked_down)
+    assert_equal(20, x.current_participants.count)
+    assert_equal(0, x.unseen_participants.count)
+
+    assert_raise(ExperimentalSessionAlreadyLockedDown) { x.lockdown }
+    assert_raise(ExperimentalSessionAlreadyLockedDown) {
+      x.create_participants(100, experimental_groups(:control))
+    }
+
+    assert_equal(true, x.is_locked_down)
+    assert_equal(20, x.current_participants.count)
+    assert_equal(0, x.unseen_participants.count)
+
+    assert_nothing_raised { x.set_complete }
+    x.reload
+    assert_equal(false, x.is_active)
+    assert_equal(true, x.is_locked_down)
+    assert_equal(true, x.is_complete)
+    assert_equal(20, x.current_participants.count)
+    assert_equal(0, x.unseen_participants.count)
   end
 end
