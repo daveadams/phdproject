@@ -75,23 +75,59 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
     ExperimentalSession.destroy_all
     assert_equal(0, ExperimentalSession.count)
 
-    x1 = ExperimentalSession.new(:name => "Test1", :is_active => false)
+    x1 = ExperimentalSession.new(:name => "Test1")
     assert(x1.save)
+    assert_equal(false, x1.is_active)
+    assert_nil(x1.started_at)
 
-    x2 = ExperimentalSession.new(:name => "Test1", :is_active => false)
+    x2 = ExperimentalSession.new(:name => "Test2")
     assert(x2.save)
+    assert_equal(false, x2.is_active)
 
-    x3 = ExperimentalSession.new(:name => "Test1", :is_active => false)
+    x3 = ExperimentalSession.new(:name => "Test3")
     assert(x3.save)
+    assert_equal(false, x3.is_active)
 
     assert_nothing_raised { x1.set_active }
     x1.reload
     assert(x1.is_active)
     assert_equal(x1, ExperimentalSession.active)
+    assert_not_nil(x1.started_at)
 
     assert_raise(ActiveRecord::RecordInvalid) { x2.set_active }
     x2.reload
     assert(!x2.is_active)
     assert_equal(x1, ExperimentalSession.active)
+  end
+
+  test "set active then set complete" do
+    ExperimentalSession.destroy_all
+    assert_equal(0, ExperimentalSession.count)
+
+    x = ExperimentalSession.new(:name => "Test1")
+    assert(x.save)
+    assert_equal(false, x.is_active)
+    assert_equal(false, x.is_complete)
+    assert_nil(x.started_at)
+    assert_nil(x.ended_at)
+
+    assert_nothing_raised { x.set_active }
+    assert_equal(true, x.is_active)
+    assert_equal(false, x.is_complete)
+    assert_not_nil(x.started_at)
+    assert_nil(x.ended_at)
+
+    sleep 1
+    assert(x.started_at < Time.now)
+
+    assert_nothing_raised { x.set_complete }
+    assert_equal(true, x.is_active)
+    assert_equal(true, x.is_complete)
+    assert_not_nil(x.started_at)
+    assert_not_nil(x.ended_at)
+
+    sleep 1
+    assert(x.started_at < Time.now)
+    assert(x.ended_at < Time.now)
   end
 end

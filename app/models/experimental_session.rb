@@ -9,8 +9,19 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def set_active
-    self.is_active = true
-    self.save!
+    unless self.is_active
+      self.is_active = true
+      self.started_at = Time.now
+      self.save!
+    end
+  end
+
+  def set_complete
+    unless self.is_complete or not self.is_active
+      self.is_complete = true
+      self.ended_at = Time.now
+      self.save!
+    end
   end
 
   def create_participants(n, group)
