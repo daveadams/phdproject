@@ -11,9 +11,6 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "new active" do
-    ExperimentalSession.destroy_all
-    assert_equal(0, ExperimentalSession.count)
-
     x = ExperimentalSession.new(:name => "Test Active Session",
                                 :is_active => true)
     assert x.is_active
@@ -23,9 +20,6 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "create participants" do
-    ExperimentalSession.destroy_all
-    assert_equal(0, ExperimentalSession.count)
-
     x = ExperimentalSession.new(:name => "A Test Session",
                                 :is_active => true)
     assert x.valid?
@@ -44,9 +38,6 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "round counts" do
-    ExperimentalSession.destroy_all
-    assert_equal(0, ExperimentalSession.count)
-
     x = ExperimentalSession.new(:name => "Testing Round Counts",
                                 :is_active => true)
     assert x.valid?
@@ -72,9 +63,6 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "only one active" do
-    ExperimentalSession.destroy_all
-    assert_equal(0, ExperimentalSession.count)
-
     x1 = ExperimentalSession.new(:name => "Test1")
     assert(x1.save)
     assert_equal(false, x1.is_active)
@@ -101,9 +89,6 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "set active then set complete" do
-    ExperimentalSession.destroy_all
-    assert_equal(0, ExperimentalSession.count)
-
     x = ExperimentalSession.new(:name => "Test1")
     assert(x.save)
     assert_equal(false, x.is_active)
@@ -138,9 +123,6 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
   end
 
   test "lockdown" do
-    ExperimentalSession.destroy_all
-    assert_equal(0, ExperimentalSession.count)
-
     x = ExperimentalSession.new(:name => "Test1")
     assert(x.save)
     assert_equal(false, x.is_active)
