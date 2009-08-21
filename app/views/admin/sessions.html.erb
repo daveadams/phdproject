@@ -12,7 +12,7 @@
     <td>
       <% if session.unseen_participants.count > 0 and !@active_session %>
         <%= link_to("activate",
-                    { :action => :set_active_session, :id => session.id },
+                    { :action => :activate_session, :id => session.id },
                     :method => :post,
                     :confirm => "Do you want to activate '#{session.name}'?") %>
       <% else %>

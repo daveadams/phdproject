@@ -17,6 +17,26 @@ class AdminController < ApplicationController
     @sessions = ExperimentalSession.find(:all) - [@active_session]
   end
 
+  def activate_session
+    if request.post?
+      unless ExperimentalSession.active.nil?
+        flash[:error] = "Another session is already active."
+      else
+        begin
+          xs = ExperimentalSession.find(request[:id])
+          xs.set_active
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = "Could not find that experimental session."
+        rescue ExperimentalSessionAlreadyActive
+          flash[:error] = "That experimental session is already active."
+        rescue ExperimentalSessionAlreadyComplete
+          flash[:error] = "That experimental session is already complete."
+        end
+      end
+    end
+    redirect_to(:action => :sessions)
+  end
+
   def add_session
     if request.post?
       xs = ExperimentalSession.new(:name => request['name'],
