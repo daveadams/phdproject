@@ -29,6 +29,18 @@ class AdminController < ApplicationController
   end
 
   def delete_session
+    if request.post?
+      begin
+        ExperimentalSession.find(request[:id]).destroy
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = "Could not find that experimental session."
+      rescue ExperimentalSessionAlreadyActive
+        flash[:error] = "Could not delete that experimental session because it is active."
+      rescue ExperimentalSessionAlreadyComplete
+        flash[:error] = "Could not delete that experimental session because it is complete."
+      end
+    end
+    redirect_to(:action => :sessions)
   end
 
   def create_participants
