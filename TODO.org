@@ -2,18 +2,6 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* Wednesday, August 19
-** TODO Enable lockdown functionality in admin/status [0/4]
-   - [ ] Confirmation dialog
-   - [ ] New action on admin controller
-   - [ ] Lockdown method on experimental_session model
-     - [ ] New locked_down field in model
-     - [ ] Deletes unseen participants
-     - [ ] Refuses to add new participants
-     - [ ] Refuses to be deleted
-     - [ ] Write tests
-   - [ ] Wire up button
-
 ** TODO Enable begin experiment button in admin/status [0/3]
    - [ ] New action on admin controller
    - [ ] The button and controller should only work when all participants are done
@@ -29,43 +17,44 @@
    - [ ] _unseen_participant
    - [ ] render partial collection
 
-** TODO Experimental session management page [1/6]
+** TODO Experimental session management page [4/6]
    - [X] Action "sessions"
    - [-] View "sessions"
      - [X] Current active on top of list
      - [X] Link to status page
      - [X] Columns: name, number of participants
      - [ ] Participant counts grouped by exp-group
+       - [ ] New field in exp-group: shortname
+       - [ ] Update exp-group fixtures
+         - [ ] Use pretty long names
+         - [ ] Two-letter shortnames
+       - [ ] Display by shortname and count
      - [X] Link to delete if unused (current_participants.count == 0)
      - [X] Link to create participants
      - [X] Link to mark active if no other is
-   - [ ] Action "set_active_session"
-     - [ ] Check no current active
-     - [ ] call set active
-     - [ ] redirect back
-   - [-] Action "add_session"
-     - [ ] Form for adding a session (just title for now)
-     - [ ] partial
-     - [X] empty div
-     - [ ] ajax
-     - [ ] ajax hide
-   - [ ] Action "delete_session"
-     - [ ] Refuse to delete sessions that have been used
-       - [ ] Enforce in model
-       - [ ] Write tests
-     - [ ] Cascade-delete participants
-   - [ ] Action "create_participants"
+   - [X] Action "set_active_session"
+     - [X] Check no current active
+     - [X] call set active
+     - [X] redirect back
+   - [X] Action "add_session"
+     - [X] Form for adding a session (just title for now)
+     - [X] controller logic
+   - [X] Action "delete_session"
+     - [X] Refuse to delete sessions that have been used
+       - [X] Enforce in model
+       - [X] Write tests
+     - [X] Cascade-delete participants
+     - [X] Action logic
+     - [X] Wire up to links
+     - [X] Test
+   - [-] Action "create_participants"
      - [ ] UI for create participants
        - [ ] number field
        - [ ] dropdown experimental group selection
-       - [ ] partial
-       - [ ] empty div
-       - [ ] ajax
-       - [ ] ajax hide
-     - [ ] Refuse on locked-down sessions
-       - [ ] Enforce in model
-       - [ ] Write tests
-     - [ ] Also should work from status page
+       - [ ] Ajaxy?
+     - [X] Refuse on locked-down sessions
+       - [X] Enforce in model
+       - [X] Write tests
 
 ** TODO Tutorial structure worth viewing [11/12]
    - [X] Get comprehensive list from prototypes of two major page orders
@@ -103,20 +92,42 @@
          - [X] complete
 
 
-** DONE Admin POC functionality for advancing from tutorial to experiment [5/5]
-   CLOSED: [2009-08-19 Wed 21:16]
-   - [X] Update admin/status with a header showing the session's current phase
-   - [X] Better show each participant's status (more columns)
-   - [X] Include inactive participants in gray at the bottom of the list
-   - [X] Button to advance to experiment phase, enabled when all participants are there
-   - [X] Lockdown button
 
-** DONE Single session at a time [4/4]
-   CLOSED: [2009-08-19 Wed 22:13]
-   - [X] self.active to find that session
-   - [X] set_active method
-   - [X] Enforce in model
-   - [X] Write tests
+** DONE Enable lockdown functionality in admin/status [4/4]
+   CLOSED: [2009-08-20 Thu 22:43]
+   - [X] Confirmation dialog
+   - [X] New action on admin controller
+   - [X] Lockdown method on experimental_session model
+     - [X] New locked_down field in model
+     - [X] Deletes unseen participants
+     - [X] Refuses to add new participants
+     - [X] Write tests
+   - [X] Wire up button
+
+** DONE Get rid of experiment model altogether [4/4]
+   CLOSED: [2009-08-20 Thu 21:39]
+   - [X] Migration
+     - [X] Drop table
+     - [X] And drop foreign keys
+   - [X] Drop any model references
+   - [X] Delete experiment files
+     - [X] test/unit
+     - [X] test/fixtures
+     - [X] app/models
+   - [X] Update tests if necessary
+
+** DONE Get rid of default experimental_session fixtures [5/5]
+   CLOSED: [2009-08-20 Thu 21:29]
+   - [X] Delete fixtures
+   - [X] Delete participant fixtures
+   - [X] Okay, one experimental_session fixture
+   - [X] Clear db?
+         rake db:test:load
+   - [X] Fix tests
+     - [X] Unit
+     - [X] Functional
+     - [X] Integration
+
 
 
 * Future
@@ -397,3 +408,21 @@
          and redirects to experiment/wait
    - [X] At that point, experiment/wait redirects to experiment/start or whatever
    - [X] experiment/wait should reload every 5 seconds or so
+
+* Wednesday, August 19
+** DONE Admin POC functionality for advancing from tutorial to experiment [5/5]
+   CLOSED: [2009-08-19 Wed 21:16]
+   - [X] Update admin/status with a header showing the session's current phase
+   - [X] Better show each participant's status (more columns)
+   - [X] Include inactive participants in gray at the bottom of the list
+   - [X] Button to advance to experiment phase, enabled when all participants are there
+   - [X] Lockdown button
+
+** DONE Single session at a time [4/4]
+   CLOSED: [2009-08-19 Wed 22:13]
+   - [X] self.active to find that session
+   - [X] set_active method
+   - [X] Enforce in model
+   - [X] Write tests
+
+
