@@ -40,3 +40,20 @@ td.participant-number
 {
     font-family: Inconsolata, monospace;
 }
+
+table.session-list td
+{
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid #DDD;
+}
+
+tr.active-session td
+{
+    background: #FAA;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: none;
+}
+

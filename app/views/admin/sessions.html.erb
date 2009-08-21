@@ -1,30 +1,35 @@
-<table>
+<table class="session-list" cellspacing="0">
 <% if @active_session %>
   <tr class="active-session">
     <td><b>ACTIVE</b></td>
-    <td><%=h @active_session.name %></td>
+    <td><%= link_to(h(@active_session.name), :action => :status) %></td>
     <td><%= @active_session.participants.count %> participants</td>
-    <td class="session-tools"><%= link_to("Status", :action => :status) %></td>
+    <td><%= link_to("status", :action => :status) %></td>
   </tr>
 <% end %>
 <% @sessions.each do |session| %>
   <tr class="inactive-session">
-    <td>&nbsp;</td>
-    <td><%=h session.name %></td>
-    <td><%= session.participants.count %> participants</td>
-    <td class="session-tools">
-      <% if session.current_participants.count == 0 %>
-        <%= link_to("Delete",
-                    { :action => :delete_session, :id => session.id },
-                    :method => :post,
-                    :confirm => "Do you want to delete the '#{session.name}' session?") %>
-      <% end %>
-      <%= link_to("Add", :action => :add_participants) %>
+    <td>
       <% if session.unseen_participants.count > 0 and !@active_session %>
-        <%= link_to("Activate",
+        <%= link_to("activate",
                     { :action => :set_active_session, :id => session.id },
                     :method => :post,
-                    :confirm => "Do you want to make the '#{session.name}' session active?") %>
+                    :confirm => "Do you want to activate '#{session.name}'?") %>
+      <% else %>
+        &nbsp;
+      <% end %>
+    </td>
+    <td><%=h session.name %></td>
+    <td>
+      <%= session.participants.count %> participants
+      (<%= link_to("add", :action => :add_participants) %>)
+    </td>
+    <td>
+      <% if session.current_participants.count == 0 %>
+        <%= link_to("delete",
+                    { :action => :delete_session, :id => session.id },
+                    :method => :post,
+                    :confirm => "Are you sure you want to delete '#{session.name}'?") %>
       <% end %>
     </td>
   </tr>
