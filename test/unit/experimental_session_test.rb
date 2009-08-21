@@ -122,6 +122,49 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
     assert(x.ended_at < Time.now)
   end
 
+  test "destroy" do
+    x = ExperimentalSession.new(:name => "Test1")
+    assert(x.save)
+    saved_id = x.id
+
+    assert_nothing_raised { x.destroy }
+    assert_raise(ActiveRecord::RecordNotFound) { ExperimentalSession.find(x.id) }
+  end
+
+  test "destroy participants" do
+    x = ExperimentalSession.new(:name => "Test1")
+    assert(x.save)
+
+    assert_nothing_raised { x.create_participants(10, experimental_groups(:control)) }
+    x.reload
+
+    p_ids = x.participants.collect { |p| p.id }
+    assert_nothing_raised { x.destroy }
+
+    p_ids.each do |p_id|
+      assert_raise(ActiveRecord::RecordNotFound) { Participant.find(p_id) }
+    end
+  end
+
+  test "prevent destruction" do
+    x = ExperimentalSession.new(:name => "Test1")
+    assert(x.save)
+
+    assert_nothing_raised { x.create_participants(10, experimental_groups(:control)) }
+    x.reload
+
+    assert_nothing_raised { x.set_active }
+    assert_raise(ExperimentalSessionAlreadyActive) { x.destroy }
+
+    x.participants.each do |p|
+      assert_nothing_raised { Participant.find(p.id) }
+      assert_equal(p.experimental_session, x)
+    end
+
+    assert_nothing_raised { x.set_complete }
+    assert_raise(ExperimentalSessionAlreadyComplete) { x.destroy }
+  end
+
   test "lockdown" do
     x = ExperimentalSession.new(:name => "Test1")
     assert(x.save)

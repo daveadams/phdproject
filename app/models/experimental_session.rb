@@ -8,6 +8,17 @@ class ExperimentalSession < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :name
 
+  def before_destroy
+    if self.is_active or self.current_participants.count > 0
+      raise ExperimentalSessionAlreadyActive
+    end
+    if self.is_complete
+      raise ExperimentalSessionAlreadyComplete
+    end
+
+    self.participants.destroy_all
+  end
+
   def self.active
     find_by_is_active(true)
   end
