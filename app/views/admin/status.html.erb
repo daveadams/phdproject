@@ -1,13 +1,14 @@
-<h1>Current Status</h1>
-
-<h2><%=h @active_session.name %></h2>
+<h2>Active Session: <b><%=h @active_session.name %></b></h2>
 
 <div id="session-control">
 <% if @active_session.phase == "tutorial" %>
   <b>Current Phase: Tutorial</b>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="button" value="Lockdown" />
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <% unless @active_session.is_locked_down or @active_session.phase != "tutorial" %>
+    <%= button_to("Lockdown", { :action => :lockdown, :id => @active_session.id }, :confirm => "Locking down a session removes all unseen participants. Are you sure you want to lock down '#{@active_session.name}'?", :disabled => (@active_session.current_participants.count < 1)) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <% end %>
+
   <input type="button" value="Begin Experiment"
      <% if !@active_session.phase_complete? %>disabled="true"<% end %> />
 <% elsif @active_session.phase == "experiment" %>
@@ -15,6 +16,8 @@
   <input type="button" value="Advance Round"
     <% if !@active_session.round_complete? %>disabled="true"<% end %> />
 <% end %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><%= link_to("Back to All Sessions", :action => :sessions) %></b>
 </div>
 
 <table class="participants" cellspacing="0">

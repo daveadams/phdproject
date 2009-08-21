@@ -57,3 +57,8 @@ tr.active-session td
     border: none;
 }
 
+form.button-to, form.button-to div
+{
+    display: inline;
+}
+

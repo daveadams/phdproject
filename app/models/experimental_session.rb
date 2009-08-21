@@ -2,6 +2,7 @@ class ExperimentalSessionNotActive < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionAlreadyActive < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionAlreadyLockedDown < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionAlreadyComplete < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionUnused < ActiveRecord::ActiveRecordError; end
 
 class ExperimentalSession < ActiveRecord::Base
   has_many :participants
@@ -9,11 +10,11 @@ class ExperimentalSession < ActiveRecord::Base
   validates_presence_of :name
 
   def before_destroy
-    if self.is_active or self.current_participants.count > 0
-      raise ExperimentalSessionAlreadyActive
-    end
     if self.is_complete
       raise ExperimentalSessionAlreadyComplete
+    end
+    if self.is_active or self.current_participants.count > 0
+      raise ExperimentalSessionAlreadyActive
     end
 
     self.participants.destroy_all
@@ -46,6 +47,7 @@ class ExperimentalSession < ActiveRecord::Base
     raise ExperimentalSessionAlreadyComplete.new if self.is_complete
     raise ExperimentalSessionNotActive.new unless self.is_active
     raise ExperimentalSessionAlreadyLockedDown.new if self.is_locked_down
+    raise ExperimentalSessionUnused.new if self.current_participants.count < 1
 
     Participant.destroy(self.unseen_participants)
     self.is_locked_down = true

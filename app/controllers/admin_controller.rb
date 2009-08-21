@@ -66,7 +66,28 @@ class AdminController < ApplicationController
   def create_participants
   end
 
+  def lockdown
+    if request.post?
+      begin
+        xs = ExperimentalSession.find(request[:id])
+        xs.lockdown
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = "Could not find that experimental session."
+      rescue ExperimentalSessionNotActive
+        flash[:error] = "That experimental session is not active."
+      rescue ExperimentalSessionAlreadyComplete
+        flash[:error] = "That experimental session is already complete."
+      rescue ExperimentalSessionUnused
+        flash[:error] = "Can't lock down a session with no active participants."
+      rescue ExperimentalSessionAlreadyLockedDown
+        # nothing to do
+      end
+    end
+    redirect_to(:action => :status)
+  end
+
   def status
+    @page_title = "Current Status"
     @active_session = ExperimentalSession.active
   end
 end
