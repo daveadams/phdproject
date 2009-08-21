@@ -4,7 +4,6 @@ class ExperimentalSessionAlreadyLockedDown < ActiveRecord::ActiveRecordError; en
 class ExperimentalSessionAlreadyComplete < ActiveRecord::ActiveRecordError; end
 
 class ExperimentalSession < ActiveRecord::Base
-  belongs_to :experiment
   has_many :participants
   validates_uniqueness_of :name
   validates_presence_of :name

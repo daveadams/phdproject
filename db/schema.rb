@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090821003256) do
+ActiveRecord::Schema.define(:version => 20090821013341) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20090821003256) do
 
   create_table "experimental_sessions", :force => true do |t|
     t.string   "name"
-    t.integer  "experiment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active",      :default => false
@@ -44,12 +43,6 @@ ActiveRecord::Schema.define(:version => 20090821003256) do
     t.datetime "ended_at"
     t.boolean  "is_complete",    :default => false
     t.boolean  "is_locked_down", :default => false
-  end
-
-  create_table "experiments", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "page_orders", :force => true do |t|
