@@ -3,14 +3,14 @@ require 'test_helper'
 class ParticipantTest < ActiveSupport::TestCase
   test "new participant" do
     p = Participant.new
-    p.experimental_session = experimental_sessions(:active)
+    p.experimental_session = experimental_sessions(:inactive)
     p.experimental_group = experimental_groups(:experimental_one)
 
     assert(p.valid?)
     assert(p.save)
 
     assert_not_nil(p.participant_number)
-    assert_equal(p.experimental_session, experimental_sessions(:active))
+    assert_equal(p.experimental_session, experimental_sessions(:inactive))
     assert_equal(p.experimental_group, experimental_groups(:experimental_one))
     assert_equal(p.is_active, false)
     assert_equal(p.cash, 0)
@@ -20,13 +20,13 @@ class ParticipantTest < ActiveSupport::TestCase
   end
 
   test "new participant with args" do
-    p = Participant.new(:experimental_session => experimental_sessions(:active),
+    p = Participant.new(:experimental_session => experimental_sessions(:inactive),
                         :experimental_group => experimental_groups(:experimental_two))
     assert(p.valid?)
     assert(p.save)
 
     assert_not_nil(p.participant_number)
-    assert_equal(p.experimental_session, experimental_sessions(:active))
+    assert_equal(p.experimental_session, experimental_sessions(:inactive))
     assert_equal(p.experimental_group, experimental_groups(:experimental_two))
     assert_equal(p.is_active, false)
   end
@@ -70,13 +70,13 @@ class ParticipantTest < ActiveSupport::TestCase
   test "create participant" do
     assert_raise(ActiveRecord::RecordInvalid) { Participant.create! }
     assert_raise(ActiveRecord::RecordInvalid) {
-      Participant.create!(:experimental_session => experimental_sessions(:active))
+      Participant.create!(:experimental_session => experimental_sessions(:inactive))
     }
     assert_raise(ActiveRecord::RecordInvalid) {
       Participant.create!(:experimental_group => experimental_groups(:control))
     }
     assert_nothing_raised {
-      Participant.create!(:experimental_session => experimental_sessions(:active),
+      Participant.create!(:experimental_session => experimental_sessions(:inactive),
                           :experimental_group => experimental_groups(:control))
     }
   end
@@ -85,31 +85,31 @@ class ParticipantTest < ActiveSupport::TestCase
     p1 = Participant.new(:experimental_session => experimental_sessions(:inactive),
                          :experimental_group => experimental_groups(:control))
     assert p1.save
-    p2 = Participant.new(:experimental_session => experimental_sessions(:active),
+    p2 = Participant.new(:experimental_session => experimental_sessions(:inactive),
                          :experimental_group => experimental_groups(:context_neutral))
     assert p2.save
     p3 = Participant.new(:experimental_session => experimental_sessions(:inactive),
                          :experimental_group => experimental_groups(:experimental_one))
     assert p3.save
-    p4 = Participant.new(:experimental_session => experimental_sessions(:active),
+    p4 = Participant.new(:experimental_session => experimental_sessions(:inactive),
                          :experimental_group => experimental_groups(:experimental_two))
     assert p4.save
   end
 
   test "participant number uniqueness" do
-    ps = Participant.create([{:experimental_session => experimental_sessions(:active),
+    ps = Participant.create([{:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
                              {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
-                             {:experimental_session => experimental_sessions(:active),
+                             {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
                              {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
-                             {:experimental_session => experimental_sessions(:active),
+                             {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
                              {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
-                             {:experimental_session => experimental_sessions(:active),
+                             {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)},
                              {:experimental_session => experimental_sessions(:inactive),
                                :experimental_group => experimental_groups(:control)}])
@@ -123,7 +123,11 @@ class ParticipantTest < ActiveSupport::TestCase
   end
 
   test "find_active" do
-    p1 = Participant.new(:experimental_session => experimental_sessions(:active),
+    xs = ExperimentalSession.new(:name => "Active Testing")
+    assert(xs.save)
+    assert_nothing_raised { xs.set_active }
+
+    p1 = Participant.new(:experimental_session => xs,
                          :experimental_group => experimental_groups(:control))
     assert p1.save
     assert_not_nil(Participant.find_active(p1.participant_number))
@@ -135,7 +139,7 @@ class ParticipantTest < ActiveSupport::TestCase
   end
 
   test "login" do
-    p = Participant.create(:experimental_session => experimental_sessions(:active),
+    p = Participant.create(:experimental_session => experimental_sessions(:inactive),
                            :experimental_group => experimental_groups(:control))
     assert(p.valid?)
     assert_nil(p.first_login)

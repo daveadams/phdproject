@@ -20,10 +20,14 @@ class TutorialTest < ActionController::IntegrationTest
   end
 
   test "success with session" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:control)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
 
-    p = experimental_sessions(:active).participants.first
+    p = xs.participants.first
     post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_template :tutorial
@@ -38,10 +42,14 @@ class TutorialTest < ActionController::IntegrationTest
   end
 
   test "participant timestamps" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:experimental_two)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
 
-    p = experimental_sessions(:active).participants.last
+    p = xs.participants.last
     post("/login/login", :participant_number => p.participant_number)
     assert_response :redirect
     assert_redirected_to(:controller => :tutorial)
@@ -53,7 +61,6 @@ class TutorialTest < ActionController::IntegrationTest
     assert(p.first_login.past?)
     assert(p.first_login > 1.second.ago)
 
-    # wait long enough that timestamp will be different
     sleep 1
 
     get_via_redirect "/tutorial"
@@ -66,19 +73,20 @@ class TutorialTest < ActionController::IntegrationTest
   end
 
   test "failure when experimental session expires" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:control)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
 
-    xs = experimental_sessions(:active)
     p = xs.participants.last
     post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_template :tutorial
     assert_equal "/tutorial/intro", path
 
-    # update the experimental session so that it's no longer active
-    xs.is_active = false
-    assert xs.save
+    assert_nothing_raised { xs.set_complete }
 
     get_via_redirect "/tutorial"
     assert_response :success
@@ -89,7 +97,11 @@ class TutorialTest < ActionController::IntegrationTest
   end
 
   test "forward sequence" do
-    p = experimental_sessions(:active).participants.first
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:context_neutral)) }
+    assert_nothing_raised { xs.set_active }
+
+    p = xs.participants.last
 # TODO: Figure out how to emulate multiple sessions!!
 #    experimental_sessions(:active).participants.each do |p|
     post_via_redirect("/login/login",

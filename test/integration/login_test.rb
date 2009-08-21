@@ -3,7 +3,6 @@ require 'test_helper'
 class LoginTest < ActionController::IntegrationTest
   fixtures :all
 
-  # / should get us to the login page
   test "first visit" do
     get "/"
     assert_response :success
@@ -24,7 +23,6 @@ class LoginTest < ActionController::IntegrationTest
     assert_equal(log_entry.action, "index")
   end
 
-  # an invalid participant number should be rejected
   test "failed login" do
     get "/"
     assert_response :success
@@ -40,10 +38,14 @@ class LoginTest < ActionController::IntegrationTest
   end
 
   test "active login attempt" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:control)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
 
-    p = experimental_sessions(:active).participants.first
+    p = xs.participants.first
     post "/login/login", :participant_number => p.participant_number
     assert_response :redirect
     assert_redirected_to(:controller => "tutorial")
@@ -73,10 +75,13 @@ class LoginTest < ActionController::IntegrationTest
   end
 
   test "inactive login attempt" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:context_neutral)) }
+
     get "/"
     assert_response :success
 
-    p = experimental_sessions("inactive").participants.first
+    p = xs.participants.first
     post_via_redirect("/login/login", :participant_number => p.participant_number)
     assert_response :success
     assert_equal "/", path
@@ -85,11 +90,15 @@ class LoginTest < ActionController::IntegrationTest
   end
 
   test "session setup" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:control)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
     assert_nil(session[:participant_id])
 
-    p = experimental_sessions(:active).participants.first
+    p = xs.participants.first
     assert_equal(p.is_active, false)
     assert_nil(p.first_login)
     assert_nil(p.last_access)
@@ -108,10 +117,14 @@ class LoginTest < ActionController::IntegrationTest
   end
 
   test "active session login bounce" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:experimental_one)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
 
-    p = experimental_sessions(:active).participants.last
+    p = xs.participants.last
     post_via_redirect("/login/login", :participant_number => p.participant_number)
     assert_response :success
     assert_equal("/tutorial/intro", path)
@@ -184,10 +197,14 @@ class LoginTest < ActionController::IntegrationTest
   end
 
   test "login redirect to saved location" do
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:experimental_two)) }
+    assert_nothing_raised { xs.set_active }
+
     get "/"
     assert_response :success
 
-    p = experimental_sessions(:active).participants.first
+    p = xs.participants.first
     post_via_redirect "/login/login", :participant_number => p.participant_number
     assert_response :success
     assert_equal("/tutorial/intro", path)
