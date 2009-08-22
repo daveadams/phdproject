@@ -29,15 +29,8 @@
   <th>Last Access</th>
 </tr>
 
-<% @active_session.current_participants.each do |p| %>
-<tr class="current-participant" id="<%= p.participant_number %>">
-  <td class="participant-number"><%=h p.participant_number %></td>
-  <td><%=h p.experimental_group.name %></td>
-  <td><%=h p.phase %></td>
-  <td><%=h p.page %></td>
-  <td><%=h time_ago_in_words(p.last_access, true) %> ago</td>
-</tr>
-<% end %>
+<%= render :partial => "current_participant",
+          :collection => @active_session.current_participants %>
 
 <% if @active_session.unseen_participants.length > 0 %>
   <tr class="unseen-participants-header">
@@ -45,14 +38,7 @@
   </tr>
 <% end %>
 
-<% @active_session.unseen_participants.each do |p| %>
-<tr class="unseen-participant">
-  <td class="participant-number"><%=h p.participant_number %></td>
-  <td><%=h p.experimental_group.name %></td>
-  <td><%=h p.phase %></td>
-  <td><%=h p.page %></td>
-  <td>never</td>
-</tr>
-<% end %>
+<%= render :partial => "unseen_participant",
+          :collection => @active_session.unseen_participants %>
 </table>
 
