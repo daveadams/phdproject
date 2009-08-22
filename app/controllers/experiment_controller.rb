@@ -14,7 +14,7 @@ class ExperimentController < ApplicationController
         @participant.experimental_session.round == @participant.round
       redirect_to(:action => :start)
     else
-      render :layout => "reload"
+      render :action => :wait, :layout => false
     end
   end
 

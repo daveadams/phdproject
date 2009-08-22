@@ -1,1 +1,21 @@
-<%= get_text("body") %>
+<html>
+  <head>
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="refresh" content="5" />
+    <title>Please Wait...</title>
+    <%= stylesheet_link_tag("default", :media => :all) %>
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="wait-message">
+        <h1>Please Wait...</h1>
+        <p>The next round will commence as soon as everyone is ready.</p>
+        <div style="margin-top: 50px">
+          <%= image_tag("wait.gif") %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
