@@ -179,6 +179,36 @@ class AdminController < ApplicationController
     redirect_to(:action => return_action)
   end
 
+  def advance_round
+    return_action = :status
+
+    if request.post?
+      begin
+        xs = ExperimentalSession.find(request[:id])
+        if xs.current_participants.count < 1
+          flash[:error] = "Can't start the experiment with no active participants."
+        elsif !xs.round_complete?
+          flash[:error] = "Not all participants are done with the round."
+        else
+          xs.next_round
+          flash[:highlight] = "current-round"
+        end
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = "Could not find that experimental session."
+        return_action = :sessions
+      rescue ExperimentalSessionNotActive
+        flash[:error] = "This session is not active."
+        return_action = :sessions
+      rescue ExperimentalSessionMaxRounds
+        flash[:error] = "There are no more rounds."
+      rescue ExperimentalSessionNotInExperiment
+        flash[:error] = "The current phase does not allow advancing rounds."
+      end
+    end
+
+    redirect_to(:action => return_action)
+  end
+
   def status
     @page_title = "Current Status"
     @active_session = ExperimentalSession.active

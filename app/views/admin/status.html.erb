@@ -27,10 +27,17 @@
   <% end %>
 
 <% elsif @active_session.phase == "experiment" %>
-  <b>Current Round: <%= @active_session.round %></b>
+  <b id="current-round">
+    Current Round: <%= @active_session.round %>/<%= @active_session.max_rounds %>
+  </b>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="button" value="Advance Round"
-    <% if !@active_session.round_complete? %>disabled="true"<% end %> />
+  <% if @active_session.round < @active_session.max_rounds %>
+    <%= button_to("Advance Round", { :action => :advance_round,
+                                     :id => @active_session.id },
+                  :disabled => !@active_session.round_complete? ) %>
+  <% else %>
+    <%= button_to("Close Experiment Phase") %>
+  <% end %>
 <% end %>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <b><%= link_to("Back to All Sessions", :action => :sessions) %></b>

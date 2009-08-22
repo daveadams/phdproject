@@ -21,12 +21,20 @@ class ExperimentController < ApplicationController
   end
 
   def start_round
+    redirect_to(:action => :task)
   end
 
   def task
   end
 
   def end_round
+    if @participant.round >= @participant.experimental_group.rounds
+      redirect_to(:action => :complete)
+    else
+      @participant.round += 1
+      @participant.save
+      redirect_to(:action => :wait)
+    end
   end
 
   def complete

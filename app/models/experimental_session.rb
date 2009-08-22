@@ -3,6 +3,8 @@ class ExperimentalSessionAlreadyActive < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionAlreadyLockedDown < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionAlreadyComplete < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionUnused < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionMaxRounds < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionNotInExperiment < ActiveRecord::ActiveRecordError; end
 
 class ExperimentalSession < ActiveRecord::Base
   has_many :participants
@@ -98,10 +100,12 @@ class ExperimentalSession < ActiveRecord::Base
 
   def next_round
     raise ExperimentalSessionNotActive.new unless self.is_active
+    raise ExperimentalSessionMaxRounds.new if self.round >= self.max_rounds
+    raise ExperimentalSessionNotInExperiment.new if phase != "experiment"
+    raise ExperimentalSessionAlreadyComplete.new if self.is_complete
 
-    if phase == "experiment"
-      round += 1
-    end
+    self.round += 1
+    self.save
   end
 
   def max_rounds

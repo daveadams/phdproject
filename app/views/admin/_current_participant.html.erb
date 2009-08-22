@@ -1,7 +1,7 @@
 <tr class="current-participant" id="<%= current_participant.participant_number %>">
   <td class="participant-number"><%=h current_participant.participant_number %></td>
   <td><%=h current_participant.experimental_group.name %></td>
-  <td><%=h current_participant.phase %></td>
+  <td><%=h current_participant.phase %><%= (":" + current_participant.round.to_s) if current_participant.phase == "experiment" %></td>
   <td><%=h current_participant.page %></td>
   <td><%=h time_ago_in_words(current_participant.last_access, true) %> ago</td>
 </tr>
