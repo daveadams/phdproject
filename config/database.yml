@@ -1,14 +1,14 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql
+  database: phd_development
+  username: phd_development
+  password: phd_development
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql
+  database: phd_test
+  username: phd_test
+  password: phd_test
 
 # production:
 #   adapter: sqlite3

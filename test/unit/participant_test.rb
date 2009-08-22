@@ -14,7 +14,7 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal(p.experimental_group, experimental_groups(:experimental_one))
     assert_equal(p.is_active, false)
     assert_equal(p.cash, 0)
-    assert_equal(p.round, 0)
+    assert_equal(p.round, 1)
     assert_nil(p.phase)
     assert_nil(p.page)
   end
