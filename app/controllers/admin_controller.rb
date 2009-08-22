@@ -44,7 +44,9 @@ class AdminController < ApplicationController
     if request.post?
       xs = ExperimentalSession.new(:name => request['name'],
                                    :is_active => false)
-      unless xs.save
+      if xs.save
+        flash[:highlight] = "row#{xs.id}"
+      else
         flash[:error] = xs.errors.full_messages.join("<br />")
       end
     end
@@ -106,6 +108,7 @@ class AdminController < ApplicationController
         begin
           @group = ExperimentalGroup.find(request[:experimental_group_id].to_i)
           @session.create_participants(n, @group.id)
+          flash[:highlight] = "#{@group.shortname}#{@session.id}"
           redirect_to(:action => return_action)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Invalid experimental group selected."
@@ -117,6 +120,7 @@ class AdminController < ApplicationController
       end
     else
       @groups = ExperimentalGroup.all
+      render :layout => false if request.xhr?
     end
   end
 

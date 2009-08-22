@@ -1,4 +1,6 @@
 <% @groups.each do |g| %>
-  <td><%= session_participants.find_all_by_experimental_group_id(g.id).count %></td>
+  <td id="<%= g.shortname + session_participants.id.to_s %>">
+    <%= session_participants.participants.find_all_by_experimental_group_id(g.id).count %>
+  </td>
 <% end %>
-<td><%= session_participants.count %></td>
+<td><%= session_participants.participants.count %></td>

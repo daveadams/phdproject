@@ -9,16 +9,16 @@
   <th>&nbsp;</th>
 </tr>
 <% if @active_session %>
-  <tr class="active-session">
+  <tr class="active-session" id="row<%= @active_session.id %>">
     <td><b>ACTIVE</b></td>
     <td><%= link_to(h(@active_session.name), :action => :status) %></td>
     <%= render(:partial => "session_participants",
-               :object => @active_session.participants) %>
+               :object => @active_session) %>
     <td><%= link_to("status", :action => :status) %></td>
   </tr>
 <% end %>
 <% @sessions.each do |session| %>
-  <tr class="inactive-session">
+  <tr class="inactive-session" id="row<%= session.id %>">
     <td>
       <% if session.unseen_participants.count > 0 and !@active_session %>
         <%= link_to("activate",
@@ -31,15 +31,27 @@
     </td>
     <td><%=h session.name %></td>
     <%= render(:partial => "session_participants",
-               :object => session.participants) %>
+               :object => session) %>
     <td>
-      <%= link_to("add", :action => :add_participants, :id => session.id) %>
+      <%= link_to_remote("add", :url => { :action => :add_participants, :id => session.id },
+                         :method => :get,
+                         :update => "controls#{session.id}",
+                         :complete => "$('controlrow#{session.id}').show();") %>
+
       <% if session.current_participants.count == 0 %>
         <%= link_to("delete",
                     { :action => :delete_session, :id => session.id },
                     :method => :post,
                     :confirm => "Are you sure you want to delete '#{session.name}'?") %>
       <% end %>
+    </td>
+  </tr>
+  <tr id="controlrow<%= session.id %>" style="display:none">
+    <td>&nbsp;</td>
+    <td id="controls<%= session.id %>"
+        class="controls"
+        colspan="<%= (@groups.count + 3).to_s %>">
+      &nbsp;
     </td>
   </tr>
 <% end %>
@@ -55,3 +67,10 @@
     <%= submit_tag("Create") %>
   <% end %>
 </div>
+
+<% if flash[:highlight] %>
+  <% javascript_tag do %>
+    <%= visual_effect(:highlight, flash[:highlight]) %>
+  <% end %>
+<% end %>
+

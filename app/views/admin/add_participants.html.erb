@@ -1,9 +1,19 @@
-<h3>Add participants for <b><%= @session.name %></b></h3>
+<% if !request.xhr? %>
+  <h3>Add participants for <b><%= @session.name %></b></h3>
+<% else %>
+  <div style="text-align:right">
+<% end %>
 <% form_tag do %>
   <%= hidden_field_tag("id", @session.id) %>
-  <%= text_field_tag("n", "0", :size => 2) %>
+  <%= text_field_tag("n", "1", :size => 2) %>
   <%= select_tag("experimental_group_id",
                  options_for_select([["Select a group...",nil]] +
                                     @groups.collect { |g| [g.name, g.id] })) %>
   <%= submit_tag("Add") %>
+  <% if request.xhr? %>
+    <%= button_to_function("Close","$('controlrow#{@session.id}').hide();") %>
+  <% end %>
+<% end %>
+<% if request.xhr? %>
+  </div>
 <% end %>
