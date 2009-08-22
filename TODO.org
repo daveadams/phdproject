@@ -8,54 +8,6 @@
          experimental_session.phase_complete?
    - [ ] Verify that participants see change in wait page
 
-** TODO Move div#session-control to partial [0/2]
-   - [ ] _session_control
-   - [ ] Render partial in view
-
-** TODO Move participant table rows to partials [0/3]
-   - [ ] _current_participant
-   - [ ] _unseen_participant
-   - [ ] render partial collection
-
-** TODO Experimental session management page [4/6]
-   - [X] Action "sessions"
-   - [-] View "sessions"
-     - [X] Current active on top of list
-     - [X] Link to status page
-     - [X] Columns: name, number of participants
-     - [ ] Participant counts grouped by exp-group
-       - [ ] New field in exp-group: shortname
-       - [ ] Update exp-group fixtures
-         - [ ] Use pretty long names
-         - [ ] Two-letter shortnames
-       - [ ] Display by shortname and count
-     - [X] Link to delete if unused (current_participants.count == 0)
-     - [X] Link to create participants
-     - [X] Link to mark active if no other is
-   - [X] Action "set_active_session"
-     - [X] Check no current active
-     - [X] call set active
-     - [X] redirect back
-   - [X] Action "add_session"
-     - [X] Form for adding a session (just title for now)
-     - [X] controller logic
-   - [X] Action "delete_session"
-     - [X] Refuse to delete sessions that have been used
-       - [X] Enforce in model
-       - [X] Write tests
-     - [X] Cascade-delete participants
-     - [X] Action logic
-     - [X] Wire up to links
-     - [X] Test
-   - [-] Action "create_participants"
-     - [ ] UI for create participants
-       - [ ] number field
-       - [ ] dropdown experimental group selection
-       - [ ] Ajaxy?
-     - [X] Refuse on locked-down sessions
-       - [X] Enforce in model
-       - [X] Write tests
-
 ** TODO Tutorial structure worth viewing [11/12]
    - [X] Get comprehensive list from prototypes of two major page orders
    - [X] Update page_order fixtures
@@ -92,45 +44,15 @@
          - [X] complete
 
 
+** TODO Ajaxy add-participants [0/2]
+   - [ ] Highlight the updated cell
+     - [ ] Need cell IDs
+     - [ ] Figure out the RJS or whatever
+   - [ ] Make the form a partial and render it inline, too.
+** TODO Highlight new session after creation [0/2]
+   - [ ] Need row ids
+   - [ ] Figure out the RJS or whatever
 
-** DONE Enable lockdown functionality in admin/status [4/4]
-   CLOSED: [2009-08-20 Thu 22:43]
-   - [X] Confirmation dialog
-   - [X] New action on admin controller
-   - [X] Lockdown method on experimental_session model
-     - [X] New locked_down field in model
-     - [X] Deletes unseen participants
-     - [X] Refuses to add new participants
-     - [X] Write tests
-   - [X] Wire up button
-
-** DONE Get rid of experiment model altogether [4/4]
-   CLOSED: [2009-08-20 Thu 21:39]
-   - [X] Migration
-     - [X] Drop table
-     - [X] And drop foreign keys
-   - [X] Drop any model references
-   - [X] Delete experiment files
-     - [X] test/unit
-     - [X] test/fixtures
-     - [X] app/models
-   - [X] Update tests if necessary
-
-** DONE Get rid of default experimental_session fixtures [5/5]
-   CLOSED: [2009-08-20 Thu 21:29]
-   - [X] Delete fixtures
-   - [X] Delete participant fixtures
-   - [X] Okay, one experimental_session fixture
-   - [X] Clear db?
-         rake db:test:load
-   - [X] Fix tests
-     - [X] Unit
-     - [X] Functional
-     - [X] Integration
-
-
-
-* Future
 ** TODO Real examples in tutorial [0/10]
    - [ ] earnings_task
    - [ ] earnings_report
@@ -142,11 +64,7 @@
    - [ ] doublecheck_ok
    - [ ] audit_error
    - [ ] doublecheck_error
-** TODO More admin [0/3]
-   - [ ] Create/manage experimental groups
-   - [ ] Create/manage experimental sessions
-   - [ ] Generate participant IDs
-
+         
 
 * Sunday, August 9
 ** DONE Add div.error class to default.css
@@ -425,4 +343,93 @@
    - [X] Enforce in model
    - [X] Write tests
 
+
+* Thursday, August 20
+** DONE Enable lockdown functionality in admin/status [4/4]
+   CLOSED: [2009-08-20 Thu 22:43]
+   - [X] Confirmation dialog
+   - [X] New action on admin controller
+   - [X] Lockdown method on experimental_session model
+     - [X] New locked_down field in model
+     - [X] Deletes unseen participants
+     - [X] Refuses to add new participants
+     - [X] Write tests
+   - [X] Wire up button
+
+** DONE Get rid of experiment model altogether [4/4]
+   CLOSED: [2009-08-20 Thu 21:39]
+   - [X] Migration
+     - [X] Drop table
+     - [X] And drop foreign keys
+   - [X] Drop any model references
+   - [X] Delete experiment files
+     - [X] test/unit
+     - [X] test/fixtures
+     - [X] app/models
+   - [X] Update tests if necessary
+
+** DONE Get rid of default experimental_session fixtures [5/5]
+   CLOSED: [2009-08-20 Thu 21:29]
+   - [X] Delete fixtures
+   - [X] Delete participant fixtures
+   - [X] Okay, one experimental_session fixture
+   - [X] Clear db?
+         rake db:test:load
+   - [X] Fix tests
+     - [X] Unit
+     - [X] Functional
+     - [X] Integration
+
+
+
+* Friday, August 21
+** DONE Move participant table rows to partials [3/3]
+   CLOSED: [2009-08-21 Fri 21:26]
+   - [X] _current_participant
+   - [X] _unseen_participant
+   - [X] render partial collection
+
+
+** DONE Experimental session management page [6/6]
+   CLOSED: [2009-08-21 Fri 23:07]
+   - [X] Action "sessions"
+   - [X] View "sessions"
+     - [X] Current active on top of list
+     - [X] Link to status page
+     - [X] Columns: name, number of participants
+     - [X] Participant counts grouped by exp-group
+       - [X] New field in exp-group: shortname
+       - [X] Update exp-group fixtures
+         - [X] Use pretty long names
+         - [X] Two-letter shortnames
+       - [X] Display by shortname and count
+     - [X] Link to delete if unused (current_participants.count == 0)
+     - [X] Link to create participants
+     - [X] Link to mark active if no other is
+   - [X] Action "set_active_session"
+     - [X] Check no current active
+     - [X] call set active
+     - [X] redirect back
+   - [X] Action "add_session"
+     - [X] Form for adding a session (just title for now)
+     - [X] controller logic
+   - [X] Action "delete_session"
+     - [X] Refuse to delete sessions that have been used
+       - [X] Enforce in model
+       - [X] Write tests
+     - [X] Cascade-delete participants
+     - [X] Action logic
+     - [X] Wire up to links
+     - [X] Test
+   - [X] Action "add_participants"
+     - [X] Form for adding participants
+       - [X] number field
+       - [X] dropdown experimental group selection
+     - [X] Controller handles error states
+     - [X] Controller handles form creation
+     - [X] Controller handles form post errors
+     - [X] Controller handles form success
+     - [X] Refuse on locked-down sessions
+       - [X] Enforce in model
+       - [X] Write tests
 
