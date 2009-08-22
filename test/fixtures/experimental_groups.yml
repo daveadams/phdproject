@@ -1,25 +1,23 @@
 control:
   id: 1
-  name: control
+  name: Control
+  shortname: C
   tutorial_text_group_id: 1
 
 context_neutral:
   id: 2
-  name: context_neutral
+  name: Context Neutral
+  shortname: cn
   tutorial_text_group_id: 2
 
 experimental_one:
   id: 3
-  name: experimental_one
+  name: Experimental Group One
+  shortname: x1
   tutorial_text_group_id: 1
 
 experimental_two:
   id: 4
-  name: experimental_two
+  name: Experimental Group Two
+  shortname: x2
   tutorial_text_group_id: 1
-
-ten_rounds:
-  id: 5
-  name: ten_rounds
-  tutorial_text_group_id: 1
-  rounds: 10

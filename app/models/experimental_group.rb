@@ -1,6 +1,8 @@
 class ExperimentalGroup < ActiveRecord::Base
   has_many :participants
   belongs_to :tutorial_text_group
+  validates_presence_of :name, :shortname
+  validates_uniqueness_of :name, :shortname
 
   def rules
     { "earnings" => earnings,

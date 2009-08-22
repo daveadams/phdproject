@@ -55,7 +55,11 @@ class ExperimentalSessionTest < ActiveSupport::TestCase
 
     assert_equal(20, x.max_rounds)
 
-    x.create_participants(2, experimental_groups(:ten_rounds))
+    xg = ExperimentalGroup.create(:name => "10 Rounds",
+                                  :shortname => "10",
+                                  :tutorial_text_group_id => 1,
+                                  :rounds => 10)
+    x.create_participants(2, xg)
     x.reload
 
     assert(!x.valid?)
