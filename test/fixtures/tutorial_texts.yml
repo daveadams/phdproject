@@ -66,7 +66,7 @@ earnings_task_body:
   page_name: earnings_task
   text_key: body
   text: |
-    This __is filler__ yet to come.
+    __EXAMPLE GOES HERE__
 
 earnings_report_title:
   page_name: earnings_report
@@ -77,163 +77,161 @@ earnings_report_body:
   page_name: earnings_report
   text_key: body
   text: |
-    This is **filler** __yet__ to come.
+    __EXAMPLE GOES HERE__
 
 tax_intro_title:
   page_name: tax_intro
   text_key: title
-  text: Filler Title for tax_intro
+  text: Income Tax Return
 
-tax_intro_body_default:
+tax_intro_body:
   page_name: tax_intro
   text_key: body
   text: |
-    This is the filler text for the body of page 'tax_intro'. This can be very big.
+    When you leave the earnings report, you will be taken to your Individual Income Tax Return. You will be asked to report an amount of income on which you will be taxed. Tax will be calculated as 20% of the income that you report. You will not pay taxes on income that you do not report, and only you will know the true amount of income that you earned.
 
-    Like, this big.
+    You can calculate the amount of taxes you would owe on any amount of reported income by entering that income amount into the Individual Income Tax Return form and clicking the "Estimate My Tax" button. Your tax return will not be finalized until you click the "Report Earnings" button. Once you click the "Report Earnings" button, the amount of tax due on the reported earnings will be removed from your bank account.
 
 tax_return_title:
   page_name: tax_return
   text_key: title
-  text: Filler Title for tax_return
+  text: Income Tax Return Example
 
-tax_return_body_default:
+tax_return_body:
   page_name: tax_return
   text_key: body
   text: |
-    This is the filler text for the body of page 'tax_return'. This can be very big.
+    Try entering and calculating tax on different levels of earnings before choosing a level of earnings and finalizing the return.
 
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 disclosure_intro_title:
   page_name: disclosure_intro
   text_key: title
-  text: Filler Title for disclosure_intro
+  text: Earnings Disclosure
 
-disclosure_intro_body_default:
+disclosure_intro_body:
   page_name: disclosure_intro
   text_key: body
   text: |
-    This is the filler text for the body of page 'disclosure_intro'. This can be very big.
+    When you leave the earnings report, you will be taken to the disclosure report. You must pay 20% of the amount of money that you disclose. You will not pay on money that you do not disclose, and only you will know your true earnings amount.
 
-    Like, this big.
+    You can calculate the amount you would pay on any amount of earnings disclosed by entering that earnings amount into the form and clicking the "Estimate Payment" button. Your disclosure will not be finalized until you click the "Disclose Amount" button. Once you click the "Disclose Amount" button, the payment amount due on the disclosed earnings will be removed from your bank account.
+
+    The disclosure form is presented on the next screen. Try entering and calculating the payment on different earnings levels before finalizing your disclosure.
 
 disclosure_report_title:
   page_name: disclosure_report
   text_key: title
-  text: Filler Title for disclosure_report
+  text: Disclosure Report Example
 
-disclosure_report_body_default:
+disclosure_report_body:
   page_name: disclosure_report
   text_key: body
   text: |
-    This is the filler text for the body of page 'disclosure_report'. This can be very big.
+    Try entering and calculating the payment on different levels of earnings before choosing a level of earnings and finalizing your disclosure.
 
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 audit_intro_title:
   page_name: audit_intro
   text_key: title
-  text: Filler Title for audit_intro
+  text: Tax Audits
 
-audit_intro_body_default:
+audit_intro_body:
   page_name: audit_intro
   text_key: body
   text: |
-    This is the filler text for the body of page 'audit_intro'. This can be very big.
+    Your Income Tax Return may be selected for audit. Audit selection may be made randomly or based on a set of selection criteria. Audit selection and results are completely anonymous. If you are audited, you alone will know that you are being audited and the results of the audit.
 
-    Like, this big.
+    If you are audited and have underreported your income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the amount of unpaid taxes.
+
+    The following three screens present the audit notification screen and two audit reports assuming first that you earned $1.75 and reported $1.75 and second that you earned $1.75 and reported $0.75.
 
 audit_notify_title:
   page_name: audit_notify
   text_key: title
-  text: Filler Title for audit_notify
+  text: Audit Notification Example
 
-audit_notify_body_default:
+audit_notify_body:
   page_name: audit_notify
   text_key: body
   text: |
-    This is the filler text for the body of page 'audit_notify'. This can be very big.
+    This message will appear if you have been selected for an audit.
 
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 audit_ok_title:
   page_name: audit_ok
   text_key: title
-  text: Filler Title for audit_ok
+  text: First Audit Report Example
 
-audit_ok_body_default:
+audit_ok_body:
   page_name: audit_ok
   text_key: body
   text: |
-    This is the filler text for the body of page 'audit_ok'. This can be very big.
-
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 audit_error_title:
   page_name: audit_error
   text_key: title
-  text: Filler Title for audit_error
+  text: Second Audit Report Example
 
-audit_error_body_default:
+audit_error_body:
   page_name: audit_error
   text_key: body
   text: |
-    This is the filler text for the body of page 'audit_error'. This can be very big.
-
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 doublecheck_intro_title:
   page_name: doublecheck_intro
   text_key: title
-  text: Filler Title for doublecheck_intro
+  text: Double-checking of amounts disclosed
 
-doublecheck_intro_body_default:
+doublecheck_intro_body:
   page_name: doublecheck_intro
   text_key: body
   text: |
-    This is the filler text for the body of page 'doublecheck_intro'. This can be very big.
+    The amount of earnings that you disclose may be selected to be double-checked. Selection may be made randomly or based on a set of selection criteria. Selection for and results of being double-checked are completely anonymous. If you are double-checked, you alone will know that you are being double-checked and whether you disclosed the full amount earned or not.
 
-    Like, this big.
+    If you are double-checked and have not disclosed the entire amount earned, you will be required to pay the amount due on the undisclosed amount, plus a penalty equal to {{{penalty_rate}}} times the amount of the additional payment.
+
+    The following three screens present the notification screen and two result reports assuming first that you earned $1.75 and disclosed $1.75 and second that you earned $1.75 and disclosed $0.75.
 
 doublecheck_notify_title:
   page_name: doublecheck_notify
   text_key: title
-  text: Filler Title for doublecheck_notify
+  text: Notification Example
 
-doublecheck_notify_body_default:
+doublecheck_notify_body:
   page_name: doublecheck_notify
   text_key: body
   text: |
-    This is the filler text for the body of page 'doublecheck_notify'. This can be very big.
+    This message will appear if your earnings have been selected to be double-checked.
 
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 doublecheck_ok_title:
   page_name: doublecheck_ok
   text_key: title
-  text: Filler Title for doublecheck_ok
+  text: First Results Report Example
 
-doublecheck_ok_body_default:
+doublecheck_ok_body:
   page_name: doublecheck_ok
   text_key: body
   text: |
-    This is the filler text for the body of page 'doublecheck_ok'. This can be very big.
-
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 doublecheck_error_title:
   page_name: doublecheck_error
   text_key: title
-  text: Filler Title for doublecheck_error
+  text: Second Results Report Example
 
-doublecheck_error_body_default:
+doublecheck_error_body:
   page_name: doublecheck_error
   text_key: body
   text: |
-    This is the filler text for the body of page 'doublecheck_error'. This can be very big.
-
-    Like, this big.
+    __EXAMPLE GOES HERE__
 
 completing_title:
   page_name: completing
