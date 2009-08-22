@@ -12,12 +12,12 @@ context_neutral:
 
 experimental_one:
   id: 3
-  name: Experimental Group One
+  name: Group One
   shortname: x1
   tutorial_text_group_id: 1
 
 experimental_two:
   id: 4
-  name: Experimental Group Two
+  name: Group Two
   shortname: x2
   tutorial_text_group_id: 1

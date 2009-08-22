@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822014442) do
+ActiveRecord::Schema.define(:version => 20090822195936) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20090822014442) do
     t.datetime "updated_at"
     t.boolean  "is_active",      :default => false
     t.string   "phase",          :default => "tutorial"
-    t.integer  "round",          :default => 0
+    t.integer  "round",          :default => 1
     t.datetime "started_at"
     t.datetime "ended_at"
     t.boolean  "is_complete",    :default => false
@@ -65,12 +65,12 @@ ActiveRecord::Schema.define(:version => 20090822014442) do
     t.integer  "experimental_group_id"
     t.string   "phase"
     t.string   "page"
-    t.integer  "round",                                                 :default => 0
-    t.decimal  "cash",                    :precision => 8, :scale => 2, :default => 0.0
-    t.boolean  "tutorial_complete",                                     :default => false
-    t.boolean  "experiment_complete",                                   :default => false
-    t.boolean  "survey_complete",                                       :default => false
-    t.boolean  "all_complete",                                          :default => false
+    t.integer  "round",                   :default => 1
+    t.decimal  "cash",                    :default => 0.0
+    t.boolean  "tutorial_complete",       :default => false
+    t.boolean  "experiment_complete",     :default => false
+    t.boolean  "survey_complete",         :default => false
+    t.boolean  "all_complete",            :default => false
   end
 
   create_table "tutorial_text_groups", :force => true do |t|
