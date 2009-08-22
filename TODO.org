@@ -1,58 +1,31 @@
-#+STARTUP: content
+#+STARTUP: overview
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Enable begin experiment button in admin/status [0/3]
-   - [ ] New action on admin controller
-   - [ ] The button and controller should only work when all participants are done
-         experimental_session.phase_complete?
-   - [ ] Verify that participants see change in wait page
+** TODO Experiment round infrastructure [3/5]
+   - [X] When admin presses begin experiment, everyone's round should be 1
+     - [X] default participant.round should be 1
+     - [X] default experimental_session.round should be 1
+     - [X] experiment-specific filter on round
+   - [X] Single filler "task" action
+   - [X] Verify waits, round advance functionality
+   - [ ] Test experiment transition in new experiment integration test
+   - [ ] Test round transition
 
-** TODO Tutorial structure worth viewing [11/12]
-   - [X] Get comprehensive list from prototypes of two major page orders
-   - [X] Update page_order fixtures
-   - [X] Fill in missing actions
-   - [X] How do we do default templates? -- can't
-   - [X] Fill in missing view skeletons
-   - [X] Filler tutorial_text fixtures
-   - [X] Check sequences by hand
-   - [X] Test sequences in integration/tutorial_test
-   - [X] Create a templify application_helper
-   - [X] Update get_text to call templify against ruleset
-   - [X] Markdown/textile rendering
-   - [-] Correct tutorial_texts and template for each tutorial page
-         - [X] intro
-         - [X] overview
-         - [X] earnings_intro
-         - [X] earnings_task
-               This needs a real example
-         - [X] earnings_report
-               This needs a real example
-         - [ ] tax_intro
-         - [ ] tax_return
-         - [ ] disclosure_intro
-         - [ ] disclosure_report
-         - [ ] audit_intro
-         - [ ] audit_notify
-         - [ ] audit_ok
-         - [ ] audit_error
-         - [ ] doublecheck_intro
-         - [ ] doublecheck_notify
-         - [ ] doublecheck_ok
-         - [ ] doublecheck_error
-         - [X] completing
-         - [X] complete
+** TODO Figure out how to test multiple sessions [0/2]
+   - [ ] open_session do |sess| or something like that
+   - [ ] Add a couple of basic simultests to integration
+     - [ ] tutorial transition
+     - [ ] experiment transition
 
+** TODO Massive automated multi-session test [0/1]
+   - [ ] Does this belong under test:performance ?
 
-** TODO Ajaxy add-participants [0/2]
-   - [ ] Highlight the updated cell
-     - [ ] Need cell IDs
-     - [ ] Figure out the RJS or whatever
-   - [ ] Make the form a partial and render it inline, too.
-** TODO Highlight new session after creation [0/2]
-   - [ ] Need row ids
-   - [ ] Figure out the RJS or whatever
-
+** TODO Status page live updates [0/4]
+   - [ ] Regular polling for changes
+   - [ ] Highlighting new activity
+   - [ ] Sort current participants by first_login
+   - [ ] Update control panel, too
 ** TODO Real examples in tutorial [0/10]
    - [ ] earnings_task
    - [ ] earnings_report
@@ -65,6 +38,13 @@
    - [ ] audit_error
    - [ ] doublecheck_error
          
+
+
+** TODO Set up apache+mongrel [0/4]
+   - [ ] init script for 10 mongrels
+   - [ ] Apache config for mod_proxy_balancer
+   - [ ] Up and running
+   - [ ] Test out simul-loads
 
 * Sunday, August 9
 ** DONE Add div.error class to default.css
@@ -343,7 +323,6 @@
    - [X] Enforce in model
    - [X] Write tests
 
-
 * Thursday, August 20
 ** DONE Enable lockdown functionality in admin/status [4/4]
    CLOSED: [2009-08-20 Thu 22:43]
@@ -380,15 +359,12 @@
      - [X] Functional
      - [X] Integration
 
-
-
 * Friday, August 21
 ** DONE Move participant table rows to partials [3/3]
    CLOSED: [2009-08-21 Fri 21:26]
    - [X] _current_participant
    - [X] _unseen_participant
    - [X] render partial collection
-
 
 ** DONE Experimental session management page [6/6]
    CLOSED: [2009-08-21 Fri 23:07]
@@ -432,4 +408,84 @@
      - [X] Refuse on locked-down sessions
        - [X] Enforce in model
        - [X] Write tests
+
+* Saturday, August 22
+** DONE Tutorial structure worth viewing [12/12]
+   CLOSED: [2009-08-22 Sat 10:49]
+   - [X] Get comprehensive list from prototypes of two major page orders
+   - [X] Update page_order fixtures
+   - [X] Fill in missing actions
+   - [X] How do we do default templates? -- can't
+   - [X] Fill in missing view skeletons
+   - [X] Filler tutorial_text fixtures
+   - [X] Check sequences by hand
+   - [X] Test sequences in integration/tutorial_test
+   - [X] Create a templify application_helper
+   - [X] Update get_text to call templify against ruleset
+   - [X] Markdown/textile rendering
+   - [X] Correct tutorial_texts and template for each tutorial page
+         - [X] intro
+         - [X] overview
+         - [X] earnings_intro
+         - [X] earnings_task
+         - [X] earnings_report
+         - [X] tax_intro
+         - [X] tax_return
+         - [X] disclosure_intro
+         - [X] disclosure_report
+         - [X] audit_intro
+         - [X] audit_notify
+         - [X] audit_ok
+         - [X] audit_error
+         - [X] doublecheck_intro
+         - [X] doublecheck_notify
+         - [X] doublecheck_ok
+         - [X] doublecheck_error
+         - [X] completing
+         - [X] complete
+
+** DONE Enable begin experiment button in admin/status [4/4]
+   CLOSED: [2009-08-22 Sat 12:24]
+   - [X] New action on admin controller
+   - [X] Logic to properly show/enable the button
+   - [X] The button and controller should only work when all participants are done
+         experimental_session.phase_complete?
+   - [X] Verify that participants see change in wait page
+
+** DONE Add participants button on status page [2/2]
+   CLOSED: [2009-08-22 Sat 12:06]
+   - [X] Button using GET
+   - [X] add_participants then needs to redirect back to the right place
+         Could probably make it depend on if this is the active session.
+
+
+** DONE Experiment wait page [2/2]
+   CLOSED: [2009-08-22 Sat 12:51]
+   - [X] Ajax wait gif
+   - [X] Fill in the text on the plain view
+
+
+** DONE Highlight new session after creation [2/2]
+   CLOSED: [2009-08-22 Sat 13:41]
+   - [X] Need row ids
+   - [X] Figure out the RJS or whatever
+
+
+** DONE Ajaxy add-participants [3/3]
+   CLOSED: [2009-08-22 Sat 15:11]
+   - [X] Highlight the updated cell
+     - [X] Need cell IDs
+     - [X] Figure out the RJS or whatever
+   - [X] Inline form on sessions
+   - [X] Inline form on status
+
+** DONE Switch to MySQL [5/5]
+   CLOSED: [2009-08-22 Sat 17:08]
+   - [X] Set up MySQL dev and test databases
+   - [X] Reconfigure config/database.yml
+   - [X] Fix any broken tests
+   - [X] Check the UI
+   - [X] Run a three-person test
+         Still errors upon simul-hits - I think it's the web server. Need a mongrel cluster?
+
 
