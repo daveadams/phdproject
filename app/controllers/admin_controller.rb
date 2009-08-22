@@ -6,10 +6,6 @@ class AdminController < ApplicationController
   skip_before_filter :log_page_load
   skip_before_filter :enforce_order
 
-  def participants
-    @participants = Participant.find(:all)
-  end
-
   def sessions
     @page_title = "Experimental Sessions"
 
@@ -34,8 +30,14 @@ class AdminController < ApplicationController
           flash[:error] = "That experimental session is already complete."
         end
       end
+      if flash[:error]
+        redirect_to(:action => :sessions)
+      else
+        redirect_to(:action => :status)
+      end
+    else
+      redirect_to(:action => :sessions)
     end
-    redirect_to(:action => :sessions)
   end
 
   def add_session
@@ -74,14 +76,16 @@ class AdminController < ApplicationController
       redirect_to(:action => :sessions)
     end
 
+    return_action = (ExperimentalSession.active == @session) ? :status : :sessions
+
     if @session.is_locked_down
       flash[:error] = "Can't add participants to a locked-down session."
-      redirect_to(:action => :sessions)
+      redirect_to(:action => return_action)
     end
 
     if @session.is_complete
       flash[:error] = "Can't add participants to a completed session."
-      redirect_to(:action => :sessions)
+      redirect_to(:action => return_action)
     end
 
     if request.post?
@@ -102,7 +106,7 @@ class AdminController < ApplicationController
         begin
           @group = ExperimentalGroup.find(request[:experimental_group_id].to_i)
           @session.create_participants(n, @group.id)
-          redirect_to(:action => :sessions)
+          redirect_to(:action => return_action)
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Invalid experimental group selected."
           redirect_to(:action => :add_participants, :id => @session.id)
@@ -136,8 +140,59 @@ class AdminController < ApplicationController
     redirect_to(:action => :status)
   end
 
+  def begin_experiment
+    return_action = :status
+
+    if request.post?
+      begin
+        xs = ExperimentalSession.find(request[:id])
+        if !xs.is_active
+          flash[:error] = "This session is not active."
+          return_action = :sessions
+        elsif !xs.is_locked_down
+          flash[:error] = "This session is not yet locked down."
+        elsif xs.is_complete
+          flash[:error] = "This session is already complete."
+          return_action = :sessions
+        elsif xs.current_participants.count < 1
+          flash[:error] = "Can't start the experiment with no active participants."
+        elsif xs.phase != "tutorial"
+          flash[:error] = "This session is no longer in the tutorial phase."
+        elsif !xs.phase_complete?
+          flash[:error] = "Not all participants are done with the tutorial."
+        else
+          xs.next_phase
+        end
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = "Could not find that experimental session."
+        return_action = :sessions
+      rescue ExperimentalSessionNotActive
+        flash[:error] = "This session is not active."
+        return_action = :sessions
+      end
+    end
+
+    redirect_to(:action => return_action)
+  end
+
   def status
     @page_title = "Current Status"
     @active_session = ExperimentalSession.active
+    errored = false
+
+    if @active_session.nil?
+      flash[:error] = "Could not find that experimental session."
+      errored = true
+    elsif @active_session.is_complete
+      flash[:error] = "That experimental session is already complete."
+      errored = true
+    elsif !@active_session.is_active
+      flash[:error] = "That experimental session is not active."
+      errored = true
+    end
+
+    if errored
+      redirect_to(:action => :sessions)
+    end
   end
 end
