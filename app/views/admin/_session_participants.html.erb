@@ -1,0 +1,4 @@
+<% @groups.each do |g| %>
+  <td><%= session_participants.find_all_by_experimental_group_id(g.id).count %></td>
+<% end %>
+<td><%= session_participants.count %></td>

@@ -1,0 +1,9 @@
+<h3>Add participants for <b><%= @session.name %></b></h3>
+<% form_tag do %>
+  <%= hidden_field_tag("id", @session.id) %>
+  <%= text_field_tag("n", "0", :size => 2) %>
+  <%= select_tag("experimental_group_id",
+                 options_for_select([["Select a group...",nil]] +
+                                    @groups.collect { |g| [g.name, g.id] })) %>
+  <%= submit_tag("Add") %>
+<% end %>

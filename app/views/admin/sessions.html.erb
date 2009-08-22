@@ -1,9 +1,19 @@
 <table class="session-list" cellspacing="0">
+<tr>
+  <th>&nbsp;</th>
+  <th>Session Name</th>
+  <% @groups.each do |g| %>
+    <th><%= g.shortname %></th>
+  <% end %>
+  <th>Total</th>
+  <th>&nbsp;</th>
+</tr>
 <% if @active_session %>
   <tr class="active-session">
     <td><b>ACTIVE</b></td>
     <td><%= link_to(h(@active_session.name), :action => :status) %></td>
-    <td><%= @active_session.participants.count %> participants</td>
+    <%= render(:partial => "session_participants",
+               :object => @active_session.participants) %>
     <td><%= link_to("status", :action => :status) %></td>
   </tr>
 <% end %>
@@ -20,11 +30,10 @@
       <% end %>
     </td>
     <td><%=h session.name %></td>
+    <%= render(:partial => "session_participants",
+               :object => session.participants) %>
     <td>
-      <%= session.participants.count %> participants
-      (<%= link_to("add", :action => :add_participants) %>)
-    </td>
-    <td>
+      <%= link_to("add", :action => :add_participants, :id => session.id) %>
       <% if session.current_participants.count == 0 %>
         <%= link_to("delete",
                     { :action => :delete_session, :id => session.id },

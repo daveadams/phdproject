@@ -30,7 +30,7 @@ tr.current-participant td
     border-bottom: 1px solid #DDD;
 }
 
-th
+table.participants th
 {
     padding-right: 20px;
     text-align: left;
@@ -41,7 +41,7 @@ td.participant-number
     font-family: Inconsolata, monospace;
 }
 
-table.session-list td
+table.session-list td, table.session-list th
 {
     padding: 5px;
     padding-left: 15px;
