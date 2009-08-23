@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper :all
-  protect_from_forgery
+  #protect_from_forgery
 
   before_filter :check_session
   before_filter :log_page_load
