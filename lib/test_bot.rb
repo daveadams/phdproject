@@ -96,19 +96,21 @@ module TestBot
 
     get_via_redirect("/experiment/wait")
     assert_response(:success)
-    assert_equal("/experiment/task", path)
+    assert_equal("/experiment/begin", path)
 
     @participant.reload
     assert_equal("experiment", @participant.phase)
-    assert_equal("task", @participant.page)
+    assert_equal("begin", @participant.page)
   end
 
   def complete_task
     @participant.reload
-    assert_equal("/experiment/task", path)
+    assert_equal("/experiment/begin", path)
     assert_equal("experiment", @participant.phase)
-    assert_equal("task", @participant.page)
+    assert_equal("begin", @participant.page)
     assert_equal(@participant.experimental_session.round, @participant.round)
+
+    # TODO: all the steps in between
 
     get_via_redirect("/experiment/end_round")
     assert_response(:success)
