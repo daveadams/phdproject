@@ -2,24 +2,24 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Experiment round infrastructure [3/5]
-   - [X] When admin presses begin experiment, everyone's round should be 1
-     - [X] default participant.round should be 1
-     - [X] default experimental_session.round should be 1
-     - [X] experiment-specific filter on round
-   - [X] Single filler "task" action
-   - [X] Verify waits, round advance functionality
-   - [ ] Test experiment transition in new experiment integration test
-   - [ ] Test round transition
+** TODO Experiment page order enforcement [0/2]
+   - [ ] Another filter after check_round
+   - [ ] Need to work in exceptions for audit selection, round completion
 
-** TODO Figure out how to test multiple sessions [0/2]
-   - [ ] open_session do |sess| or something like that
-   - [ ] Add a couple of basic simultests to integration
-     - [ ] tutorial transition
-     - [ ] experiment transition
+** TODO Survey advancement
+** TODO Survey skeleton [0/3]
+   - [ ] SurveyData model
+   - [ ] Actions and views for multiple pages
+   - [ ] SurveyQuestion partial
 
-** TODO Massive automated multi-session test [0/1]
-   - [ ] Does this belong under test:performance ?
+** TODO Completion functionality
+** TODO Automated multi-session test [0/6]
+   - [ ] New integration test: the_full_multi
+   - [ ] Testbot for survey transition
+   - [ ] Testbot for survey
+   - [ ] Testbot for completion
+   - [ ] 2-20 simultaneous bots
+     - [ ] multiple threads?
 
 ** TODO Status page live updates [0/4]
    - [ ] Regular polling for changes
@@ -40,11 +40,6 @@
          
 
 
-** TODO Set up apache+mongrel [0/4]
-   - [ ] init script for 10 mongrels
-   - [ ] Apache config for mod_proxy_balancer
-   - [ ] Up and running
-   - [ ] Test out simul-loads
 
 * Sunday, August 9
 ** DONE Add div.error class to default.css
@@ -458,18 +453,15 @@
    - [X] add_participants then needs to redirect back to the right place
          Could probably make it depend on if this is the active session.
 
-
 ** DONE Experiment wait page [2/2]
    CLOSED: [2009-08-22 Sat 12:51]
    - [X] Ajax wait gif
    - [X] Fill in the text on the plain view
 
-
 ** DONE Highlight new session after creation [2/2]
    CLOSED: [2009-08-22 Sat 13:41]
    - [X] Need row ids
    - [X] Figure out the RJS or whatever
-
 
 ** DONE Ajaxy add-participants [3/3]
    CLOSED: [2009-08-22 Sat 15:11]
@@ -487,5 +479,71 @@
    - [X] Check the UI
    - [X] Run a three-person test
          Still errors upon simul-hits - I think it's the web server. Need a mongrel cluster?
+
+
+
+* Sunday, August 23
+** DONE Set up apache+mongrel [5/5]
+   CLOSED: [2009-08-23 Sun 14:53]
+   - [X] init script for 10 mongrels
+   - [X] Apache config for mod_proxy_balancer
+   - [X] Up and running
+   - [X] Switch to ActiveRecord session store
+   - [X] httpd.init
+
+
+
+** DONE Figure out how to test multiple sessions [2/2]
+   CLOSED: [2009-08-23 Sun 15:09]
+   - [X] open_session do |sess| or something like that
+   - [X] Add a couple of basic simultests to integration
+     - [X] tutorial transition
+     - [X] experiment transition
+
+
+** DONE Experiment round infrastructure [5/5]
+   CLOSED: [2009-08-23 Sun 16:38]
+   - [X] When admin presses begin experiment, everyone's round should be 1
+     - [X] default participant.round should be 1
+     - [X] default experimental_session.round should be 1
+     - [X] experiment-specific filter on round
+   - [X] Single filler "task" action
+   - [X] Verify waits, round advance functionality
+   - [X] Test experiment transition in new experiment integration test
+   - [X] Test round transition
+
+
+** DONE Experiment page order [4/4]
+   CLOSED: [2009-08-23 Sun 18:18]
+   - [X] Review page order for prototypes
+   - [X] Build actions and views for all necessary pages - assume similar get_text model
+     - [X] begin
+       - [X] action
+       - [X] view
+     - [X] work
+       - [X] action
+       - [X] view
+     - [X] earnings
+       - [X] action
+       - [X] view - account for cn text diffs
+     - [X] message
+       - [X] action
+       - [X] view
+     - [X] report (was tax_return)
+       - [X] action
+       - [X] view - account for cn text diffs
+     - [X] check - was audit for C, x1, x2; doublecheck for cn
+       - [X] action
+       - [X] view
+     - [X] results - was audit_report for C, x1, x2; doublecheck_report for cn
+       - [X] action
+       - [X] view
+     - [X] complete
+       - [X] action
+       - [X] view
+   - [X] PageOrder fixtures
+     - [X] message only for x1, x2
+     - [X] All the rest
+   - [X] Update testbot as necessary
 
 
