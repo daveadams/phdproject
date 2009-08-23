@@ -1,0 +1,52 @@
+<div class="report">
+  <% form_tag({ :action => "check" }, :name => "report") do %>
+  <table border="0">
+    <tr>
+      <td style="text-align: right;">
+        <b><%=h @reported_earnings_label %></b>
+      </td>
+      <td>
+        $<input type="text" name="reported_earnings" size="4" style="text-align:right;" value="" />
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">
+        <b><%=h @tax_rate_label %></b>
+      </td>
+      <td style="border-bottom: 1px solid black; text-align: right;">
+        x <%= number_to_percentage(@participant.experimental_group.tax_rate, :precision => 0) %>
+      </td>
+      <td>
+        <script>
+          function estimate()
+          {
+              report.estimated_due.value = (report.reported_earnings.value * <%= @participant.experimental_group.tax_rate.to_f/100 %>).toFixed(2);
+              report.commit.disabled = false;
+          }
+        </script>
+        <input type="button" value="<%=h @estimate_button_label %>" onclick="estimate();" />
+      </td>
+    </tr>
+    <tr style="margin-top: 10px;">
+      <td style="text-align: right;">
+        <b><%= @amount_due_label %></b>
+      </td>
+      <td>
+        $<input type="text" name="estimated_due"
+                disabled="true" size="4" value="" style="text-align:right;" />
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align:right;">
+        <%= submit_tag(@report_earnings_button_label, :disabled => true) %>
+      </td>
+      <td>
+      </td>
+  </table>
+  <% end %>
+</div>

@@ -76,12 +76,12 @@ span#task-timer
     top: 20px;
 }
 
-div.earnings-report, div.tax-return, div.audit-report
+div.earnings-report, div.report, div.results
 {
     margin-left: 25px;
 }
 
-div.audit-notification, div.reminder-message
+div.notification, div.reminder-message
 {
     margin-left: 40px;
     width: 400px;

@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta http-equiv="Expires" content="0" />
+    <title>Experiment: Message</title>
+    <%= stylesheet_link_tag("default", :media => :all) %>
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="notification">
+        <h2>NOTICE</h2>
+        <p>
+          <%=h @notification %>
+        </p>
+
+        <div style="text-align: right;">
+          <%= link_button("Proceed", :action => "results") %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
