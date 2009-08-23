@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# httpd.init
+#
+
+HTTPD_BIN=/apps/local/httpd/bin/httpd
+
+APP_PATH=/home/da1/per/phd
+LOG_PATH=$APP_PATH/log/httpd
+CONF=$APP_PATH/config/httpd.conf
+
+# check usage
+if [ "$#" -lt 1 ]
+then
+  echo "Usage: $0 {start|stop|restart}" >&2
+  exit 1
+fi
+
+mkdir -p $LOG_PATH || exit
+
+$HTTPD_BIN -f $CONF -k "$1"
