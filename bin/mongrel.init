@@ -9,10 +9,9 @@ MONGRELS=10
 ENVIRONMENT="${RAILS_ENV:-development}"
 
 APP_PATH=/home/da1/per/phd
-BASE_PATH=$APP_PATH/mongrel
-PID_PATH=$BASE_PATH/var
-LOG_PATH=$BASE_PATH/logs
-LOG_FILE=$LOG_PATH/mongrel-combined.log
+PID_PATH=$APP_PATH/tmp/pids
+LOG_PATH=$APP_PATH/log
+LOG_FILE=$LOG_PATH/mongrel-$ENVIRONMENT.log
 LISTEN_ADDRESS=127.0.0.1
 MONGREL_PATH=/apps/local/ruby/bin/mongrel_rails
 FIRST_PORT=9601
