@@ -159,41 +159,43 @@ class LoginTest < ActionController::IntegrationTest
   end
 
   test "reject already-active login attempt" do
-    # TODO: Figure out how to emulate multiple sessions
+    xs = experimental_sessions(:inactive)
+    assert_nothing_raised { xs.create_participants(5, experimental_groups(:experimental_one)) }
+    assert_nothing_raised { xs.set_active }
 
-    # p = experimental_sessions(:active).participants.last
+    p = xs.participants.last
 
-    # open_session do
-    #   get "/"
-    #   assert_response :success
+    open_session do |sess|
+      sess.get "/"
+      sess.assert_response :success
 
-    #   post_via_redirect("/login/login", :participant_number => p.participant_number)
-    #   assert_response :success
-    #   assert_equal("/tutorial/intro", path)
-    # end
+      sess.post_via_redirect("/login/login", :participant_number => p.participant_number)
+      sess.assert_response :success
+      assert_equal("/tutorial/intro", sess.path)
+    end
 
-    # p.reload
-    # assert_equal(p.is_active, true)
-    # assert_equal(p.phase, "tutorial")
-    # assert_equal(p.page, "intro")
+    p.reload
+    assert_equal(p.is_active, true)
+    assert_equal(p.phase, "tutorial")
+    assert_equal(p.page, "intro")
 
-    # open_session do
-    #   get "/"
-    #   assert_response :success
-    #   assert_equal("/", path)
+    open_session do |sess|
+      sess.get "/"
+      sess.assert_response :success
+      assert_equal("/", sess.path)
 
-    #   post_via_redirect("/login/login", :participant_number => p.participant_number)
-    #   assert_response :success
-    #   assert_equal("/", path)
-    #   assert_select "title", "Log In"
-    #   assert_select "div[class=error]", ErrorStrings::ALREADY_ACTIVE
-    # end
+      sess.post_via_redirect("/login/login", :participant_number => p.participant_number)
+      sess.assert_response :success
+      assert_equal("/", sess.path)
+      sess.assert_select "title", "Log In"
+      sess.assert_select "div[class=error]", ErrorStrings::ALREADY_ACTIVE
+    end
 
-    # error_entries = ActivityLog.find_all_by_event(ActivityLog::ERROR)
-    # assert_equal(error_entries.length, 1)
-    # error_entry = error_entries.first
-    # assert_equal(error_entry.participant, p)
-    # assert(error_entry.details =~ /#{p.participant_number}/)
+    error_entries = ActivityLog.find_all_by_event(ActivityLog::ERROR)
+    assert_equal(error_entries.length, 1)
+    error_entry = error_entries.first
+    assert_equal(error_entry.participant, p)
+    assert(error_entry.details =~ /#{p.participant_number}/)
   end
 
   test "login redirect to saved location" do

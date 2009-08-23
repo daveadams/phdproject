@@ -98,49 +98,55 @@ class TutorialTest < ActionController::IntegrationTest
 
   test "forward sequence" do
     xs = experimental_sessions(:inactive)
-    assert_nothing_raised { xs.create_participants(5, experimental_groups(:context_neutral)) }
+    xgids = [:control, :context_neutral, :experimental_one, :experimental_two]
+    xgids.each do |xgid|
+      assert_nothing_raised { xs.create_participants(1, experimental_groups(xgid)) }
+    end
+    xs.reload
+    assert_equal(xs.participants.count, xgids.length)
     assert_nothing_raised { xs.set_active }
 
-    p = xs.participants.last
-# TODO: Figure out how to emulate multiple sessions!!
-#    experimental_sessions(:active).participants.each do |p|
-    post_via_redirect("/login/login",
-                      :participant_number => p.participant_number)
-    assert_response(:success)
-    assert_template(:tutorial)
+    xs.participants.each do |p|
+      open_session do |s|
+        s.post_via_redirect("/login/login",
+                            :participant_number => p.participant_number)
+        s.assert_response(:success)
+        s.assert_template(:tutorial)
 
-    po = PageOrder.find(:first,
-                        :conditions => ["experimental_group_id=? and phase=?",
-                                        p.experimental_group.id, "tutorial"]).page_order
+        po = PageOrder.find(:first,
+                            :conditions => ["experimental_group_id=? and phase=?",
+                                            p.experimental_group.id, "tutorial"]).page_order
 
-    po.each do |page|
-      i = po.index(page)
-      first_page = (i == 0)
-      last_page = (i == (po.length - 1))
-      prev_page_name = first_page ? nil : po[i-1]
-      next_page_name = last_page ? nil : po[i+1]
+        po.each do |page|
+          i = po.index(page)
+          first_page = (i == 0)
+          last_page = (i == (po.length - 1))
+          prev_page_name = first_page ? nil : po[i-1]
+          next_page_name = last_page ? nil : po[i+1]
 
-      assert_equal("/tutorial/#{page}", path)
-      unless last_page
-        assert_select "form[method=get][action=/tutorial/#{next_page_name}]" do
-          assert_select "input[value='Next >>']", 1
+          assert_equal("/tutorial/#{page}", s.path)
+          unless last_page
+            s.assert_select "form[method=get][action=/tutorial/#{next_page_name}]" do
+              s.assert_select "input[value='Next >>']", 1
+            end
+          end
+          unless first_page
+            s.assert_select "form[method=get][action=/tutorial/#{prev_page_name}]" do
+              s.assert_select "input[value='<< Back']", 1
+            end
+          end
+
+          unless last_page
+            s.get "/tutorial/#{next_page_name}"
+            s.assert_response(:success)
+            s.assert_template(:tutorial)
+          end
         end
-      end
-      unless first_page
-        assert_select "form[method=get][action=/tutorial/#{prev_page_name}]" do
-          assert_select "input[value='<< Back']", 1
-        end
-      end
 
-      unless last_page
-        get "/tutorial/#{next_page_name}"
-        assert_response(:success)
-        assert_template(:tutorial)
+        p.reload
+        assert_equal("tutorial", p.phase)
+        assert_equal("complete", p.page)
       end
     end
-
-    p.reload
-    assert_equal("tutorial", p.phase)
-    assert_equal("complete", p.page)
   end
 end
