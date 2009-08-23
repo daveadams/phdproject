@@ -1,0 +1,82 @@
+#!/bin/bash
+#
+# mongrel.init
+#   Starts a pack of mongrels for load balancing across
+#
+
+
+MONGRELS=10
+ENVIRONMENT="${RAILS_ENV:-development}"
+
+APP_PATH=/home/da1/per/phd
+BASE_PATH=$APP_PATH/mongrel
+PID_PATH=$BASE_PATH/var
+LOG_PATH=$BASE_PATH/logs
+LOG_FILE=$LOG_PATH/mongrel-combined.log
+LISTEN_ADDRESS=127.0.0.1
+MONGREL_PATH=/apps/local/ruby/bin/mongrel_rails
+FIRST_PORT=9601
+
+SERVER_PORTS="$(seq $FIRST_PORT $(( $FIRST_PORT + $MONGRELS - 1 )) )"
+
+# check usage
+if [ "$#" -lt 1 ]
+then
+  echo "Usage: $0 {start|stop|restart}" >&2
+  exit 1
+fi
+
+# make sure our necessary directories are in place
+mkdir -p $PID_PATH $LOG_PATH || exit
+
+# respond to commands
+case "$1" in
+  start)
+    for THIS_PORT in $SERVER_PORTS
+    do
+      THIS_PID_FILE=$PID_PATH/mongrel-$ENVIRONMENT-$THIS_PORT.pid
+
+      if [ -e "$THIS_PID_FILE" ]
+      then
+          if [ "$(ps -p "$(<$THIS_PID_FILE)" --no-headers -o comm)" = "mongrel_rails" ]
+          then
+              echo "Mongrel is already running!"
+              exit
+          else
+              echo -n "Zombie pid file found, removing... "
+              rm $THIS_PID_FILE
+              echo OK
+          fi
+      fi
+
+      echo "Starting mongrel on port $THIS_PORT..."
+      $MONGREL_PATH start -d \
+              -a $LISTEN_ADDRESS \
+              -p $THIS_PORT \
+              -e $ENVIRONMENT \
+              -c $APP_PATH \
+              -P $THIS_PID_FILE \
+              -l $LOG_FILE
+    done
+  ;;
+
+  stop)
+    for THIS_PORT in $SERVER_PORTS
+    do
+      THIS_PID_FILE=$PID_PATH/mongrel-$ENVIRONMENT-$THIS_PORT.pid
+
+      echo "Stopping mongrel at port $THIS_PORT ($THIS_PID_FILE)..."
+      $MONGREL_PATH stop -P $THIS_PID_FILE
+    done
+  ;;
+
+  restart)
+    $0 stop
+    $0 start
+  ;;
+
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+  ;;
+esac
