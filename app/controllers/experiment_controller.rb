@@ -38,13 +38,18 @@ class ExperimentController < ApplicationController
   end
 
   def complete
-    @participant.experiment_complete = true
-    @participant.save
+    if request.post?
+      @participant.experiment_complete = true
+      @participant.save
+
+      redirect_to(:controller => "survey")
+    end
   end
 
  private
   def check_round
     if @participant.round > @participant.experimental_session.round
+      log_event(ActivityLog::OUT_OF_SEQUENCE, "Redirecting to /experiment/wait")
       redirect_to(:action => :wait)
     end
   end
