@@ -27,7 +27,7 @@
         <b><%=h @total_earned_label %></b>
       </td>
       <td style="text-align: right;">
-        $<%= @total_earned %>
+        <%= number_to_currency(@total_earned) %>
       </td>
     </tr>
   </table>

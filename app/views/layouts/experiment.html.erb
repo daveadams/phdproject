@@ -15,7 +15,7 @@
       <%= yield :layout %>
 
       <% if @display_bank %>
-        <span class="bank">$<%= bank_balance %></span>
+        <span class="bank"><%= number_to_currency(@participant.cash) %></span>
       <% end %>
     </div>
   </body>

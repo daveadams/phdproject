@@ -21,9 +21,7 @@ class ExperimentController < ApplicationController
 
   def work
     @page_title = "Earnings Task"
-
-    # TODO: pull working text based on round from the database
-    @working_text = "This is filler text for round #{@participant.round}."
+    @working_text = SourceText.find_by_round(@participant.round).errored_text
 
     # TODO: autotimer
   end
@@ -31,18 +29,27 @@ class ExperimentController < ApplicationController
   def earnings
     # TODO: check timing, too
     # TODO: actually check work
-    # TODO: summarize results into an object in the session
-    # TODO: add new money to bank
-    @page_title = "Earnings Report"
-    @display_bank = true
-    # TODO: pull real fixes from session object OR merge this and check_work
-    @fixes = ["Filler fix 1","Filler fix 2","Filler fix 3"]
-    # TODO: calculate total earned
-    @total_earned = @fixes.length * @participant.experimental_group.earnings
+    if request.post?
+      @page_title = "Earnings Report"
+      @display_bank = true
 
-    # TODO: calculate labels based on experimental_group
-    @earnings_per_correction_label = "Income Per Correction"
-    @total_earned_label = "Income Earned"
+      @fixes = SourceText.find_by_round(@participant.round).
+        evaluate_corrections(request[:working_text]).
+        collect { |tuple| "<i>#{tuple[0]}</i> was changed to <i>#{tuple[1]}</i>" }
+
+      @total_earned = @fixes.length * @participant.experimental_group.earnings
+      if @participant.earned_for_round < @participant.round
+        @participant.earned_for_round = @participant.round
+        @participant.cash += @total_earned
+        @participant.save
+      end
+
+      # TODO: calculate labels based on experimental_group
+      @earnings_per_correction_label = "Income Per Correction"
+      @total_earned_label = "Income Earned"
+    else
+      redirect_to(:action => :work)
+    end
   end
 
   def message
