@@ -1,0 +1,102 @@
+Alice1:
+  source_text_id: 1
+  error: she
+  correction: She
+
+Alice2:
+  source_text_id: 1
+  error: goves
+  correction: gloves
+
+Alice3:
+  source_text_id: 1
+  error: ot
+  correction: to
+
+Alice4:
+  source_text_id: 1
+  error: ate
+  correction: eat
+
+Alice5:
+  source_text_id: 1
+  error: thing!
+  correction: |
+    thing!"
+
+Moby1:
+  source_text_id: 2
+  error: indian
+  correction: Indian
+
+Moby2:
+  source_text_id: 2
+  error: Their
+  correction: There
+
+Moby3:
+  source_text_id: 2
+  error: whole
+  correction: hole
+
+Moby4:
+  source_text_id: 2
+  error: guise.
+  correction: guise?
+
+Moby5:
+  source_text_id: 2
+  error: site
+  correction: sight
+
+Heidi1:
+  source_text_id: 3
+  error: four
+  correction: for
+
+Heidi2:
+  source_text_id: 3
+  error: bored
+  correction: board
+
+Heidi3:
+  source_text_id: 3
+  error: peices
+  correction: pieces
+
+Heidi4:
+  source_text_id: 3
+  error: Peters
+  correction: |
+    Peter's
+
+Heidi5:
+  source_text_id: 3
+  error: use
+  correction: used
+
+Sense1:
+  source_text_id: 4
+  error: Dashwoods
+  correction: |
+    Dashwood's
+
+Sense2:
+  source_text_id: 4
+  error: quit
+  correction: quiet
+
+Sense3:
+  source_text_id: 4
+  error: didnot
+  correction: did not
+
+Sense4:
+  source_text_id: 4
+  error: won
+  correction: one
+
+Sense5:
+  source_text_id: 4
+  error: Recommended
+  correction: recommended
