@@ -2,17 +2,49 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
+
+** TODO Create experiment_text fixtures [0/2]
+   - [ ] Go through experiment_controller for configurable strings
+   - [ ] Create fixtures as appropriate
+
+** TODO Fix what happens when no errors are corrected [0/1]
+   - [ ] Should just say "nothing corrected"
+
+** TODO Display bank on wait page?
+
+** TODO Tax/disclosure functionality [0/2]
+   - [ ] Check that disclosed amount is not negative or more than actually earned
+   - [ ] Subtract taxes from bank
+
+** TODO Audit selection [0/3]
+   - [ ] Add audit rate rule to experimental group
+   - [ ] Add method to experimental_group to check for audit
+   - [ ] Branch execution as appropriate
+
+** TODO Audit functionality [0/3]
+   - [ ] Calculate real rate
+   - [ ] Verify and deliver results as appropriate
+   - [ ] This implies we keep track of each round's earnings. New model, or use session?
+
+** TODO Remaining source texts and corrections [0/3]
+   - [ ] 21+ total source texts
+   - [ ] Five corrections each
+   - [ ] Choose corrections that are unique across the text for the best results
+
 ** TODO Experiment page order enforcement [0/2]
    - [ ] Another filter after check_round
    - [ ] Need to work in exceptions for audit selection, round completion
 
-** TODO Survey advancement
+** TODO Survey transition [0/1]
+   - [ ] Mark experiment_complete on participants
+
 ** TODO Survey skeleton [0/3]
    - [ ] SurveyData model
    - [ ] Actions and views for multiple pages
    - [ ] SurveyQuestion partial
 
 ** TODO Completion functionality
+
 ** TODO Automated multi-session test [0/6]
    - [ ] New integration test: the_full_multi
    - [ ] Testbot for survey transition
@@ -481,7 +513,6 @@
          Still errors upon simul-hits - I think it's the web server. Need a mongrel cluster?
 
 
-
 * Sunday, August 23
 ** DONE Set up apache+mongrel [5/5]
    CLOSED: [2009-08-23 Sun 14:53]
@@ -492,14 +523,12 @@
    - [X] httpd.init
 
 
-
 ** DONE Figure out how to test multiple sessions [2/2]
    CLOSED: [2009-08-23 Sun 15:09]
    - [X] open_session do |sess| or something like that
    - [X] Add a couple of basic simultests to integration
      - [X] tutorial transition
      - [X] experiment transition
-
 
 ** DONE Experiment round infrastructure [5/5]
    CLOSED: [2009-08-23 Sun 16:38]
@@ -511,7 +540,6 @@
    - [X] Verify waits, round advance functionality
    - [X] Test experiment transition in new experiment integration test
    - [X] Test round transition
-
 
 ** DONE Experiment page order [4/4]
    CLOSED: [2009-08-23 Sun 18:18]
@@ -545,5 +573,30 @@
      - [X] message only for x1, x2
      - [X] All the rest
    - [X] Update testbot as necessary
+
+
+
+* Tuesday, August 25
+** DONE SourceText and Correction models [4/4]
+   CLOSED: [2009-08-25 Tue 18:37]
+   - [X] Create source_texts model: errored_text
+   - [X] Create fixtures for 3 texts
+   - [X] Create corrections model: source_text_id, error, correction
+   - [X] Create corresponding 15 fixtures for the three texts
+
+** DONE Basic correction functionality [4/4]
+   CLOSED: [2009-08-25 Tue 19:21]
+   - [X] Pull source text into textarea
+   - [X] Write method to find corrections
+         Probably can just scan for corrected text and no error text
+   - [X] Interpret results on the following page
+   - [X] Add money to bank, etc
+
+** DONE get_text for experiment [3/3]
+   CLOSED: [2009-08-25 Tue 21:20]
+   - [X] ExperimentText model - experimental_group_id, page_name, text_key, text
+   - [X] Expand helper to work similarly to tutorialtexts
+   - [X] Add method to experimenttext like tutorialtext
+
 
 
