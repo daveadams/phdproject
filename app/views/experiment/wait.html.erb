@@ -16,6 +16,9 @@
         </div>
       </div>
     </div>
+    <% if @display_bank %>
+      <span class="bank"><%= number_to_currency(@participant.cash) %></span>
+    <% end %>
   </body>
 </html>
 

@@ -10,13 +10,17 @@ module ApplicationHelper
                elsif controller_name == "experiment"
                  ExperimentText.get_text(@participant, action_name, text_key)
                else
-                 "((Undefined Text Source))"
+                 nil
                end
-    if !@participant.nil? and raw_text =~ /\{\{\{[^}]+\}\}\}/
-      data = @participant.experimental_group.rules
-      raw_text.gsub(/\{\{\{([^}]+)\}\}\}/) { data[$1.downcase.strip].to_s || $1 }
+    if raw_text.nil?
+      nil
     else
-      raw_text
+      if !@participant.nil? and raw_text =~ /\{\{\{[^}]+\}\}\}/
+        data = @participant.experimental_group.rules
+        raw_text.gsub(/\{\{\{([^}]+)\}\}\}/) { data[$1.downcase.strip].to_s || $1 }
+      else
+        raw_text
+      end
     end
   end
 end

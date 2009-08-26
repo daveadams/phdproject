@@ -13,7 +13,7 @@ class ExperimentText < ActiveRecord::Base
     end
 
     if t.nil?
-      "((Missing text definition))"
+      nil
     else
       t.text
     end

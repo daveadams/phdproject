@@ -10,6 +10,7 @@ class ExperimentController < ApplicationController
         @participant.experimental_session.round == @participant.round
       redirect_to(:action => :begin)
     else
+      @display_bank = true
       render :action => :wait, :layout => false
     end
   end
@@ -24,6 +25,10 @@ class ExperimentController < ApplicationController
     @working_text = SourceText.find_by_round(@participant.round).errored_text
 
     # TODO: autotimer
+  end
+
+  def check_work
+    # TODO: move calculations etc into this action
   end
 
   def earnings
