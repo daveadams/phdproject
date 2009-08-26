@@ -13,7 +13,7 @@ class TutorialText < ActiveRecord::Base
     end
 
     if tt.nil?
-      "SYSTEM ERROR: Missing Text"
+      "((Missing Text Definition))"
     else
       tt.text
     end

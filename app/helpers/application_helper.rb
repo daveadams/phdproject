@@ -7,8 +7,10 @@ module ApplicationHelper
   def get_text(text_key)
     raw_text = if controller_name == "tutorial"
                  TutorialText.get_text(@participant, action_name, text_key)
+               elsif controller_name == "experiment"
+                 ExperimentText.get_text(@participant, action_name, text_key)
                else
-                 "This is filler text from a filler function."
+                 "((Undefined Text Source))"
                end
     if !@participant.nil? and raw_text =~ /\{\{\{[^}]+\}\}\}/
       data = @participant.experimental_group.rules

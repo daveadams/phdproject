@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td style="text-align: right;">
-        <b><%=h @earnings_per_correction_label %></b>
+        <b><%=h get_text("earnings_per_correction") %></b>
       </td>
       <td style="text-align: right; border-bottom: 1px solid black;">
         x <%= number_to_currency(@participant.experimental_group.earnings) %>
@@ -24,7 +24,7 @@
     </tr>
     <tr>
       <td style="text-align: right;">
-        <b><%=h @total_earned_label %></b>
+        <b><%=h get_text("total_earned") %></b>
       </td>
       <td style="text-align: right;">
         <%= number_to_currency(@total_earned) %>

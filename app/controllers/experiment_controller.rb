@@ -42,10 +42,6 @@ class ExperimentController < ApplicationController
         @participant.cash += @total_earned
         @participant.save
       end
-
-      # TODO: calculate labels based on experimental_group
-      @earnings_per_correction_label = "Income Per Correction"
-      @total_earned_label = "Income Earned"
     else
       redirect_to(:action => :work)
     end

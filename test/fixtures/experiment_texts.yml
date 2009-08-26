@@ -1,13 +1,22 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+earnings_per_correction_default:
+  page_name: earnings
+  text_key: earnings_per_correction
+  text: Income Per Correction
 
-one:
-  page_name: MyString
-  text_key: MyString
-  text: MyText
-  experimental_group_id: 1
+earnings_per_correction_cn:
+  experimental_group_id: 2
+  page_name: earnings
+  text_key: earnings_per_correction
+  text: Earnings Per Correction
 
-two:
-  page_name: MyString
-  text_key: MyString
-  text: MyText
-  experimental_group_id: 1
+total_earned_default:
+  page_name: earnings
+  text_key: total_earned
+  text: Income Earned
+
+total_earned_cn:
+  experimental_group_id: 2
+  page_name: earnings
+  text_key: total_earned
+  text: Total Amount Earned
+
