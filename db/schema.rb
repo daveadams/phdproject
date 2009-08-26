@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090825230930) do
+ActiveRecord::Schema.define(:version => 20090826010003) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(:version => 20090825230930) do
     t.integer  "source_text_id"
     t.string   "error"
     t.string   "correction"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experiment_texts", :force => true do |t|
+    t.string   "page_name"
+    t.string   "text_key"
+    t.text     "text"
+    t.integer  "experimental_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
