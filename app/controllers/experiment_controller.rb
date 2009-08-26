@@ -28,7 +28,6 @@ class ExperimentController < ApplicationController
 
   def earnings
     # TODO: check timing, too
-    # TODO: actually check work
     if request.post?
       @page_title = "Earnings Report"
       @display_bank = true

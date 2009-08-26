@@ -4,7 +4,13 @@ class SourceText < ActiveRecord::Base
   validates_uniqueness_of :round
 
   def evaluate_corrections(corrected_text)
-    # TODO: return an array of correct corrections made as tuples: error string, correction string
-    [["x","y"],["z","Z"]]
+    # OPTIMIZE - this isn't actually going to be 100% accurate
+    self.corrections.collect do |c|
+      if corrected_text.index(c.error).nil?
+        if corrected_text.index(c.correction)
+          [c.error, c.correction]
+        end
+      end
+    end.compact
   end
 end
