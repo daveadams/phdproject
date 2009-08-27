@@ -42,10 +42,10 @@ class ExperimentController < ApplicationController
         collect { |tuple| "<i>#{tuple[0]}</i> was changed to <i>#{tuple[1]}</i>" }
 
       @total_earned = @fixes.length * @participant.experimental_group.earnings
-      if @participant.earned_for_round < @participant.round
-        @participant.earned_for_round = @participant.round
-        @participant.cash += @total_earned
-        @participant.save
+      begin
+        @participant.earn_income(@total_earned)
+      rescue ActiveRecord::RecordInvalid => e
+        log_event(ActivityLog::OUT_OF_SEQUENCE, "Failed to earn_income: round #{@participant.round}, $#{@total_earned}: #{e}")
       end
     else
       redirect_to(:action => :work)

@@ -7,4 +7,5 @@ class ActivityLog < ActiveRecord::Base
   WARNING = "warning"
   LOGIN = "login"
   CRITICAL = "critical"
+  CASH_TRANSACTION = "cashtrans"
 end

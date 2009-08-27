@@ -150,4 +150,92 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal(p.first_login, p.last_access)
     assert_raise(ParticipantAlreadyActive) { p.login }
   end
+
+  test "participant cash" do
+    p = Participant.create(:experimental_session => experimental_sessions(:inactive),
+                           :experimental_group => experimental_groups(:control))
+    assert_equal(1, p.round)
+    assert_equal([], p.cash_transactions)
+    assert_equal(0.0, p.cash)
+    assert_equal(0, p.activity_logs.length)
+
+    assert_nothing_raised { p.earn_income(0.5) }
+    assert_equal(1, p.cash_transactions.length)
+    assert_equal(0.5, p.cash)
+    assert_equal(1, p.activity_logs.length)
+
+    assert_raise(ActiveRecord::RecordInvalid) { p.earn_income(0.1) }
+    assert_equal(1, p.cash_transactions.length)
+    assert_equal(0.5, p.cash)
+    assert_equal(1, p.activity_logs.length)
+
+    assert_nothing_raised { p.pay_tax(-0.2) }
+    assert_equal(2, p.cash_transactions.length)
+    assert_equal(0.3, p.cash)
+    assert_equal(2, p.activity_logs.length)
+
+    p.round += 1
+    assert_nothing_raised { p.save! }
+    assert_equal(2, p.round)
+
+    assert_raise(ActiveRecord::RecordInvalid) { p.earn_income(-0.1) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.earn_income(-1.2) }
+    assert_nothing_raised { p.earn_income(0.0) }
+
+    assert_equal(3, p.cash_transactions.length)
+    assert_equal(0.3, p.cash)
+    assert_equal(3, p.activity_logs.length)
+
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_tax(0.5) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_tax(0.01) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_tax(2.77) }
+    assert_nothing_raised { p.pay_tax(0.0) }
+
+    assert_equal(4, p.cash_transactions.length)
+    assert_equal(0.3, p.cash)
+    assert_equal(4, p.activity_logs.length)
+
+    p.round += 1
+    assert_nothing_raised { p.save! }
+    assert_equal(3, p.round)
+
+    assert_nothing_raised { p.earn_income(1.75) }
+    assert_equal(5, p.cash_transactions.length)
+    assert_equal(2.05, p.cash)
+    assert_equal(5, p.activity_logs.length)
+
+    assert_nothing_raised { p.pay_tax(-0.25) }
+    assert_equal(6, p.cash_transactions.length)
+    assert_equal(1.8, p.cash)
+    assert_equal(6, p.activity_logs.length)
+
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_backtax(0.1) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_backtax(1.0) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_backtax(0.46) }
+
+    assert_nothing_raised { p.pay_backtax(-0.1) }
+    assert_equal(7, p.cash_transactions.length)
+    assert_equal(1.7, p.cash)
+    assert_equal(7, p.activity_logs.length)
+
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_penalty(0.01) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_penalty(3.77) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_penalty(0.98) }
+
+    assert_nothing_raised { p.pay_penalty(-0.15) }
+    assert_equal(8, p.cash_transactions.length)
+    assert_equal(1.55, p.cash)
+    assert_equal(8, p.activity_logs.length)
+
+    assert_raise(ActiveRecord::RecordInvalid) { p.earn_income(0.1) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_tax(-0.1) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_backtax(-0.1) }
+    assert_raise(ActiveRecord::RecordInvalid) { p.pay_penalty(-0.1) }
+
+    assert_equal(8, p.cash_transactions.length)
+    assert_equal(8, p.activity_logs.length)
+    assert_equal(1, p.activity_logs.collect { |log| log.event }.uniq.length)
+    assert_equal(ActivityLog::CASH_TRANSACTION,
+                 p.activity_logs.collect { |log| log.event }.uniq.first)
+  end
 end

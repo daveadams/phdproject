@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090826010003) do
+ActiveRecord::Schema.define(:version => 20090827002711) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -17,6 +17,15 @@ ActiveRecord::Schema.define(:version => 20090826010003) do
     t.string   "controller"
     t.string   "action"
     t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cash_transactions", :force => true do |t|
+    t.integer  "participant_id"
+    t.integer  "round"
+    t.string   "transaction_type"
+    t.decimal  "amount",           :precision => 8, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,13 +91,11 @@ ActiveRecord::Schema.define(:version => 20090826010003) do
     t.integer  "experimental_group_id"
     t.string   "phase"
     t.string   "page"
-    t.integer  "round",                                                 :default => 1
-    t.boolean  "tutorial_complete",                                     :default => false
-    t.boolean  "experiment_complete",                                   :default => false
-    t.boolean  "survey_complete",                                       :default => false
-    t.boolean  "all_complete",                                          :default => false
-    t.decimal  "cash",                    :precision => 8, :scale => 2, :default => 0.0
-    t.integer  "earned_for_round",                                      :default => 0
+    t.integer  "round",                   :default => 1
+    t.boolean  "tutorial_complete",       :default => false
+    t.boolean  "experiment_complete",     :default => false
+    t.boolean  "survey_complete",         :default => false
+    t.boolean  "all_complete",            :default => false
   end
 
   create_table "sessions", :force => true do |t|

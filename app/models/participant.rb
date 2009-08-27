@@ -5,6 +5,7 @@ class Participant < ActiveRecord::Base
   belongs_to :experimental_session
   belongs_to :experimental_group
   has_many :activity_logs
+  has_many :cash_transactions
 
   validates_presence_of :participant_number
   validates_uniqueness_of :participant_number
@@ -36,7 +37,42 @@ class Participant < ActiveRecord::Base
     self.save
   end
 
- private
+  def earn_income(amount)
+    self.add_transaction("income", amount)
+  end
+
+  def pay_tax(amount)
+    self.add_transaction("tax", amount)
+  end
+
+  def pay_backtax(amount)
+    self.add_transaction("backtax", amount)
+  end
+
+  def pay_penalty(amount)
+    self.add_transaction("penalty", amount)
+  end
+
+  def cash
+    self.cash_transactions.collect { |ct| ct.amount }.inject { |sum, amt| sum += amt } || 0.0
+  end
+
+ protected
+  def add_transaction(transaction_type, amount)
+    ct = CashTransaction.new do |ct|
+      ct.participant = self
+      ct.amount = amount
+      ct.transaction_type = transaction_type
+      ct.round = self.round
+    end
+    ct.save!
+
+    ActivityLog.create(:event => ActivityLog::CASH_TRANSACTION,
+                       :participant_id => self.id,
+                       :details => "'#{transaction_type}' #{amount}")
+    self.reload
+  end
+
   def self.generate_potential_participant_number
     alphaset = ("A".."Z").to_a
     ppn = ""
