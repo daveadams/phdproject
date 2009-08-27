@@ -76,14 +76,38 @@ class ExperimentController < ApplicationController
   end
 
   def report
-    # TODO: page title based on group
-    @page_title = "Individual Income Tax Return"
-    # TODO: form labels based on group
-    @reported_earnings_label = "Reported Income"
-    @tax_rate_label = "Tax Rate"
-    @estimate_button_label = "Estimate Taxes"
-    @amount_due_label = "Tax Due"
-    @report_earnings_button_label = "Report Earnings"
+  end
+
+  def submit_report
+    if request.post?
+      if request[:reported_earnings].nil? or request[:reported_earnings].strip == ""
+        flash[:error] = "Invalid submission."
+        log_event(ActivityLog::ERROR, "Reported earnings was empty.")
+        redirect_to(:action => :report)
+      else
+        reported_earnings = request[:reported_earnings].to_f
+        if reported_earnings < 0
+          flash[:error] = "Invalid submission."
+          log_event(ActivityLog::ERROR, "Reported earnings was negative.")
+          redirect_to(:action => :report)
+        elsif reported_earnings > @participant.income_for_current_round
+          flash[:error] = "Invalid submission."
+          log_event(ActivityLog::ERROR, "Reported earnings was higher than income.")
+          redirect_to(:action => :report)
+        else
+          tax_due = -(reported_earnings * (@participant.experimental_group.tax_rate.to_f/100))
+
+          begin
+            @participant.pay_tax(tax_due)
+          rescue ActiveRecord::RecordInvalid => e
+            log_event(ActivityLog::OUT_OF_SEQUENCE, "Could not add tax payment: #{e}")
+          end
+          redirect_to(:action => :check)
+        end
+      end
+    else
+      redirect_to(:action => :report)
+    end
   end
 
   def check

@@ -80,6 +80,7 @@ control_experiment:
     - check_work
     - earnings
     - report
+    - submit_report
     - check
     - results
     - complete
@@ -94,6 +95,7 @@ context_neutral_experiment:
     - check_work
     - earnings
     - report
+    - submit_report
     - check
     - results
     - complete
@@ -109,6 +111,7 @@ experimental_one_experiment:
     - earnings
     - message
     - report
+    - submit_report
     - check
     - results
     - complete
@@ -124,6 +127,7 @@ experimental_two_experiment:
     - earnings
     - message
     - report
+    - submit_report
     - check
     - results
     - complete

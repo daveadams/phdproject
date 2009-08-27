@@ -20,3 +20,69 @@ total_earned_cn:
   text_key: total_earned
   text: Total Amount Earned
 
+report_title_default:
+  page_name: report
+  text_key: title
+  text: Individual Income Tax Return
+
+report_title_cn:
+  experimental_group_id: 2
+  page_name: report
+  text_key: title
+  text: Disclosure Report
+
+report_earnings_label_default:
+  page_name: report
+  text_key: reported_earnings
+  text: Reported Income
+
+report_earnings_label_cn:
+  experimental_group_id: 2
+  page_name: report
+  text_key: reported_earnings
+  text: Disclosed Earnings
+
+report_rate_label_default:
+  page_name: report
+  text_key: rate
+  text: Tax Rate
+
+report_rate_label_cn:
+  experimental_group_id: 2
+  page_name: report
+  text_key: rate
+  text:
+
+report_estimate_label_default:
+  page_name: report
+  text_key: estimate
+  text: Estimate Taxes
+
+report_estimate_label_cn:
+  experimental_group_id: 2
+  page_name: report
+  text_key: estimate
+  text: Estimate Payment
+
+report_due_label_default:
+  page_name: report
+  text_key: amount_due
+  text: Tax Due
+
+report_due_label_cn:
+  experimental_group_id: 2
+  page_name: report
+  text_key: amount_due
+  text: Amount Due
+
+report_submit_label_default:
+  page_name: report
+  text_key: submit
+  text: Report Earnings
+
+report_submit_label_cn:
+  experimental_group_id: 2
+  page_name: report
+  text_key: submit
+  text: Disclose Amount
+

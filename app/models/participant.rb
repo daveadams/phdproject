@@ -70,6 +70,30 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def tax_for_current_round
+    begin
+      self.cash_transactions.find_by_round_and_transaction_type(self.round, "tax").amount
+    rescue
+      0.0
+    end
+  end
+
+  def backtax_for_current_round
+    begin
+      self.cash_transactions.find_by_round_and_transaction_type(self.round, "backtax").amount
+    rescue
+      0.0
+    end
+  end
+
+  def penalty_for_current_round
+    begin
+      self.cash_transactions.find_by_round_and_transaction_type(self.round, "penalty").amount
+    rescue
+      0.0
+    end
+  end
+
  protected
   def add_transaction(transaction_type, amount)
     ct = CashTransaction.new do |ct|
