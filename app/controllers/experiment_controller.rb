@@ -28,28 +28,43 @@ class ExperimentController < ApplicationController
   end
 
   def check_work
-    # TODO: move calculations etc into this action
-  end
-
-  def earnings
     # TODO: check timing, too
     if request.post?
-      @page_title = "Earnings Report"
-      @display_bank = true
-
-      @fixes = SourceText.find_by_round(@participant.round).
-        evaluate_corrections(request[:working_text]).
-        collect { |tuple| "<i>#{tuple[0]}</i> was changed to <i>#{tuple[1]}</i>" }
-
-      @total_earned = @fixes.length * @participant.experimental_group.earnings
-      begin
-        @participant.earn_income(@total_earned)
-      rescue ActiveRecord::RecordInvalid => e
-        log_event(ActivityLog::OUT_OF_SEQUENCE, "Failed to earn_income: round #{@participant.round}, $#{@total_earned}: #{e}")
+      SourceText.find_by_round(@participant.round).
+        evaluate_corrections(request[:working_text]).each do |c|
+        begin
+          cc = CorrectCorrection.create!(:participant_id => @participant.id,
+                                         :round => @participant.round,
+                                         :correction_id => c.id)
+          @participant.correct_corrections << cc
+        rescue => e
+          log_event(ActivityLog::ERROR, "Could not add correct_correction: #{e}")
+        end
       end
+      @participant.reload
+
+      begin
+        earnings = (@participant.correct_corrections_for_current_round.length *
+                    @participant.experimental_group.earnings)
+        @participant.earn_income(earnings)
+      rescue ActiveRecord::RecordInvalid => e
+        log_event(ActivityLog::OUT_OF_SEQUENCE, "Failed to earn_income: round #{@participant.round}, $#{earnings}: #{e}")
+      end
+
+      redirect_to(:action => :earnings)
     else
       redirect_to(:action => :work)
     end
+  end
+
+  def earnings
+    @page_title = "Earnings Report"
+    @display_bank = true
+
+    @fixes = @participant.correct_corrections_for_current_round.
+        collect { |c| "<i>#{c.correction.error}</i> was changed to <i>#{c.correction.correction}</i>" }
+
+    @total_earned = @participant.income_for_current_round || 0.0
   end
 
   def message

@@ -6,6 +6,7 @@ class Participant < ActiveRecord::Base
   belongs_to :experimental_group
   has_many :activity_logs
   has_many :cash_transactions
+  has_many :correct_corrections
 
   validates_presence_of :participant_number
   validates_uniqueness_of :participant_number
@@ -55,6 +56,18 @@ class Participant < ActiveRecord::Base
 
   def cash
     self.cash_transactions.collect { |ct| ct.amount }.inject { |sum, amt| sum += amt } || 0.0
+  end
+
+  def correct_corrections_for_current_round
+    self.correct_corrections.find_all_by_round(self.round)
+  end
+
+  def income_for_current_round
+    begin
+      self.cash_transactions.find_by_round_and_transaction_type(self.round, "income").amount
+    rescue
+      0.0
+    end
   end
 
  protected

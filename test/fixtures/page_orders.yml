@@ -77,6 +77,7 @@ control_experiment:
     - wait
     - begin
     - work
+    - check_work
     - earnings
     - report
     - check
@@ -90,6 +91,7 @@ context_neutral_experiment:
     - wait
     - begin
     - work
+    - check_work
     - earnings
     - report
     - check
@@ -103,6 +105,7 @@ experimental_one_experiment:
     - wait
     - begin
     - work
+    - check_work
     - earnings
     - message
     - report
@@ -117,6 +120,7 @@ experimental_two_experiment:
     - wait
     - begin
     - work
+    - check_work
     - earnings
     - message
     - report
