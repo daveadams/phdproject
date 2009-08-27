@@ -3,27 +3,98 @@
 #+STARTUP: indent
 
 
-** TODO Create experiment_text fixtures [0/2]
-   - [ ] Go through experiment_controller for configurable strings
-   - [ ] Create fixtures as appropriate
+** DONE Experiment page titles configurable in ExperimentText [3/3]
+   CLOSED: [2009-08-26 Wed 19:03]
+   - [X] Layout checks ExperimentText first, then @page_title
+   - [X] experiment_text.get_text should return nil if appropriate
+   - [X] application_helper.get_text should return nil if appropriate
 
-** TODO Fix what happens when no errors are corrected [0/1]
-   - [ ] Should just say "nothing corrected"
+** DONE Fix what happens when no errors are corrected [1/1]
+   CLOSED: [2009-08-26 Wed 19:05]
+   - [X] Should just say "nothing corrected"
 
-** TODO Display bank on wait page?
+** DONE Display bank on wait page?
+   CLOSED: [2009-08-26 Wed 19:06]
 
-** TODO Tax/disclosure functionality [0/2]
-   - [ ] Check that disclosed amount is not negative or more than actually earned
-   - [ ] Subtract taxes from bank
+** DONE CashTransaction model [4/4]
+   CLOSED: [2009-08-26 Wed 19:48]
+   - [X] Create model: participant_id, round, type, delta
+         type = income, tax, backtax, penalty
+   - [X] Validation of type field
+   - [X] Other validations
+   - [X] Link to participant
+     - [X] belongs_to
+     - [X] has_many
 
-** TODO Audit selection [0/3]
+** DONE Participant cash integration [14/14]
+   CLOSED: [2009-08-26 Wed 20:48]
+   - [X] earn_income method
+   - [X] pay_tax method
+   - [X] pay_backtax method
+   - [X] pay_penalty method
+   - [X] cash method
+   - [X] drop cash field
+   - [X] test earn_income
+   - [X] test pay_tax
+   - [X] test pay_backtax
+   - [X] test pay_penalty
+   - [X] test cash
+   - [X] test duplicates
+   - [X] drop earned_for_round field
+   - [X] transactions into the activity log
+
+** DONE Experiment controller cash integration [2/2]
+   CLOSED: [2009-08-26 Wed 20:49]
+   - [X] Replace manual math with a call to earn_income
+   - [X] Fix earned_for_round field usage
+
+** DONE CorrectCorrection model [5/5]
+   CLOSED: [2009-08-26 Wed 20:56]
+   - [X] Create model: participant_id, round, correction_id
+   - [X] Validations
+   - [X] Link to participant
+     - [X] belongs_to
+     - [X] has_many
+   - [X] belongs_to correction
+   - [X] participant.correct_corrections_for_current_round
+
+** DONE Experiment controller refactor checking work [4/4]
+   CLOSED: [2009-08-26 Wed 21:10]
+   - [X] source_text.evaluate_corrections should return an array of Corrections
+   - [X] Move check and payment logic into check_work method
+   - [X] Make use of correct_correction model
+   - [X] The earnings page should just view the info for the current round
+
+** DONE Experimental message functionality [3/3]
+   CLOSED: [2009-08-26 Wed 21:46]
+   - [X] add field to experimental_group: message:text
+   - [X] Update experimental_group fixtures
+   - [X] experiment_controller.message
+
+** DONE Tax/disclosure functionality [8/8]
+   CLOSED: [2009-08-26 Wed 22:36]
+   - [X] Fixtures for group-specific text and page title
+   - [X] Submit to new submit_report
+   - [X] Add submit_report to page_order fixtures
+   - [X] Check that disclosed amount is not negative or more than actually earned
+   - [X] Calculate tax
+   - [X] Call pay_tax
+   - [X] Catch any exception
+   - [X] Send onto check action
+
+** TODO Audit selection [0/5]
    - [ ] Add audit rate rule to experimental group
    - [ ] Add method to experimental_group to check for audit
    - [ ] Branch execution as appropriate
+   - [ ] Audit message based on group in some fixtures
+   - [ ] Audit notification should pull the right message
 
-** TODO Audit functionality [0/3]
+** TODO Audit functionality [0/6]
+   - [ ] Group-based texts in the right fixtures with corresponding view updates
    - [ ] Calculate real rate
    - [ ] Verify and deliver results as appropriate
+   - [ ] Create backtax and penalty cash_transaction records as appropriate
+   - [ ] Don't allow multiple penalties/backtaxes
    - [ ] This implies we keep track of each round's earnings. New model, or use session?
 
 ** TODO Remaining source texts and corrections [0/3]
@@ -35,6 +106,14 @@
    - [ ] Another filter after check_round
    - [ ] Need to work in exceptions for audit selection, round completion
 
+** TODO Extensive integration testing for experiment [0/3]
+   - [ ] Test message functionality for each group
+   - [ ] Test corrections in various forms
+   - [ ] Ensure proper math
+     - [ ] Earnings
+     - [ ] Taxes
+     - [ ] Penalties
+
 ** TODO Survey transition [0/1]
    - [ ] Mark experiment_complete on participants
 
@@ -44,7 +123,11 @@
    - [ ] SurveyQuestion partial
 
 ** TODO Completion functionality
-
+** TODO Autotimer on work page [0/4]
+   - [ ] Background ajax call checking the server time
+   - [ ] Server saves first load time to compare against (reloads won't break anything)
+   - [ ] Update the timer based on server time remaining
+   - [ ] Upon zero time, force submit
 ** TODO Automated multi-session test [0/6]
    - [ ] New integration test: the_full_multi
    - [ ] Testbot for survey transition
@@ -71,6 +154,9 @@
    - [ ] doublecheck_error
          
 
+
+** TODO Future fanciness [0/1]
+   - [ ] Make experimental message a dramatic modal dialog over the top of the tax return page
 
 
 * Sunday, August 9
@@ -512,7 +598,6 @@
    - [X] Run a three-person test
          Still errors upon simul-hits - I think it's the web server. Need a mongrel cluster?
 
-
 * Sunday, August 23
 ** DONE Set up apache+mongrel [5/5]
    CLOSED: [2009-08-23 Sun 14:53]
@@ -521,7 +606,6 @@
    - [X] Up and running
    - [X] Switch to ActiveRecord session store
    - [X] httpd.init
-
 
 ** DONE Figure out how to test multiple sessions [2/2]
    CLOSED: [2009-08-23 Sun 15:09]
@@ -573,8 +657,6 @@
      - [X] message only for x1, x2
      - [X] All the rest
    - [X] Update testbot as necessary
-
-
 
 * Tuesday, August 25
 ** DONE SourceText and Correction models [4/4]
