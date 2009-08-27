@@ -68,8 +68,11 @@ class ExperimentController < ApplicationController
   end
 
   def message
-    # TODO: determine the message or whether to skip based on group
-    render :layout => false
+    if @message = @participant.experimental_group.message
+      render :layout => false
+    else
+      redirect_to(:action => :report)
+    end
   end
 
   def report

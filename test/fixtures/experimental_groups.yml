@@ -15,9 +15,13 @@ experimental_one:
   name: Group One
   shortname: x1
   tutorial_text_group_id: 1
+  message: |
+    The amount of income that you report may be audited for accuracy. If you are found to have reported less than your earned income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the unpaid taxes.
 
 experimental_two:
   id: 4
   name: Group Two
   shortname: x2
   tutorial_text_group_id: 1
+  message: |
+    Message Two

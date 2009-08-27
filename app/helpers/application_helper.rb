@@ -4,6 +4,11 @@ module ApplicationHelper
       "<input type=\"submit\" value=\"#{button_text}\" /></form>"
   end
 
+  def rule_filter(raw_text)
+    data = @participant.experimental_group.rules
+    raw_text.gsub(/\{\{\{([^}]+)\}\}\}/) { data[$1.downcase.strip].to_s || $1 }
+  end
+
   def get_text(text_key)
     raw_text = if controller_name == "tutorial"
                  TutorialText.get_text(@participant, action_name, text_key)
@@ -16,8 +21,7 @@ module ApplicationHelper
       nil
     else
       if !@participant.nil? and raw_text =~ /\{\{\{[^}]+\}\}\}/
-        data = @participant.experimental_group.rules
-        raw_text.gsub(/\{\{\{([^}]+)\}\}\}/) { data[$1.downcase.strip].to_s || $1 }
+        rule_filter(raw_text)
       else
         raw_text
       end

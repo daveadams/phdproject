@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090827005101) do
+ActiveRecord::Schema.define(:version => 20090827013251) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20090827005101) do
     t.decimal  "penalty_rate",           :precision => 8, :scale => 2, :default => 1.5
     t.integer  "rounds",                                               :default => 20
     t.string   "shortname"
+    t.text     "message"
   end
 
   create_table "experimental_sessions", :force => true do |t|
