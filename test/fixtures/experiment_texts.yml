@@ -86,3 +86,81 @@ report_submit_label_cn:
   text_key: submit
   text: Disclose Amount
 
+audit_message_default:
+  page_name: check
+  text_key: message
+  text: |
+    Your Individual Income Tax Return has been selected for audit. Please proceed to the audit report to see the results of the audit.
+
+audit_message_cn:
+  experimental_group_id: 2
+  page_name: check
+  text_key: message
+  text: |
+    Your earnings have been selected to be double checked. Please proceed to the Results Report.
+
+results_title_default:
+  page_name: results
+  text_key: title
+  text: Audit Report
+
+results_title_cn:
+  experimental_group_id: 2
+  page_name: results
+  text_key: title
+  text: Results Report
+
+results_earnings_label_default:
+  page_name: results
+  text_key: earnings_label
+  text: Earned Income
+
+results_earnings_label_cn:
+  experimental_group_id: 2
+  page_name: results
+  text_key: earnings_label
+  text: Amount Earned
+
+results_reported_label_default:
+  page_name: results
+  text_key: reported_label
+  text: Reported Income
+
+results_reported_label_cn:
+  experimental_group_id: 2
+  page_name: results
+  text_key: reported_label
+  text: Amount Disclosed
+
+results_rate_label_default:
+  page_name: results
+  text_key: rate_label
+  text: Tax Rate
+
+results_rate_label_cn:
+  experimental_group_id: 2
+  page_name: results
+  text_key: rate_label
+  text:
+
+results_additional_label_default:
+  page_name: results
+  text_key: additional_label
+  text: Additional Tax Due
+
+results_additional_label_cn:
+  experimental_group_id: 2
+  page_name: results
+  text_key: additional_label
+  text: Additional Payment Due
+
+results_penalty_description_default:
+  page_name: results
+  text_key: penalty_description
+  text: penalties and unpaid taxes
+
+results_penalty_description_cn:
+  experimental_group_id: 2
+  page_name: results
+  text_key: penalty_description
+  text: additional payments and penalties

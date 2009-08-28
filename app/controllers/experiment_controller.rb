@@ -95,6 +95,7 @@ class ExperimentController < ApplicationController
           log_event(ActivityLog::ERROR, "Reported earnings was higher than income.")
           redirect_to(:action => :report)
         else
+          @participant.report_earnings(reported_earnings)
           tax_due = -(reported_earnings * (@participant.experimental_group.tax_rate.to_f/100))
 
           begin
@@ -111,39 +112,35 @@ class ExperimentController < ApplicationController
   end
 
   def check
-    # TODO: select if this person gets audited or not
-    @page_title = "Notification"
+    if @participant.checked_for_current_round?
+      # TODO: this will be a problem if the page gets reloaded
+      redirect_to(:action => :end_round)
 
-    # TODO: message based on group
-    @notification = "Your Individual Income Tax Return has been selected for audit. Please proceed to the audit report to see the results of the audit."
+    else
+      @participant.last_check = @participant.round
+      @participant.save
 
-    render :layout => false
+      if @participant.experimental_group.perform_audit?
+        log_event(ActivityLog::AUDIT, "selected for audit")
+        @participant.audit
+
+        render :layout => false
+      else
+        redirect_to(:action => :end_round)
+      end
+    end
   end
 
   def results
-    # TODO: title based on group
-    @page_title = "Audit Report"
     @display_bank = true
 
-    # TODO: labels based on group
-    @earnings_label = "Earned Income"
-    @reported_label = "Reported Income"
-    @tax_rate_label = "Tax Rate"
-    @additional_label = "Additional Tax Due"
-
-    # TODO: set results_ok based on actual results
-    @results_ok = false
-
-    # TODO: need a way to keep track of current earnings data (session?)
-    @earned = 1.05
-    @reported = 0.8
-    @difference = 0.25
-    @additional = 0.05
-    @penalties = 0.07
-    @total = 0.12
-
-    # TODO: set message based on group
-    @message = "You owe $#{@total} in penalties and unpaid taxes. This amount has been subtracted from your bank."
+    @earned = @participant.income_for_current_round
+    @reported = @participant.reported_earnings_for_current_round
+    @difference = @earned - @reported
+    @results_ok = (@difference == 0.0)
+    @additional = -@participant.backtax_for_current_round
+    @penalties = -@participant.penalty_for_current_round
+    @total = @additional + @penalties
   end
 
   def end_round

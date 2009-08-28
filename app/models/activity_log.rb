@@ -8,4 +8,6 @@ class ActivityLog < ActiveRecord::Base
   LOGIN = "login"
   CRITICAL = "critical"
   CASH_TRANSACTION = "cashtrans"
+  AUDIT = "audit"
+  REPORT = "report"
 end

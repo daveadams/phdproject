@@ -10,4 +10,8 @@ class ExperimentalGroup < ActiveRecord::Base
       "penalty_rate" => penalty_rate,
       "rounds" => rounds }
   end
+
+  def perform_audit?
+    rand((1/self.audit_rate).to_i) == 0
+  end
 end

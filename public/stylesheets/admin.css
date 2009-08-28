@@ -30,6 +30,11 @@ tr.current-participant td
     border-bottom: 1px solid #DDD;
 }
 
+tr.audited-participant td
+{
+    background: #FCC;
+}
+
 table.participants th
 {
     padding-right: 20px;

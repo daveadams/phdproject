@@ -1,5 +1,6 @@
 class ParticipantAlreadyActive < ActiveRecord::ActiveRecordError; end
 class ParticipantNotActive < ActiveRecord::ActiveRecordError; end
+class OutOfSequence < ActiveRecord::ActiveRecordError; end
 
 class Participant < ActiveRecord::Base
   belongs_to :experimental_session
@@ -12,6 +13,12 @@ class Participant < ActiveRecord::Base
   validates_uniqueness_of :participant_number
   validates_presence_of :experimental_session_id
   validates_presence_of :experimental_group_id
+
+  serialize :reported_earnings
+
+  def before_validation
+    self.reported_earnings ||= []
+  end
 
   def self.find_active(partnum)
     result = self.find(:first, :conditions => ["participant_number = ?", partnum])
@@ -54,8 +61,53 @@ class Participant < ActiveRecord::Base
     self.add_transaction("penalty", amount)
   end
 
+  def report_earnings(amount)
+    if self.reported_earnings[self.round]
+      raise OutOfSequence.new
+    end
+
+    ActivityLog.create(:event => ActivityLog::REPORT,
+                       :participant_id => self.id,
+                       :details => "Reported earnings of $#{amount}")
+    self.reported_earnings[self.round] = amount
+    self.save
+  end
+
+  def audit
+    if self.cash_transactions.find_by_round_and_transaction_type(self.round, "income").nil?
+      raise OutOfSequence.new
+    end
+
+    self.audited = true
+    self.save
+
+    logger.info("DAVE income = #{self.income_for_current_round}")
+    logger.info("DAVE reported = #{self.reported_earnings_for_current_round}")
+
+    if self.income_for_current_round > self.reported_earnings_for_current_round
+      logger.info("DAVE welcome")
+      correct_tax = -(self.income_for_current_round *
+                      (self.experimental_group.tax_rate.to_f/100))
+      logger.info("DAVE correct_tax = #{correct_tax}")
+      logger.info("DAVE tax paid = #{self.tax_for_current_round}")
+      backtax_due = correct_tax - self.tax_for_current_round
+      logger.info("DAVE backtax_due = #{backtax_due}")
+      penalty_due = backtax_due * self.experimental_group.penalty_rate
+      logger.info("DAVE penalty_due = #{penalty_due}")
+      self.pay_backtax(backtax_due)
+      self.pay_penalty(penalty_due)
+    else
+      self.pay_backtax(0.0)
+      self.pay_penalty(0.0)
+    end
+  end
+
   def cash
     self.cash_transactions.collect { |ct| ct.amount }.inject { |sum, amt| sum += amt } || 0.0
+  end
+
+  def checked_for_current_round?
+    self.last_check == self.round
   end
 
   def correct_corrections_for_current_round
@@ -68,6 +120,10 @@ class Participant < ActiveRecord::Base
     rescue
       0.0
     end
+  end
+
+  def reported_earnings_for_current_round
+    self.reported_earnings[self.round]
   end
 
   def tax_for_current_round
