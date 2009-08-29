@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090829160740) do
+ActiveRecord::Schema.define(:version => 20090829162950) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20090829160740) do
     t.string   "correction"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "error_context"
+    t.string   "correction_context"
   end
 
   create_table "experiment_texts", :force => true do |t|

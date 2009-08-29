@@ -59,9 +59,9 @@ class TutorialTest < ActionController::IntegrationTest
     assert_not_nil(p.last_access)
     assert_equal(p.first_login, p.last_access)
     assert(p.first_login.past?)
-    assert(p.first_login > 1.second.ago)
+    assert(p.first_login > 2.seconds.ago)
 
-    sleep 1
+    sleep 2
 
     get_via_redirect "/tutorial"
     assert_response :success

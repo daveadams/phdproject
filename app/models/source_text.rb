@@ -4,12 +4,9 @@ class SourceText < ActiveRecord::Base
   validates_uniqueness_of :round
 
   def evaluate_corrections(corrected_text)
-    # CAREFUL
-    # this works so long as the error and correction strings do
-    # not otherwise appear in the errored or corrected text
     self.corrections.collect do |c|
-      if corrected_text.index(c.error).nil?
-        c if corrected_text.index(c.correction)
+      if corrected_text.index(c.error_context || c.error).nil?
+        c if corrected_text.index(c.correction_context || c.correction)
       end
     end.compact
   end

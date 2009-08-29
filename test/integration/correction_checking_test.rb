@@ -17,7 +17,7 @@ class CorrectionCheckingTest < ActionController::IntegrationTest
       assert_equal(5, source.corrections.length)
 
       results = source.evaluate_corrections(correct.corrected_text)
-      puts results.length
+      assert_equal(5, results.length)
     end
   end
 end
