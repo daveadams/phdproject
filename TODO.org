@@ -2,10 +2,37 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Remaining source texts and corrections [0/3]
-   - [ ] 21+ total source texts
-   - [ ] Five corrections each
-   - [ ] Choose corrections that are unique across the text for the best results
+** DONE Remaining source texts and corrections [4/4]
+   CLOSED: [2009-08-29 Sat 14:51]
+   - [X] Source texts, corrected texts, corrections
+     - [X] Alice in Wonderland
+     - [X] Moby Dick
+     - [X] Heidi Grows Up
+     - [X] Sense and Sensibility
+     - [X] Shepherd of the Hills
+     - [X] Shepherd of the Hills 2
+     - [X] Pride and Prejudice
+     - [X] Sherlock Holmes
+     - [X] Treasure Island
+     - [X] The Three Musketeers
+     - [X] Oliver Twist
+     - [X] David Copperfield
+     - [X] A Tale of Two Cities
+     - [X] Tom Sawyer
+     - [X] Huck Finn
+     - [X] Connecticut Yankee
+     - [X] Tom Sawyer 2
+     - [X] Huck Finn 2
+     - [X] A Tale of Two Cities 2
+     - [X] The Prince and the Pauper
+     - [X] A Double Barreled Detective
+   - [X] Test each against the fully corrected version
+   - [X] Improve correction detection
+     - [X] Add error and correct context to Correction model
+     - [X] Add context to corrections.yml
+     - [X] Support context in SourceText.evaluate_corrections
+     - [X] Achieve perfect matching for this test
+   - [X] Choose corrections that are unique across the text for the best results
 
 ** TODO Extensive integration testing for experiment [0/3]
    - [ ] Test message functionality for each group
@@ -18,10 +45,22 @@
 ** TODO Survey transition [0/1]
    - [ ] Mark experiment_complete on participants
 
-** TODO Survey skeleton [0/3]
-   - [ ] SurveyData model
+** TODO Survey skeleton [0/2]
    - [ ] Actions and views for multiple pages
    - [ ] SurveyQuestion partial
+
+** TODO Survey data model [0/6]
+   - [ ] Survey model - name:string (has_many survey_pages order_by sequence?)
+   - [ ] Add survey_id to experimental_group (belongs_to survey)
+   - [ ] SurveyPage model - survey_id:integer sequence:integer
+         depends_on_question_id:integer requires_answer:string
+         (belongs_to survey, has_many survey_items, habtm questions through survey_items?)
+   - [ ] Question model - question:string (has_many possible_answers)
+         (pretending for now that it's only multiple choice questions)
+   - [ ] PossibleAnswers - question_id:integer (belongs_to question)
+                           answer_key:string displayed_answer:string
+   - [ ] SurveyItem model - survey_page_id:integer question_id:integer sequence:integer
+         
 
 ** TODO Completion functionality
 ** TODO Autotimer on work page [0/4]
@@ -56,8 +95,9 @@
          
 
 
-** TODO Future fanciness [0/1]
+** TODO Future fanciness [0/2]
    - [ ] Make experimental message a dramatic modal dialog over the top of the tax return page
+   - [ ] Artificial delay with wait message on earnings calculation and audit calculation
 
 
 * Sunday, August 9
