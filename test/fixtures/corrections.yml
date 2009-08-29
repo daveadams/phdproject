@@ -1,102 +1,539 @@
 Alice1:
-  source_text_id: 1
+  source_text_id: 99
   error: she
   correction: She
 
 Alice2:
-  source_text_id: 1
+  source_text_id: 99
   error: goves
   correction: gloves
 
 Alice3:
-  source_text_id: 1
+  source_text_id: 99
   error: ot
   correction: to
 
 Alice4:
-  source_text_id: 1
+  source_text_id: 99
   error: ate
   correction: eat
 
 Alice5:
-  source_text_id: 1
+  source_text_id: 99
   error: thing!
   correction: |
     thing!"
 
 Moby1:
-  source_text_id: 2
+  source_text_id: 1
   error: indian
   correction: Indian
 
 Moby2:
-  source_text_id: 2
+  source_text_id: 1
   error: Their
   correction: There
 
 Moby3:
-  source_text_id: 2
+  source_text_id: 1
   error: whole
   correction: hole
 
 Moby4:
-  source_text_id: 2
+  source_text_id: 1
   error: guise.
   correction: guise?
 
 Moby5:
-  source_text_id: 2
+  source_text_id: 1
   error: site
   correction: sight
 
 Heidi1:
-  source_text_id: 3
+  source_text_id: 2
   error: four
   correction: for
 
 Heidi2:
-  source_text_id: 3
+  source_text_id: 2
   error: bored
   correction: board
 
 Heidi3:
-  source_text_id: 3
+  source_text_id: 2
   error: peices
   correction: pieces
 
 Heidi4:
-  source_text_id: 3
+  source_text_id: 2
   error: Peters
   correction: |
     Peter's
 
 Heidi5:
-  source_text_id: 3
+  source_text_id: 2
   error: use
   correction: used
 
 Sense1:
-  source_text_id: 4
+  source_text_id: 3
   error: Dashwoods
   correction: |
     Dashwood's
 
 Sense2:
-  source_text_id: 4
+  source_text_id: 3
   error: quit
   correction: quiet
 
 Sense3:
-  source_text_id: 4
+  source_text_id: 3
   error: didnot
   correction: did not
 
 Sense4:
-  source_text_id: 4
+  source_text_id: 3
   error: won
   correction: one
 
 Sense5:
-  source_text_id: 4
+  source_text_id: 3
   error: Recommended
   correction: recommended
+
+Shepherd1:
+  source_text_id: 4
+  error: |
+    it's
+  correction: its
+
+Shepherd2:
+  source_text_id: 4
+  error: river,
+  correction: river.
+
+Shepherd3:
+  source_text_id: 4
+  error: |
+    hose's
+  correction: |
+    horse's
+
+Shepherd4:
+  source_text_id: 4
+  error: jim
+  correction: Jim
+
+Shepherd5:
+  source_text_id: 4
+  error: meet
+  correction: met
+
+Shepherd21:
+  source_text_id: 5
+  error: wierd
+  correction: weird
+
+Shepherd22:
+  source_text_id: 5
+  error: ta
+  correction: at
+
+Shepherd23:
+  source_text_id: 5
+  error: here
+  correction: hear
+
+Shepherd24:
+  source_text_id: 5
+  error: back.
+  correction: back?
+
+Shepherd25:
+  source_text_id: 5
+  error: that.
+  correction: |
+    that."
+
+Pride1:
+  source_text_id: 6
+  error: mary
+  correction: Mary
+
+Pride2:
+  source_text_id: 6
+  error: their
+  correction: there
+
+Pride3:
+  source_text_id: 6
+  error: a re
+  correction: are
+
+Pride4:
+  source_text_id: 6
+  error: thewords
+  correction: the words
+
+Pride5:
+  source_text_id: 6
+  error: Vain
+  correction: vain
+
+Sherlock1:
+  source_text_id: 7
+  error: oclock
+  correction: |
+    o'clock
+
+Sherlock2:
+  source_text_id: 7
+  error: four
+  correction: for
+
+Sherlock3:
+  source_text_id: 7
+  error: crime
+  correction: crimes
+
+Sherlock4:
+  source_text_id: 7
+  error: witch
+  correction: which
+
+Sherlock5:
+  source_text_id: 7
+  error: |
+    it's
+  correction: its
+
+Treasure1:
+  source_text_id: 8
+  error: throate
+  correction: throat
+
+Treasure2:
+  source_text_id: 8
+  error: whole
+  correction: hole
+
+Treasure3:
+  source_text_id: 8
+  error: i
+  correction: I
+
+Treasure4:
+  source_text_id: 8
+  error: inot
+  correction: into
+
+Treasure5:
+  source_text_id: 8
+  error: My
+  correction: my
+
+Musketeers1:
+  source_text_id: 9
+  error: ouut
+  correction: out
+
+Musketeers2:
+  source_text_id: 9
+  error: lettr
+  correction: letter
+
+Musketeers3:
+  source_text_id: 9
+  error: upon
+  correction: Upon
+
+Musketeers4:
+  source_text_id: 9
+  error: servant
+  correction: servants
+
+Musketeers5:
+  source_text_id: 9
+  error: use
+  correction: used
+
+Oliver1:
+  source_text_id: 10
+  error: two
+  correction: too
+
+Oliver2:
+  source_text_id: 10
+  error: Mr
+  correction: Mr.
+
+Oliver3:
+  source_text_id: 10
+  error: friend she
+  correction: friends he
+
+Oliver4:
+  source_text_id: 10
+  error: grate
+  correction: great
+
+Oliver5:
+  source_text_id: 10
+  error: fist
+  correction: first
+
+Copperfield1:
+  source_text_id: 11
+  error: scotland
+  correction: Scotland
+
+Copperfield2:
+  source_text_id: 11
+  error: month
+  correction: months
+
+Copperfield3:
+  source_text_id: 11
+  error: know
+  correction: now
+
+Copperfield4:
+  source_text_id: 11
+  error: too
+  correction: to
+
+Copperfield5:
+  source_text_id: 11
+  error: ti
+  correction: it
+
+TwoCities1:
+  source_text_id: 12
+  error: time
+  correction: times
+
+TwoCities2:
+  source_text_id: 12
+  error: lite
+  correction: light
+
+TwoCities3:
+  source_text_id: 12
+  error: use
+  correction: us
+
+TwoCities4:
+  source_text_id: 12
+  error: jarw
+  correction: jaw
+
+TwoCities5:
+  source_text_id: 12
+  error: off
+  correction: of
+
+TomSawyer1:
+  source_text_id: 13
+  error: missouri
+  correction: Missouri
+
+TomSawyer2:
+  source_text_id: 13
+  error: son
+  correction: sun
+
+TomSawyer3:
+  source_text_id: 13
+  error: buy
+  correction: by
+
+TomSawyer4:
+  source_text_id: 13
+  error: Tome
+  correction: Tom
+
+TomSawyer5:
+  source_text_id: 13
+  error: our
+  correction: hour
+
+HuckFinn1:
+  source_text_id: 14
+  error: knot
+  correction: not
+
+HuckFinn2:
+  source_text_id: 14
+  error: peeple
+  correction: people
+
+HuckFinn3:
+  source_text_id: 14
+  error: sea
+  correction: see
+
+HuckFinn4:
+  source_text_id: 14
+  error: fore
+  correction: for
+
+HuckFinn5:
+  source_text_id: 14
+  error: write
+  correction: right
+
+Connecticut1:
+  source_text_id: 15
+  error: sunday
+  correction: Sunday
+
+Connecticut2:
+  source_text_id: 15
+  error: aire
+  correction: air
+
+Connecticut3:
+  source_text_id: 15
+  error: goin
+  correction: going
+
+Connecticut4:
+  source_text_id: 15
+  error: ones
+  correction: |
+    one's
+
+Connecticut5:
+  source_text_id: 15
+  error: tin
+  correction: ten
+
+Pauper1:
+  source_text_id: 16
+  error: dzen
+  correction: dozen
+
+Pauper2:
+  source_text_id: 16
+  error: tom
+  correction: Tom
+
+Pauper3:
+  source_text_id: 16
+  error: nver
+  correction: never
+
+Pauper4:
+  source_text_id: 16
+  error: sew
+  correction: so
+
+Pauper5:
+  source_text_id: 16
+  error: questins
+  correction: questions
+
+Double1:
+  source_text_id: 17
+  error: Villagers
+  correction: villagers
+
+Double2:
+  source_text_id: 17
+  error: stillman
+  correction: Stillman
+
+Double3:
+  source_text_id: 17
+  error: found
+  correction: find
+
+Double4:
+  source_text_id: 17
+  error: southerner
+  correction: Southerner
+
+Double5:
+  source_text_id: 17
+  error: wiht
+  correction: with
+
+TwoCities21:
+  source_text_id: 18
+  error: too
+  correction: to
+
+TwoCities22:
+  source_text_id: 18
+  error: a fraid
+  correction: afraid
+
+TwoCities23:
+  source_text_id: 18
+  error: and
+  correction: an
+
+TwoCities24:
+  source_text_id: 18
+  error: hate
+  correction: hat
+
+TwoCities25:
+  source_text_id: 18
+  error: stoppped
+  correction: stopped
+
+HuckFinn21:
+  source_text_id: 19
+  error: |
+    Finns'
+  correction: |
+    Finn's
+
+HuckFinn22:
+  source_text_id: 19
+  error: illinois
+  correction: Illinois
+
+HuckFinn23:
+  source_text_id: 19
+  error: huts
+  correction: hut
+
+HuckFinn24:
+  source_text_id: 19
+  error: of
+  correction: off
+
+HuckFinn25:
+  source_text_id: 19
+  error: one
+  correction: on
+
+TomSawyer21:
+  source_text_id: 20
+  error: |
+    it's
+  correction: its
+
+TomSawyer22:
+  source_text_id: 20
+  error: flour
+  correction: flower
+
+TomSawyer23:
+  source_text_id: 20
+  error: knew?
+  correction: knew.
+
+TomSawyer24:
+  source_text_id: 20
+  error: him.
+  correction: him?
+
+TomSawyer25:
+  source_text_id: 20
+  error: AT
+  correction: At
+
+

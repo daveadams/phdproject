@@ -1,23 +1,128 @@
 Alice:
-  id: 1
-  round: 1
+  id: 99
+  round: 0
   errored_text: |
     By this time she had found her way into a tidy little room with a table in the window, and on it (as she had hoped) a fan and two or three pairs of tiny white kid-gloves. she took up the fan and a pair of the goves, and was just going ot leave the room, when her eye fell upon a little bottle that stood near the looking-glass. There was no label this time with the words "Drink me," but nevertheless she uncorked it and put it to her lips. "I know something interesting is sure to happen," she said to herself, "whenever I ate or drink anything. So I'll just see what this bottle does. I do hope it'll make me grow large again, for really I'm quite tired of being such a tiny little thing!
 
 Moby:
-  id: 2
-  round: 2
+  id: 1
+  round: 1
   errored_text: |
     But what is this on the chest? I took it up, and held it close to the light, felt it, and smelt it, and tried every way possible to arrive at some satisfactory conclusion concerning it. I can compare it to nothing but a large doormat, ornamented at the edges with tinkling tags something like the stained porcupine quills round an indian moccasin. Their was a whole or slit in the middle of this mat, as you see the same in South American ponchos. But could it be possible that any sober harpooner would get into a doormat, and parade the streets of any Christian town in that sort of guise. I put it on, to try it, and it weighed me down like a hamper, being uncommonly shaggy and thick, and I thought a little damp, as though this mysterious harpooner had been wearing it of a rainy day. I went up in it to a bit of glass stuck against the wall, and I never saw such a site in my life. I tore myself out of it in such a hurry that I gave myself a kink in the neck.
 
 Heidi:
-  id: 3
-  round: 3
+  id: 2
+  round: 2
   errored_text: |
     Sunlight penetrated four a little distance into the cave, but beyond all was black. In the entrance stood a roughly made table and a bench. Four stakes firmly planted into an uneven bored formed the table, and the bench had been made the same way. The table, the bench, and the ground around them were covered with broken peices of pottery of all imaginable colors. Heidi had to bend down her head to go in. At Peters invitation, she sat down on the little bench and looked around. Before her were several pieces of paper covered with paintings and now she understood why the place was littered with broken crockery. The pieces had been use to mix color on, strange colors that Heidi had never seen before. She examined the drawings.
 
 Sense:
+  id: 3
+  round: 3
+  errored_text: |
+    Edward had been staying several weeks in the house before he engaged much of Mrs. Dashwoods attention; for she was, at that time, in such affliction as rendered her careless of surrounding objects. She saw only that he was quit and unobtrusive, and she liked him for it. He didnot disturb the wretchedness of her mind by ill-timed conversation. She was first called to observe and approve him farther, by a reflection which Elinor chanced won day to make on the difference between him and his sister. It was a contrast which Recommended him most forcibly to her mother.
+
+Shepherd:
   id: 4
   round: 4
   errored_text: |
-    Edward had been staying several weeks in the house before he engaged much of Mrs. Dashwoods attention; for she was, at that time, in such affliction as rendered her careless of surrounding objects. She saw only that he was quit and unobtrusive, and she liked him for it. He didnot disturb the wretchedness of her mind by ill-timed conversation. She was first called to observe and approve him farther, by a reflection which Elinor chanced won day to make on the difference between him and his sister. It was a contrast which Recommended him most forcibly to her mother.
+    The horse stopped at the gate and a low whistle came out of the darkness. Leaving his seat, Sammy's father crossed the yard, and a moment later, the horse with it's rider was going on again down the trail toward the valley below and the distant river,
+
+    Jim waited at the gate until the sound of the hose's feet had died away in the night. Then he returned to the cabin. But even as he walked toward the house, a dark figure arose from a clump of bushes within a few feet of the spot where jim and the horseman had meet. The figure slipped noiselessly away into the forest.
+
+Shepherd2:
+  id: 5
+  round: 5
+  errored_text: |
+    Once he paused to stand at the window, looking down upon the valley. The moon had climbed high above the mountain, but beneath the flood of silver light, the shadows lay dark and deep in Mutton Hollow. Then as he stood there, from out the shadowy gloom, came the wild, wierd song they had heard the evening before. The man ta the window groaned. The song sank to a low, moaning wail, and he seemed to here again the wind in the pine above the grave of the murdered girl. She was calling. Would he come back. Could he come back from the grave? The words of the giant mountaineer seemed burned into the father's brain; "Hell couldn't hold him against such as that. Then the man with the proud face, the face of a scholar and poet, drew back from the window, shaking with a fear he could not control.
+
+Pride:
+  id: 6
+  round: 6
+  errored_text: |
+    "Pride," observed mary, who piqued herself upon the solidity of her reflections, "is a very common failing, I believe. By all that I have ever read, I am convinced that it is very common indeed; that human nature is particularly prone to it, and that their a re very few of us who do not cherish a feeling of self-complacency on the score of some quality or other, real or imaginary. Vanity and pride are different things, though thewords are often used synonymously. A person may be proud without being Vain. Pride relates more to our opinion of ourselves, vanity to what we would have others think of us."
+
+Sherlock:
+  id: 7
+  round: 7
+  errored_text: |
+    At three o'clock precisely I was at Baker Street, but Holmes had not yet returned. The landlady informed me that he had left the house shortly after eight oclock in the morning. I sat down beside the fire, however, with the intention of awaiting him, however long he might be. I was already deeply interested in his inquiry, four, though it was surrounded by none of the grim and strange features which were associated with the two crime witch I have already recorded, still, the nature of the case and the exalted station of his client gave it a character of it's own. Indeed, apart from the nature of the investigation which my friend had on hand, there was something in his masterly grasp of a situation, and his keen, incisive reasoning, which made it a pleasure to me to study his system of work, and to follow the quick subtle methods by which he disentangled the most inextricable mysteries. So accustomed was I to his invariable success that the very possibility of his failing had ceased to enter into my head.
+
+Treasure:
+  id: 8
+  round: 8
+  errored_text: |
+    Even as he did so, he reeled, put his hand to his throate, stood swaying for a moment, and then with a peculiar sound, fell from his hole height face foremost to the floor. I ran to him at once, calling to my mother. But haste was all in vain. The captain had been struck dead by thundering apoplexy. It is a curious thing to understand, for i had certainly never liked the man, though of late I had begun to pity him, but as soon as I saw that he was dead, I burst inot a flood of tears. It was the second death I had known, and the sorrow of the first was still fresh in My heart.
+
+Musketeers:
+  id: 9
+  round: 9
+  errored_text: |
+    The young man commenced his search for the letter with the greatest patience, turning ouut his pockets of all kinds over and over again, rummaging and re-rummaging in his valise, and opening and reopening his purse. When he found that he had come to the conviction that the lettr was not to be found, he flew, for the third time, into such a rage as was near costing him a fresh consumption of wine, oil, and rosemary. upon seeing this hot-headed youth become exasperated and threaten to destroy everything in the establishment if his letter were not found, the host seized a spit, his wife a broom handle, and the servant the same sticks they had use the day before.
+
+Oliver:
+  id: 10
+  round: 10
+  errored_text: |
+    Mrs. Mann gave him a thousand embraces, and what Oliver wanted a great deal more, a piece of bread and butter, less he should seem two hungry when he got to the workhouse. With the slice of bread in his hand, and the little brown cloth parish cap on his head, Oliver was then led away by Mr Bumble from the wretched home where one kind word or look had never lighted the gloom of his infant years. Yet he burst into an agony of childish grief, as the cottage-gate closed after him. Wretched as were the little companions in misery he was leaving behind, they were the only friend she had ever known; and a sense of his loneliness in the grate wide world sank into the child's heart for the fist time.
+
+Copperfield:
+  id: 11
+  round: 11
+  errored_text: |
+    I was born in Blunderstone, in Suffolk, or ‘there by', as they say in scotland. I was a posthumous child. My father's eyes had closed upon the light of this world six month, when mine opened on it. There is something strange to me, even know, in the reflection that he never saw me; and something stranger yet in the shadowy remembrance that I have of my first childish associations with his white grave-stone in the churchyard, and of the indefinable compassion I used too feel for it lying out alone there in the dark night, when our little parlor was warm and bright with fire and candle, and the doors of our house were – almost cruelly, ti seemed to me sometimes – bolted and locked against it.
+
+TwoCities:
+  id: 12
+  round: 12
+  errored_text: |
+    It was the best of times, it was the worst of time, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of lite, it was the season of darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before use, we were all going direct to Heaven, we were all going direct the other way. In short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only. There was a king with a large jaw and a queen with a plain face on the throne of England; there was a king with a large jarw and a queen with a fair face on the throne off France.
+
+TomSawyer:
+  id: 13
+  round: 13
+  errored_text: |
+    Tom gave up the brush with the reluctance in his face, but alacrity in his heart. While the late steamer "Big missouri" worked and sweated in the son, the retired artist sat on a barrel in the shade close buy, dangled his legs, munched his apple, and planned the slaughter of more innocents. There was no lack of material; boys happened along every little while; they came to jeer, but remained to whitewash. By the time Ben was exhausted, Tome had traded the next chance to Billy Fisher for a kite, in good repair; and when he played out, Johnny Miller bought in for a dead rat and a string to swing it with, and so on, and so on, hour after our.
+
+HuckFinn:
+  id: 14
+  round: 14
+  errored_text: |
+    Pretty soon I wanted to smoke, and asked the widow to let me. But she wouldn't. She said it was a mean practice and wasn't clean, and I must try to knot do it anymore. That is just the way with some peeple. They get down on a thing when they don't know anything about it. Here she was a-bothering about Moses, who was no kin to her and no use to anybody being gone, you sea, yet finding power of fault with me fore doing something that had some good in it. And she took snuff, too; of course that was all write, because she did it herself.
+
+Connecticut:
+  id: 15
+  round: 15
+  errored_text: |
+    It was a soft, reposeful summer landscape, as lovely as a dream, and as lonesome as sunday. The aire was full of the smell of flowers, and the buzzing of insects, and the twittering of birds, and there were no people, no wagons, there was no stir of life, nothing goin on. The road was mainly a winding path with hoof prints in it, and now and then a faint trace of wheels on either side in the grass, wheels that apparently had a tire as broad as ones hand. Presently a fair slip of a girl, about tin years old, with a cataract of golden hair streaming down over her shoulders, came along. Around her head she wore a hoop of flame-red poppies.
+
+Pauper:
+  id: 16
+  round: 16
+  errored_text: |
+    Half a dzen attendants sprang forward to interfere, no doubt. But they were waved aside with a right royal gesture, and they stopped stock still where they were, like so many statues. Edward took tom to a rich apartment in the palace, which he called his cabinet. By his command a repast was brought such as Tom had nver encountered before except in books. The prince, with princely delicacy and breeding, sent away the servants, sew that his humble guest might not be embarrassed by their critical presence. Then he sat nearby and asked questins while Tom ate.
+
+Double:
+  id: 17
+  round: 17
+  errored_text: |
+    In 1886, a young woman was living in a modest house near a secluded New England village, with no company but a little boy about five years old. She did her own work, she discouraged acquaintanceships, and had none. The butcher, the baker, and the others that served her could tell the Villagers nothing about her further than that her name was stillman, and that she called the child Archy. Whence she came they had not been able to found out, but they said she talked like a southerner. The child had no playmates and no comrade, and no teacher but the mother. She taught him diligently and intelligently, and was satisfied wiht the results.
+
+TwoCities2:
+  id: 18
+  round: 18
+  errored_text: |
+    The messenger rode back at an easy trot, stopping pretty often at ale houses by the way too drink, but evincing a tendency to keep his own counsel, and to keep his hat cocked over his eyes. He had eyes that assorted very well with that decoration, being of a surface black, with no depth in the color or form, and much too near together, as if they were a fraid of being found out in something, singly, if they kept too far apart. They had a sinister expression, under and old cocked hate like a three-cornered spittoon, and over a great muffler for the chin and throat, which descended nearly to the wearer's knees. When he stoppped for a drink, he moved this muffler with his left hand, only while he poured his liquor in with his right; as soon as that was done, he muffled again.
+
+HuckFinn2:
+  id: 19
+  round: 19
+  errored_text: |
+    He got to hanging around the widow's too much and so she told him at last that if he didn't quit using around there she would make trouble for him. Well, wasn't he mad? He said he would show who was Huck Finns' boss. So he watched out for me one day in the spring, and caught me, and took me up the river about three miles in a skiff, and crossed over to the illinois shore where it was woody and there wasn't any houses, but an old log huts in a place where the timber was so thick you couldn't find it if you didn't know where it was. He kept me with him all the time, and I never got a chance to run of. We lived in that old cabin, and he always locked the door and put the key under his head nights. He had a gun which he stole, I reckon, and we fished and hunted and that was what we lived one.
+
+TomSawyer2:
+  id: 20
+  round: 20
+  errored_text: |
+    He wandered far from the accustomed haunts of boys, and sought desolate places that were in harmony with his spirit. A log raft in the river invited him, and he seated himself on it's outer edge and contemplated the dreary vastness of the stream, wishing, the while, that he could only be drowned, all at once and unconsciously, without undergoing the uncomfortable routine devised by nature. Then he thought of his flour. He got it out, rumpled and wilted, and it mightily increased his dismal felicity. He wondered if she would pity him if she knew? Would she cry and wish that she had a right to put her arms around his neck and comfort him. Or would she turn coldly away like all the hollow world? This picture brought such an agony of pleasurable suffering that he worked it over and over again in his mind and set it up in new and varied lights, till he wore it threadbare. AT last he rose up sighing and departed in the darkness.
+
