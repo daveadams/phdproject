@@ -25,4 +25,4 @@ experimental_two:
   shortname: x2
   tutorial_text_group_id: 1
   message: |
-    Message Two
+    You can reduce your chances of incurring audit and penalties by honestly reporting 100% of your earned income. If you are are audited and found to have reported less than your earned income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the unpaid taxes. If you have to pay penalties on underpaid taxes, you will be paying more out of pocket than if you had paid 100% of your true tax liability to begin with.
