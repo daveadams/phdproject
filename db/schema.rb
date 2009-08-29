@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090829194323) do
+ActiveRecord::Schema.define(:version => 20090829194911) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -151,6 +151,14 @@ ActiveRecord::Schema.define(:version => 20090829194323) do
   create_table "source_texts", :force => true do |t|
     t.text     "errored_text"
     t.integer  "round"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_items", :force => true do |t|
+    t.integer  "survey_page_id"
+    t.integer  "question_id"
+    t.integer  "sequence"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,3 +1,3 @@
 class Question < ActiveRecord::Base
-  has_many :possible_answers, :order => "sequence"
+  has_many :answers, :order => "sequence"
 end
