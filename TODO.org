@@ -7,10 +7,6 @@
    - [ ] Five corrections each
    - [ ] Choose corrections that are unique across the text for the best results
 
-** TODO Experiment page order enforcement [0/2]
-   - [ ] Another filter after check_round
-   - [ ] Need to work in exceptions for audit selection, round completion
-
 ** TODO Extensive integration testing for experiment [0/3]
    - [ ] Test message functionality for each group
    - [ ] Test corrections in various forms
@@ -585,7 +581,6 @@
    - [X] Expand helper to work similarly to tutorialtexts
    - [X] Add method to experimenttext like tutorialtext
 
-
 * Wednesday, August 26
 ** DONE Experiment page titles configurable in ExperimentText [3/3]
    CLOSED: [2009-08-26 Wed 19:03]
@@ -666,7 +661,6 @@
    - [X] Catch any exception
    - [X] Send onto check action
 
-
 * Thursday, August 27
 ** DONE Audit selection [5/5]
    CLOSED: [2009-08-27 Thu 19:56]
@@ -698,5 +692,25 @@
    - [X] Results page
      - [X] Fixtures for each label
      - [X] Pull numbers from cash_transaction records created by p.audit
+
+
+* Friday, August 28
+** DONE Experiment page order enforcement [7/7]
+   CLOSED: [2009-08-28 Fri 22:17]
+   - [X] Refactor audit selection into a separate action
+   - [X] Add methods to participant for each major stage of the experiment
+     - [X] work_complete_for_current_round?
+     - [X] taxes_paid_for_current_round?
+     - [X] audit_pending_for_current_round?
+   - [X] Add fields to participant
+     - [X] to_be_audited default false
+     - [X] audit_completed default false
+   - [X] Upon round advancement, clear those flags
+     - [X] new method participant.advance_round
+           must check work_complete, taxes_paid, audit_pending
+     - [X] set to_be_audited and audit_completed back to false
+   - [X] Add a check in each input page or update page to ensure the user is in the right place
+   - [X] Update tests as necessary
+   - [X] Run through a sequence of audits and no audits yourself
 
 
