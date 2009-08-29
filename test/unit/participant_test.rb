@@ -174,8 +174,7 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal(0.3, p.cash)
     assert_equal(2, p.activity_logs.length)
 
-    p.round += 1
-    assert_nothing_raised { p.save! }
+    assert_nothing_raised { p.advance_round }
     assert_equal(2, p.round)
 
     assert_raise(ActiveRecord::RecordInvalid) { p.earn_income(-0.1) }
@@ -195,8 +194,7 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal(0.3, p.cash)
     assert_equal(4, p.activity_logs.length)
 
-    p.round += 1
-    assert_nothing_raised { p.save! }
+    assert_nothing_raised { p.advance_round }
     assert_equal(3, p.round)
 
     assert_nothing_raised { p.earn_income(1.75) }

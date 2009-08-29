@@ -3,7 +3,7 @@ control:
   name: Control
   shortname: C
   tutorial_text_group_id: 1
-#  audit_rate: 1.0
+  audit_rate: 1.0
 
 context_neutral:
   id: 2

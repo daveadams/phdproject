@@ -74,32 +74,27 @@ class Participant < ActiveRecord::Base
   end
 
   def audit
-    if self.cash_transactions.find_by_round_and_transaction_type(self.round, "income").nil?
+    if not self.work_complete_for_current_round? or
+        not self.taxes_paid_for_current_round? or
+        not self.audit_pending_for_current_round?
       raise OutOfSequence.new
     end
 
-    self.audited = true
-    self.save
-
-    logger.info("DAVE income = #{self.income_for_current_round}")
-    logger.info("DAVE reported = #{self.reported_earnings_for_current_round}")
-
     if self.income_for_current_round > self.reported_earnings_for_current_round
-      logger.info("DAVE welcome")
       correct_tax = -(self.income_for_current_round *
                       (self.experimental_group.tax_rate.to_f/100))
-      logger.info("DAVE correct_tax = #{correct_tax}")
-      logger.info("DAVE tax paid = #{self.tax_for_current_round}")
       backtax_due = correct_tax - self.tax_for_current_round
-      logger.info("DAVE backtax_due = #{backtax_due}")
       penalty_due = backtax_due * self.experimental_group.penalty_rate
-      logger.info("DAVE penalty_due = #{penalty_due}")
       self.pay_backtax(backtax_due)
       self.pay_penalty(penalty_due)
     else
       self.pay_backtax(0.0)
       self.pay_penalty(0.0)
     end
+
+    self.audit_completed = true
+    self.audited = true
+    self.save
   end
 
   def cash
@@ -147,6 +142,32 @@ class Participant < ActiveRecord::Base
       self.cash_transactions.find_by_round_and_transaction_type(self.round, "penalty").amount
     rescue
       0.0
+    end
+  end
+
+  def work_complete_for_current_round?
+    !self.cash_transactions.find_by_round_and_transaction_type(self.round, "income").nil?
+  end
+
+  def taxes_paid_for_current_round?
+    !self.cash_transactions.find_by_round_and_transaction_type(self.round, "tax").nil?
+  end
+
+  def audit_pending_for_current_round?
+    self.to_be_audited && !self.audit_completed
+  end
+
+  def advance_round
+    if self.work_complete_for_current_round? and
+        self.taxes_paid_for_current_round? and
+        not self.audit_pending_for_current_round?
+
+      self.to_be_audited = false
+      self.audit_completed = false
+      self.round += 1
+      self.save
+    else
+      raise OutOfSequence.new
     end
   end
 

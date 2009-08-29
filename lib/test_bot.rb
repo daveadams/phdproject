@@ -110,7 +110,11 @@ module TestBot
     assert_equal("begin", @participant.page)
     assert_equal(@participant.experimental_session.round, @participant.round)
 
-    # TODO: all the steps in between
+    # TODO: actually step through the various steps instead of faking it
+    @participant.earn_income(1.0)
+    @participant.pay_tax(-0.2)
+    @participant.last_check = @participant.round
+    @participant.save
 
     get_via_redirect("/experiment/end_round")
     assert_response(:success)

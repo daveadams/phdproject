@@ -21,39 +21,51 @@ class ExperimentController < ApplicationController
   end
 
   def work
-    @page_title = "Earnings Task"
-    @working_text = SourceText.find_by_round(@participant.round).errored_text
+    if @participant.work_complete_for_current_round?
+      redirect_to(:action => :message)
+    else
+      @page_title = "Earnings Task"
+      @working_text = SourceText.find_by_round(@participant.round).errored_text
 
-    # TODO: autotimer
+      # TODO: autotimer
+    end
   end
 
   def check_work
-    # TODO: check timing, too
-    if request.post?
-      SourceText.find_by_round(@participant.round).
-        evaluate_corrections(request[:working_text]).each do |c|
-        begin
-          cc = CorrectCorrection.create!(:participant_id => @participant.id,
-                                         :round => @participant.round,
-                                         :correction_id => c.id)
-          @participant.correct_corrections << cc
-        rescue => e
-          log_event(ActivityLog::ERROR, "Could not add correct_correction: #{e}")
-        end
+    if @participant.work_complete_for_current_round?
+      if not @participant.taxes_paid_for_current_round?
+        redirect_to(:action => :message)
+      else
+        redirect_to(:action => :check)
       end
-      @participant.reload
-
-      begin
-        earnings = (@participant.correct_corrections_for_current_round.length *
-                    @participant.experimental_group.earnings)
-        @participant.earn_income(earnings)
-      rescue ActiveRecord::RecordInvalid => e
-        log_event(ActivityLog::OUT_OF_SEQUENCE, "Failed to earn_income: round #{@participant.round}, $#{earnings}: #{e}")
-      end
-
-      redirect_to(:action => :earnings)
     else
-      redirect_to(:action => :work)
+      # TODO: check timing, too
+      if request.post?
+        SourceText.find_by_round(@participant.round).
+          evaluate_corrections(request[:working_text]).each do |c|
+          begin
+            cc = CorrectCorrection.create!(:participant_id => @participant.id,
+                                           :round => @participant.round,
+                                           :correction_id => c.id)
+            @participant.correct_corrections << cc
+          rescue => e
+            log_event(ActivityLog::ERROR, "Could not add correct_correction: #{e}")
+          end
+        end
+        @participant.reload
+
+        begin
+          earnings = (@participant.correct_corrections_for_current_round.length *
+                      @participant.experimental_group.earnings)
+          @participant.earn_income(earnings)
+        rescue ActiveRecord::RecordInvalid => e
+          log_event(ActivityLog::OUT_OF_SEQUENCE, "Failed to earn_income: round #{@participant.round}, $#{earnings}: #{e}")
+        end
+
+        redirect_to(:action => :earnings)
+      else
+        redirect_to(:action => :work)
+      end
     end
   end
 
@@ -76,34 +88,47 @@ class ExperimentController < ApplicationController
   end
 
   def report
+    if not @participant.work_complete_for_current_round?
+      redirect_to(:action => :work)
+    else
+      if @participant.taxes_paid_for_current_round?
+        redirect_to(:action => :check)
+      end
+    end
   end
 
   def submit_report
     if request.post?
-      if request[:reported_earnings].nil? or request[:reported_earnings].strip == ""
-        flash[:error] = "Invalid submission."
-        log_event(ActivityLog::ERROR, "Reported earnings was empty.")
-        redirect_to(:action => :report)
+      if @participant.taxes_paid_for_current_round?
+        log_event(ActivityLog::OUT_OF_SEQUENCE,
+                  "Taxes already paid. Cannot submit a new report.")
+        redirect_to(:action => :check)
       else
-        reported_earnings = request[:reported_earnings].to_f
-        if reported_earnings < 0
+        if request[:reported_earnings].nil? or request[:reported_earnings].strip == ""
           flash[:error] = "Invalid submission."
-          log_event(ActivityLog::ERROR, "Reported earnings was negative.")
-          redirect_to(:action => :report)
-        elsif reported_earnings > @participant.income_for_current_round
-          flash[:error] = "Invalid submission."
-          log_event(ActivityLog::ERROR, "Reported earnings was higher than income.")
+          log_event(ActivityLog::ERROR, "Reported earnings was empty.")
           redirect_to(:action => :report)
         else
-          @participant.report_earnings(reported_earnings)
-          tax_due = -(reported_earnings * (@participant.experimental_group.tax_rate.to_f/100))
+          reported_earnings = request[:reported_earnings].to_f
+          if reported_earnings < 0
+            flash[:error] = "Invalid submission."
+            log_event(ActivityLog::ERROR, "Reported earnings was negative.")
+            redirect_to(:action => :report)
+          elsif reported_earnings > @participant.income_for_current_round
+            flash[:error] = "Invalid submission."
+            log_event(ActivityLog::ERROR, "Reported earnings was higher than income.")
+            redirect_to(:action => :report)
+          else
+            @participant.report_earnings(reported_earnings)
+            tax_due = -(reported_earnings * (@participant.experimental_group.tax_rate.to_f/100))
 
-          begin
-            @participant.pay_tax(tax_due)
-          rescue ActiveRecord::RecordInvalid => e
-            log_event(ActivityLog::OUT_OF_SEQUENCE, "Could not add tax payment: #{e}")
+            begin
+              @participant.pay_tax(tax_due)
+            rescue ActiveRecord::RecordInvalid => e
+              log_event(ActivityLog::OUT_OF_SEQUENCE, "Could not add tax payment: #{e}")
+            end
+            redirect_to(:action => :check)
           end
-          redirect_to(:action => :check)
         end
       end
     else
@@ -113,16 +138,22 @@ class ExperimentController < ApplicationController
 
   def check
     if @participant.checked_for_current_round?
-      # TODO: this will be a problem if the page gets reloaded
-      redirect_to(:action => :end_round)
-
+      if @participant.audit_pending_for_current_round?
+        render :layout => false
+      else
+        if @participant.audit_completed
+          redirect_to(:action => :results)
+        else
+          redirect_to(:action => :end_round)
+        end
+      end
     else
       @participant.last_check = @participant.round
       @participant.save
 
       if @participant.experimental_group.perform_audit?
-        log_event(ActivityLog::AUDIT, "selected for audit")
-        @participant.audit
+        @participant.to_be_audited = true
+        @participant.save
 
         render :layout => false
       else
@@ -131,25 +162,56 @@ class ExperimentController < ApplicationController
     end
   end
 
-  def results
-    @display_bank = true
+  def perform_check
+    if @participant.checked_for_current_round?
+      if @participant.audit_pending_for_current_round?
+        log_event(ActivityLog::AUDIT, "Auditing participant")
+        @participant.audit
+        redirect_to(:action => :results)
+      else
+        if @participant.audit_completed
+          redirect_to(:action => :results)
+        else
+          redirect_to(:action => :end_round)
+        end
+      end
+    else
+      redirect_to(:action => :check)
+    end
+  end
 
-    @earned = @participant.income_for_current_round
-    @reported = @participant.reported_earnings_for_current_round
-    @difference = @earned - @reported
-    @results_ok = (@difference == 0.0)
-    @additional = -@participant.backtax_for_current_round
-    @penalties = -@participant.penalty_for_current_round
-    @total = @additional + @penalties
+  def results
+    if not @participant.audit_completed
+      redirect_to(:action => :check)
+    else
+      @display_bank = true
+
+      @earned = @participant.income_for_current_round
+      @reported = @participant.reported_earnings_for_current_round
+      @difference = @earned - @reported
+      @results_ok = (@difference == 0.0)
+      @additional = -@participant.backtax_for_current_round
+      @penalties = -@participant.penalty_for_current_round
+      @total = @additional + @penalties
+    end
   end
 
   def end_round
-    if @participant.round >= @participant.experimental_group.rounds
-      redirect_to(:action => :complete)
+    if not @participant.work_complete_for_current_round?
+      redirect_to(:action => :work)
+    elsif not @participant.taxes_paid_for_current_round?
+      redirect_to(:action => :message)
+    elsif not @participant.checked_for_current_round?
+      redirect_to(:action => :check)
     else
-      @participant.round += 1
-      @participant.save
-      redirect_to(:action => :wait)
+      if @participant.round >= @participant.experimental_group.rounds
+        redirect_to(:action => :complete)
+      else
+        unless @participant.experimental_session.round < @participant.round
+          @participant.advance_round
+        end
+        redirect_to(:action => :wait)
+      end
     end
   end
 
