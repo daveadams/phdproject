@@ -8,6 +8,7 @@ class Participant < ActiveRecord::Base
   has_many :activity_logs
   has_many :cash_transactions
   has_many :correct_corrections
+  has_and_belongs_to_many :answers, :uniq => true
 
   validates_presence_of :participant_number
   validates_uniqueness_of :participant_number

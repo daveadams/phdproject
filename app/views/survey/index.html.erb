@@ -1,1 +1,5 @@
-<%= get_text("body") %>
+<% form_tag do %>
+  <%= render :partial => "question", :collection => @questions %>
+
+  <%= submit_tag "Submit" %>
+<% end %>

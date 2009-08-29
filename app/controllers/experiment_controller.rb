@@ -1,4 +1,5 @@
 class ExperimentController < ApplicationController
+  before_filter :check_phase
   before_filter :check_round, :except => [:index, :wait]
 
   def index
@@ -203,6 +204,8 @@ class ExperimentController < ApplicationController
       redirect_to(:action => :message)
     elsif not @participant.checked_for_current_round?
       redirect_to(:action => :check)
+    elsif @participant.audit_pending_for_current_round?
+      redirect_to(:action => :check)
     else
       if @participant.round >= @participant.experimental_group.rounds
         redirect_to(:action => :complete)
@@ -216,14 +219,25 @@ class ExperimentController < ApplicationController
   end
 
   def complete
-    if request.post?
-      @participant.experiment_complete = true
-      @participant.save
-
-      redirect_to(:controller => "survey")
+    if @participant.round < @participant.experimental_group.rounds
+      redirect_to(:action => :wait)
     else
-      @page_title = "Work Complete"
-      @display_bank = true
+      if @participant.work_complete_for_current_round? and
+          @participant.taxes_paid_for_current_round? and
+          @participant.checked_for_current_round? and
+          not @participant.audit_pending_for_current_round?
+        if request.post?
+          @participant.experiment_complete = true
+          @participant.save
+
+          redirect_to(:controller => "survey")
+        else
+          @page_title = "Work Complete"
+          @display_bank = true
+        end
+      else
+        redirect_to(:action => :wait)
+      end
     end
   end
 
@@ -232,6 +246,16 @@ class ExperimentController < ApplicationController
     if @participant.round > @participant.experimental_session.round
       log_event(ActivityLog::OUT_OF_SEQUENCE, "Redirecting to /experiment/wait")
       redirect_to(:action => :wait)
+    end
+  end
+
+  def check_phase
+    if @participant.survey_complete
+      redirect_to(:controller => :complete)
+    elsif @participant.experiment_complete
+      redirect_to(:controller => :survey)
+    elsif not @participant.tutorial_complete
+      redirect_to(:controller => :tutorial)
     end
   end
 end

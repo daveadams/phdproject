@@ -1,7 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+q1:
+  id: 1
+  question: Why?
 
-one:
-  question: MyText
-
-two:
-  question: MyText
+q2:
+  id: 2
+  question: How?

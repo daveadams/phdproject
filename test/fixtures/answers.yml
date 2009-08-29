@@ -1,9 +1,24 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
+q1a1:
   question_id: 1
-  answer: MyText
+  answer: Why not?
+  sequence: 1
 
-two:
+q1a2:
   question_id: 1
-  answer: MyText
+  answer: Because.
+  sequence: 2
+
+q2a1:
+  question_id: 2
+  answer: Quickly.
+  sequence: 1
+
+q2a2:
+  question_id: 2
+  answer: Happily.
+  sequence: 2
+
+q2a3:
+  question_id: 2
+  answer: Carefully.
+  sequence: 3

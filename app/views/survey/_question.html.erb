@@ -1,0 +1,8 @@
+<p>
+  <%=h question.question %><br />
+  <% question.answers.each do |a| %>
+    <input type="radio" name="q<%= question.id %>" id="a<%= a.id %>" value="<%= a.id %>" />
+    <label for="a<%= a.id %>"><%=h a.answer %></label>
+    <br />
+  <% end %>
+</p>
