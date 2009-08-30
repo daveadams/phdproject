@@ -17,8 +17,20 @@ class ExperimentController < ApplicationController
   end
 
   def begin
-    @page_title = "Begin Round #{@participant.round}"
-    @display_bank = true
+    if @participant.checked_for_current_round?
+      if @participant.audit_pending_for_current_round?
+        redirect_to(:action => :check)
+      else
+        redirect_to(:action => :end_round)
+      end
+    elsif @participant.taxes_paid_for_current_round?
+      redirect_to(:action => :check)
+    elsif @participant.work_complete_for_current_round?
+      redirect_to(:action => :earnings)
+    else
+      @page_title = "Begin Round #{@participant.round}"
+      @display_bank = true
+    end
   end
 
   def work
