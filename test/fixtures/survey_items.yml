@@ -1,24 +1,40 @@
-s1p1i1:
+d101age:
   survey_page_id: 101
   question_id: 1
   sequence: 1
 
-s1p1i2:
+d101sex:
   survey_page_id: 101
   question_id: 2
   sequence: 2
 
-s1p2i1:
-  survey_page_id: 102
+d101marital:
+  survey_page_id: 101
   question_id: 3
+  sequence: 3
+
+d101incomebelief:
+  survey_page_id: 101
+  question_id: 4
+  sequence: 4
+
+d102class:
+  survey_page_id: 102
+  question_id: 5
   sequence: 1
 
-s1p2i2:
+d102major:
   survey_page_id: 102
-  question_id: 4
+  question_id: 6
   sequence: 2
 
-s1pXi1:
-  survey_page_id: 99
-  question_id: 99
-  sequence: 1
+d102econnum:
+  survey_page_id: 102
+  question_id: 7
+  sequence: 3
+
+d102gpa:
+  survey_page_id: 102
+  question_id: 8
+  sequence: 4
+

@@ -10,7 +10,7 @@ context_neutral:
   name: Context Neutral
   shortname: cn
   tutorial_text_group_id: 2
-  survey_id: 1
+  survey_id: 2
 
 experimental_one:
   id: 3

@@ -1,20 +1,39 @@
-q1:
+age:
   id: 1
-  question: Why?
+  question: What is your age?
 
-q2:
+sex:
   id: 2
-  question: How?
+  question: What is your sex?
+
+marital:
+  id: 3
+  question: "Marital status:"
+
+incomebelief:
+  id: 4
+  question: "How do you believe your family's income compares to that of other students at Virginia Tech?"
+
+class:
+  id: 5
+  question: What is your class?
+
+major:
+  id: 6
+  question: What is your major?
+
+econnum:
+  id: 7
+  question: How many Economics classes have you taken at the university level?
+
+gpa:
+  id: 8
+  question: What is your grade point average (QCA) at Virginia Tech?
+
 
 q3:
   id: 3
   question: How many?
   fill_in_the_blank: true
-
-q4:
-  id: 4
-  question: When?
-
-qX:
-  id: 99
-  question: Whatsoever?
+  minimum: 44
+  maximum: 45

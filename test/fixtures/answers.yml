@@ -1,59 +1,180 @@
-q1a1:
-  id: 1
+age1:
   question_id: 1
-  answer: Why not?
+  answer: Under 18
   sequence: 1
 
-q1a2:
-  id: 2
+age2:
   question_id: 1
-  answer: Because.
+  answer: 18-19
   sequence: 2
 
-q2a1:
-  id: 3
-  question_id: 2
-  answer: Quickly.
-  sequence: 1
-
-q2a2:
-  id: 4
-  question_id: 2
-  answer: Happily.
-  sequence: 2
-
-q2a3:
-  id: 5
-  question_id: 2
-  answer: Carefully.
+age3:
+  question_id: 1
+  answer: 20-21
   sequence: 3
 
-q4a1:
-  question_id: 4
-  answer: Yesterday
-  sequence: 1
-
-q4a2:
-  question_id: 4
-  answer: Today
-  sequence: 2
-
-q4a3:
-  question_id: 4
-  answer: Tomorrow
-  sequence: 3
-
-q4a4:
-  question_id: 4
-  answer: Never
+age4:
+  question_id: 1
+  answer: 22-25
   sequence: 4
 
-qXa1:
-  question_id: 99
-  answer: C is for Cookie
+age5:
+  question_id: 1
+  answer: 26-30
+  sequence: 5
+
+age6:
+  question_id: 1
+  answer: Over 30
+  sequence: 6
+
+sex1:
+  question_id: 2
+  answer: Male
   sequence: 1
 
-qXa2:
-  question_id: 99
-  answer: D is for Danger
+sex2:
+  question_id: 2
+  answer: Female
   sequence: 2
+
+marital1:
+  question_id: 3
+  answer: Single, never married
+  sequence: 1
+
+marital2:
+  question_id: 3
+  answer: Married
+  sequence: 2
+
+marital3:
+  question_id: 3
+  answer: Divorced, widowed, etc
+  sequence: 3
+
+incomebelief1:
+  question_id: 4
+  answer: Lower than the average student
+  sequence: 1
+
+incomebelief2:
+  question_id: 4
+  answer: About average
+  sequence: 2
+
+incomebelief3:
+  question_id: 4
+  answer: Higher than the average student
+  sequence: 3
+
+class1:
+  question_id: 5
+  answer: Freshman
+  sequence: 1
+
+class2:
+  question_id: 5
+  answer: Sophomore
+  sequence: 2
+
+class3:
+  question_id: 5
+  answer: Junior
+  sequence: 3
+
+class4:
+  question_id: 5
+  answer: Senior
+  sequence: 4
+
+class5:
+  question_id: 5
+  answer: Graduate
+  sequence: 5
+
+major1:
+  question_id: 6
+  answer: Economics
+  sequence: 1
+
+major2:
+  question_id: 6
+  answer: Other Business
+  sequence: 2
+
+major3:
+  question_id: 6
+  answer: Psychology
+  sequence: 3
+
+major4:
+  question_id: 6
+  answer: Science/Engineering
+  sequence: 4
+
+major5:
+  question_id: 6
+  answer: Liberal Arts
+  sequence: 5
+
+major6:
+  question_id: 6
+  answer: Other
+  sequence: 6
+
+econnum1:
+  question_id: 7
+  answer: None
+  sequence: 1
+
+econnum2:
+  question_id: 7
+  answer: One
+  sequence: 2
+
+econnum3:
+  question_id: 7
+  answer: Two
+  sequence: 3
+
+econnum4:
+  question_id: 7
+  answer: Three-Four
+  sequence: 4
+
+econnum5:
+  question_id: 7
+  answer: Five or more
+  sequence: 5
+
+gpa1:
+  question_id: 8
+  answer: 4.0
+  sequence: 1
+
+gpa2:
+  question_id: 8
+  answer: 3.4-3.9
+  sequence: 2
+
+gpa3:
+  question_id: 8
+  answer: 3.0-3.4
+  sequence: 3
+
+gpa4:
+  question_id: 8
+  answer: 2.5-2.9
+  sequence: 4
+
+gpa5:
+  question_id: 8
+  answer: 2.0-2.4
+  sequence: 5
+
+gpa6:
+  question_id: 8
+  answer: Below 2.0
+  sequence: 6
+

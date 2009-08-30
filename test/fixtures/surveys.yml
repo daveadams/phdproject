@@ -1,3 +1,7 @@
-survey1:
+defaultsurvey:
   id: 1
   name: Default Survey
+
+contextneutral:
+  id: 2
+  name: Context Neutral Survey
