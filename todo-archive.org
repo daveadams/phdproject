@@ -1,0 +1,719 @@
+#+STARTUP: overview
+#+STARTUP: hidestars
+#+STARTUP: indent
+
+* Sunday, August 9
+** DONE Add div.error class to default.css
+   CLOSED: [2009-08-09 Sun 17:02]
+** DONE Experiment model [2/2]
+   CLOSED: [2009-08-09 Sun 17:07]
+   - [X] Fields: name
+   - [X] Fixtures: normal, context_neutral
+** DONE ExperimentalSession model [3/3]
+   CLOSED: [2009-08-09 Sun 17:42]
+   - [X] Fields: starts_at, ends_at, experiment_id
+   - [X] is_active method
+   - [X] test is_active
+** DONE Link experiment -> experimentalsession -> participant [3/3]
+   CLOSED: [2009-08-09 Sun 17:37]
+   - [X] experiment.rb
+   - [X] experimental_session.rb
+   - [X] participant.rb
+** DONE Login: require participant to be part of an active experimental session [4/4]
+   CLOSED: [2009-08-09 Sun 17:56]
+   - [X] Test for inactive failure
+   - [X] Test for active success
+   - [X] Participant.find_active(pn)
+   - [X] login_controller.rb
+
+* Wednesday, August 12
+** DONE Participant model fillout [5/5]
+   CLOSED: [2009-08-12 Wed 14:26]
+   - [X] Test creation
+   - [X] Test validation
+   - [X] Method to generate participant numbers
+   - [X] Login method
+   - [X] Visit method
+** DONE Session support [6/6]
+   CLOSED: [2009-08-12 Wed 15:38]
+   - [X] Login controller create session
+   - [X] Test for session existence
+   - [X] Session tracks participant ID
+   - [X] Check cookie contents to be sure it's not possible to modify
+   - [X] Tutorial session check
+         Redirect to /login with a flash error if no session
+   - [X] Test for tutorial session check
+** DONE Update participant fields as appropriate [3/3]
+   CLOSED: [2009-08-12 Wed 14:42]
+   - [X] first_login
+   - [X] last_access
+   - [X] is_active
+** DONE Further integration testing [4/4]
+   CLOSED: [2009-08-12 Wed 15:45]
+   - [X] DB session checks after login
+   - [X] Should refuse repeat logins
+   - [X] Tutorial allows you through on correct login
+   - [X] Tutorial bounces on expired experimental_session
+** DONE In browser testing [2/2]
+   CLOSED: [2009-08-12 Wed 16:02]
+   - [X] Tutorial allows you in if you use a valid participant number
+   - [X] Tutorial bounces you with an error if you don't
+** DONE Simplest possible admin page to list valid participant numbers, etc [2/2]
+   CLOSED: [2009-08-12 Wed 15:53]
+   - [X] admin controller
+   - [X] list of currently active participant numbers
+
+* Thursday, August 13
+** DONE Figure out weird flash issue [2/2]
+   CLOSED: [2009-08-13 Thu 12:21]
+   - [X] Add some trace statements to login/index
+   - [X] Analyze the log output
+   The problem is that it was setting flash within the same request so it got
+   displayed once and not cleared until the second time.
+** DONE Fix flash issue [3/3]
+   CLOSED: [2009-08-13 Thu 12:50]
+   - [X] Create new action login/login
+         - [X] Move login logic to there
+         - [X] Redirects on fail back to login/index
+   - [X] Update login/index view to post to login/login
+   - [X] Update tests to post to login/login instead of login/index
+** DONE Get started on tutorial [3/3]
+   CLOSED: [2009-08-13 Thu 16:26]
+   - [X] Encode page sequence somehow
+   - [X] Create get_text helper to map group and page names correctly
+   - [X] Create next/back buttons
+** DONE TutorialText model [2/2]
+   CLOSED: [2009-08-13 Thu 15:43]
+   - [X] Create model: group_name, page_name, text_key, text
+   - [X] Populate fixtures
+** DONE Move error messages out of controller/test to stay DRY [5/5]
+   CLOSED: [2009-08-13 Thu 13:22]
+   - [X] Find out the Rails Way
+         No good.
+   - [X] Come up with a new way
+   - [X] Create class ErrorStrings in lib/error_strings.rb
+   - [X] Replace strings in controllers
+   - [X] Replace strings in tests
+** DONE Move require_valid_session to application_controller [2/2]
+   CLOSED: [2009-08-13 Thu 13:32]
+   - [X] Figure out how to specify before_filter excepting login controller
+   - [X] Move before_filter and require_valid_session into application_controller
+
+* Friday, August 14
+** DONE ExperimentalGroup model [21/21]
+   CLOSED: [2009-08-14 Fri 15:31]
+   - [X] New git branch
+   - [X] Create model: name:string
+   - [X] Create fixtures: control, context_neutral, x1, x2
+   - [X] Create TutorialTextGroup model: name:string
+   - [X] Add tutorial_text_group_id field to ExperimentalGroup
+   - [X] Link TutorialTextGroup and ExperimentalGroup
+   - [X] Link TutorialTextGroup and TutorialTexts
+   - [X] Update fixtures for experimental_groups
+   - [X] Create fixtures for tutorial_text_groups
+   - [X] TutorialText migration: drop group_name
+   - [X] TutorialText migration: add group_id
+   - [X] Update tutorial_text fixtures
+   - [X] Link Participants to ExperimentalGroup
+   - [X] Update participant fixtures
+   - [X] Require experimental_group in participant
+   - [X] Update participant unit tests
+   - [X] Move text lookup into TutorialText model
+   - [X] Update tutorial_helper accordingly
+   - [X] Update functional tests if necessary
+   - [X] Update login integration test if necessary
+   - [X] Update tutorial integration test if necessary
+** DONE Mass-creation of participants method [2/2]
+   CLOSED: [2009-08-14 Fri 16:16]
+   - [X] New method on ExperimentalSession
+         Takes number of participants, experimental group
+   - [X] Tests for this new feature
+** DONE Figure out how to merge git branches [4/4]
+   CLOSED: [2009-08-14 Fri 16:00]
+   - [X] Find reference
+         http://blog.jrock.us/articles/Git%20merging%20by%20example.pod
+   - [X] Copy tree to a temp working space
+   - [X] Try merging ExperimentalGroup branch into TutorialText
+   - [X] Once we understand it, do it for real
+** DONE Switch ExperimentalSession active to a toggle [5/5]
+   CLOSED: [2009-08-14 Fri 16:38]
+   - [X] Update model with a boolean, remove ends_at, begins_at
+   - [X] Update is_active? method
+   - [X] Update fixtures
+   - [X] Update unit tests
+   - [X] Update integration tests
+
+* Saturday, August 15
+** DONE Admin interface beginnings [2/2]
+   CLOSED: [2009-08-15 Sat 08:35]
+   - [X] Drop login requirement
+   - [X] See status of participants
+         - [X] ExperimentalSession.current_participants
+         - [X] ExperimentalSession.unseen_participants
+         - [X] Split up participant list displays
+** DONE Database-based page ordering [6/6]
+   CLOSED: [2009-08-15 Sat 09:56]
+   - [X] PageOrder branch
+   - [X] PageOrder model: phase, experimental_group_id, page_order (serialized array)
+   - [X] PageOrder fixtures for tutorial
+         - [X] control
+         - [X] experimental_one
+         - [X] experimental_two
+         - [X] context_neutral
+   - [X] Update tutorial_controller likewise
+   - [X] Every layout needs a flash area
+   - [X] Tutorial page titles in layout
+** DONE Participant state tracking [4/4]
+   CLOSED: [2009-08-15 Sat 07:01]
+   - [X] Add to Participant model:
+         phase:string page:string round:integer cash:decimal
+   - [X] Update in global filter
+   - [X] Write some tests
+   - [X] Upon login, redirect back to page specified by state
+
+** DONE Add configuration rules to experimental_groups [4/4]
+   CLOSED: [2009-08-15 Sat 10:20]
+   - [X] Earnings per
+   - [X] Tax rate
+   - [X] Audit penalty rate
+   - [X] Rounds
+
+* Sunday, August 16
+** DONE Experiment controller skeleton [5/5]
+   CLOSED: [2009-08-16 Sun 08:36]
+   - [X] Generate experiment controller
+   - [X] Create layout based on tutorial
+   - [X] Create get_text helper skeleton
+   - [X] Create page_order fixtures
+   - [X] Simple functional test
+** DONE ActivityLog [9/9]
+   CLOSED: [2009-08-16 Sun 10:16]
+   - [X] ActivityLog model: event:string participant_id controller action (created_at)
+   - [X] ActivityLog constants: pageload, error, out-of-sequence, warnings, login, etc
+   - [X] Create application_controller method for logging events
+   - [X] Create application filter to log pageload events automatically
+   - [X] Add request dump to details on pageload log
+   - [X] Login pageload logging with nil participant_id
+   - [X] Login failure logging with nil participant_id
+   - [X] Validate existing tests
+   - [X] Add integration tests
+         - [X] Login page
+         - [X] Login failure
+         - [X] Login success
+         - [X] Tutorial visits
+         - [X] Check pageload params in details
+** DONE Friendlier error page [6/6]
+   CLOSED: [2009-08-16 Sun 13:21]
+   - [X] Figure out how to intercept errors
+   - [X] Create generic error page
+   - [X] Figure out where to put generic error page
+   - [X] New event type: critical
+   - [X] Attempt to create a new ActivityLog
+   - [X] Log to logger as well
+** DONE Start enforcing phase order [3/3]
+   CLOSED: [2009-08-16 Sun 18:11]
+   - [X] Create enforce_order filter in application_controller
+   - [X] Exclude it from admin_controller
+   - [X] First implement only for login
+         - [X] Detect existing session/participant_id
+         - [X] Redirect to correct phase/page
+         - [X] Write the test
+         - [X] Correct broken tests
+** DONE Survey controller skeleton [6/6]
+   CLOSED: [2009-08-16 Sun 08:48]
+   - [X] Generate survey controller
+   - [X] Create layout based on tutorial
+   - [X] Create get_text helper skeleton
+   - [X] Create filler action and view
+   - [X] Create page_order fixtures
+   - [X] Simple functional test
+** DONE Complete controller skeleton [4/4]
+   CLOSED: [2009-08-16 Sun 08:54]
+   - [X] Generate complete controller
+   - [X] Index view is complete page, no layout necessary
+   - [X] Skeletons for testing for actual completeness and marking complete
+   - [X] Simple functional test
+
+* Monday, August 17
+** DONE More phase order enforcement [7/7]
+   CLOSED: [2009-08-17 Mon 22:18]
+   - [X] Add progress fields to Participant:
+         - [X] completed_tutorial
+         - [X] completed_experiment
+         - [X] completed_survey
+         - [X] completed_all
+   - [X] Update completed_tutorial field when tutorial is complete
+   - [X] experimental_session.phase_complete? method checks current .phase against
+         participants' phase status
+   - [X] Add phase and round fields to experimental_session model
+   - [X] Update completed_experiment field when experiment is complete
+   - [X] Update completed_survey field with survey is complete
+   - [X] Update complete_all field in complete controller
+
+* Tuesday, August 18
+** DONE Move enforce_order up higher in the filter chain
+   CLOSED: [2009-08-18 Tue 19:22]
+   eg, so the phase and page attributes in participant don't get updated before
+   they are given a sequence error.
+
+** DONE Transition from tutorial to experiment [3/3]
+   CLOSED: [2009-08-19 Wed 20:08]
+   - [X] Button on tutorial/complete which actually marks participant.tutorial_complete
+         and redirects to experiment/wait
+   - [X] At that point, experiment/wait redirects to experiment/start or whatever
+   - [X] experiment/wait should reload every 5 seconds or so
+
+* Wednesday, August 19
+** DONE Admin POC functionality for advancing from tutorial to experiment [5/5]
+   CLOSED: [2009-08-19 Wed 21:16]
+   - [X] Update admin/status with a header showing the session's current phase
+   - [X] Better show each participant's status (more columns)
+   - [X] Include inactive participants in gray at the bottom of the list
+   - [X] Button to advance to experiment phase, enabled when all participants are there
+   - [X] Lockdown button
+
+** DONE Single session at a time [4/4]
+   CLOSED: [2009-08-19 Wed 22:13]
+   - [X] self.active to find that session
+   - [X] set_active method
+   - [X] Enforce in model
+   - [X] Write tests
+
+* Thursday, August 20
+** DONE Enable lockdown functionality in admin/status [4/4]
+   CLOSED: [2009-08-20 Thu 22:43]
+   - [X] Confirmation dialog
+   - [X] New action on admin controller
+   - [X] Lockdown method on experimental_session model
+     - [X] New locked_down field in model
+     - [X] Deletes unseen participants
+     - [X] Refuses to add new participants
+     - [X] Write tests
+   - [X] Wire up button
+
+** DONE Get rid of experiment model altogether [4/4]
+   CLOSED: [2009-08-20 Thu 21:39]
+   - [X] Migration
+     - [X] Drop table
+     - [X] And drop foreign keys
+   - [X] Drop any model references
+   - [X] Delete experiment files
+     - [X] test/unit
+     - [X] test/fixtures
+     - [X] app/models
+   - [X] Update tests if necessary
+
+** DONE Get rid of default experimental_session fixtures [5/5]
+   CLOSED: [2009-08-20 Thu 21:29]
+   - [X] Delete fixtures
+   - [X] Delete participant fixtures
+   - [X] Okay, one experimental_session fixture
+   - [X] Clear db?
+         rake db:test:load
+   - [X] Fix tests
+     - [X] Unit
+     - [X] Functional
+     - [X] Integration
+
+* Friday, August 21
+** DONE Move participant table rows to partials [3/3]
+   CLOSED: [2009-08-21 Fri 21:26]
+   - [X] _current_participant
+   - [X] _unseen_participant
+   - [X] render partial collection
+
+** DONE Experimental session management page [6/6]
+   CLOSED: [2009-08-21 Fri 23:07]
+   - [X] Action "sessions"
+   - [X] View "sessions"
+     - [X] Current active on top of list
+     - [X] Link to status page
+     - [X] Columns: name, number of participants
+     - [X] Participant counts grouped by exp-group
+       - [X] New field in exp-group: shortname
+       - [X] Update exp-group fixtures
+         - [X] Use pretty long names
+         - [X] Two-letter shortnames
+       - [X] Display by shortname and count
+     - [X] Link to delete if unused (current_participants.count == 0)
+     - [X] Link to create participants
+     - [X] Link to mark active if no other is
+   - [X] Action "set_active_session"
+     - [X] Check no current active
+     - [X] call set active
+     - [X] redirect back
+   - [X] Action "add_session"
+     - [X] Form for adding a session (just title for now)
+     - [X] controller logic
+   - [X] Action "delete_session"
+     - [X] Refuse to delete sessions that have been used
+       - [X] Enforce in model
+       - [X] Write tests
+     - [X] Cascade-delete participants
+     - [X] Action logic
+     - [X] Wire up to links
+     - [X] Test
+   - [X] Action "add_participants"
+     - [X] Form for adding participants
+       - [X] number field
+       - [X] dropdown experimental group selection
+     - [X] Controller handles error states
+     - [X] Controller handles form creation
+     - [X] Controller handles form post errors
+     - [X] Controller handles form success
+     - [X] Refuse on locked-down sessions
+       - [X] Enforce in model
+       - [X] Write tests
+
+* Saturday, August 22
+** DONE Tutorial structure worth viewing [12/12]
+   CLOSED: [2009-08-22 Sat 10:49]
+   - [X] Get comprehensive list from prototypes of two major page orders
+   - [X] Update page_order fixtures
+   - [X] Fill in missing actions
+   - [X] How do we do default templates? -- can't
+   - [X] Fill in missing view skeletons
+   - [X] Filler tutorial_text fixtures
+   - [X] Check sequences by hand
+   - [X] Test sequences in integration/tutorial_test
+   - [X] Create a templify application_helper
+   - [X] Update get_text to call templify against ruleset
+   - [X] Markdown/textile rendering
+   - [X] Correct tutorial_texts and template for each tutorial page
+         - [X] intro
+         - [X] overview
+         - [X] earnings_intro
+         - [X] earnings_task
+         - [X] earnings_report
+         - [X] tax_intro
+         - [X] tax_return
+         - [X] disclosure_intro
+         - [X] disclosure_report
+         - [X] audit_intro
+         - [X] audit_notify
+         - [X] audit_ok
+         - [X] audit_error
+         - [X] doublecheck_intro
+         - [X] doublecheck_notify
+         - [X] doublecheck_ok
+         - [X] doublecheck_error
+         - [X] completing
+         - [X] complete
+
+** DONE Enable begin experiment button in admin/status [4/4]
+   CLOSED: [2009-08-22 Sat 12:24]
+   - [X] New action on admin controller
+   - [X] Logic to properly show/enable the button
+   - [X] The button and controller should only work when all participants are done
+         experimental_session.phase_complete?
+   - [X] Verify that participants see change in wait page
+
+** DONE Add participants button on status page [2/2]
+   CLOSED: [2009-08-22 Sat 12:06]
+   - [X] Button using GET
+   - [X] add_participants then needs to redirect back to the right place
+         Could probably make it depend on if this is the active session.
+
+** DONE Experiment wait page [2/2]
+   CLOSED: [2009-08-22 Sat 12:51]
+   - [X] Ajax wait gif
+   - [X] Fill in the text on the plain view
+
+** DONE Highlight new session after creation [2/2]
+   CLOSED: [2009-08-22 Sat 13:41]
+   - [X] Need row ids
+   - [X] Figure out the RJS or whatever
+
+** DONE Ajaxy add-participants [3/3]
+   CLOSED: [2009-08-22 Sat 15:11]
+   - [X] Highlight the updated cell
+     - [X] Need cell IDs
+     - [X] Figure out the RJS or whatever
+   - [X] Inline form on sessions
+   - [X] Inline form on status
+
+** DONE Switch to MySQL [5/5]
+   CLOSED: [2009-08-22 Sat 17:08]
+   - [X] Set up MySQL dev and test databases
+   - [X] Reconfigure config/database.yml
+   - [X] Fix any broken tests
+   - [X] Check the UI
+   - [X] Run a three-person test
+         Still errors upon simul-hits - I think it's the web server. Need a mongrel cluster?
+
+* Sunday, August 23
+** DONE Set up apache+mongrel [5/5]
+   CLOSED: [2009-08-23 Sun 14:53]
+   - [X] init script for 10 mongrels
+   - [X] Apache config for mod_proxy_balancer
+   - [X] Up and running
+   - [X] Switch to ActiveRecord session store
+   - [X] httpd.init
+
+** DONE Figure out how to test multiple sessions [2/2]
+   CLOSED: [2009-08-23 Sun 15:09]
+   - [X] open_session do |sess| or something like that
+   - [X] Add a couple of basic simultests to integration
+     - [X] tutorial transition
+     - [X] experiment transition
+
+** DONE Experiment round infrastructure [5/5]
+   CLOSED: [2009-08-23 Sun 16:38]
+   - [X] When admin presses begin experiment, everyone's round should be 1
+     - [X] default participant.round should be 1
+     - [X] default experimental_session.round should be 1
+     - [X] experiment-specific filter on round
+   - [X] Single filler "task" action
+   - [X] Verify waits, round advance functionality
+   - [X] Test experiment transition in new experiment integration test
+   - [X] Test round transition
+
+** DONE Experiment page order [4/4]
+   CLOSED: [2009-08-23 Sun 18:18]
+   - [X] Review page order for prototypes
+   - [X] Build actions and views for all necessary pages - assume similar get_text model
+     - [X] begin
+       - [X] action
+       - [X] view
+     - [X] work
+       - [X] action
+       - [X] view
+     - [X] earnings
+       - [X] action
+       - [X] view - account for cn text diffs
+     - [X] message
+       - [X] action
+       - [X] view
+     - [X] report (was tax_return)
+       - [X] action
+       - [X] view - account for cn text diffs
+     - [X] check - was audit for C, x1, x2; doublecheck for cn
+       - [X] action
+       - [X] view
+     - [X] results - was audit_report for C, x1, x2; doublecheck_report for cn
+       - [X] action
+       - [X] view
+     - [X] complete
+       - [X] action
+       - [X] view
+   - [X] PageOrder fixtures
+     - [X] message only for x1, x2
+     - [X] All the rest
+   - [X] Update testbot as necessary
+
+* Tuesday, August 25
+** DONE SourceText and Correction models [4/4]
+   CLOSED: [2009-08-25 Tue 18:37]
+   - [X] Create source_texts model: errored_text
+   - [X] Create fixtures for 3 texts
+   - [X] Create corrections model: source_text_id, error, correction
+   - [X] Create corresponding 15 fixtures for the three texts
+
+** DONE Basic correction functionality [4/4]
+   CLOSED: [2009-08-25 Tue 19:21]
+   - [X] Pull source text into textarea
+   - [X] Write method to find corrections
+         Probably can just scan for corrected text and no error text
+   - [X] Interpret results on the following page
+   - [X] Add money to bank, etc
+
+** DONE get_text for experiment [3/3]
+   CLOSED: [2009-08-25 Tue 21:20]
+   - [X] ExperimentText model - experimental_group_id, page_name, text_key, text
+   - [X] Expand helper to work similarly to tutorialtexts
+   - [X] Add method to experimenttext like tutorialtext
+
+* Wednesday, August 26
+** DONE Experiment page titles configurable in ExperimentText [3/3]
+   CLOSED: [2009-08-26 Wed 19:03]
+   - [X] Layout checks ExperimentText first, then @page_title
+   - [X] experiment_text.get_text should return nil if appropriate
+   - [X] application_helper.get_text should return nil if appropriate
+
+** DONE Fix what happens when no errors are corrected [1/1]
+   CLOSED: [2009-08-26 Wed 19:05]
+   - [X] Should just say "nothing corrected"
+
+** DONE Display bank on wait page?
+   CLOSED: [2009-08-26 Wed 19:06]
+
+** DONE CashTransaction model [4/4]
+   CLOSED: [2009-08-26 Wed 19:48]
+   - [X] Create model: participant_id, round, type, delta
+         type = income, tax, backtax, penalty
+   - [X] Validation of type field
+   - [X] Other validations
+   - [X] Link to participant
+     - [X] belongs_to
+     - [X] has_many
+
+** DONE Participant cash integration [14/14]
+   CLOSED: [2009-08-26 Wed 20:48]
+   - [X] earn_income method
+   - [X] pay_tax method
+   - [X] pay_backtax method
+   - [X] pay_penalty method
+   - [X] cash method
+   - [X] drop cash field
+   - [X] test earn_income
+   - [X] test pay_tax
+   - [X] test pay_backtax
+   - [X] test pay_penalty
+   - [X] test cash
+   - [X] test duplicates
+   - [X] drop earned_for_round field
+   - [X] transactions into the activity log
+
+** DONE Experiment controller cash integration [2/2]
+   CLOSED: [2009-08-26 Wed 20:49]
+   - [X] Replace manual math with a call to earn_income
+   - [X] Fix earned_for_round field usage
+
+** DONE CorrectCorrection model [5/5]
+   CLOSED: [2009-08-26 Wed 20:56]
+   - [X] Create model: participant_id, round, correction_id
+   - [X] Validations
+   - [X] Link to participant
+     - [X] belongs_to
+     - [X] has_many
+   - [X] belongs_to correction
+   - [X] participant.correct_corrections_for_current_round
+
+** DONE Experiment controller refactor checking work [4/4]
+   CLOSED: [2009-08-26 Wed 21:10]
+   - [X] source_text.evaluate_corrections should return an array of Corrections
+   - [X] Move check and payment logic into check_work method
+   - [X] Make use of correct_correction model
+   - [X] The earnings page should just view the info for the current round
+
+** DONE Experimental message functionality [3/3]
+   CLOSED: [2009-08-26 Wed 21:46]
+   - [X] add field to experimental_group: message:text
+   - [X] Update experimental_group fixtures
+   - [X] experiment_controller.message
+
+** DONE Tax/disclosure functionality [8/8]
+   CLOSED: [2009-08-26 Wed 22:36]
+   - [X] Fixtures for group-specific text and page title
+   - [X] Submit to new submit_report
+   - [X] Add submit_report to page_order fixtures
+   - [X] Check that disclosed amount is not negative or more than actually earned
+   - [X] Calculate tax
+   - [X] Call pay_tax
+   - [X] Catch any exception
+   - [X] Send onto check action
+
+* Thursday, August 27
+** DONE Audit selection [5/5]
+   CLOSED: [2009-08-27 Thu 19:56]
+   - [X] Add audit rate rule to experimental group
+     - [X] Migration
+     - [X] Update fixtures
+   - [X] Add method to experimental_group to check for audit
+   - [X] Branch execution as appropriate
+   - [X] Audit message based on group in some fixtures
+   - [X] Audit notification should pull the right message
+
+** DONE Audit functionality [4/4]
+   CLOSED: [2009-08-27 Thu 21:32]
+   - [X] participant.audit method
+     - [X] Add reported_earnings serialized array to participant model
+     - [X] Method to support adding reported_earnings
+     - [X] Method to retrieve reported earnings
+     - [X] Calculate correct tax
+     - [X] Compare to tax paid
+     - [X] Create backtax and penalty cash_transaction records as appropriate
+           (use zero if that's correct)
+   - [X] Only allow check once per round
+     - [X] Add last_check:integer to participant
+     - [X] Add checked_for_this_round? method to participant
+   - [X] Flag participant as audited
+     - [X] Add audited:boolean to participant
+     - [X] Set in p.audit
+     - [X] Highlight row in admin interface
+   - [X] Results page
+     - [X] Fixtures for each label
+     - [X] Pull numbers from cash_transaction records created by p.audit
+
+* Friday, August 28
+** DONE Experiment page order enforcement [7/7]
+   CLOSED: [2009-08-28 Fri 22:17]
+   - [X] Refactor audit selection into a separate action
+   - [X] Add methods to participant for each major stage of the experiment
+     - [X] work_complete_for_current_round?
+     - [X] taxes_paid_for_current_round?
+     - [X] audit_pending_for_current_round?
+   - [X] Add fields to participant
+     - [X] to_be_audited default false
+     - [X] audit_completed default false
+   - [X] Upon round advancement, clear those flags
+     - [X] new method participant.advance_round
+           must check work_complete, taxes_paid, audit_pending
+     - [X] set to_be_audited and audit_completed back to false
+   - [X] Add a check in each input page or update page to ensure the user is in the right place
+   - [X] Update tests as necessary
+   - [X] Run through a sequence of audits and no audits yourself
+
+* Saturday, August 29
+** DONE Remaining source texts and corrections [4/4]
+   CLOSED: [2009-08-29 Sat 14:51]
+   - [X] Source texts, corrected texts, corrections
+     - [X] Alice in Wonderland
+     - [X] Moby Dick
+     - [X] Heidi Grows Up
+     - [X] Sense and Sensibility
+     - [X] Shepherd of the Hills
+     - [X] Shepherd of the Hills 2
+     - [X] Pride and Prejudice
+     - [X] Sherlock Holmes
+     - [X] Treasure Island
+     - [X] The Three Musketeers
+     - [X] Oliver Twist
+     - [X] David Copperfield
+     - [X] A Tale of Two Cities
+     - [X] Tom Sawyer
+     - [X] Huck Finn
+     - [X] Connecticut Yankee
+     - [X] Tom Sawyer 2
+     - [X] Huck Finn 2
+     - [X] A Tale of Two Cities 2
+     - [X] The Prince and the Pauper
+     - [X] A Double Barreled Detective
+   - [X] Test each against the fully corrected version
+   - [X] Improve correction detection
+     - [X] Add error and correct context to Correction model
+     - [X] Add context to corrections.yml
+     - [X] Support context in SourceText.evaluate_corrections
+     - [X] Achieve perfect matching for this test
+   - [X] Choose corrections that are unique across the text for the best results
+
+** DONE Survey data model [8/8]
+   CLOSED: [2009-08-29 Sat 16:03]
+   - [X] Survey model - name:string (has_many survey_pages order_by sequence?)
+   - [X] Add survey_id to experimental_group (belongs_to survey)
+   - [X] SurveyPage model - survey_id:integer sequence:integer
+         depends_on_answer_id:integer
+         (belongs_to survey, has_many survey_items, habtm questions through survey_items?)
+   - [X] Question model - question:text (has_many possible_answers)
+         (pretending for now that it's only multiple choice questions)
+   - [X] Answer - question_id:integer (belongs_to question)
+                  answer:text
+   - [X] SurveyItem model - survey_page_id:integer question_id:integer sequence:integer
+   - [X] answers_participants table - participant_id:integer answer_id:integer
+   - [X] habtm relationships from answer to participant and back
+         
+** DONE Survey transition [2/2]
+   CLOSED: [2009-08-29 Sat 16:19]
+   - [X] Mark experiment_complete on participants
+   - [X] Don't let users go back into tutorial or experiment
+
+** DONE Survey skeleton [4/4]
+   CLOSED: [2009-08-29 Sat 16:44]
+   - [X] Single action that manages current page of questions
+   - [X] Most basic possible survey fixtures, single page, single question
+   - [X] Question partial
+   - [X] Multiple questions
+
+
+
+
