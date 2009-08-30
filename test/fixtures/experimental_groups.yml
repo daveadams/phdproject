@@ -3,13 +3,14 @@ control:
   name: Control
   shortname: C
   tutorial_text_group_id: 1
-#  audit_rate: 1.0
+  survey_id: 1
 
 context_neutral:
   id: 2
   name: Context Neutral
   shortname: cn
   tutorial_text_group_id: 2
+  survey_id: 1
 
 experimental_one:
   id: 3
@@ -18,6 +19,7 @@ experimental_one:
   tutorial_text_group_id: 1
   message: |
     The amount of income that you report may be audited for accuracy. If you are found to have reported less than your earned income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the unpaid taxes.
+  survey_id: 1
 
 experimental_two:
   id: 4
@@ -26,3 +28,4 @@ experimental_two:
   tutorial_text_group_id: 1
   message: |
     You can reduce your chances of incurring audit and penalties by honestly reporting 100% of your earned income. If you are are audited and found to have reported less than your earned income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the unpaid taxes. If you have to pay penalties on underpaid taxes, you will be paying more out of pocket than if you had paid 100% of your true tax liability to begin with.
+  survey_id: 1

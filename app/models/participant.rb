@@ -172,6 +172,15 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def next_survey_page
+    my_questions = self.answers.collect { |a| a.question }
+    self.experimental_group.survey.pages.detect do |survey_page|
+      (not (survey_page.questions - my_questions).empty?) and
+        not (survey_page.depends_on_answer and
+             not self.answers.include? survey_page.depends_on_answer)
+    end
+  end
+
  protected
   def add_transaction(transaction_type, amount)
     ct = CashTransaction.new do |ct|

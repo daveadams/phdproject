@@ -1,13 +1,16 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
+s1p1:
+  id: 101
   survey_id: 1
   sequence: 1
-  depends_on_question_id: 1
-  requires_answer: MyString
 
-two:
+s1pX:
+  id: 99
   survey_id: 1
-  sequence: 1
-  depends_on_question_id: 1
-  requires_answer: MyString
+  sequence: 2
+  depends_on_answer_id: 3
+
+s1p2:
+  id: 102
+  survey_id: 1
+  sequence: 3
+

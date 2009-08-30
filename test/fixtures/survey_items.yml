@@ -1,11 +1,24 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  survey_page_id: 1
+s1p1i1:
+  survey_page_id: 101
   question_id: 1
   sequence: 1
 
-two:
-  survey_page_id: 1
-  question_id: 1
+s1p1i2:
+  survey_page_id: 101
+  question_id: 2
+  sequence: 2
+
+s1p2i1:
+  survey_page_id: 102
+  question_id: 3
+  sequence: 1
+
+s1p2i2:
+  survey_page_id: 102
+  question_id: 4
+  sequence: 2
+
+s1pXi1:
+  survey_page_id: 99
+  question_id: 99
   sequence: 1

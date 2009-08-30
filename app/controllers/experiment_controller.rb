@@ -55,7 +55,7 @@ class ExperimentController < ApplicationController
       # TODO: check timing, too
       if request.post?
         SourceText.find_by_round(@participant.round).
-          evaluate_corrections(request[:working_text]).each do |c|
+          evaluate_corrections(request[:working_text].squeeze(' ')).each do |c|
           begin
             cc = CorrectCorrection.create!(:participant_id => @participant.id,
                                            :round => @participant.round,
