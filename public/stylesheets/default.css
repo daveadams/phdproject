@@ -108,3 +108,10 @@ div.error
     color: red;
     font-weight: bold;
 }
+
+div.survey-question
+{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+}

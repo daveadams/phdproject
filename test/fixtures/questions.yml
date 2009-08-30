@@ -5,3 +5,8 @@ q1:
 q2:
   id: 2
   question: How?
+
+q3:
+  id: 3
+  question: How many?
+  fill_in_the_blank: true
