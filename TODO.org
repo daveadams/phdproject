@@ -2,14 +2,32 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Full build-out of survey fixtures [0/7]
-   - [ ] Find prototype for pages 1-6
+** TODO Full build-out of survey fixtures [2/7]
+   - [X] Find prototype for pages 1-6
+   - [-] Build all questions, answers, and pages
+     - [X] page 1
+       - [X] age
+       - [X] sex
+       - [X] marital status
+       - [X] income belief
+       - [X] page
+       - [X] items
+     - [X] page 2
+       - [X] class
+       - [X] major
+       - [X] econnum
+       - [X] gpa
+       - [X] page
+       - [X] items
+     - [ ] page 3
+     - [ ] page 4
+     - [ ] page 5
+     - [ ] page 6
    - [ ] Find logic for dependent question(s)
-   - [ ] Find context-neutral differences
-   - [ ] Build all questions
-   - [ ] Build all pages
    - [ ] Build in dependencies
-   - [ ] Link to experimental groups
+   - [ ] Find context-neutral differences
+   - [ ] Build context-neutral version
+   - [X] Link to experimental groups
 
 ** TODO Restore state checking to survey once fixtures are ready [1/2]
    - [ ] Re-enable check_phase filter
@@ -69,7 +87,6 @@
    - [X] Display correctly
    - [X] Fixture to test
 
-
 ** DONE EC2 basics [7/7]
    CLOSED: [2009-08-30 Sun 16:46]
    - [X] persistent storage figured out
@@ -86,7 +103,6 @@
      - [X] next_survey_page method
      - [X] fixtures to link participants to surveys and pages thru experimental_group
 
-
 ** DONE Handle survey answers [2/2]
    CLOSED: [2009-08-30 Sun 18:46]
    - [X] Multiple choice
@@ -94,13 +110,11 @@
      - [X] find-or-create answer object
      - [X] Check input against minimum and maximum
 
-
 ** DONE Completion functionality [3/3]
    CLOSED: [2009-08-30 Sun 19:26]
    - [X] Thanks message
    - [X] Shut down session
    - [X] Check that they're really complete
-
 
 ** DONE Survey functionality [5/5]
    CLOSED: [2009-08-30 Sun 19:25]
