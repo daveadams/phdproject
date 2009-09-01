@@ -30,10 +30,55 @@ gpa:
   id: 8
   question: What is your grade point average (QCA) at Virginia Tech?
 
+businessmajor:
+  id: 9
+  question: You indicated your major is a business major. Which department is your major in?
 
-q3:
-  id: 3
-  question: How many?
+everfiled:
+  id: 10
+  question: Have you ever filed a United States Federal Income Tax Return?
+
+itemize:
+  id: 11
+  question: Did you itemize deductions on your most recent return?
+
+whoprepares:
+  id: 12
+  question: Who normally prepares your tax return?
+
+howmanyyears:
+  id: 13
+  question: How many years have you filed a United States Federal Income Tax Return?
   fill_in_the_blank: true
-  minimum: 44
-  maximum: 45
+  minimum: 1
+
+evercontacted:
+  id: 14
+  question: Have you ever been contacted by the IRS about a return that you filed in the previous year?
+
+religious:
+  id: 15
+  question: Do you regularly attend religious services?
+
+morallywrong:
+  id: 16
+  question: In general, do you believe tax evasion is morally wrong?
+
+knowaudit:
+  id: 17
+  question: To your knowledge, has anyone that you know been audited by the IRS?
+
+auditprobabilityfull:
+  id: 18
+  question: What do you believe was the average probability (from 0 to 100%) of your income tax return being audited in any period during the experiment in which you reported 100% of your earned income?
+  fill_in_the_blank: true
+
+auditprobabilitypartial:
+  id: 19
+  question: What do you believe was the average probability (from 0 to 100%) of your income tax return being audited in any period during the experiment in which you reported less than 100% of your earned income?
+  fill_in_the_blank: true
+
+atwhatlevel:
+  id: 20
+  question: Ignoring any moral or social obligations related to taxpaying, at what level of audit likelihood (from 0 to 100%) would you feel comfortable reporting less than 100% of your taxable earnings?
+  fill_in_the_blank: true

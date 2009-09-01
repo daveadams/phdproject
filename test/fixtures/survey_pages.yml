@@ -12,6 +12,7 @@ default3:
   id: 103
   survey_id: 1
   sequence: 3
+  depends_on_answer_id: 21
 
 default4:
   id: 104
@@ -22,15 +23,31 @@ default5:
   id: 105
   survey_id: 1
   sequence: 5
+  depends_on_answer_id: 43
 
 default6:
   id: 106
   survey_id: 1
   sequence: 6
 
-s1pX:
-  id: 99
-  survey_id: 1
+cn1:
+  id: 201
+  survey_id: 2
+  sequence: 1
+
+cn2:
+  id: 202
+  survey_id: 2
   sequence: 2
-  depends_on_answer_id: 3
+
+cn3:
+  id: 203
+  survey_id: 2
+  sequence: 3
+  depends_on_answer_id: 21
+
+cn4:
+  id: 204
+  survey_id: 2
+  sequence: 4
 

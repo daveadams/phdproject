@@ -99,6 +99,7 @@ major1:
   sequence: 1
 
 major2:
+  id: 21
   question_id: 6
   answer: Other Business
   sequence: 2
@@ -178,3 +179,113 @@ gpa6:
   answer: Below 2.0
   sequence: 6
 
+businessmajor1:
+  question_id: 9
+  answer: Accounting and Information Systems
+  sequence: 1
+
+businessmajor2:
+  question_id: 9
+  answer: Business Information Technology
+  sequence: 2
+
+businessmajor3:
+  question_id: 9
+  answer: Finance
+  sequence: 3
+
+businessmajor4:
+  question_id: 9
+  answer: Hospitality and Tourism Management
+  sequence: 4
+
+businessmajor5:
+  question_id: 9
+  answer: Management
+  sequence: 5
+
+businessmajor6:
+  question_id: 9
+  answer: Marketing
+  sequence: 6
+
+everfiled1:
+  id: 43
+  question_id: 10
+  answer: "Yes"
+  sequence: 1
+
+everfiled2:
+  question_id: 10
+  answer: "No"
+  sequence: 2
+
+itemize1:
+  question_id: 11
+  answer: "Yes"
+  sequence: 1
+
+itemize2:
+  question_id: 11
+  answer: "No"
+  sequence: 2
+
+itemize3:
+  question_id: 11
+  answer: "I don't know"
+  sequence: 3
+
+whoprepares1:
+  question_id: 12
+  answer: I normally prepare my own tax return.
+  sequence: 1
+
+whoprepares2:
+  question_id: 12
+  answer: A friend or family member normally prepares my tax return for me.
+  sequence: 2
+
+whoprepares3:
+  question_id: 12
+  answer: My tax return is normally prepared by a professional tax return preparer.
+  sequence: 3
+
+evercontacted1:
+  question_id: 14
+  answer: "Yes"
+  sequence: 1
+
+evercontacted2:
+  question_id: 14
+  answer: "No"
+  sequence: 2
+
+religious1:
+  question_id: 15
+  answer: "Yes"
+  sequence: 1
+
+religious2:
+  question_id: 15
+  answer: "No"
+  sequence: 2
+
+morallywrong1:
+  question_id: 16
+  answer: "Yes"
+  sequence: 1
+
+morallywrong2:
+  question_id: 16
+  answer: "No"
+  sequence: 2
+
+knowaudit1:
+  question_id: 17
+  answer: "Yes"
+  sequence: 1
+
+knowaudit2:
+  question_id: 17
+  answer: "No"
+  sequence: 2
