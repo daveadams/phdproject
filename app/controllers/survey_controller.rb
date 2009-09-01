@@ -1,5 +1,5 @@
 class SurveyController < ApplicationController
-#  before_filter :check_phase
+  before_filter :check_phase
 
   def index
     survey_page = @participant.next_survey_page
