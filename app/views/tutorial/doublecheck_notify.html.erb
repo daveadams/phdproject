@@ -1,1 +1,14 @@
 <%=markdown get_text('body') %>
+
+<div class="example">
+  <div class="notification">
+    <h2>NOTICE</h2>
+    <p>
+      <%=h @message %>
+    </p>
+
+    <div style="text-align: right;">
+      <%= link_button("Proceed", :action => next_page) %>
+    </div>
+  </div>
+</div>

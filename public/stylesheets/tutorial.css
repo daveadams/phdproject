@@ -41,3 +41,9 @@ div.example span#task-timer
     right: 200px;
     top: 100px;
 }
+
+div.example div.notification
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

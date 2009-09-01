@@ -159,8 +159,6 @@ audit_notify_body:
   text: |
     This message will appear if you have been selected for an audit.
 
-    __EXAMPLE GOES HERE__
-
 audit_ok_title:
   page_name: audit_ok
   text_key: title

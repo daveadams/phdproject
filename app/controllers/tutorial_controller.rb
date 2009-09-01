@@ -19,12 +19,20 @@ class TutorialController < ApplicationController
   def disclosure_report; end
 
   def audit_intro; end
-  def audit_notify; end
+
+  def audit_notify
+    @message = ExperimentText.get_text(@participant, "check", "message")
+  end
+
   def audit_ok; end
   def audit_error; end
 
   def doublecheck_intro; end
-  def doublecheck_notify; end
+
+  def doublecheck_notify
+    @message = ExperimentText.get_text(@participant, "check", "message")
+  end
+
   def doublecheck_ok; end
   def doublecheck_error; end
 
