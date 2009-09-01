@@ -5,6 +5,7 @@ class ExperimentalSessionAlreadyComplete < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionUnused < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionMaxRounds < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionNotInExperiment < ActiveRecord::ActiveRecordError; end
+class ExperimentalSessionNotReadyToAdvanceRound < ActiveRecord::ActiveRecordError; end
 
 class ExperimentalSession < ActiveRecord::Base
   has_many :participants
@@ -78,7 +79,11 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def phase_complete?
-    participants.all? { |p| p["#{phase}_complete"] }
+    if self.phase == "tutorial" and not self.is_locked_down
+      false
+    else
+      participants.all? { |p| p["#{phase}_complete"] }
+    end
   end
 
   def round_complete?
@@ -103,6 +108,7 @@ class ExperimentalSession < ActiveRecord::Base
     raise ExperimentalSessionMaxRounds.new if self.round >= self.max_rounds
     raise ExperimentalSessionNotInExperiment.new if phase != "experiment"
     raise ExperimentalSessionAlreadyComplete.new if self.is_complete
+    raise ExperimentalSessionNotReadyToAdvanceRound.new unless self.round_complete?
 
     self.round += 1
     self.save

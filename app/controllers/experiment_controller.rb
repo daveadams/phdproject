@@ -11,8 +11,18 @@ class ExperimentController < ApplicationController
         @participant.experimental_session.round == @participant.round
       redirect_to(:action => :begin)
     else
-      @display_bank = true
-      render :action => :wait, :layout => false
+      if @participant.experimental_session.phase == "tutorial" and
+          @participant.experimental_session.phase_complete?
+        @participant.experimental_session.next_phase
+        redirect_to(:action => :wait)
+      elsif @participant.experimental_session.phase == "experiment" and
+          @participant.experimental_session.round_complete?
+        @participant.experimental_session.next_round
+        redirect_to(:action => :wait)
+      else
+        @display_bank = true
+        render :action => :wait, :layout => false
+      end
     end
   end
 
