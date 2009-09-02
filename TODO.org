@@ -2,18 +2,13 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Real examples in tutorial [2/10]
-   - [ ] earnings_task
-   - [ ] earnings_report
-   - [ ] tax_return
-   - [ ] disclosure_report
-   - [X] audit_notify
-   - [X] doublecheck_notify
-   - [ ] audit_ok
-   - [ ] doublecheck_ok
-   - [ ] audit_error
-   - [ ] doublecheck_error
-         
+** TODO Complete setup script for EC2 instance [2/5]
+   - [ ] packages -- sticking on mysql-server password
+   - [X] phdproject user
+   - [X] mounts
+   - [ ] app
+   - [ ] iptables?
+
 ** TODO Extensive integration testing for experiment [0/3]
    - [ ] Test message functionality for each group
    - [ ] Test corrections in various forms
@@ -41,10 +36,11 @@
    - [ ] Sort current participants by first_login
    - [ ] Update control panel, too
 
-** TODO Future fanciness [0/3]
+** TODO Future fanciness [0/4]
    - [ ] Make experimental message a dramatic modal dialog over the top of the tax return page
    - [ ] Artificial delay with wait message on earnings calculation and audit calculation
    - [ ] Make sure firefox's spellcheck can be turned off
+   - [ ] Restyle example pages to be different than other tutorial pages
 
 
 * Sunday, August 30
@@ -150,16 +146,31 @@
    - [X] Double-check exp2
 
 
-
 ** DONE Restore state checking to survey once fixtures are ready [2/2]
    CLOSED: [2009-08-31 Mon 20:36]
    - [X] Re-enable check_phase filter
    - [X] Enable shared filters
-
 
 ** DONE Auto round advance [3/3]
    CLOSED: [2009-08-31 Mon 20:45]
    - [X] Build into wait action
    - [X] If experimental_group.round_complete? then xg.next_round
    - [X] Also auto phase advance from tutorial to experiment anyway
+
+
+* Tuesday, September 1
+** DONE Real examples in tutorial [11/11]
+   CLOSED: [2009-09-01 Tue 21:25]
+   - [X] earnings_task
+   - [X] earnings_report
+   - [X] tax_return
+   - [X] disclosure_report
+   - [X] audit_notify
+   - [X] doublecheck_notify
+   - [X] audit_ok
+   - [X] doublecheck_ok
+   - [X] audit_error
+   - [X] doublecheck_error
+   - [X] Remove "example goes here" text from tutorial_texts.yml
+         
 
