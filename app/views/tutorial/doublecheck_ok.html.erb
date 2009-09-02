@@ -1,1 +1,43 @@
 <%=markdown get_text('body') %>
+
+<div class="example">
+  <div class="experiment-content">
+    <h1>Results Report</h1>
+
+    <span class="bank">
+      <%= number_to_currency(1.40) %>
+    </span>
+
+    <div class="audit-report">
+      <table border="0">
+        <tr>
+          <td style="text-align: right;">
+            <b>Amount Earned</b>
+          </td>
+          <td>
+            $1.75
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Amount Disclosed</b>
+          </td>
+          <td style="border-bottom: 1px solid black;">
+            $1.75
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Difference</b>
+          </td>
+          <td>
+            <b>$0.00</b>
+          </td>
+        </tr>
+      </table>
+
+      <p>You do not owe any additional amounts.</p>
+    </div>
+    <p><%= link_button("Proceed", :action => next_page) %></p>
+  </div>
+</div>

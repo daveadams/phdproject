@@ -9,8 +9,42 @@ class TutorialController < ApplicationController
   def overview; end
 
   def earnings_intro; end
-  def earnings_task; end
-  def earnings_report; end
+
+  def earnings_task
+    @working_text = SourceText.find_by_round(0).errored_text
+  end
+
+  def check_work
+    if request.post?
+      @participant.tutorial_corrections.clear
+      SourceText.find_by_round(0).
+        evaluate_corrections(request[:working_text].squeeze(' ')).each do |c|
+        begin
+          @participant.tutorial_corrections << c
+        rescue => e
+          log_event(ActivityLog::ERROR, "Could not add tutorial_correction: #{e}")
+        end
+      end
+      @participant.reload
+      @participant.tutorial_cash = (@participant.tutorial_corrections.length *
+                                    @participant.experimental_group.earnings)
+      @participant.save
+      redirect_to(:action => :earnings_report)
+    else
+      redirect_to(:action => :earnings_task)
+    end
+  end
+
+  def earnings_report
+    @fixes = @participant.tutorial_corrections.collect do |c|
+      "<i>#{c.error}</i> was changed to <i>#{c.correction}</i>"
+    end
+    @total_earned = @participant.tutorial_cash
+    @earnings_per_correction_label =
+      ExperimentText.get_text(@participant, "earnings", "earnings_per_correction")
+    @total_earned_label =
+      ExperimentText.get_text(@participant, "earnings", "total_earned")
+  end
 
   def tax_intro; end
   def tax_return; end

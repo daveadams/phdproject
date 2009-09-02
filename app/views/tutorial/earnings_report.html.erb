@@ -1,1 +1,50 @@
-<%=markdown get_text('body') %>
+<div class="example">
+  <div class="experiment-content">
+    <h1>Earnings Report</h1>
+
+    <span class="bank">
+      <%= number_to_currency(@total_earned) %>
+    </span>
+
+    <div class="earnings-report">
+      <p><b>Errors Corrected</b></p>
+      <ol>
+        <% if @fixes.length < 1 %>
+           <li>None</li>
+        <% else %>
+          <% @fixes.each do |fix| -%>
+            <li><%= fix %></li>
+          <% end -%>
+        <% end %>
+      </ol>
+      <table>
+        <tr>
+          <td style="text-align: right;">
+            <b>Errors Corrected</b>
+          </td>
+          <td style="text-align: right;">
+            <%= @fixes.length %>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b><%=h @earnings_per_correction_label %></b>
+          </td>
+          <td style="text-align: right; border-bottom: 1px solid black;">
+            x <%= number_to_currency(@participant.experimental_group.earnings) %>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b><%=h @total_earned_label %></b>
+          </td>
+          <td style="text-align: right;">
+            <%= number_to_currency(@total_earned) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p><%= link_button("Proceed", :action => next_page) %></p>
+  </div>
+</div>

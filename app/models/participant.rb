@@ -9,6 +9,9 @@ class Participant < ActiveRecord::Base
   has_many :cash_transactions
   has_many :correct_corrections
   has_and_belongs_to_many :answers, :uniq => true
+  has_and_belongs_to_many(:tutorial_corrections, :uniq => true,
+                          :class_name => "Correction",
+                          :join_table => :tutorial_corrections)
 
   validates_presence_of :participant_number
   validates_uniqueness_of :participant_number

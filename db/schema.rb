@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090830225722) do
+ActiveRecord::Schema.define(:version => 20090902002900) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -124,16 +124,17 @@ ActiveRecord::Schema.define(:version => 20090830225722) do
     t.integer  "experimental_group_id"
     t.string   "phase"
     t.string   "page"
-    t.integer  "round",                   :default => 1
-    t.boolean  "tutorial_complete",       :default => false
-    t.boolean  "experiment_complete",     :default => false
-    t.boolean  "survey_complete",         :default => false
-    t.boolean  "all_complete",            :default => false
+    t.integer  "round",                                                 :default => 1
+    t.boolean  "tutorial_complete",                                     :default => false
+    t.boolean  "experiment_complete",                                   :default => false
+    t.boolean  "survey_complete",                                       :default => false
+    t.boolean  "all_complete",                                          :default => false
     t.text     "reported_earnings"
-    t.integer  "last_check",              :default => 0
-    t.boolean  "audited",                 :default => false
-    t.boolean  "to_be_audited",           :default => false
-    t.boolean  "audit_completed",         :default => false
+    t.integer  "last_check",                                            :default => 0
+    t.boolean  "audited",                                               :default => false
+    t.boolean  "to_be_audited",                                         :default => false
+    t.boolean  "audit_completed",                                       :default => false
+    t.decimal  "tutorial_cash",           :precision => 8, :scale => 2, :default => 0.0
   end
 
   create_table "questions", :force => true do |t|
@@ -182,6 +183,11 @@ ActiveRecord::Schema.define(:version => 20090830225722) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tutorial_corrections", :id => false, :force => true do |t|
+    t.integer "correction_id"
+    t.integer "participant_id"
   end
 
   create_table "tutorial_text_groups", :force => true do |t|

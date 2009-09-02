@@ -1,1 +1,66 @@
 <%=markdown get_text('body') %>
+
+<div class="example">
+  <div class="experiment-content">
+    <h1>Disclosure Report</h1>
+
+    <span class="bank">
+      <%= number_to_currency(@participant.tutorial_cash) %>
+    </span>
+
+    <div class="report">
+      <% form_tag({ :action => next_page }, :name => "report") do %>
+      <table border="0">
+        <tr>
+          <td style="text-align: right;">
+            <b>Disclosed Earnings</b>
+          </td>
+          <td>
+            $<input type="text" size="4" style="text-align:right;" name="reported_earnings" />
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b></b>
+          </td>
+          <td style="border-bottom: 1px solid black; text-align: right;">
+            x <%= number_to_percentage(@participant.experimental_group.tax_rate,
+                                       :precision => 0) %>
+          </td>
+          <td>
+            <script>
+              function estimate()
+              {
+                  report.estimated_due.value = (report.reported_earnings.value * <%= @participant.experimental_group.tax_rate.to_f/100 %>).toFixed(2);
+                  report.commit.disabled = false;
+              }
+            </script>
+            <input type="button" value="Estimate Payment" onclick="estimate();" />
+          </td>
+        </tr>
+        <tr style="margin-top: 10px;">
+          <td style="text-align: right;">
+            <b>Amount Due</b>
+          </td>
+          <td>
+            $<input type="text" disabled="true" size="4" style="text-align:right;" name="estimated_due"/>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:right;">
+            <%= submit_tag("Disclose Amount", :disabled => true) %>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+

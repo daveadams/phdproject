@@ -1,1 +1,75 @@
 <%=markdown get_text('body') %>
+
+<div class="example">
+  <div class="experiment-content">
+    <h1>Results Report</h1>
+
+    <span class="bank">
+      <%= number_to_currency(1.10) %>
+    </span>
+
+    <div class="audit-report">
+      <table border="0">
+        <tr>
+          <td style="text-align: right;">
+            <b>Amount Earned</b>
+          </td>
+          <td>
+            $1.75
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Amount Disclosed</b>
+          </td>
+          <td style="border-bottom: 1px solid black;">
+            $0.75
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Difference</b>
+          </td>
+          <td>
+            <b>$1.00</b>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b></b>
+          </td>
+          <td style="border-bottom: 1px solid black;">
+            x 20%
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Additional Payment Due</b>
+          </td>
+          <td>
+            $0.20
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Penalties</b>
+          </td>
+          <td style="border-bottom: 1px solid black;">
+            $0.30
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">
+            <b>Total Amount Due</b>
+          </td>
+          <td>
+            <b>$0.50</b>
+          </td>
+        </tr>
+      </table>
+
+      <p>You owe $0.50 in additional payments and penalties. This amount has been subtracted from your bank.</p>
+    </div>
+    <p><%= link_button("Proceed", :action => next_page) %></p>
+  </div>
+</div>

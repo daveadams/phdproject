@@ -65,8 +65,7 @@ earnings_task_title:
 earnings_task_body:
   page_name: earnings_task
   text_key: body
-  text: |
-    __EXAMPLE GOES HERE__
+  text:
 
 earnings_report_title:
   page_name: earnings_report
@@ -76,8 +75,7 @@ earnings_report_title:
 earnings_report_body:
   page_name: earnings_report
   text_key: body
-  text: |
-    __EXAMPLE GOES HERE__
+  text:
 
 tax_intro_title:
   page_name: tax_intro
@@ -102,8 +100,6 @@ tax_return_body:
   text_key: body
   text: |
     Try entering and calculating tax on different levels of earnings before choosing a level of earnings and finalizing the return.
-
-    __EXAMPLE GOES HERE__
 
 disclosure_intro_title:
   page_name: disclosure_intro
@@ -130,8 +126,6 @@ disclosure_report_body:
   text_key: body
   text: |
     Try entering and calculating the payment on different levels of earnings before choosing a level of earnings and finalizing your disclosure.
-
-    __EXAMPLE GOES HERE__
 
 audit_intro_title:
   page_name: audit_intro
@@ -167,8 +161,7 @@ audit_ok_title:
 audit_ok_body:
   page_name: audit_ok
   text_key: body
-  text: |
-    __EXAMPLE GOES HERE__
+  text:
 
 audit_error_title:
   page_name: audit_error
@@ -178,8 +171,7 @@ audit_error_title:
 audit_error_body:
   page_name: audit_error
   text_key: body
-  text: |
-    __EXAMPLE GOES HERE__
+  text:
 
 doublecheck_intro_title:
   page_name: doublecheck_intro
@@ -207,8 +199,6 @@ doublecheck_notify_body:
   text: |
     This message will appear if your earnings have been selected to be double-checked.
 
-    __EXAMPLE GOES HERE__
-
 doublecheck_ok_title:
   page_name: doublecheck_ok
   text_key: title
@@ -217,8 +207,7 @@ doublecheck_ok_title:
 doublecheck_ok_body:
   page_name: doublecheck_ok
   text_key: body
-  text: |
-    __EXAMPLE GOES HERE__
+  text:
 
 doublecheck_error_title:
   page_name: doublecheck_error
@@ -228,8 +217,7 @@ doublecheck_error_title:
 doublecheck_error_body:
   page_name: doublecheck_error
   text_key: body
-  text: |
-    __EXAMPLE GOES HERE__
+  text:
 
 completing_title:
   page_name: completing
