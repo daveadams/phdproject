@@ -91,7 +91,7 @@ module TestBot
   def start_round
     @participant.reload
     assert_equal("experiment", @participant.phase)
-    assert_equal("wait", @participant.page)
+    #assert_equal("wait", @participant.page)
     assert_equal(@participant.experimental_session.round, @participant.round)
 
     get_via_redirect("/experiment/wait")
@@ -127,8 +127,8 @@ module TestBot
       assert_equal("/experiment/complete", path)
       assert_equal("complete", @participant.page)
     else
-      assert_equal("/experiment/wait", path)
-      assert_equal("wait", @participant.page)
+      assert_equal("/experiment/begin", path)
+      assert_equal("begin", @participant.page)
     end
   end
 end

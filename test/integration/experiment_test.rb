@@ -19,38 +19,26 @@ class ExperimentTest < ActionController::IntegrationTest
     s.begin_experiment
 
     xs.reload
-    assert_equal(true, xs.phase_complete?)
+    assert_equal("tutorial", xs.phase)
+    assert_equal(false, xs.phase_complete?)
 
-    s.still_waiting
-    s.still_waiting
-    s.still_waiting
-    s.still_waiting
+    assert_nothing_raised { xs.lockdown }
 
     xs.reload
-    assert_equal(1, xs.round)
     assert_equal("tutorial", xs.phase)
+    assert_equal(true, xs.phase_complete?)
 
-    xs.next_phase
+    s.start_round
+
     xs.reload
     assert_equal(1, xs.round)
     assert_equal("experiment", xs.phase)
     assert_equal(false, xs.phase_complete?)
     assert_equal(false, xs.round_complete?)
 
-    s.start_round
     s.complete_task
 
     2.upto(s.participant.experimental_group.rounds) do |current_round|
-      xs.reload
-      assert_equal(current_round - 1, xs.round)
-      assert_equal("experiment", xs.phase)
-      assert_equal(false, xs.phase_complete?)
-      assert_equal(true, xs.round_complete?)
-
-      s.still_waiting
-      s.still_waiting
-
-      xs.next_round
       xs.reload
       assert_equal(current_round, xs.round)
       assert_equal("experiment", xs.phase)
@@ -58,6 +46,13 @@ class ExperimentTest < ActionController::IntegrationTest
       assert_equal(false, xs.round_complete?)
 
       s.start_round
+
+      xs.reload
+      assert_equal(current_round, xs.round)
+      assert_equal("experiment", xs.phase)
+      assert_equal(false, xs.phase_complete?)
+      assert_equal(false, xs.round_complete?)
+
       s.complete_task
     end
 
