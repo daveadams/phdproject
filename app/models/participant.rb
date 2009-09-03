@@ -184,6 +184,17 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def perform_audit?
+    audit_rate = self.experimental_group.audit_rate
+    correct_tax = -(self.income_for_current_round *
+                    (self.experimental_group.tax_rate.to_f/100))
+    if correct_tax != self.tax_for_current_round
+      audit_rate = self.experimental_group.noncompliance_audit_rate
+    end
+
+    rand((1/audit_rate).to_i) == 0
+  end
+
  protected
   def add_transaction(transaction_type, amount)
     ct = CashTransaction.new do |ct|

@@ -174,7 +174,7 @@ class ExperimentController < ApplicationController
       @participant.last_check = @participant.round
       @participant.save
 
-      if @participant.experimental_group.perform_audit?
+      if @participant.perform_audit?
         @participant.to_be_audited = true
         @participant.save
 
