@@ -2,8 +2,8 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Complete setup script for EC2 instance [2/5]
-   - [ ] packages -- sticking on mysql-server password
+** TODO Complete setup script for EC2 instance [3/5]
+   - [X] packages -- sticking on mysql-server password
    - [X] phdproject user
    - [X] mounts
    - [ ] app
@@ -145,7 +145,6 @@
    - [X] Double-check exp1
    - [X] Double-check exp2
 
-
 ** DONE Restore state checking to survey once fixtures are ready [2/2]
    CLOSED: [2009-08-31 Mon 20:36]
    - [X] Re-enable check_phase filter
@@ -156,7 +155,6 @@
    - [X] Build into wait action
    - [X] If experimental_group.round_complete? then xg.next_round
    - [X] Also auto phase advance from tutorial to experiment anyway
-
 
 * Tuesday, September 1
 ** DONE Real examples in tutorial [11/11]
