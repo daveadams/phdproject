@@ -8,7 +8,7 @@ class ExperimentalSessionNotInExperiment < ActiveRecord::ActiveRecordError; end
 class ExperimentalSessionNotReadyToAdvanceRound < ActiveRecord::ActiveRecordError; end
 
 class ExperimentalSession < ActiveRecord::Base
-  has_many :participants
+  has_many :participants, :order => "first_login"
   validates_uniqueness_of :name
   validates_presence_of :name
 
