@@ -2,8 +2,6 @@
 
 <div id="session-control">
 <% if @active_session.phase == "tutorial" %>
-  <b>Current Phase: Tutorial</b>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <% unless @active_session.is_locked_down %>
     <%= button_to_remote("Add Participants",
                          :url => { :action => :add_participants,
