@@ -228,5 +228,9 @@ class AdminController < ApplicationController
     if errored
       redirect_to(:action => :sessions)
     end
+
+    if request.xhr?
+      render(:partial => "participant_table")
+    end
   end
 end

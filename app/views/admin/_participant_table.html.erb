@@ -1,0 +1,26 @@
+<table class="participants" cellspacing="0">
+<tr class="participants-header">
+  <th>Participant Number</th>
+  <th>Experimental Group</th>
+  <th>Current Phase</th>
+  <th>Current Page</th>
+  <th>Cash</th>
+</tr>
+
+<%= render :partial => "current_participant",
+          :collection => @active_session.current_participants %>
+
+<% if @active_session.unseen_participants.length > 0 %>
+  <tr class="unseen-participants-header">
+    <th colspan="5">Unseen Participants</th>
+  </tr>
+<% end %>
+
+<%= render :partial => "unseen_participant",
+          :collection => @active_session.unseen_participants %>
+</table>
+<% if @active_session.current_participants.length > 0 %>
+  <% javascript_tag do %>
+    $('lockdown-button').disabled = false
+  <% end %>
+<% end %>

@@ -1,11 +1,17 @@
-<tr <% if current_participant.audited %>
-      class="current-participant audited-participant"
-    <% else %>
-      class="current-participant"
-    <% end %> id="<%= current_participant.participant_number %>">
+<tr class="current-participant" id="<%= current_participant.participant_number %>">
   <td class="participant-number"><%=h current_participant.participant_number %></td>
   <td><%=h current_participant.experimental_group.name %></td>
   <td><%=h current_participant.phase %><%= (":" + current_participant.round.to_s) if current_participant.phase == "experiment" %></td>
   <td><%=h current_participant.page %></td>
-  <td><%=h time_ago_in_words(current_participant.last_access, true) %> ago</td>
+  <td><%= number_to_currency(current_participant.cash) %></td>
+  <td>
+    <% if current_participant.audited %>
+      <span style="color:red"><b>AUDITED</b></span>
+    <% end %>
+  </td>
 </tr>
+<% if current_participant.last_access > 2.seconds.ago %>
+  <% javascript_tag do %>
+    <%= visual_effect(:highlight, current_participant.participant_number) %>
+  <% end %>
+<% end %>

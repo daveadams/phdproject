@@ -15,31 +15,11 @@
 
     <%= button_to("Lockdown", { :action => :lockdown, :id => @active_session.id },
                   :confirm => "Locking down a session removes all unseen participants. Are you sure you want to lock down '#{@active_session.name}'?",
+                  :id => "lockdown-button",
                   :disabled => (@active_session.current_participants.count < 1)) %>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <% end %>
-
-  <% if @active_session.is_locked_down %>
-    <%= button_to("Begin Experiment", { :action => :begin_experiment,
-                                        :id => @active_session.id },
-                  :confirm => "Are you sure you're ready to begin the experiment?",
-                  :disabled => !@active_session.phase_complete? ) %>
-  <% end %>
-
-<% elsif @active_session.phase == "experiment" %>
-  <b id="current-round">
-    Current Round: <%= @active_session.round %>/<%= @active_session.max_rounds %>
-  </b>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <% if @active_session.round < @active_session.max_rounds %>
-    <%= button_to("Advance Round", { :action => :advance_round,
-                                     :id => @active_session.id },
-                  :disabled => !@active_session.round_complete? ) %>
-  <% else %>
-    <%= button_to("Close Experiment Phase") %>
-  <% end %>
 <% end %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <b><%= link_to("Back to All Sessions", :action => :sessions) %></b>
 </div>
 <div id="controlrow<%= @active_session.id %>" style="display:none;width:500px;">
@@ -47,25 +27,16 @@
   </div>
 </div>
 
-<table class="participants" cellspacing="0">
-<tr class="participants-header">
-  <th>Participant Number</th>
-  <th>Experimental Group</th>
-  <th>Current Phase</th>
-  <th>Current Page</th>
-  <th>Last Access</th>
-</tr>
+<div id="participant-table">
+  <%= render(:partial => "participant_table") %>
+</div>
 
-<%= render :partial => "current_participant",
-          :collection => @active_session.current_participants %>
-
-<% if @active_session.unseen_participants.length > 0 %>
-  <tr class="unseen-participants-header">
-    <th colspan="5">Unseen Participants</th>
-  </tr>
-<% end %>
-
-<%= render :partial => "unseen_participant",
-          :collection => @active_session.unseen_participants %>
-</table>
+<script language="javascript">
+function constantlyUpdateTable()
+{
+    new Ajax.Updater('participant-table','/admin/status', {asynchronous:true, evalScripts:true, method:'get'})
+    setTimeout('constantlyUpdateTable();',1000);
+}
+setTimeout('constantlyUpdateTable();',1000);
+</script>
 
