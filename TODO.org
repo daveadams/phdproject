@@ -2,6 +2,46 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
+** TODO Automated multi-session test [8/17]
+   - [X] External test (put in util)
+   - [X] Use Mechanize
+   - [X] Start script with a participant ID and comply/nocomply/randomcomply
+   - [X] Method for random wait times between clicks
+     - [X] short
+     - [X] long
+   - [X] Import correction fixtures
+   - [X] Login
+     - [X] Load login page
+     - [X] Login successfully
+     - [X] Status feedback
+   - [X] Tutorial
+     - [X] Click through to first example
+     - [X] Work example
+     - [X] Click through to tax return
+     - [X] Fill out tax return
+     - [X] Click through the rest of the tutorial
+     - [X] Random back clicks until the end
+     - [X] Click on Begin button
+   - [X] Experiment
+     - [X] Reload wait screen every five seconds until redirected to begin
+     - [X] Click to task
+     - [X] Complete task with random number of fixes
+     - [X] Verify # of fixes
+     - [X] Fill out taxes per comply/noncomply, noncomply randomly
+     - [X] Click through, note if audit occurs
+     - [X] Click on through until wait or complete
+   - [ ] Survey
+     - [ ] Just choose randomly for each question
+     - [ ] Fill in the blanks use 0-100
+   - [ ] Complete
+   - [ ] Run test with 1 user
+   - [ ] Run test with 2 users
+   - [ ] Run test with 5 users
+   - [ ] Run test with 10 users
+   - [ ] Run test with 20 users
+   - [ ] Run test with 100 users
+   - [ ] Run all the tests against the EC2 server
+
 ** TODO Complete setup script for EC2 instance [3/5]
    - [X] packages -- sticking on mysql-server password
    - [X] phdproject user
@@ -9,33 +49,11 @@
    - [ ] app
    - [ ] iptables?
 
-** TODO Extensive integration testing for experiment [0/3]
-   - [ ] Test message functionality for each group
-   - [ ] Test corrections in various forms
-   - [ ] Ensure proper math
-     - [ ] Earnings
-     - [ ] Taxes
-     - [ ] Penalties
-
 ** TODO Autotimer on work page [0/4]
    - [ ] Background ajax call checking the server time
    - [ ] Server saves first load time to compare against (reloads won't break anything)
    - [ ] Update the timer based on server time remaining
    - [ ] Upon zero time, force submit
-** TODO Automated multi-session test [0/6]
-   - [ ] New integration test: the_full_multi
-   - [ ] Testbot for survey transition
-   - [ ] Testbot for survey
-   - [ ] Testbot for completion
-   - [ ] 2-20 simultaneous bots
-     - [ ] multiple threads?
-
-** TODO Status page live updates [0/4]
-   - [ ] Regular polling for changes
-   - [ ] Highlighting new activity
-   - [ ] Sort current participants by first_login
-   - [ ] Update control panel, too
-
 ** TODO Future fanciness [0/4]
    - [ ] Make experimental message a dramatic modal dialog over the top of the tax return page
    - [ ] Artificial delay with wait message on earnings calculation and audit calculation
@@ -171,4 +189,20 @@
    - [X] doublecheck_error
    - [X] Remove "example goes here" text from tutorial_texts.yml
          
+* Thursday, September 3
+** DONE Status page live updates [4/4]
+   CLOSED: [2009-09-03 Thu 21:48]
+   - [X] Regular polling for changes
+   - [X] Highlighting new activity
+   - [X] Sort current participants by first_login
+   - [X] Update control panel, too
+
+
+** DONE Vary audit rates by compliance [3/3]
+   CLOSED: [2009-09-03 Thu 19:00]
+   - [X] Add an additional audit rate to model
+   - [X] Add numbers to fixtures (1% compliant, 2% non-compliant)
+   - [X] Update audit selection method on participant to use appropriate value
+
+
 
