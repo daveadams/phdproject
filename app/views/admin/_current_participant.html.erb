@@ -12,7 +12,7 @@
     <% end %>
   </td>
 </tr>
-<% if current_participant.last_access > 2.seconds.ago %>
+<% if current_participant.last_access > 3.seconds.ago %>
   <% javascript_tag do %>
     <%= visual_effect(:highlight, current_participant.participant_number) %>
   <% end %>
