@@ -20,11 +20,13 @@
 <% @sessions.each do |session| %>
   <tr class="inactive-session" id="row<%= session.id %>">
     <td>
-      <% if session.unseen_participants.count > 0 and !@active_session %>
+      <% if session.unseen_participants.count > 0 and !@active_session and !session.is_complete %>
         <%= link_to("activate",
                     { :action => :activate_session, :id => session.id },
                     :method => :post,
                     :confirm => "Do you want to activate '#{session.name}'?") %>
+      <% elsif session.is_complete %>
+        <b>closed</b>
       <% else %>
         &nbsp;
       <% end %>
@@ -33,12 +35,16 @@
     <%= render(:partial => "session_participants",
                :object => session) %>
     <td>
-      <%= link_to_remote("add", :url => { :action => :add_participants, :id => session.id },
-                         :method => :get,
-                         :update => "controls#{session.id}",
-                         :complete => "$('controlrow#{session.id}').show();") %>
+      <% if !session.is_complete %>
+        <%= link_to_remote("add", :url => { :action => :add_participants, :id => session.id },
+                           :method => :get,
+                           :update => "controls#{session.id}",
+                           :complete => "$('controlrow#{session.id}').show();") %>
+      <% else %>
+        &nbsp;
+      <% end %>
 
-      <% if session.current_participants.count == 0 %>
+      <% if session.current_participants.count == 0 and !session.is_complete %>
         <%= link_to("delete",
                     { :action => :delete_session, :id => session.id },
                     :method => :post,
