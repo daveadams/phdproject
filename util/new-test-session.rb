@@ -1,5 +1,3 @@
-#!/home/da1/per/phd/script/runner
-
 participant_count = ARGV[0].to_i || 20
 pnfile = ARGV[1] || "pn.txt"
 

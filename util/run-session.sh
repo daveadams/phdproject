@@ -14,8 +14,7 @@ then
 fi
 
 if [ ! -r new-test-session.rb ] || [ ! -r testbot.rb ] || [ ! -r lockdown-current.rb ] ||
-    [ ! -r current-audit-count.rb ] || [ ! -r current-is-complete.rb ] ||
-    [ ! -x ../script/runner ] || [ ! -w $PWD ]
+    [ ! -r current-is-complete.rb ] || [ ! -x ../script/runner ] || [ ! -w $PWD ]
 then
     echo "ERROR: Please check your settings and run from the correct directory." >&2
 fi
@@ -58,9 +57,9 @@ fi
 
 AUDIT_COUNT=$(../script/runner 'puts ExperimentalSession.active.participants.find_all_by_audited(true).count')
 
-echo "Audit rate ($COMPLIANCE): $(../script/runner current-audit-count.rb)/$FINAL_PARTICIPANT_COUNT" |tee -a logs/audit-rate-log.txt
+echo "Audit rate ($COMPLIANCE): $AUDIT_COUNT/$FINAL_PARTICIPANT_COUNT" |tee -a logs/audit-rate-log.txt
 
-echo -n "Closing down session... "
+ho -n "Closing down session... "
 ../script/runner 'ExperimentalSession.active.set_complete'
 echo OK
 
