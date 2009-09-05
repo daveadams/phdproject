@@ -59,7 +59,7 @@ AUDIT_COUNT=$(../script/runner 'puts ExperimentalSession.active.participants.fin
 
 echo "Audit rate ($COMPLIANCE): $AUDIT_COUNT/$FINAL_PARTICIPANT_COUNT" |tee -a logs/audit-rate-log.txt
 
-ho -n "Closing down session... "
+echo -n "Closing down session... "
 ../script/runner 'ExperimentalSession.active.set_complete'
 echo OK
 
