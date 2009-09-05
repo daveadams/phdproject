@@ -355,3 +355,40 @@ until page.title == "Experiment: Work Complete"
   end
 end
 
+short_wait
+
+survey_page = 0
+log "Beginning survey..."
+pp page
+page = page.forms.first.click_button
+pp page
+while page.title != "Experiment Complete"
+  survey_page += 1
+  if page.title != "Survey"
+    die "Unknown page: '#{page.title}'"
+  end
+
+  survey_form = page.forms.first
+  page.root.css("div.error").collect { |div| div.content }.each do |error_text|
+    log "WARNING: Survey error '#{error_text}'"
+  end
+
+  # handle multiple choice questions
+  survey_form.radiobuttons.collect { |rb| rb.name }.uniq.each do |rbq|
+    rbs = survey_form.radiobuttons_with(:name => rbq)
+    rbs[rand(rbs.length)].click
+  end
+
+  # handle f-i-t-b questions
+  survey_form.fields.each do |field|
+    field.value = rand(101).to_s
+  end
+
+  short_wait
+
+  log "Submitting survey page #{survey_page}..."
+  page = survey_form.click_button
+end
+
+log "Experiment Complete"
+
