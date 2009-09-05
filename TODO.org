@@ -2,7 +2,8 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-** TODO Automated multi-session test [8/17]
+* DONE Automated multi-session test [17/17]
+  CLOSED: [2009-09-05 Sat 12:08]
    - [X] External test (put in util)
    - [X] Use Mechanize
    - [X] Start script with a participant ID and comply/nocomply/randomcomply
@@ -30,179 +31,63 @@
      - [X] Fill out taxes per comply/noncomply, noncomply randomly
      - [X] Click through, note if audit occurs
      - [X] Click on through until wait or complete
-   - [ ] Survey
-     - [ ] Just choose randomly for each question
-     - [ ] Fill in the blanks use 0-100
-   - [ ] Complete
-   - [ ] Run test with 1 user
-   - [ ] Run test with 2 users
-   - [ ] Run test with 5 users
-   - [ ] Run test with 10 users
-   - [ ] Run test with 20 users
-   - [ ] Run test with 100 users
-   - [ ] Run all the tests against the EC2 server
+   - [X] Survey
+     - [X] Get there successfully from experiment
+     - [X] Just choose randomly for each question
+     - [X] Fill in the blanks use 0-100
+   - [X] Complete
+   - [X] Script to init a new test session
+   - [X] Script to kick off a test session
+   - [X] Run test with 1 user
+   - [X] Run test with 2 users
+   - [X] Run test with 5 users
+   - [X] Run test with 10 users
+   - [X] Run test with 20 users
+         Blew up down to 12???
+         Did another run separating testbot starts by a second and it ended up okay
+         Must be a side effect of starting the sessions too close together, but I still can't
+         figure out why it would *delete* them. Too much MySQL load?
 
-** TODO Complete setup script for EC2 instance [3/5]
+* TODO Complete setup script for EC2 instance [3/6]
    - [X] packages -- sticking on mysql-server password
    - [X] phdproject user
    - [X] mounts
-   - [ ] app
-   - [ ] iptables?
+   - [ ] Add git repo to github
+     - [ ] Figure out how to import an existing repo
+     - [ ] Do it
+   - [ ] Set up the app on the /apps volume
+   - [ ] Last step of setup script should be to startup mongrels and httpd
 
-** TODO Autotimer on work page [0/4]
+* TODO Run tests against EC2 instance [0/5]
+  - [ ] Give tests slower timing
+  - [ ] Update test script to point to EC2
+  - [ ] Update test script to track response times
+  - [ ] Also use vmstat to track server load
+  - [ ] Test against each EC2 size
+
+* TODO Verify audit rates [0/3]
+  - [ ] Run these tests fast against local machine
+  - [ ] Run 200 tests with 5 honest participants -- should audit 1 person on average
+  - [ ] Run 200 tests with 5 dishonest participants -- should audit 2 people on average
+
+* TODO Necessary admin features [0/7]
+  - [ ] Link to deactivate a broken participant
+  - [ ] Link to close a session
+  - [ ] Move closed sessions to the end of the list
+  - [ ] Move create session form to the top of the sessions page
+  - [ ] Participant activity log report linked from participant number
+  - [ ] Page to print off participant numbers
+  - [ ] CSV export of data for a session
+
+* TODO Autotimer on work page [0/4]
    - [ ] Background ajax call checking the server time
    - [ ] Server saves first load time to compare against (reloads won't break anything)
    - [ ] Update the timer based on server time remaining
    - [ ] Upon zero time, force submit
-** TODO Future fanciness [0/4]
+* TODO Future fanciness [0/4]
    - [ ] Make experimental message a dramatic modal dialog over the top of the tax return page
    - [ ] Artificial delay with wait message on earnings calculation and audit calculation
    - [ ] Make sure firefox's spellcheck can be turned off
    - [ ] Restyle example pages to be different than other tutorial pages
-
-
-* Sunday, August 30
-** DONE Fill-in-the-blank survey answers [4/4]
-   CLOSED: [2009-08-30 Sun 16:45]
-   - [X] Field on question that indicates this is a fill-in-the-blank
-   - [X] Min/max fields
-   - [X] Display correctly
-   - [X] Fixture to test
-
-** DONE EC2 basics [7/7]
-   CLOSED: [2009-08-30 Sun 16:46]
-   - [X] persistent storage figured out
-   - [X] firewall figured out
-   - [X] appropriate AMI
-   - [X] Rails up and running
-   - [X] httpd up and running
-   - [X] mysql up and running
-   - [X] phd app up and running
-
-** DONE Survey display logic [1/1]
-   CLOSED: [2009-08-30 Sun 17:36]
-   - [X] Page selection from participant
-     - [X] next_survey_page method
-     - [X] fixtures to link participants to surveys and pages thru experimental_group
-
-** DONE Handle survey answers [2/2]
-   CLOSED: [2009-08-30 Sun 18:46]
-   - [X] Multiple choice
-   - [X] Fill-in-the-blank
-     - [X] find-or-create answer object
-     - [X] Check input against minimum and maximum
-
-** DONE Completion functionality [3/3]
-   CLOSED: [2009-08-30 Sun 19:26]
-   - [X] Thanks message
-   - [X] Shut down session
-   - [X] Check that they're really complete
-
-** DONE Survey functionality [5/5]
-   CLOSED: [2009-08-30 Sun 19:25]
-   - [X] Build a simple two-page survey in fixtures
-   - [X] Required controller/view logic to handle each page
-   - [X] Fixtures for a third page based on answers to a past question
-   - [X] Required controller logic to handle that
-   - [X] Controller logic to mark survey complete for the participant
-
-* Monday, August 31
-** DONE Full build-out of survey fixtures [11/11]
-   CLOSED: [2009-08-31 Mon 20:35]
-   - [X] Find prototype for pages 1-6
-   - [X] Build all questions, answers, and pages
-     - [X] page 1
-       - [X] age
-       - [X] sex
-       - [X] marital status
-       - [X] income belief
-       - [X] page
-       - [X] items
-     - [X] page 2
-       - [X] class
-       - [X] major
-       - [X] econnum
-       - [X] gpa
-       - [X] page
-       - [X] items
-     - [X] page 3
-       - [X] businessmajor
-       - [X] page
-       - [X] items
-       - [X] dependency
-     - [X] page 4
-       - [X] everfiled
-       - [X] page
-       - [X] items
-     - [X] page 5
-       - [X] itemize
-       - [X] whoprepares
-       - [X] howmanyyears
-         - [X] fill in the blank
-       - [X] evercontacted
-       - [X] page
-       - [X] items
-       - [X] dependency
-     - [X] page 6
-       - [X] religious
-       - [X] morallywrong
-       - [X] knowaudit
-       - [X] auditprobabilityfull
-         - [X] fill in the blank
-       - [X] auditprobabilitypartial
-         - [X] fill in the blank
-       - [X] atwhatlevel
-         - [X] fill in the blank
-   - [X] Find logic for dependent question(s)
-   - [X] Build in dependencies
-   - [X] Find context-neutral differences
-   - [X] Build context-neutral version
-   - [X] Link to experimental groups
-   - [X] Double-check default
-   - [X] Double-check context-neutral
-   - [X] Double-check exp1
-   - [X] Double-check exp2
-
-** DONE Restore state checking to survey once fixtures are ready [2/2]
-   CLOSED: [2009-08-31 Mon 20:36]
-   - [X] Re-enable check_phase filter
-   - [X] Enable shared filters
-
-** DONE Auto round advance [3/3]
-   CLOSED: [2009-08-31 Mon 20:45]
-   - [X] Build into wait action
-   - [X] If experimental_group.round_complete? then xg.next_round
-   - [X] Also auto phase advance from tutorial to experiment anyway
-
-* Tuesday, September 1
-** DONE Real examples in tutorial [11/11]
-   CLOSED: [2009-09-01 Tue 21:25]
-   - [X] earnings_task
-   - [X] earnings_report
-   - [X] tax_return
-   - [X] disclosure_report
-   - [X] audit_notify
-   - [X] doublecheck_notify
-   - [X] audit_ok
-   - [X] doublecheck_ok
-   - [X] audit_error
-   - [X] doublecheck_error
-   - [X] Remove "example goes here" text from tutorial_texts.yml
-         
-* Thursday, September 3
-** DONE Status page live updates [4/4]
-   CLOSED: [2009-09-03 Thu 21:48]
-   - [X] Regular polling for changes
-   - [X] Highlighting new activity
-   - [X] Sort current participants by first_login
-   - [X] Update control panel, too
-
-
-** DONE Vary audit rates by compliance [3/3]
-   CLOSED: [2009-09-03 Thu 19:00]
-   - [X] Add an additional audit rate to model
-   - [X] Add numbers to fixtures (1% compliant, 2% non-compliant)
-   - [X] Update audit selection method on participant to use appropriate value
-
 
 
