@@ -12,6 +12,7 @@ require 'pp'
 require 'yaml'
 
 PROJECT_URL = "http://da1.edtech.vt.edu:3000"
+#PROJECT_URL = "http://174.129.10.75:3000"
 CORRECTIONS = YAML::load_file(File.join("../test/fixtures/corrections.yml"))
 
 if ARGV.length < 1
@@ -25,7 +26,7 @@ end
 participant_id = ARGV[0]
 compliance = ARGV[1] || "random"
 
-if not %w( comply nocomply random).include? compliance
+if not %w( comply nocomply random ).include? compliance
   STDERR.puts "ERROR: compliance pattern must be \"comply\" \"nocomply\" or \"random\""
   exit 1
 end
@@ -55,7 +56,7 @@ def long_wait
   log "Long wait..."
   # 10-20 seconds
   #sleep rand(11) + 10
-  sleep 2
+  sleep 1
 end
 
 bot = WWW::Mechanize.new
@@ -359,9 +360,7 @@ short_wait
 
 survey_page = 0
 log "Beginning survey..."
-pp page
 page = page.forms.first.click_button
-pp page
 while page.title != "Experiment Complete"
   survey_page += 1
   if page.title != "Survey"
