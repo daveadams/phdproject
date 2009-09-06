@@ -48,34 +48,63 @@
          Must be a side effect of starting the sessions too close together, but I still can't
          figure out why it would *delete* them. Too much MySQL load?
 
-* TODO Complete setup script for EC2 instance [3/6]
+* DONE Complete setup script for EC2 instance [7/7]
+  CLOSED: [2009-09-05 Sat 15:11]
    - [X] packages -- sticking on mysql-server password
    - [X] phdproject user
    - [X] mounts
-   - [ ] Add git repo to github
-     - [ ] Figure out how to import an existing repo
-     - [ ] Do it
-   - [ ] Set up the app on the /apps volume
-   - [ ] Last step of setup script should be to startup mongrels and httpd
+   - [X] Add git repo to github
+     - [X] Figure out how to import an existing repo
+     - [X] Do it
+   - [X] Set up the app on the /apps volume
+   - [X] Next to last step of setup script should be to do a git pull as phdproject
+   - [X] Last step of setup script should be to startup mongrels and httpd as phdproject
 
-* TODO Run tests against EC2 instance [0/5]
-  - [ ] Give tests slower timing
-  - [ ] Update test script to point to EC2
-  - [ ] Update test script to track response times
-  - [ ] Also use vmstat to track server load
-  - [ ] Test against each EC2 size
+* DONE Run tests against EC2 instance [3/3]
+  CLOSED: [2009-09-05 Sat 15:55]
+  - [X] Give tests slower timing
+  - [X] Update test script to point to EC2
+  - [X] Also use vmstat to track server load
+        $ vmstat -a -n 5 > perf.log
+        20 bots going one second per page load pretty well maxes out a c1.large
 
-* TODO Verify audit rates [0/3]
-  - [ ] Run these tests fast against local machine
-  - [ ] Run 200 tests with 5 honest participants -- should audit 1 person on average
-  - [ ] Run 200 tests with 5 dishonest participants -- should audit 2 people on average
+* TODO Verify audit rates [2/3]
+  - [X] Run these tests fast against local machine
+  - [X] Run 200 tests with 5 honest participants: should audit 1 person on average, 200 total
+        FOUND THE BUG! comparing recalculated correct tax with the paid tax was resulting in
+        noncompliance audit rates over half the time.
+        Letting it run overnight anyway to doublecheck.
+  - [ ] Run 200 tests with 5 dishonest participants: should audit 2 people on average, 400 total
 
-* TODO Necessary admin features [0/7]
+* TODO Participant detail page [3/5]
+  - [ ] Admin summary up top
+  - [ ] Management functionality
+    - [ ] Reset browser session
+    - [ ] Drop from experimental session
+    - [ ] Force complete?
+    - [ ] Mark paid
+      - [ ] Add paid_at timestamp to participant model
+      - [ ] Should only work if participant is complete
+  - [X] Details
+  - [X] Round history
+    - [X] Earnings
+    - [X] Reported
+    - [X] Taxes
+    - [X] Audited
+    - [X] Backtax
+    - [X] Penalty
+  - [X] Full activity log
+    - [X] highlight errors
+    - [X] highlight sequence errors
+
+* TODO Necessary admin features [0/8]
+  - [ ] Link to fix an errored participant (set is_active to false)
   - [ ] Link to deactivate a broken participant
-  - [ ] Link to close a session
+        disassociate from experimental session? or mark some other way?
+  - [ ] Link to close an experimental session
+        some way to force-close a useless session
   - [ ] Move closed sessions to the end of the list
   - [ ] Move create session form to the top of the sessions page
-  - [ ] Participant activity log report linked from participant number
   - [ ] Page to print off participant numbers
   - [ ] CSV export of data for a session
 
