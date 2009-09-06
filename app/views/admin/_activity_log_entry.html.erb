@@ -15,6 +15,10 @@
             "<span style=\"color:red;\"><b>SEQUENCE ERROR:</b></span> " +
               "(/#{activity_log_entry.controller}/#{activity_log_entry.action}) " +
               "#{activity_log_entry.details}"
+          when "critical":
+            "<span style=\"color:red;\"><b>APPLICATION ERROR:</b></span> " +
+              "(/#{activity_log_entry.controller}/#{activity_log_entry.action})<br />" +
+              "#{activity_log_entry.details}"
           else
             "#{activity_log_entry.event} (???) #{activity_log_entry.details}"
         end %>

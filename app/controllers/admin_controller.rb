@@ -248,6 +248,30 @@ class AdminController < ApplicationController
     end
     @page_title = "Participant Detail: #{@participant.participant_number}"
 
+  end
+
+  def participant_activity_log
+    redirect_to(:action => :sessions) unless request.xhr?
+
+    begin
+      @participant = Participant.find(request[:id])
+    rescue
+      render :text => "ERROR: Could not find participant."
+    end
+
+    @activity = @participant.activity_logs.sort_by { |log| log.created_at }
+    render :layout => false
+  end
+
+  def participant_round_history
+    redirect_to(:action => :sessions) unless request.xhr?
+
+    begin
+      @participant = Participant.find(request[:id])
+    rescue
+      render :text => "ERROR: Could not find participant."
+    end
+
     @earnings_history = (1..20).collect do |round|
       @participant.cash_transactions.find_by_transaction_type_and_round("income", round)
     end
@@ -275,18 +299,5 @@ class AdminController < ApplicationController
         "Yes"
       end
     end
-  end
-
-  def participant_activity_log
-    redirect_to(:action => :sessions) unless request.xhr?
-
-    begin
-      @participant = Participant.find(request[:id])
-    rescue
-      render :text => "ERROR: Could not find participant."
-    end
-
-    @activity = @participant.activity_logs.sort_by { |log| log.created_at }
-    render :layout => false
   end
 end

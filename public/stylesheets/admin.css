@@ -71,3 +71,8 @@ table#participant-details td
 {
     border-bottom: 1px solid #DDD;
 }
+
+table#activity-log-table td
+{
+    border-bottom: 1px solid #DDD;
+}
