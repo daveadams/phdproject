@@ -4,10 +4,6 @@
   <div class="experiment-content">
     <h1>Individual Income Tax Return</h1>
 
-    <span class="bank">
-      <%= number_to_currency(@participant.tutorial_cash) %>
-    </span>
-
     <div class="report">
       <% form_tag({ :action => next_page }, :name => "report") do %>
       <table border="0" style="float:left; margin-right: 100px;">
@@ -72,6 +68,7 @@
           <td><%= number_to_currency(@participant.tutorial_cash) %></td>
         </tr>
       </table>
+      <br clear="all" />
       <% end %>
     </div>
   </div>

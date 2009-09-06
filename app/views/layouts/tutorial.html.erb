@@ -19,7 +19,8 @@
         <% if prev_page -%>
           <%= link_button("<< Back", :action => prev_page) %>
         <% end -%>
-        <% if next_page -%>
+        <% if next_page and
+               not %w( earnings_task tax_return disclosure_report ).include? action_name -%>
           <%= link_button("Next >>", :action => next_page) %>
         <% end -%>
       </div>
