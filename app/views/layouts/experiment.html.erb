@@ -7,16 +7,17 @@
 
   <body>
     <div class="content">
+      <% if @display_bank %>
+        <span class="bank"><%= number_to_currency(@participant.cash) %></span>
+      <% end %>
+
       <h1><%=h((get_text("title") || @page_title)) %></h1>
+
       <% if flash[:error] %>
         <div class="error"><%= flash[:error] %></div>
       <% end %>
 
       <%= yield :layout %>
-
-      <% if @display_bank %>
-        <span class="bank"><%= number_to_currency(@participant.cash) %></span>
-      <% end %>
     </div>
   </body>
 </html>

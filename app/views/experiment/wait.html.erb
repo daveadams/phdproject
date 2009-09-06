@@ -8,6 +8,9 @@
 
   <body>
     <div class="content">
+      <% if @display_bank %>
+        <span class="bank"><%= number_to_currency(@participant.cash) %></span>
+      <% end %>
       <div class="wait-message">
         <h1>Please Wait...</h1>
         <p>The next round will commence as soon as everyone is ready.</p>
@@ -16,9 +19,6 @@
         </div>
       </div>
     </div>
-    <% if @display_bank %>
-      <span class="bank"><%= number_to_currency(@participant.cash) %></span>
-    <% end %>
   </body>
 </html>
 
