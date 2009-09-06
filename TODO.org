@@ -68,6 +68,35 @@
         $ vmstat -a -n 5 > perf.log
         20 bots going one second per page load pretty well maxes out a c1.large
 
+* DONE Earnings report with no fixes [1/1]
+  CLOSED: [2009-09-06 Sun 15:35]
+  - [X] Use <ul> instead of <ol> for "None"
+
+* DONE Force 15 second delay on experimental message [2/2]
+  CLOSED: [2009-09-06 Sun 16:10]
+  - [X] Button disabled by default
+  - [X] setTimeout(15000)
+
+* DONE Add earnings summary to tax return page [3/3]
+  CLOSED: [2009-09-06 Sun 16:24]
+  - [X] Display how much earned this round
+  - [X] Display total bank
+  - [X] Add similar to tutorial
+
+* DONE Add formatting for audit event in activity log [1/1]
+  CLOSED: [2009-09-06 Sun 16:30]
+  - [X] when "audit": blah
+
+* DONE Remove next button from tutorial examples [2/2]
+  CLOSED: [2009-09-06 Sun 18:00]
+  - [X] Earnings task
+  - [X] Tax return
+
+* DONE Fix bank overlap with text [2/2]
+  CLOSED: [2009-09-06 Sun 18:18]
+  - [X] Switch CSS to float:right
+  - [X] Move the span in the views to the top of the page
+
 * TODO Verify audit rates [2/3]
   - [X] Run these tests fast against local machine
   - [X] Run 200 tests with 5 honest participants: should audit 1 person on average, 200 total
@@ -97,26 +126,56 @@
     - [X] highlight errors
     - [X] highlight sequence errors
 
-* TODO Necessary admin features [0/8]
-  - [ ] Link to fix an errored participant (set is_active to false)
-  - [ ] Link to deactivate a broken participant
-        disassociate from experimental session? or mark some other way?
+* TODO Server-side tax estimate processing [0/3]
+  - [ ] Submit estimate request to the server
+  - [ ] Add errors for "it's not possible to earn over $1.75 in a round"
+  - [ ] Log estimate requests
+
+* TODO Prevent bank balance from going below zero [0/2]
+  - [ ] Catch a resulting balance of < zero
+  - [ ] And add in an adjustment to fix it
+
+* TODO Audit exception on overreporting [0/2]
+  - [ ] Still display failed audit message
+  - [ ] But with zero penalties and zero taxes
+
+* TODO Necessary admin features [1/5]
   - [ ] Link to close an experimental session
         some way to force-close a useless session
   - [ ] Move closed sessions to the end of the list
-  - [ ] Move create session form to the top of the sessions page
+  - [X] Move create session form to the top of the sessions page
   - [ ] Page to print off participant numbers
-  - [ ] CSV export of data for a session
 
 * TODO Autotimer on work page [0/4]
    - [ ] Background ajax call checking the server time
    - [ ] Server saves first load time to compare against (reloads won't break anything)
    - [ ] Update the timer based on server time remaining
    - [ ] Upon zero time, force submit
-* TODO Future fanciness [0/4]
-   - [ ] Make experimental message a dramatic modal dialog over the top of the tax return page
-   - [ ] Artificial delay with wait message on earnings calculation and audit calculation
+
+* TODO Future fanciness [0/2]
    - [ ] Make sure firefox's spellcheck can be turned off
    - [ ] Restyle example pages to be different than other tutorial pages
+
+* TODO Reporting [0/5]
+  - [ ] Add report_csv method to participant
+  - [ ] Move round history collections into participant
+    - [ ] Pull from there for /admin/participant
+    - [ ] Use those for the CSV
+  - [ ] Fields
+    - [ ] Participant Number
+    - [ ] Experimental Group
+    - [ ] For each round:
+      - [ ] earnings
+      - [ ] reported
+      - [ ] paid tax
+      - [ ] correct tax
+      - [ ] audited
+      - [ ] paid backtax
+      - [ ] paid penalties
+      - [ ] percent reported
+      - [ ] compliance
+      - [ ] time spent on experimental message (if appropriate)
+  - [ ] Add report_csv for experimental_session
+  - [ ] Add page to admin for selecting experimental sessions to report from
 
 
