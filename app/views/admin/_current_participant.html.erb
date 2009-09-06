@@ -1,5 +1,8 @@
 <tr class="current-participant" id="<%= current_participant.participant_number %>">
-  <td class="participant-number"><%=h current_participant.participant_number %></td>
+  <td class="participant-number">
+    <%= link_to(h(current_participant.participant_number),
+                :action => :participant, :id => current_participant.id) %>
+  </td>
   <td><%=h current_participant.experimental_group.name %></td>
   <td><%=h current_participant.phase %><%= (":" + current_participant.round.to_s) if current_participant.phase == "experiment" %></td>
   <td><%=h current_participant.page %></td>

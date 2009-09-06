@@ -72,7 +72,7 @@ class Participant < ActiveRecord::Base
 
     ActivityLog.create(:event => ActivityLog::REPORT,
                        :participant_id => self.id,
-                       :details => "Reported earnings of $#{amount}")
+                       :details => sprintf("Reported earnings of $%0.2f", amount))
     self.reported_earnings[self.round] = amount
     self.save
   end
@@ -207,9 +207,17 @@ class Participant < ActiveRecord::Base
     end
     ct.save!
 
+    log_details = case transaction_type
+                    when "income": sprintf("Earned income of $%0.2f", amount)
+                    when "tax": sprintf("Paid taxes of $%0.2f", amount)
+                    when "backtax": sprintf("Paid back taxes of $%0.2f", amount)
+                    when "penalty": sprintf("Paid penalty of $%0.2f", amount)
+                    else
+                      sprintf("Transaction type '#{transaction_type}' of $%0.2f", amount)
+                  end
     ActivityLog.create(:event => ActivityLog::CASH_TRANSACTION,
                        :participant_id => self.id,
-                       :details => "'#{transaction_type}' #{amount}")
+                       :details => log_details)
     self.reload
   end
 

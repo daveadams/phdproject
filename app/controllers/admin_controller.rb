@@ -233,4 +233,60 @@ class AdminController < ApplicationController
       render(:partial => "participant_table")
     end
   end
+
+  def participant
+    begin
+      if request[:participant_number]
+        @participant = Participant.find_by_participant_number(request[:participant_number])
+        raise if @participant.nil?
+      else
+        @participant = Participant.find(request[:id])
+      end
+    rescue
+      flash[:error] = "Could not find that participant."
+      redirect_to(:action => :status)
+    end
+    @page_title = "Participant Detail: #{@participant.participant_number}"
+
+    @earnings_history = (1..20).collect do |round|
+      @participant.cash_transactions.find_by_transaction_type_and_round("income", round)
+    end
+
+    @reporting_history = (1..20).collect do |round|
+      @participant.reported_earnings[round]
+    end
+
+    @tax_paid_history = (1..20).collect do |round|
+      @participant.cash_transactions.find_by_transaction_type_and_round("tax", round)
+    end
+
+    @backtax_history = (1..20).collect do |round|
+      @participant.cash_transactions.find_by_transaction_type_and_round("backtax", round)
+    end
+
+    @penalty_history = (1..20).collect do |round|
+      @participant.cash_transactions.find_by_transaction_type_and_round("penalty", round)
+    end
+
+    @audit_history = (0..19).collect do |i|
+      if @backtax_history[i].nil? and @penalty_history[i].nil?
+        "No"
+      else
+        "Yes"
+      end
+    end
+  end
+
+  def participant_activity_log
+    redirect_to(:action => :sessions) unless request.xhr?
+
+    begin
+      @participant = Participant.find(request[:id])
+    rescue
+      render :text => "ERROR: Could not find participant."
+    end
+
+    @activity = @participant.activity_logs.sort_by { |log| log.created_at }
+    render :layout => false
+  end
 end

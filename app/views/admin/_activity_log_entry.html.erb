@@ -1,0 +1,24 @@
+<tr>
+  <td>
+    <%= activity_log_entry.created_at.strftime("%m/%d&nbsp;%H:%M:%S") %>
+  </td>
+  <td>
+    <nobr>
+    <%= case activity_log_entry.event
+          when "login": "Login as '#{activity_log_entry.details}'"
+          when "pageload": "Load /#{activity_log_entry.controller}/#{activity_log_entry.action}"
+          when "cashtrans": activity_log_entry.details
+          when "report": activity_log_entry.details
+          when "error":
+            "<span style=\"color:red;\"><b>ERROR:</b></span> #{activity_log_entry.details}"
+          when "seqerror":
+            "<span style=\"color:red;\"><b>SEQUENCE ERROR:</b></span> " +
+              "(/#{activity_log_entry.controller}/#{activity_log_entry.action}) " +
+              "#{activity_log_entry.details}"
+          else
+            "#{activity_log_entry.event} (???) #{activity_log_entry.details}"
+        end %>
+    </nobr>
+  </td>
+</tr>
+

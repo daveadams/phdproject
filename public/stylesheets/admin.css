@@ -67,3 +67,7 @@ form.button-to, form.button-to div
     display: inline;
 }
 
+table#participant-details td
+{
+    border-bottom: 1px solid #DDD;
+}

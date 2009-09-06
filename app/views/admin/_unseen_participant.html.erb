@@ -1,5 +1,8 @@
 <tr class="unseen-participant">
-  <td class="participant-number"><%=h unseen_participant.participant_number %></td>
+  <td class="participant-number">
+    <%= link_to(h(unseen_participant.participant_number),
+                :action => :participant, :id => unseen_participant.id) %>
+  </td>
   <td><%=h unseen_participant.experimental_group.name %></td>
   <td><%=h unseen_participant.phase %></td>
   <td><%=h unseen_participant.page %></td>

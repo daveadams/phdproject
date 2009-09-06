@@ -1,0 +1,181 @@
+<div>
+<h2><%= if @participant.all_complete
+          "COMPLETE"
+        elsif @participant.first_login.nil?
+          "NEVER LOGGED IN"
+        else
+          "INCOMPLETE"
+        end %></h2>
+</div>
+
+<div>
+  <table cellspacing="0" cellpadding="5" id="participant-details">
+    <tr>
+      <td><b>Participant Number</b></td>
+      <td><%=h @participant.participant_number %></td>
+    </tr>
+    <tr>
+      <td><b>First Login</b></td>
+      <td><%= if @participant.first_login
+                @participant.first_login.strftime("%Y-%m-%d %H:%M:%S") +
+                  " (" + time_ago_in_words(@participant.first_login, true) + " ago)"
+              else
+                "Never"
+              end %></td>
+    </tr>
+    <tr>
+      <td><b>Last Access</b></td>
+      <td><%= if @participant.last_access
+                @participant.last_access.strftime("%Y-%m-%d %H:%M:%S") +
+                  " (" + time_ago_in_words(@participant.last_access, true) + " ago)"
+              else
+                "Never"
+              end %></td>
+    </tr>
+    <tr>
+      <td><b>Experimental Session</b></td>
+      <td>
+        <%=h @participant.experimental_session.name %>
+        <% if @participant.experimental_session.is_active %>
+          <b>(current)</b>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Experimental Group</b></td>
+      <td><%=h @participant.experimental_group.name %></td>
+    </tr>
+    <tr>
+      <td><b>Last Page Viewed</b></td>
+      <td><%= if @participant.phase
+              "/#{@participant.phase}/#{@participant.page}"
+              else
+              "&nbsp;"
+              end %></td>
+    </tr>
+    <tr>
+      <td><b>Cash</b></td>
+      <td><%= number_to_currency(@participant.cash) %></td>
+    </tr>
+    <tr>
+      <td><b>Audited?</b></td>
+      <td><%= if @participant.audited
+              "Yes"
+              else
+              "No"
+              end %></td>
+    </tr>
+    <tr>
+      <td><b>Complete?</b></td>
+      <td><%= if @participant.all_complete
+              "Yes"
+              else
+              "No"
+              end %></td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top: 40px;">
+  <h2>Round History</h2>
+  <table cellpadding="6" cellspacing="0" id="round-history" border="1">
+    <tr>
+      <td></td>
+      <th>01</th>
+      <th>02</th>
+      <th>03</th>
+      <th>04</th>
+      <th>05</th>
+      <th>06</th>
+      <th>07</th>
+      <th>08</th>
+      <th>09</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+    </tr>
+    <tr>
+      <th>Earned</th>
+        <% @earnings_history.each do |earnings| %>
+          <td><%= if earnings.nil?
+                    "-"
+                  else
+                    number_to_currency(earnings.amount, :unit => "")
+                  end %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <th>Reported</th>
+        <% (0..19).each do |i| %>
+          <td><% if @reporting_history[i].nil? %>
+                   -
+              <% else
+                   if @earnings_history[i] and
+                       (number_to_currency(@earnings_history[i].amount) !=
+                        number_to_currency(@reporting_history[i]))
+                     style = "color:red;"
+                   else
+                     style = ""
+                   end %>
+                   <span style="<%= style %>">
+                     <%= number_to_currency(@reporting_history[i], :unit => "") %>
+                   </span>
+              <% end %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <th>Tax Paid</th>
+        <% @tax_paid_history.each do |tax_paid| %>
+          <td><%= if tax_paid.nil?
+                    "-"
+                  else
+                    number_to_currency(tax_paid.amount, :unit => "")
+                  end %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <th>Audited</th>
+        <% @audit_history.each do |ah| %>
+          <td><%=h ah %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <th>Back Tax</th>
+        <% @backtax_history.each do |backtax| %>
+          <td><%= if backtax.nil?
+                    "-"
+                  else
+                    number_to_currency(backtax.amount, :unit => "")
+                  end %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <th>Penalty</th>
+        <% @penalty_history.each do |penalty| %>
+          <td><%= if penalty.nil?
+                    "-"
+                  else
+                    number_to_currency(penalty.amount, :unit => "")
+                  end %></td>
+        <% end %>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top: 40px;">
+  <h2>Full Activity Log</h2>
+
+  <p><%= link_to_remote("View Activity Log", :update => "activity-log",
+                        :url => { :action => :participant_activity_log,
+                                  :id => @participant.id }) %></p>
+  <div id="activity-log">
+  </div>
+</div>
