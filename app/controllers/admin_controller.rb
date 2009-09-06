@@ -242,61 +242,63 @@ class AdminController < ApplicationController
       else
         @participant = Participant.find(request[:id])
       end
+      @page_title = "Participant Detail: #{@participant.participant_number}"
     rescue
       flash[:error] = "Could not find that participant."
-      redirect_to(:action => :status)
+      redirect_to(:action => :sessions)
     end
-    @page_title = "Participant Detail: #{@participant.participant_number}"
-
   end
 
   def participant_activity_log
-    redirect_to(:action => :sessions) unless request.xhr?
-
-    begin
-      @participant = Participant.find(request[:id])
-    rescue
-      render :text => "ERROR: Could not find participant."
+    if !request.xhr?
+      redirect_to(:action => :sessions)
+    else
+      begin
+        @participant = Participant.find(request[:id])
+        @activity = @participant.activity_logs.sort_by { |log| log.created_at }
+        render :layout => false
+      rescue
+        render :text => "ERROR: Could not find participant."
+      end
     end
-
-    @activity = @participant.activity_logs.sort_by { |log| log.created_at }
-    render :layout => false
   end
 
   def participant_round_history
-    redirect_to(:action => :sessions) unless request.xhr?
+    if !request.xhr?
+      redirect_to(:action => :sessions)
+    else
+      begin
+        @participant = Participant.find(request[:id])
+      rescue
+        render :text => "ERROR: Could not find participant."
+      end
 
-    begin
-      @participant = Participant.find(request[:id])
-    rescue
-      render :text => "ERROR: Could not find participant."
-    end
+      @earnings_history = (1..20).collect do |round|
+        @participant.cash_transactions.find_by_transaction_type_and_round("income", round)
+      end
 
-    @earnings_history = (1..20).collect do |round|
-      @participant.cash_transactions.find_by_transaction_type_and_round("income", round)
-    end
+      @reporting_history = (1..20).collect do |round|
+        @participant.reported_earnings[round]
+      end
 
-    @reporting_history = (1..20).collect do |round|
-      @participant.reported_earnings[round]
-    end
+      @tax_paid_history = (1..20).collect do |round|
+        @participant.cash_transactions.find_by_transaction_type_and_round("tax", round)
+      end
 
-    @tax_paid_history = (1..20).collect do |round|
-      @participant.cash_transactions.find_by_transaction_type_and_round("tax", round)
-    end
+      @backtax_history = (1..20).collect do |round|
+        @participant.cash_transactions.find_by_transaction_type_and_round("backtax", round)
+      end
 
-    @backtax_history = (1..20).collect do |round|
-      @participant.cash_transactions.find_by_transaction_type_and_round("backtax", round)
-    end
+      @penalty_history = (1..20).collect do |round|
+        @participant.cash_transactions.find_by_transaction_type_and_round("penalty", round)
+      end
 
-    @penalty_history = (1..20).collect do |round|
-      @participant.cash_transactions.find_by_transaction_type_and_round("penalty", round)
-    end
-
-    @audit_history = (0..19).collect do |i|
-      if @backtax_history[i].nil? and @penalty_history[i].nil?
-        "No"
-      else
-        "Yes"
+      @audit_history = (0..19).collect do |i|
+        if @backtax_history[i].nil? and @penalty_history[i].nil?
+          "No"
+        else
+          "Yes"
+        end
       end
     end
   end
