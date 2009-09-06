@@ -1,14 +1,14 @@
 <div class="earnings-report">
   <p><b>Errors Corrected</b></p>
-  <ol>
-    <% if @fixes.length < 1 %>
-      <li>None</li>
-    <% else %>
+  <% if @fixes.length < 1 %>
+    <ul><li>None</li></ul>
+  <% else %>
+    <ol>
       <% @fixes.each do |fix| -%>
         <li><%= fix %></li>
       <% end -%>
-    <% end %>
-  </ol>
+    </ol>
+  <% end %>
   <table>
     <tr>
       <td style="text-align: right;">
