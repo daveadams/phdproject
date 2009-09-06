@@ -50,19 +50,19 @@ class Participant < ActiveRecord::Base
   end
 
   def earn_income(amount)
-    self.add_transaction("income", amount)
+    self.add_transaction("income", amount.abs)
   end
 
   def pay_tax(amount)
-    self.add_transaction("tax", amount)
+    self.add_transaction("tax", -amount.abs)
   end
 
   def pay_backtax(amount)
-    self.add_transaction("backtax", amount)
+    self.add_transaction("backtax", -amount.abs)
   end
 
   def pay_penalty(amount)
-    self.add_transaction("penalty", amount)
+    self.add_transaction("penalty", -amount.abs)
   end
 
   def report_earnings(amount)
@@ -185,11 +185,13 @@ class Participant < ActiveRecord::Base
   end
 
   def perform_audit?
+    logger.info("ALOG audit check performed")
     audit_rate = self.experimental_group.audit_rate
-    correct_tax = -(self.income_for_current_round *
-                    (self.experimental_group.tax_rate.to_f/100))
-    if correct_tax != self.tax_for_current_round
+    if self.income_for_current_round != self.reported_earnings_for_current_round
+      logger.info("ALOG noncompliant")
       audit_rate = self.experimental_group.noncompliance_audit_rate
+    else
+      logger.info("ALOG compliant")
     end
 
     rand((1/audit_rate).to_i) == 0
