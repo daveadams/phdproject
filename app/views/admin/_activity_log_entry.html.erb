@@ -9,6 +9,7 @@
           when "pageload": "Load /#{activity_log_entry.controller}/#{activity_log_entry.action}"
           when "cashtrans": activity_log_entry.details
           when "report": activity_log_entry.details
+          when "audit": activity_log_entry.details
           when "error":
             "<span style=\"color:red;\"><b>ERROR:</b></span> #{activity_log_entry.details}"
           when "seqerror":
