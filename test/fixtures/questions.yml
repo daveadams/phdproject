@@ -70,15 +70,15 @@ knowaudit:
 
 auditprobabilityfull:
   id: 18
-  question: What do you believe was the average probability (from 0 to 100%) of your income tax return being audited in any period during the experiment in which you reported 100% of your earned income?
+  question: What do you believe was the average probability (from 0 to 100) of your income tax return being audited in any period during the experiment in which you reported 100% of your earned income?
   fill_in_the_blank: true
 
 auditprobabilitypartial:
   id: 19
-  question: What do you believe was the average probability (from 0 to 100%) of your income tax return being audited in any period during the experiment in which you reported less than 100% of your earned income?
+  question: What do you believe was the average probability (from 0 to 100) of your income tax return being audited in any period during the experiment in which you reported less than 100% of your earned income?
   fill_in_the_blank: true
 
 atwhatlevel:
   id: 20
-  question: Ignoring any moral or social obligations related to taxpaying, at what level of audit likelihood (from 0 to 100%) would you feel comfortable reporting less than 100% of your taxable earnings?
+  question: Ignoring any moral or social obligations related to taxpaying, at what level of audit likelihood (from 0 to 100) would you feel comfortable reporting less than 100% of your taxable earnings?
   fill_in_the_blank: true

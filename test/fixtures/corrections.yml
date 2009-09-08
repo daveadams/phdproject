@@ -175,38 +175,38 @@ Shepherd5:
 
 Shepherd21:
   source_text_id: 5
+  error: dep
+  correction: deep
+  error_context: "and dep in"
+  correction_context: "and deep in"
+
+Shepherd22:
+  source_text_id: 5
   error: wierd
   correction: weird
   error_context: " wierd "
   correction_context: " weird "
 
-Shepherd22:
+Shepherd23:
   source_text_id: 5
   error: ta
   correction: at
   error_context: " ta "
   correction_context: " at "
 
-Shepherd23:
+Shepherd24:
   source_text_id: 5
   error: here
   correction: hear
   error_context: " here "
   correction_context: " hear "
 
-Shepherd24:
-  source_text_id: 5
-  error: back.
-  correction: back?
-  error_context: " back. "
-  correction_context: " back? "
-
 Shepherd25:
   source_text_id: 5
-  error: that.
-  correction: 'that."'
-  error_context: " that. "
-  correction_context: ' that." '
+  error: fase
+  correction: face
+  error_context: "the fase of"
+  correction_context: "the face of"
 
 Pride1:
   source_text_id: 6
@@ -266,17 +266,17 @@ Sherlock3:
 
 Sherlock4:
   source_text_id: 7
-  error: witch
-  correction: which
-  error_context: " witch "
-  correction_context: " which "
-
-Sherlock5:
-  source_text_id: 7
   error: "it's"
   correction: its
   error_context: " it's "
   correction_context: " its "
+
+Sherlock5:
+  source_text_id: 7
+  error: witch
+  correction: which
+  error_context: "by witch he"
+  correction_context: "by which he"
 
 Treasure1:
   source_text_id: 8
@@ -329,17 +329,17 @@ Musketeers2:
 
 Musketeers3:
   source_text_id: 9
+  error: knot
+  correction: not
+  error_context: "was knot to"
+  correction_context: "was not to"
+
+Musketeers4:
+  source_text_id: 9
   error: upon
   correction: Upon
   error_context: "y. upon seeing"
   correction_context: "y. Upon seeing"
-
-Musketeers4:
-  source_text_id: 9
-  error: servant
-  correction: servants
-  error_context: " servant "
-  correction_context: " servants "
 
 Musketeers5:
   source_text_id: 9
@@ -364,9 +364,9 @@ Oliver2:
 
 Oliver3:
   source_text_id: 10
-  error: friend she
-  correction: friends he
-  error_context: " friend she "
+  error: freinds
+  correction: friends
+  error_context: " freinds he "
   correction_context: " friends he "
 
 Oliver4:
@@ -616,10 +616,10 @@ Double3:
 
 Double4:
   source_text_id: 17
-  error: southerner
-  correction: Southerner
-  error_context: "a southerner. "
-  correction_context: "a Southerner. "
+  error: teecher
+  correction: teacher
+  error_context: " teecher "
+  correction_context: " teacher "
 
 Double5:
   source_text_id: 17
@@ -707,24 +707,24 @@ TomSawyer21:
 
 TomSawyer22:
   source_text_id: 20
-  error: flour
-  correction: flower
-  error_context: "his flour. "
-  correction_context: "his flower. "
+  error: hee
+  correction: he
+  error_context: "that hee could"
+  correction_context: "that he could"
 
 TomSawyer23:
   source_text_id: 20
-  error: knew?
-  correction: knew.
-  error_context: " knew? "
-  correction_context: " knew. "
+  error: rite
+  correction: right
+  error_context: "a rite to"
+  correction_context: "a right to"
 
 TomSawyer24:
   source_text_id: 20
-  error: him.
-  correction: him?
-  error_context: " him. "
-  correction_context: " him? "
+  error: knew
+  correction: new
+  error_context: "in knew and"
+  correction_context: "in new and"
 
 TomSawyer25:
   source_text_id: 20

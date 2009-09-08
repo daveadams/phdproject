@@ -51,3 +51,14 @@ cn4:
   survey_id: 2
   sequence: 4
 
+cn5:
+  id: 205
+  survey_id: 2
+  sequence: 5
+  depends_on_answer_id: 43
+
+cn6:
+  id: 206
+  survey_id: 2
+  sequence: 6
+

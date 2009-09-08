@@ -154,6 +154,16 @@ results_additional_label_cn:
   text_key: additional_label
   text: Additional Payment Due
 
+results_penalty_label_default:
+  page_name: results
+  text_key: penalty_label
+  text: Penalties
+
+results_penalty_label_cn:
+  page_name: results
+  text_key: penalty_label
+  text: Fines
+
 results_penalty_description_default:
   page_name: results
   text_key: penalty_description
@@ -163,4 +173,4 @@ results_penalty_description_cn:
   experimental_group_id: 2
   page_name: results
   text_key: penalty_description
-  text: additional payments and penalties
+  text: additional payments and fines

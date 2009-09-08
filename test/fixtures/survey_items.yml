@@ -143,8 +143,33 @@ d203businessmajor:
   question_id: 9
   sequence: 1
 
-d204religious:
+d204everfiled:
   survey_page_id: 204
+  question_id: 10
+  sequence: 1
+
+d205itemize:
+  survey_page_id: 205
+  question_id: 11
+  sequence: 1
+
+d205whoprepares:
+  survey_page_id: 205
+  question_id: 12
+  sequence: 2
+
+d205howmanyyears:
+  survey_page_id: 205
+  question_id: 13
+  sequence: 3
+
+d206religious:
+  survey_page_id: 206
   question_id: 15
   sequence: 1
+
+d206morallywrong:
+  survey_page_id: 206
+  question_id: 16
+  sequence: 2
 
