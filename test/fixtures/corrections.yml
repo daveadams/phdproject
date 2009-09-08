@@ -33,40 +33,40 @@ Alice5:
   error_context: "really Im quite"
   correction_context: " I'm "
 
-Moby1:
+TomDetective1:
   source_text_id: 1
-  error: indian
-  correction: Indian
-  error_context: " indian "
-  correction_context: " Indian "
+  error: Its
+  correction: "It's"
+  error_context: "is? Its spring"
+  correction_context: "is? It's spring"
 
-Moby2:
+TomDetective2:
   source_text_id: 1
-  error: Their
-  correction: There
-  error_context: " Their "
-  correction_context: " There "
+  error: "don'"
+  correction: "don't"
+  error_context: "you don' quite"
+  correction_context: "you don't quite"
 
-Moby3:
+TomDetective3:
   source_text_id: 1
-  error: whole
-  correction: hole
-  error_context: " whole "
-  correction_context: " hole "
+  error: togo
+  correction: to go
+  error_context: "want togo and"
+  correction_context: "want to go and"
 
-Moby4:
+TomDetective4:
   source_text_id: 1
-  error: guise.
-  correction: guise?
-  error_context: " guise. "
-  correction_context: " guise? "
+  error: "country's"
+  correction: countries
+  error_context: "strange country's where"
+  correction_context: "strange countries where"
 
-Moby5:
+TomDetective5:
   source_text_id: 1
-  error: site
-  correction: sight
-  error_context: " site "
-  correction_context: " sight "
+  error: to
+  correction: too
+  error_context: "chance, to."
+  correction_context: "chance, too."
 
 Heidi1:
   source_text_id: 2
