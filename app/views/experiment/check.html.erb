@@ -2,20 +2,20 @@
   <head>
     <meta http-equiv="Expires" content="0" />
     <title>Experiment: Notice</title>
-    <%= stylesheet_link_tag("default", :media => :all) %>
   </head>
 
-  <body>
-    <div class="content">
-      <div class="notification">
-        <h2>NOTICE</h2>
-        <p>
-          <%=h get_text("message") %>
-        </p>
+  <body style="background: #999;">
+    <div style="border: 8px solid black; background: #F00; margin-left: 27%; margin-right: 30%; width: 40%; align: center; margin-top: 100px; padding: 20px;">
+      <div style="text-align: center; font-size: 4em; font-weight: bold; font-family: Georgia, Times New Roman, serif;">
+        <nobr>N O T I C E</nobr>
+      </div>
 
-        <div style="text-align: right;">
-          <%= link_button("Proceed", :action => "perform_check") %>
-        </div>
+      <p style="font-size: 1.2em; font-family: Verdana, Helvetica, Arial, sans-serif;">
+        <%=h get_text("message") %>
+      </p>
+
+      <div style="text-align: right;">
+        <%= link_button("Proceed", :action => "perform_check") %>
       </div>
     </div>
   </body>

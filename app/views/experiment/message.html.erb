@@ -2,25 +2,26 @@
   <head>
     <meta http-equiv="Expires" content="0" />
     <title>Experiment: Message</title>
-    <%= stylesheet_link_tag("default", :media => :all) %>
     <%= javascript_include_tag :defaults %>
   </head>
 
-  <body>
-    <div class="content">
-      <div class="reminder-message">
-        <p>
-          <b>REMINDER:</b> <%= rule_filter(@message) %>
-        </p>
+  <body style="background: #999;">
+    <div style="border: 8px solid black; background: #F00; margin-left: 27%; margin-right: 30%; width: 40%; align: center; margin-top: 100px; padding: 20px;">
+      <div style="text-align: center; font-size: 4em; font-weight: bold; font-family: Georgia, Times New Roman, serif;">
+        <nobr>REMINDER</nobr>
+      </div>
 
-        <div style="text-align: right">
-          <span id="please-wait">
-            <%= image_tag("wait.gif", :align => "middle") %> Please wait...
-          </span>
-          <span id="proceed-button" style="display:none;">
-            <%= link_button("Proceed", :action => "report") %>
-          </span>
-        </div>
+      <p style="font-size: 1.2em; font-family: Verdana, Helvetica, Arial, sans-serif;">
+        <%= rule_filter(@message) %>
+      </p>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <span id="please-wait">
+          <%= image_tag("redwait.gif", :align => "middle") %>
+        </span>
+        <span id="proceed-button" style="display:none;">
+          <%= link_button("Proceed", :action => "report") %>
+        </span>
       </div>
     </div>
 
