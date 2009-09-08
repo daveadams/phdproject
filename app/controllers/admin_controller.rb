@@ -10,7 +10,7 @@ class AdminController < ApplicationController
     @page_title = "Experimental Sessions"
 
     @active_session = ExperimentalSession.active
-    @sessions = ExperimentalSession.find(:all) - [@active_session]
+    @sessions = ExperimentalSession.find(:all, :order => "is_complete") - [@active_session]
     @groups = ExperimentalGroup.find(:all)
   end
 
@@ -207,6 +207,19 @@ class AdminController < ApplicationController
     end
 
     redirect_to(:action => return_action)
+  end
+
+  def force_close
+    if ExperimentalSession.active.nil?
+      flash[:error] = "Could not find that experimental session."
+    else
+      begin
+        ExperimentalSession.active.set_complete
+      rescue
+        flash[:error] = "An error occurred when closing that session."
+      end
+    end
+    redirect_to(:action => :sessions)
   end
 
   def status

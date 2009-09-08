@@ -24,6 +24,9 @@
                :object => @active_session) %>
     <td><%= link_to("status", :action => :status) %></td>
   </tr>
+  <tr>
+    <td colspan="<%= (4 + ExperimentalGroup.count) %>">&nbsp;</td>
+  </tr>
 <% end %>
 <% @sessions.each do |session| %>
   <tr class="inactive-session" id="row<%= session.id %>">

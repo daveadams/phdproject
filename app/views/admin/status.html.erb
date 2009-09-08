@@ -18,6 +18,12 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <% end %>
 <% end %>
+
+<%= button_to("Force Close Session", { :action => :force_close },
+              :confirm => "THIS SESSION WILL IMMEDIATELY END AND BE UNRECOVERABLE IF YOU CLOSE IT. Are you sure you want to do this?",
+              :id => "force-close-button",
+              :disabled => true) %>
+
 <b><%= link_to("Back to All Sessions", :action => :sessions) %></b>
 </div>
 <div id="controlrow<%= @active_session.id %>" style="display:none;width:500px;">
@@ -27,6 +33,11 @@
 
 <div id="participant-table">
   <%= render(:partial => "participant_table") %>
+</div>
+
+<div style="margin-top: 50px; padding-left: 20px;">
+  <%= button_to_function("Unlock Force Close Button",
+                         "$('force-close-button').disabled = false;") %>
 </div>
 
 <script language="javascript">
