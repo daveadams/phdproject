@@ -97,13 +97,80 @@
   - [X] Switch CSS to float:right
   - [X] Move the span in the views to the top of the page
 
-* TODO Verify audit rates [2/3]
+* DONE Verify audit rates [3/3]
+  CLOSED: [2009-09-07 Mon 19:24]
   - [X] Run these tests fast against local machine
   - [X] Run 200 tests with 5 honest participants: should audit 1 person on average, 200 total
         FOUND THE BUG! comparing recalculated correct tax with the paid tax was resulting in
         noncompliance audit rates over half the time.
         Letting it run overnight anyway to doublecheck.
-  - [ ] Run 200 tests with 5 dishonest participants: should audit 2 people on average, 400 total
+  - [X] Run 200 tests with 5 dishonest participants: should audit 2 people on average, 400 total
+
+* DONE Minor fixes [6/6]
+  CLOSED: [2009-09-07 Mon 21:41]
+  - [X] Quick ones
+  - [X] Replace Round 1 task with one of the extras
+  - [X] Revise Round 5 task per email
+  - [X] Replace Round 9 task per email
+  - [X] Make audit notification bigger louder, etc
+  - [X] Make experimental message bigger louder, etc
+
+
+* TODO Necessary admin features [3/6]
+  - [X] Link to close an experimental session
+        some way to force-close a useless session
+  - [X] Move closed sessions to the end of the list
+  - [X] Move create session form to the top of the sessions page
+  - [ ] Page to print off participant numbers
+  - [ ] Add was_forced boolean to experimental_session
+    - [ ] Add to model
+    - [ ] Mark it from admin_controller.force_close
+
+* TODO Verify source texts, corrections by hand [0/21]
+  - [ ] Tutorial
+  - [ ] Round 1
+  - [ ] Round 2
+  - [ ] Round 3
+  - [ ] Round 4
+  - [ ] Round 5
+  - [ ] Round 6
+  - [ ] Round 7
+  - [ ] Round 8
+  - [ ] Round 9
+  - [ ] Round 10
+  - [ ] Round 11
+  - [ ] Round 12
+  - [ ] Round 13
+  - [ ] Round 14
+  - [ ] Round 15
+  - [ ] Round 16
+  - [ ] Round 17
+  - [ ] Round 18
+  - [ ] Round 19
+  - [ ] Round 20
+
+* TODO Verify survey by hand [0/2]
+  - [ ] Default survey
+  - [ ] Context-neutral survey
+
+* TODO Server-side tax estimate processing [0/3]
+  - [ ] Submit estimate request to the server
+  - [ ] Add errors for "it's not possible to earn over $1.75 in a round"
+  - [ ] Log estimate requests
+
+* TODO Prevent bank balance from going below zero [0/2]
+  - [ ] Catch a resulting balance of < zero
+  - [ ] And add in an adjustment to fix it
+
+* TODO Audit exception on overreporting [0/2]
+  - [ ] Still display failed audit message
+  - [ ] But with zero penalties and zero taxes
+
+* TODO Autotimer on work page [0/4]
+   - [ ] Background ajax call checking the server time
+   - [ ] Server saves first load time to compare against (reloads won't break anything)
+   - [ ] Update the timer based on server time remaining
+   - [ ] Upon zero time, force submit
 
 * TODO Participant detail page [3/5]
   - [ ] Admin summary up top
@@ -125,32 +192,6 @@
   - [X] Full activity log
     - [X] highlight errors
     - [X] highlight sequence errors
-
-* TODO Server-side tax estimate processing [0/3]
-  - [ ] Submit estimate request to the server
-  - [ ] Add errors for "it's not possible to earn over $1.75 in a round"
-  - [ ] Log estimate requests
-
-* TODO Prevent bank balance from going below zero [0/2]
-  - [ ] Catch a resulting balance of < zero
-  - [ ] And add in an adjustment to fix it
-
-* TODO Audit exception on overreporting [0/2]
-  - [ ] Still display failed audit message
-  - [ ] But with zero penalties and zero taxes
-
-* TODO Necessary admin features [1/5]
-  - [ ] Link to close an experimental session
-        some way to force-close a useless session
-  - [ ] Move closed sessions to the end of the list
-  - [X] Move create session form to the top of the sessions page
-  - [ ] Page to print off participant numbers
-
-* TODO Autotimer on work page [0/4]
-   - [ ] Background ajax call checking the server time
-   - [ ] Server saves first load time to compare against (reloads won't break anything)
-   - [ ] Update the timer based on server time remaining
-   - [ ] Upon zero time, force submit
 
 * TODO Future fanciness [0/2]
    - [ ] Make sure firefox's spellcheck can be turned off
@@ -179,3 +220,6 @@
   - [ ] Add page to admin for selecting experimental sessions to report from
 
 
+* TODO Possible fixes? [0/2]
+  - [ ] Round 11 passage?
+  - [ ] Round 18 passage?
