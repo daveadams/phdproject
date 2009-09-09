@@ -128,18 +128,19 @@ class ExperimentController < ApplicationController
         redirect_to(:action => :check)
       else
         if request[:reported_earnings].nil? or request[:reported_earnings].strip == ""
-          flash[:error] = "Invalid submission."
+          flash[:error] = "You must enter some value."
           log_event(ActivityLog::ERROR, "Reported earnings was empty.")
           redirect_to(:action => :report)
         else
+          max_possible_earnings = (@participant.experimental_group.earnings * 5)
           reported_earnings = request[:reported_earnings].to_f
           if reported_earnings < 0
-            flash[:error] = "Invalid submission."
+            flash[:error] = "Cannot be less than zero."
             log_event(ActivityLog::ERROR, "Reported earnings was negative.")
             redirect_to(:action => :report)
-          elsif reported_earnings > @participant.income_for_current_round
-            flash[:error] = "Invalid submission."
-            log_event(ActivityLog::ERROR, "Reported earnings was higher than income.")
+          elsif reported_earnings > max_possible_earnings
+            flash[:error] = sprintf("It is not possible to earn more than $%0.2f in a single round.", max_possible_earnings)
+            log_event(ActivityLog::ERROR, sprintf("Reported earnings was greater than $%0.2f.", max_possible_earnings))
             redirect_to(:action => :report)
           else
             @participant.report_earnings(reported_earnings)
@@ -260,6 +261,15 @@ class ExperimentController < ApplicationController
       else
         redirect_to(:action => :wait)
       end
+    end
+  end
+
+  def estimate
+    if request.xhr?
+      log_event(ActivityLog::ESTIMATE, "Submitted for estimate: '#{request[:estimate]}'")
+      render :text => "OK"
+    else
+      redirect_to(:action => :report)
     end
   end
 

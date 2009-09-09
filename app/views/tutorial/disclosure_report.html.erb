@@ -26,11 +26,29 @@
           </td>
           <td>
             <script>
-              function estimate()
-              {
+          function estimate()
+          {
+              if(report.reported_earnings.value == "") {
+                  $('error-message').update("You must enter some value.");
+                  $('error-message').show();
+                  report.commit.disabled = true;
+              } else if(isNaN(report.reported_earnings.value)) {
+                  $('error-message').update("You must enter a number.");
+                  $('error-message').show();
+                  report.commit.disabled = true;
+              } else if(report.reported_earnings.value < 0.0) {
+                  $('error-message').update("Cannot be less than zero.");
+                  $('error-message').show();
+                  report.commit.disabled = true;
+              } else if(report.reported_earnings.value > <%= sprintf("%0.2f", (@participant.experimental_group.earnings * 5)) %>) {
+                  $('error-message').update("It is not possible to earn more than $<%= sprintf("%0.2f", (@participant.experimental_group.earnings * 5)) %> in a single round.");
+                  $('error-message').show();
+                  report.commit.disabled = true;
+              } else {
                   report.estimated_due.value = (report.reported_earnings.value * <%= @participant.experimental_group.tax_rate.to_f/100 %>).toFixed(2);
                   report.commit.disabled = false;
               }
+          }
             </script>
             <input type="button" value="Estimate Payment" onclick="estimate();" />
           </td>

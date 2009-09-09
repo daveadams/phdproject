@@ -10,4 +10,5 @@ class ActivityLog < ActiveRecord::Base
   CASH_TRANSACTION = "cashtrans"
   AUDIT = "audit"
   REPORT = "report"
+  ESTIMATE = "estimate"
 end

@@ -1,5 +1,5 @@
 <h2>Active Session: <b><%=h @active_session.name %></b></h2>
-
+<p><b><%= link_to("Back to All Sessions", :action => :sessions) %></b></p>
 <div id="session-control">
 <% if @active_session.phase == "tutorial" %>
   <% unless @active_session.is_locked_down %>
@@ -23,8 +23,6 @@
               :confirm => "THIS SESSION WILL IMMEDIATELY END AND BE UNRECOVERABLE IF YOU CLOSE IT. Are you sure you want to do this?",
               :id => "force-close-button",
               :disabled => true) %>
-
-<b><%= link_to("Back to All Sessions", :action => :sessions) %></b>
 </div>
 <div id="controlrow<%= @active_session.id %>" style="display:none;width:500px;">
   <div id="add-participants-target">
@@ -37,7 +35,7 @@
 
 <div style="margin-top: 50px; padding-left: 20px;">
   <%= button_to_function("Unlock Force Close Button",
-                         "$('force-close-button').disabled = false;") %>
+                         "$('force-close-button').disabled = false") %>
 </div>
 
 <script language="javascript">

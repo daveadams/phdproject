@@ -694,7 +694,7 @@ HuckFinn24:
 HuckFinn25:
   source_text_id: 19
   error: one
-  correction: on
+  correction: "on"
   error_context: "lived one."
   correction_context: "lived on."
 

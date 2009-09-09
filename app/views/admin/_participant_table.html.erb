@@ -20,7 +20,8 @@
 <%= render :partial => "unseen_participant",
           :collection => @active_session.unseen_participants %>
 </table>
-<% if @active_session.current_participants.length > 0 %>
+<% if @active_session.current_participants.length > 0 and
+       not @active_session.is_locked_down %>
   <% javascript_tag do %>
     $('lockdown-button').disabled = false
   <% end %>
