@@ -115,6 +115,41 @@
   - [X] Make audit notification bigger louder, etc
   - [X] Make experimental message bigger louder, etc
 
+* DONE Server-side tax estimate processing [3/3]
+  CLOSED: [2009-09-08 Tue 21:02]
+  - [X] Submit estimate request to the server
+  - [X] Add errors for "it's not possible to earn over $1.75 in a round"
+  - [X] Log estimate requests
+
+* DONE Verify source texts, corrections by hand [21/21]
+  CLOSED: [2009-09-08 Tue 21:14]
+  - [X] Tutorial
+  - [X] Round 1
+  - [X] Round 2
+  - [X] Round 3
+  - [X] Round 4
+  - [X] Round 5
+  - [X] Round 6
+  - [X] Round 7
+  - [X] Round 8
+  - [X] Round 9
+  - [X] Round 10
+  - [X] Round 11
+  - [X] Round 12
+  - [X] Round 13
+  - [X] Round 14
+  - [X] Round 15
+  - [X] Round 16
+  - [X] Round 17
+  - [X] Round 18
+  - [X] Round 19
+  - [X] Round 20
+
+* DONE Verify survey by hand [2/2]
+  CLOSED: [2009-09-08 Tue 21:24]
+  - [X] Default survey
+  - [X] Context-neutral survey
+
 
 * TODO Necessary admin features [3/6]
   - [X] Link to close an experimental session
@@ -125,38 +160,6 @@
   - [ ] Add was_forced boolean to experimental_session
     - [ ] Add to model
     - [ ] Mark it from admin_controller.force_close
-
-* TODO Verify source texts, corrections by hand [0/21]
-  - [ ] Tutorial
-  - [ ] Round 1
-  - [ ] Round 2
-  - [ ] Round 3
-  - [ ] Round 4
-  - [ ] Round 5
-  - [ ] Round 6
-  - [ ] Round 7
-  - [ ] Round 8
-  - [ ] Round 9
-  - [ ] Round 10
-  - [ ] Round 11
-  - [ ] Round 12
-  - [ ] Round 13
-  - [ ] Round 14
-  - [ ] Round 15
-  - [ ] Round 16
-  - [ ] Round 17
-  - [ ] Round 18
-  - [ ] Round 19
-  - [ ] Round 20
-
-* TODO Verify survey by hand [0/2]
-  - [ ] Default survey
-  - [ ] Context-neutral survey
-
-* TODO Server-side tax estimate processing [0/3]
-  - [ ] Submit estimate request to the server
-  - [ ] Add errors for "it's not possible to earn over $1.75 in a round"
-  - [ ] Log estimate requests
 
 * TODO Prevent bank balance from going below zero [0/2]
   - [ ] Catch a resulting balance of < zero
