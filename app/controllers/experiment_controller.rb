@@ -49,9 +49,12 @@ class ExperimentController < ApplicationController
     else
       @page_title = "Earnings Task"
       @working_text = SourceText.find_by_round(@participant.round).errored_text
-
-      # TODO: autotimer
+      @seconds_remaining = work_time_remaining
     end
+  end
+
+  def seconds_remaining
+    render :text => work_time_remaining.to_s
   end
 
   def check_work
@@ -62,10 +65,9 @@ class ExperimentController < ApplicationController
         redirect_to(:action => :check)
       end
     else
-      # TODO: check timing, too
       if request.post?
         SourceText.find_by_round(@participant.round).
-          evaluate_corrections(request[:working_text].squeeze(' ')).each do |c|
+          evaluate_corrections((request[:working_text] || "").squeeze(' ')).each do |c|
           begin
             cc = CorrectCorrection.create!(:participant_id => @participant.id,
                                            :round => @participant.round,
@@ -289,5 +291,15 @@ class ExperimentController < ApplicationController
     elsif not @participant.tutorial_complete
       redirect_to(:controller => :tutorial)
     end
+  end
+
+  def work_time_remaining
+    current_time = Time.now
+    if @participant.work_load_time.nil?
+      @participant.work_load_time = current_time
+      @participant.save
+    end
+    [@participant.experimental_group.work_time_limit -
+     (current_time - @participant.work_load_time).to_i, 0].max
   end
 end

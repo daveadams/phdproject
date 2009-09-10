@@ -1,5 +1,9 @@
 <div class="example">
   <div class="experiment-content">
+    <span id="task-timer"></span>
+    <script language="javascript">
+      tutorial_timer(<%= @participant.experimental_group.work_time_limit %>);
+    </script>
     <h1>Earnings Task</h1>
 
     <p>Please correct the errors in the text below. Click "Submit Corrections" when you are done. You have two minutes. If you have not submitted your corrections when your time is up, you will be automatically redirected to the earnings report page.</p>

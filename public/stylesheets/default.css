@@ -59,18 +59,17 @@ span.bank
 
 span#task-timer
 {
+    float:right;
     background: black;
 
+    font-family: Courier, Courier New, monospace;
     font-weight: bold;
-    font-size: 250%;
+    font-size: 4em;
     color: white;
 
     border: 4px solid gray;
-    padding: 10px;
-
-    position: absolute;
-    right: 160px;
-    top: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 div.earnings-report, div.report, div.results
@@ -112,3 +111,29 @@ div.survey-question
     border-bottom: 1px solid #CCC;
     margin-bottom: 10px;
 }
+
+div.overlay
+{
+    width: 100%;
+    height: 100%;
+    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+}
+
+div.error-dialog
+{
+    width: 30%;
+    min-height: 25%;
+    position: fixed;
+    left: 33%;
+    top: 20%;
+    z-index: 99;
+
+    border: 8px solid black;
+    background: #F00;
+    padding: 20px;
+}
+

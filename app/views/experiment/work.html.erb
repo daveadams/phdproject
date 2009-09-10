@@ -1,8 +1,22 @@
 <p>Please correct the errors in the text below. Click "Submit Corrections" when you are done. You have two minutes. If you have not submitted your corrections when your time is up, you will be automatically redirected to the earnings report page.</p>
 
-<% form_tag :action => "check_work" do %>
-<div id="workarea">
-  <%= text_area_tag "working_text", @working_text, :rows => 15, :cols => 80 %>
+<form method="POST" action="<%= url_for(:action => "check_work") %>" id="work-form">
+  <div id="workarea">
+    <%= text_area_tag "working_text", @working_text, :rows => 15, :cols => 80 %>
+  </div>
+  <div><%= submit_tag "Submit Corrections" %></div>
+</form>
+
+<div id="timeout-overlay" class="overlay" style="display:none;"></div>
+
+<div id="timeout-message" class="error-dialog" style="display:none;">
+  <div style="text-align: center; font-size: 3em; font-weight: bold; font-family: Georgia, Times New Roman, serif;">
+    <nobr>OUT OF TIME</nobr>
+  </div>
+
+  <p>You are out of time to complete the task, so what work you have completed will be automatically submitted.</p>
+
+  <div style="text-align:center">
+    <%= image_tag("redwait.gif") %>
+  </div>
 </div>
-<div><%= submit_tag "Submit Corrections" %></div>
-<% end %>

@@ -168,6 +168,7 @@ class Participant < ActiveRecord::Base
 
       self.to_be_audited = false
       self.audit_completed = false
+      self.work_load_time = nil
       self.round += 1
       self.save
     else
