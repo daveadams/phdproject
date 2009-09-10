@@ -150,6 +150,21 @@
   - [X] Default survey
   - [X] Context-neutral survey
 
+* DONE Autotimer on work page [4/4]
+  CLOSED: [2009-09-09 Wed 22:09]
+  - [X] Server saves first load time to compare against (reloads won't break anything)
+    - [X] Add work_load_time:datetime field to participant
+    - [X] Clear that field on each round advance
+  - [X] Background ajax call checking the server time
+  - [X] Update the timer based on server time remaining upon page load
+  - [X] Upon zero time, force submit
+
+* DONE Display timer in the tutorial [2/2]
+  CLOSED: [2009-09-09 Wed 22:35]
+  - [X] New timer function
+  - [X] Add to tutorial
+
+
 
 * TODO Necessary admin features [3/6]
   - [X] Link to close an experimental session
@@ -168,12 +183,6 @@
 * TODO Audit exception on overreporting [0/2]
   - [ ] Still display failed audit message
   - [ ] But with zero penalties and zero taxes
-
-* TODO Autotimer on work page [0/4]
-   - [ ] Background ajax call checking the server time
-   - [ ] Server saves first load time to compare against (reloads won't break anything)
-   - [ ] Update the timer based on server time remaining
-   - [ ] Upon zero time, force submit
 
 * TODO Participant detail page [3/5]
   - [ ] Admin summary up top
@@ -222,7 +231,3 @@
   - [ ] Add report_csv for experimental_session
   - [ ] Add page to admin for selecting experimental sessions to report from
 
-
-* TODO Possible fixes? [0/2]
-  - [ ] Round 11 passage?
-  - [ ] Round 18 passage?
