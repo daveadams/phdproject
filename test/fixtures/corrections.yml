@@ -147,10 +147,10 @@ Shepherd1:
 
 Shepherd2:
   source_text_id: 4
-  error: river,
-  correction: river.
-  error_context: " river,"
-  correction_context: " river."
+  error: distent
+  correction: distant
+  error_context: " distent river"
+  correction_context: " distant river"
 
 Shepherd3:
   source_text_id: 4
@@ -357,10 +357,10 @@ Oliver1:
 
 Oliver2:
   source_text_id: 10
-  error: Mr
-  correction: Mr.
-  error_context: " Mr "
-  correction_context: " Mr. "
+  error: buy
+  correction: by
+  error_context: "away buy Mr"
+  correction_context: "away by Mr"
 
 Oliver3:
   source_text_id: 10
@@ -373,7 +373,7 @@ Oliver4:
   source_text_id: 10
   error: grate
   correction: great
-  error_context: " grate "
+  error_context: " grate wide"
   correction_context: " great wide"
 
 Oliver5:
