@@ -2,179 +2,8 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* DONE Automated multi-session test [17/17]
-  CLOSED: [2009-09-05 Sat 12:08]
-   - [X] External test (put in util)
-   - [X] Use Mechanize
-   - [X] Start script with a participant ID and comply/nocomply/randomcomply
-   - [X] Method for random wait times between clicks
-     - [X] short
-     - [X] long
-   - [X] Import correction fixtures
-   - [X] Login
-     - [X] Load login page
-     - [X] Login successfully
-     - [X] Status feedback
-   - [X] Tutorial
-     - [X] Click through to first example
-     - [X] Work example
-     - [X] Click through to tax return
-     - [X] Fill out tax return
-     - [X] Click through the rest of the tutorial
-     - [X] Random back clicks until the end
-     - [X] Click on Begin button
-   - [X] Experiment
-     - [X] Reload wait screen every five seconds until redirected to begin
-     - [X] Click to task
-     - [X] Complete task with random number of fixes
-     - [X] Verify # of fixes
-     - [X] Fill out taxes per comply/noncomply, noncomply randomly
-     - [X] Click through, note if audit occurs
-     - [X] Click on through until wait or complete
-   - [X] Survey
-     - [X] Get there successfully from experiment
-     - [X] Just choose randomly for each question
-     - [X] Fill in the blanks use 0-100
-   - [X] Complete
-   - [X] Script to init a new test session
-   - [X] Script to kick off a test session
-   - [X] Run test with 1 user
-   - [X] Run test with 2 users
-   - [X] Run test with 5 users
-   - [X] Run test with 10 users
-   - [X] Run test with 20 users
-         Blew up down to 12???
-         Did another run separating testbot starts by a second and it ended up okay
-         Must be a side effect of starting the sessions too close together, but I still can't
-         figure out why it would *delete* them. Too much MySQL load?
-
-* DONE Complete setup script for EC2 instance [7/7]
-  CLOSED: [2009-09-05 Sat 15:11]
-   - [X] packages -- sticking on mysql-server password
-   - [X] phdproject user
-   - [X] mounts
-   - [X] Add git repo to github
-     - [X] Figure out how to import an existing repo
-     - [X] Do it
-   - [X] Set up the app on the /apps volume
-   - [X] Next to last step of setup script should be to do a git pull as phdproject
-   - [X] Last step of setup script should be to startup mongrels and httpd as phdproject
-
-* DONE Run tests against EC2 instance [3/3]
-  CLOSED: [2009-09-05 Sat 15:55]
-  - [X] Give tests slower timing
-  - [X] Update test script to point to EC2
-  - [X] Also use vmstat to track server load
-        $ vmstat -a -n 5 > perf.log
-        20 bots going one second per page load pretty well maxes out a c1.large
-
-* DONE Earnings report with no fixes [1/1]
-  CLOSED: [2009-09-06 Sun 15:35]
-  - [X] Use <ul> instead of <ol> for "None"
-
-* DONE Force 15 second delay on experimental message [2/2]
-  CLOSED: [2009-09-06 Sun 16:10]
-  - [X] Button disabled by default
-  - [X] setTimeout(15000)
-
-* DONE Add earnings summary to tax return page [3/3]
-  CLOSED: [2009-09-06 Sun 16:24]
-  - [X] Display how much earned this round
-  - [X] Display total bank
-  - [X] Add similar to tutorial
-
-* DONE Add formatting for audit event in activity log [1/1]
-  CLOSED: [2009-09-06 Sun 16:30]
-  - [X] when "audit": blah
-
-* DONE Remove next button from tutorial examples [2/2]
-  CLOSED: [2009-09-06 Sun 18:00]
-  - [X] Earnings task
-  - [X] Tax return
-
-* DONE Fix bank overlap with text [2/2]
-  CLOSED: [2009-09-06 Sun 18:18]
-  - [X] Switch CSS to float:right
-  - [X] Move the span in the views to the top of the page
-
-* DONE Verify audit rates [3/3]
-  CLOSED: [2009-09-07 Mon 19:24]
-  - [X] Run these tests fast against local machine
-  - [X] Run 200 tests with 5 honest participants: should audit 1 person on average, 200 total
-        FOUND THE BUG! comparing recalculated correct tax with the paid tax was resulting in
-        noncompliance audit rates over half the time.
-        Letting it run overnight anyway to doublecheck.
-  - [X] Run 200 tests with 5 dishonest participants: should audit 2 people on average, 400 total
-
-* DONE Minor fixes [6/6]
-  CLOSED: [2009-09-07 Mon 21:41]
-  - [X] Quick ones
-  - [X] Replace Round 1 task with one of the extras
-  - [X] Revise Round 5 task per email
-  - [X] Replace Round 9 task per email
-  - [X] Make audit notification bigger louder, etc
-  - [X] Make experimental message bigger louder, etc
-
-* DONE Server-side tax estimate processing [3/3]
-  CLOSED: [2009-09-08 Tue 21:02]
-  - [X] Submit estimate request to the server
-  - [X] Add errors for "it's not possible to earn over $1.75 in a round"
-  - [X] Log estimate requests
-
-* DONE Verify source texts, corrections by hand [21/21]
-  CLOSED: [2009-09-08 Tue 21:14]
-  - [X] Tutorial
-  - [X] Round 1
-  - [X] Round 2
-  - [X] Round 3
-  - [X] Round 4
-  - [X] Round 5
-  - [X] Round 6
-  - [X] Round 7
-  - [X] Round 8
-  - [X] Round 9
-  - [X] Round 10
-  - [X] Round 11
-  - [X] Round 12
-  - [X] Round 13
-  - [X] Round 14
-  - [X] Round 15
-  - [X] Round 16
-  - [X] Round 17
-  - [X] Round 18
-  - [X] Round 19
-  - [X] Round 20
-
-* DONE Verify survey by hand [2/2]
-  CLOSED: [2009-09-08 Tue 21:24]
-  - [X] Default survey
-  - [X] Context-neutral survey
-
-* DONE Autotimer on work page [4/4]
-  CLOSED: [2009-09-09 Wed 22:09]
-  - [X] Server saves first load time to compare against (reloads won't break anything)
-    - [X] Add work_load_time:datetime field to participant
-    - [X] Clear that field on each round advance
-  - [X] Background ajax call checking the server time
-  - [X] Update the timer based on server time remaining upon page load
-  - [X] Upon zero time, force submit
-
-* DONE Display timer in the tutorial [2/2]
-  CLOSED: [2009-09-09 Wed 22:35]
-  - [X] New timer function
-  - [X] Add to tutorial
-
-
-
-* TODO Necessary admin features [3/6]
-  - [X] Link to close an experimental session
-        some way to force-close a useless session
-  - [X] Move closed sessions to the end of the list
-  - [X] Move create session form to the top of the sessions page
-  - [ ] Page to print off participant numbers
-  - [ ] Add was_forced boolean to experimental_session
-    - [ ] Add to model
-    - [ ] Mark it from admin_controller.force_close
+* TODO Minor changes [0/1]
+  - [ ] Remove Next button from examples with "Proceed" on them?
 
 * TODO Prevent bank balance from going below zero [0/2]
   - [ ] Catch a resulting balance of < zero
@@ -184,30 +13,19 @@
   - [ ] Still display failed audit message
   - [ ] But with zero penalties and zero taxes
 
-* TODO Participant detail page [3/5]
-  - [ ] Admin summary up top
-  - [ ] Management functionality
-    - [ ] Reset browser session
-    - [ ] Drop from experimental session
-    - [ ] Force complete?
-    - [ ] Mark paid
-      - [ ] Add paid_at timestamp to participant model
-      - [ ] Should only work if participant is complete
-  - [X] Details
-  - [X] Round history
-    - [X] Earnings
-    - [X] Reported
-    - [X] Taxes
-    - [X] Audited
-    - [X] Backtax
-    - [X] Penalty
-  - [X] Full activity log
-    - [X] highlight errors
-    - [X] highlight sequence errors
+* TODO Session detail page [0/4]
+  - [ ] Simple list of participants
+  - [ ] Simple summary status
+  - [ ] Links to some functionality
+  - [ ] Summary of complete/forced/paid status
 
-* TODO Future fanciness [0/2]
-   - [ ] Make sure firefox's spellcheck can be turned off
-   - [ ] Restyle example pages to be different than other tutorial pages
+* TODO Section for completed participants in current session [0/2]
+  - [ ] New section for completed participants
+  - [ ] Include an indicator of participant's paid and forced status
+
+* TODO When a session ends, the status page should handle it gracefully [0/2]
+  - [ ] Display a message the first time
+  - [ ] Then redirect elsewhere (to the session's detail page?)
 
 * TODO Reporting [0/5]
   - [ ] Add report_csv method to participant
@@ -229,5 +47,20 @@
       - [ ] compliance
       - [ ] time spent on experimental message (if appropriate)
   - [ ] Add report_csv for experimental_session
-  - [ ] Add page to admin for selecting experimental sessions to report from
+  - [ ] Add page to admin for selecting experimental sessions to report 
+
+
+
+* TODO Participant stats [0/8]
+  - [ ] Stats expansion link like round history, activity log
+  - [ ] Total experiment time
+  - [ ] Time broken down by phase
+    - [ ] Tutorial
+    - [ ] Experiment
+    - [ ] Survey
+  - [ ] Average work time
+  - [ ] Average errors corrected
+  - [ ] Total errors corrected (out of total possible)
+  - [ ] Honesty indicator
+  - [ ] Same stats for entire sessions
 

@@ -716,7 +716,6 @@
 
 
 
-
 * Sunday, August 30
 ** DONE Fill-in-the-blank survey answers [4/4]
    CLOSED: [2009-08-30 Sun 16:45]
@@ -1027,6 +1026,61 @@
   - [X] New timer function
   - [X] Add to tutorial
 
+
+
+
+* DONE Participant detail page [6/6]
+  CLOSED: [2009-09-12 Sat 17:57]
+  - [X] Admin summary up top
+  - [X] Management functionality
+    - [X] Reset browser session
+      - [X] Link from participant details if not complete
+      - [X] set is_active = false
+    - [X] Drop from experimental session
+      - [X] (hidden) button from participant details
+      - [X] set each complete flag to true
+      - [X] set round to group round count
+      - [X] verify that this works
+      - [X] add was_forced flag
+      - [X] add forced display to participant details
+    - [X] Mark paid
+      - [X] Add paid_at timestamp to participant model
+      - [X] Display paid status in participant detail page
+      - [X] Implement action -- Should only work if participant is complete
+  - [X] Add IP address/station #
+    - [X] Add IP field to participant
+    - [X] Update IP in the shared filters
+  - [X] Details
+  - [X] Round history
+    - [X] Earnings
+    - [X] Reported
+    - [X] Taxes
+    - [X] Audited
+    - [X] Backtax
+    - [X] Penalty
+  - [X] Full activity log
+    - [X] highlight errors
+    - [X] highlight sequence errors
+
+* DONE Necessary admin features [6/6]
+  CLOSED: [2009-09-12 Sat 16:11]
+  - [X] Link to close an experimental session
+        some way to force-close a useless session
+  - [X] Move closed sessions to the end of the list
+  - [X] Move create session form to the top of the sessions page
+  - [X] Page to print off participant numbers
+  - [X] Add was_forced boolean to experimental_session
+    - [X] Add to model
+    - [X] Mark it from admin_controller.force_close
+    - [X] Display it in the session view
+  - [X] Clean session close functionality when all participants are complete
+
+* DONE Testing changes [4/4]
+  CLOSED: [2009-09-12 Sat 17:57]
+  - [X] Oliver Twist passage: "grate"
+  - [X] Replace punctuation errors
+  - [X] Add spellcheck="false" to textboxes
+  - [X] Tutorial should complain about invalid entries in reporting screen
 
 
 
