@@ -222,6 +222,26 @@ class AdminController < ApplicationController
     redirect_to(:action => :sessions)
   end
 
+  def force_participant_complete
+    begin
+      @participant = Participant.find(request[:id])
+      if not @participant.all_complete
+        @participant.was_forced = true
+      end
+      @participant.tutorial_complete = true
+      @participant.experiment_complete = true
+      @participant.survey_complete = true
+      @participant.all_complete = true
+      @participant.round = @participant.experimental_group.rounds
+      @participant.is_active = false
+      @participant.save
+      redirect_to(:action => :participant, :id => @participant.id)
+    rescue
+      flash[:error] = "Could not find that participant."
+      redirect_to(:action => :sessions)
+    end
+  end
+
   def reset_browser_session
     begin
       @participant = Participant.find(request[:id])
@@ -232,7 +252,6 @@ class AdminController < ApplicationController
       flash[:error] = "Could not find that participant."
       redirect_to(:action => :sessions)
     end
-
   end
 
   def print

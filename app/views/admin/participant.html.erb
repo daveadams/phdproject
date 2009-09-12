@@ -1,10 +1,10 @@
 <div>
 <h2><%= if @participant.all_complete
-          #if @participant.was_forced
-          #  "FORCED"
-          #else
+          if @participant.was_forced
+            "FORCED"
+          else
             "COMPLETE"
-          #end
+          end
         elsif @participant.first_login.nil?
           "NEVER LOGGED IN"
         else
@@ -20,10 +20,18 @@
                   { :action => :reset_browser_session, :id => @participant.id },
                   :confirm => "This will disconnect any current session and allow the participant to log in again. Are you sure?",
                   :disabled => !@participant.is_active) %>
-
-    <%= button_to_function("Force Complete", "alert('not yet implemented');") %>
+    <span id="enable-force-complete-button">
+      <%= link_to_function("Force Complete", "if(confirm('Are you sure you want to permanently end this participant\\'s session?')) { $('enable-force-complete-button').hide(); new Effect.Appear('force-complete-button'); }") %>
+    </span>
+    <span id="force-complete-button" style="display:none;">
+      <%= button_to("Force Complete",
+                    { :action => :force_participant_complete, :id => @participant.id },
+                    :confirm => "THIS WILL IRREVOCABLY END THIS PARTICIPANT'S SESSION. There is no way to revert this. Are you sure you want to continue?") %>
+    </span>
   <% end %>
 </div>
+
+<div style="margin-bottom: 10px;">&nbsp;</div>
 
 <div>
   <table cellspacing="0" cellpadding="5" id="participant-details">
@@ -99,6 +107,14 @@
     <tr>
       <td><b>Complete?</b></td>
       <td><%= if @participant.all_complete
+              "Yes"
+              else
+              "No"
+              end %></td>
+    </tr>
+    <tr>
+      <td><b>Forced?</b></td>
+      <td><%= if @participant.was_forced
               "Yes"
               else
               "No"
