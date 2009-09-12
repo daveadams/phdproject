@@ -214,9 +214,9 @@ class AdminController < ApplicationController
       flash[:error] = "Could not find that experimental session."
     else
       begin
-        xs.set_complete(true)
-      rescue
-        flash[:error] = "An error occurred when closing that session."
+        ExperimentalSession.active.set_complete(true)
+      rescue => e
+        flash[:error] = "An error occurred when closing that session: #{e}"
       end
     end
     redirect_to(:action => :sessions)
