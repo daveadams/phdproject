@@ -4,7 +4,12 @@
             "FORCED"
           else
             "COMPLETE"
-          end
+          end + ", " +
+          if @participant.paid_at.nil?
+            "UNPAID"
+          else
+            "PAID"
+          end + " (" + number_to_currency(@participant.cash) + ")"
         elsif @participant.first_login.nil?
           "NEVER LOGGED IN"
         else
@@ -14,7 +19,10 @@
 
 <div id="tools">
   <% if @participant.all_complete %>
-    <%= button_to_function("Mark as Paid", "alert('not yet implemented');") %>
+    <% if @participant.paid_at.nil? %>
+      <%= button_to("Mark as Paid",
+                    { :action => :mark_paid, :id => @participant.id }) %>
+    <% end %>
   <% else %>
     <%= button_to("Reset Browser Session",
                   { :action => :reset_browser_session, :id => @participant.id },
@@ -116,6 +124,15 @@
       <td><b>Forced?</b></td>
       <td><%= if @participant.was_forced
               "Yes"
+              else
+              "No"
+              end %></td>
+    </tr>
+    <tr>
+      <td><b>Paid?</b></td>
+      <td><%= if @participant.paid_at
+              @participant.paid_at.strftime("%Y-%m-%d %H:%M:%S") +
+                  " (" + time_ago_in_words(@participant.paid_at, true) + " ago)"
               else
               "No"
               end %></td>

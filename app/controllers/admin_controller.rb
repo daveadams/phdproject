@@ -222,6 +222,20 @@ class AdminController < ApplicationController
     redirect_to(:action => :sessions)
   end
 
+  def mark_paid
+    begin
+      @participant = Participant.find(request[:id])
+      unless @participant.paid_at
+        @participant.paid_at = Time.now
+        @participant.save
+      end
+      redirect_to(:action => :participant, :id => @participant.id)
+    rescue
+      flash[:error] = "Could not find that participant."
+      redirect_to(:action => :sessions)
+    end
+  end
+
   def force_participant_complete
     begin
       @participant = Participant.find(request[:id])

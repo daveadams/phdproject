@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090912210751) do
+ActiveRecord::Schema.define(:version => 20090912211317) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20090912210751) do
     t.string   "last_ip"
     t.text     "all_ips"
     t.boolean  "was_forced",                                            :default => false
+    t.datetime "paid_at"
   end
 
   create_table "questions", :force => true do |t|
