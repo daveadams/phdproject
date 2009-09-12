@@ -214,7 +214,7 @@ class AdminController < ApplicationController
       flash[:error] = "Could not find that experimental session."
     else
       begin
-        ExperimentalSession.active.set_complete(true)
+        ExperimentalSession.active.set_complete(!ExperimentalSession.active.all_complete)
       rescue => e
         flash[:error] = "An error occurred when closing that session: #{e}"
       end
