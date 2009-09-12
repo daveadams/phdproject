@@ -12,6 +12,19 @@
         end %></h2>
 </div>
 
+<div id="tools">
+  <% if @participant.all_complete %>
+    <%= button_to_function("Mark as Paid", "alert('not yet implemented');") %>
+  <% else %>
+    <%= button_to("Reset Browser Session",
+                  { :action => :reset_browser_session, :id => @participant.id },
+                  :confirm => "This will disconnect any current session and allow the participant to log in again. Are you sure?",
+                  :disabled => !@participant.is_active) %>
+
+    <%= button_to_function("Force Complete", "alert('not yet implemented');") %>
+  <% end %>
+</div>
+
 <div>
   <table cellspacing="0" cellpadding="5" id="participant-details">
     <tr>
@@ -26,6 +39,10 @@
               else
                 "Never"
               end %></td>
+    </tr>
+    <tr>
+      <td><b>Currently Active</b></td>
+      <td><%= @participant.is_active ? "Yes" : "No" %></td>
     </tr>
     <tr>
       <td><b>Last Access</b></td>
@@ -51,7 +68,7 @@
       <td>
         <%=h @participant.experimental_session.name %>
         <% if @participant.experimental_session.is_active %>
-          <b>(current)</b>
+          <b>(<%= link_to("current", :action => :status) %>)</b>
         <% end %>
       </td>
     </tr>

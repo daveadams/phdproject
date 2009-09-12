@@ -222,6 +222,19 @@ class AdminController < ApplicationController
     redirect_to(:action => :sessions)
   end
 
+  def reset_browser_session
+    begin
+      @participant = Participant.find(request[:id])
+      @participant.is_active = false
+      @participant.save
+      redirect_to(:action => :participant, :id => @participant.id)
+    rescue
+      flash[:error] = "Could not find that participant."
+      redirect_to(:action => :sessions)
+    end
+
+  end
+
   def print
     @page_title = "Print Participant Numbers"
 

@@ -4,6 +4,7 @@ class CompleteController < ApplicationController
 
   def index
     @participant.all_complete = true
+    @participant.is_active = false
     @participant.save
 
     if @participant.experimental_session.all_complete?
