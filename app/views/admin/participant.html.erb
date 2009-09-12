@@ -1,6 +1,10 @@
 <div>
 <h2><%= if @participant.all_complete
-          "COMPLETE"
+          #if @participant.was_forced
+          #  "FORCED"
+          #else
+            "COMPLETE"
+          #end
         elsif @participant.first_login.nil?
           "NEVER LOGGED IN"
         else
@@ -31,6 +35,16 @@
               else
                 "Never"
               end %></td>
+    </tr>
+    <tr>
+      <td><b>Last IP/Station</b></td>
+      <td>
+        <% if @participant.last_ip =~ /^128.173.185.(1[1-9]|2[0-2])$/ %>
+          <b><%= ($1.to_i - 10).to_s %></b> (<%= @participant.last_ip %>)
+        <% else %>
+          <%= @participant.last_ip %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <td><b>Experimental Session</b></td>

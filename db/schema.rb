@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090912185944) do
+ActiveRecord::Schema.define(:version => 20090912202019) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20090912185944) do
     t.boolean  "audit_completed",                                       :default => false
     t.decimal  "tutorial_cash",           :precision => 8, :scale => 2, :default => 0.0
     t.datetime "work_load_time"
+    t.string   "last_ip"
+    t.text     "all_ips"
   end
 
   create_table "questions", :force => true do |t|

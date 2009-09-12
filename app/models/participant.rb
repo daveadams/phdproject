@@ -19,9 +19,11 @@ class Participant < ActiveRecord::Base
   validates_presence_of :experimental_group_id
 
   serialize :reported_earnings
+  serialize :all_ips
 
   def before_validation
     self.reported_earnings ||= []
+    self.all_ips ||= []
   end
 
   def self.find_active(partnum)

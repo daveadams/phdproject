@@ -66,6 +66,9 @@ class ApplicationController < ActionController::Base
   end
 
   def update_participant_state
+    ip = request.env["HTTP_X_FORWARDED_FOR"]
+    @participant.last_ip = ip
+    @participant.all_ips << ip unless @participant.all_ips.include? ip
     @participant.last_access = Time.now
     @participant.phase = controller_name
     @participant.page = action_name
