@@ -2,7 +2,8 @@
 
 <form method="POST" action="<%= url_for(:action => "check_work") %>" id="work-form">
   <div id="workarea">
-    <%= text_area_tag "working_text", @working_text, :rows => 15, :cols => 80 %>
+    <%= text_area_tag "working_text", @working_text, :rows => 15, :cols => 80,
+                      :spellcheck => "false" %>
   </div>
   <div><%= submit_tag "Submit Corrections" %></div>
 </form>

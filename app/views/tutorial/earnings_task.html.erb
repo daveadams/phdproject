@@ -10,7 +10,8 @@
 
     <% form_tag :action => "check_work" do %>
     <div id="workarea">
-      <%= text_area_tag "working_text", @working_text, :rows => 15, :cols => 80 %>
+      <%= text_area_tag "working_text", @working_text, :rows => 15, :cols => 80,
+                        :spellcheck => "false" %>
     </div>
     <div><%= submit_tag "Submit Corrections" %></div>
     <% end %>
