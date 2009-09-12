@@ -214,12 +214,25 @@ class AdminController < ApplicationController
       flash[:error] = "Could not find that experimental session."
     else
       begin
-        ExperimentalSession.active.set_complete
+        xs.set_complete(true)
       rescue
         flash[:error] = "An error occurred when closing that session."
       end
     end
     redirect_to(:action => :sessions)
+  end
+
+  def print
+    @page_title = "Print Participant Numbers"
+
+    begin
+      @session = ExperimentalSession.find(request[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Could not find that experimental session."
+      redirect_to(:action => :sessions)
+    end
+
+    render :layout => false
   end
 
   def status

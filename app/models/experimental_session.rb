@@ -36,12 +36,13 @@ class ExperimentalSession < ActiveRecord::Base
     self.save!
   end
 
-  def set_complete
+  def set_complete(forced = false)
     raise ExperimentalSessionNotActive.new unless self.is_active
     raise ExperimentalSessionAlreadyComplete.new if self.is_complete
 
     self.is_complete = true
     self.is_active = false
+    self.was_forced = forced
     self.ended_at = Time.now
     self.save!
   end
@@ -88,6 +89,10 @@ class ExperimentalSession < ActiveRecord::Base
 
   def round_complete?
     participants.all? { |p| p.round > round }
+  end
+
+  def all_complete?
+    participants.all? { |p| p.all_complete }
   end
 
   def next_phase

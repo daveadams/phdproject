@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090909233507) do
+ActiveRecord::Schema.define(:version => 20090912185944) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20090909233507) do
     t.datetime "ended_at"
     t.boolean  "is_complete",    :default => false
     t.boolean  "is_locked_down", :default => false
+    t.boolean  "was_forced",     :default => false
   end
 
   create_table "page_orders", :force => true do |t|

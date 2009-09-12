@@ -76,3 +76,9 @@ table#activity-log-table td
 {
     border-bottom: 1px solid #DDD;
 }
+
+table#print-participant-numbers td
+{
+    font-size: 3.8em;
+    text-align: center;
+}

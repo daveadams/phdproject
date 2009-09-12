@@ -5,6 +5,11 @@ class CompleteController < ApplicationController
   def index
     @participant.all_complete = true
     @participant.save
+
+    if @participant.experimental_session.all_complete?
+      @participant.experimental_session.set_complete
+    end
+
     reset_session
   end
 

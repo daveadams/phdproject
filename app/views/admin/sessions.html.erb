@@ -19,10 +19,12 @@
 <% if @active_session %>
   <tr class="active-session" id="row<%= @active_session.id %>">
     <td><b>ACTIVE</b></td>
-    <td><%= link_to(h(@active_session.name), :action => :status) %></td>
+    <td><%=h @active_session.name %></td>
     <%= render(:partial => "session_participants",
                :object => @active_session) %>
-    <td><%= link_to("status", :action => :status) %></td>
+    <td>
+      <%= link_to("status", :action => :status) %>
+    </td>
   </tr>
   <tr>
     <td colspan="<%= (4 + ExperimentalGroup.count) %>">&nbsp;</td>
@@ -37,7 +39,11 @@
                     :method => :post,
                     :confirm => "Do you want to activate '#{session.name}'?") %>
       <% elsif session.is_complete %>
-        <b>closed</b>
+        <% if session.was_forced %>
+          <b>forced</b>
+        <% else %>
+          <b>complete</b>
+        <% end %>
       <% else %>
         &nbsp;
       <% end %>
@@ -51,8 +57,9 @@
                            :method => :get,
                            :update => "controls#{session.id}",
                            :complete => "$('controlrow#{session.id}').show();") %>
+        <%= link_to("print", :action => :print, :id => session.id) %>
       <% else %>
-        &nbsp;
+        <%= link_to_function("report", "alert('not yet implemented');") %>
       <% end %>
 
       <% if session.current_participants.count == 0 and !session.is_complete %>
