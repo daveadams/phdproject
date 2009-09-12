@@ -9,8 +9,8 @@
                          :method => :get,
                          :update => "add-participants-target",
                          :complete => "$('controlrow#{@active_session.id}').show();") %>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+    <%= button_to("Print Participant Numbers",
+                  { :action => :print, :id => @active_session.id }) %>
     <%= button_to("Lockdown", { :action => :lockdown, :id => @active_session.id },
                   :confirm => "Locking down a session removes all unseen participants. Are you sure you want to lock down '#{@active_session.name}'?",
                   :id => "lockdown-button",
