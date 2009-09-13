@@ -2,16 +2,51 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* TODO Minor changes [0/1]
+* DONE Prevent bank balance from going below zero [3/3]
+  CLOSED: [2009-09-13 Sun 10:59]
+  - [X] Catch a resulting balance of < zero
+  - [X] And add in an adjustment to fix it
+  - [X] Check it out
+
+* DONE Audit exception on overreporting (already worked!) [2/2]
+  CLOSED: [2009-09-13 Sun 11:05]
+  - [X] Still display failed audit message
+  - [X] But with zero penalties and zero taxes
+
+
+
+* TODO Minor changes [0/4]
   - [ ] Remove Next button from examples with "Proceed" on them?
+  - [ ] Button on last page to close browser?
+  - [ ] Can /experiment/seconds_remaining and estimate not show up in monitor
+        console or activity log?
+        ie Is the location update script/logging script
+           different than the @participant setting one?
 
-* TODO Prevent bank balance from going below zero [0/2]
-  - [ ] Catch a resulting balance of < zero
-  - [ ] And add in an adjustment to fix it
-
-* TODO Audit exception on overreporting [0/2]
-  - [ ] Still display failed audit message
-  - [ ] But with zero penalties and zero taxes
+* TODO Finish setting up lab [0/4]
+  - [-] Icons just for the experiment
+    - [X] Try out Mozilla Prism on PC
+    - [X] Minimum goal: no browser chrome
+          AND HOW! Very nice.
+    - [X] Can we do full screen?
+          Probably don't need to.
+    - [ ] Can this be the login shell?
+  - [-] Script to turn off DNS
+    - [X] netsh
+    - [X] Complement script to turn it back on
+    - [ ] Try them both on XP and Vista
+  - [ ] Finish updating the XP machines
+    - [ ] Service Pack 3 verify
+    - [ ] Further patches
+    - [ ] Firefox 3.5
+  - [ ] Non-privileged Windows accounts
+    - [ ] Just for this experiment
+    - [ ] On every machine
+    - [ ] No password
+    - [ ] Password on any other accounts
+    - [ ] Set up Firefox settings appropriately
+      - [ ] Blank home page
+      - [ ] Spellcheck off
 
 * TODO Session detail page [0/4]
   - [ ] Simple list of participants
@@ -50,7 +85,6 @@
   - [ ] Add page to admin for selecting experimental sessions to report 
 
 
-
 * TODO Participant stats [0/8]
   - [ ] Stats expansion link like round history, activity log
   - [ ] Total experiment time
@@ -63,4 +97,9 @@
   - [ ] Total errors corrected (out of total possible)
   - [ ] Honesty indicator
   - [ ] Same stats for entire sessions
+
+
+* TODO Global stats [0/2]
+  - [ ] Average times, etc
+  - [ ] Most found, most missed corrections
 
