@@ -222,6 +222,26 @@ class Participant < ActiveRecord::Base
                        :participant_id => self.id,
                        :details => log_details)
     self.reload
+
+    # don't let the balance go below zero
+    if self.cash < 0.0
+      ActivityLog.create(:event => ActivityLog::WARNING,
+                         :participant_id => self.id,
+                         :details => "Balance below zero, adding an adjustment back to zero")
+
+      ct = CashTransaction.new do |ct|
+        ct.participant = self
+        ct.amount = -(self.cash)
+        ct.transaction_type = "autoadjust"
+        ct.round = self.round
+      end
+      ct.save!
+
+      ActivityLog.create(:event => ActivityLog::CASH_TRANSACTION,
+                         :participant_id => self.id,
+                         :details => sprintf("Auto-generated adjustment of $%0.2f", ct.amount))
+      self.reload
+    end
   end
 
   def self.generate_potential_participant_number
