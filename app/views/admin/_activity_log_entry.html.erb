@@ -20,6 +20,9 @@
             "<span style=\"color:red;\"><b>APPLICATION ERROR:</b></span> " +
               "(/#{activity_log_entry.controller}/#{activity_log_entry.action})<br />" +
               "#{activity_log_entry.details}"
+          when "warning":
+            "<span style=\"color: #900;\"><b>NOTICE:</b></span> #{activity_log_entry.details}"
+          when "estimate": activity_log_entry.details
           else
             "#{activity_log_entry.event} (???) #{activity_log_entry.details}"
         end %>
