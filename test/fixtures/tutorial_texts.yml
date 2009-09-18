@@ -40,7 +40,7 @@ earnings_intro_body_normal:
   page_name: earnings_intro
   text_key: body
   text: |
-    You will earn income in this experiment by proofreading a passage of text and correcting basic spelling, grammatical, and typographical errors contained in the text. You will have a maximum of 2 minutes to complete this task. You may exit the task and view your earnings report before the end of the 2 minute period by clicking the "Submit Corrections" button. Be sure you have completed the task before submitting the corrections, you may not return to the task once you have clicked the "Submit Corrections" button. If you have not manually submitted the corrections by the end of the 2 minute period, your corrections will automatically be submitted and you will be redirected to the earnings report. You will be paid ${{{earnings}}} for each error that you correct properly. You will not be paid for errors that are not properly corrected. You will not be penalized for changes made to portions of the text that did not originally contain an error. There are a total of 5 errors in each passage.
+    You will earn income in this experiment by proofreading a passage of text and correcting basic spelling, grammatical, and typographical errors contained in the text. The passages you are reading are from literary works. The goal is to correct typographical errors and not to convert the language to formal English. Errors will not relate to comma usage. You will have a maximum of 2 minutes to complete this task. You may exit the task and view your earnings report before the end of the 2 minute period by clicking the "Submit Corrections" button. Be sure you have completed the task before submitting the corrections, you may not return to the task once you have clicked the "Submit Corrections" button. If you have not manually submitted the corrections by the end of the 2 minute period, your corrections will automatically be submitted and you will be redirected to the earnings report. You will be paid ${{{earnings}}} for each error that you correct properly. You will not be paid for errors that are not properly corrected. You will not be penalized for changes made to portions of the text that did not originally contain an error. There are five errors in each passage of text.
 
     The earnings report will identify the errors that you corrected properly and your total income from the task. The amount of income earned will be automatically added to your bank account.
 
@@ -51,7 +51,7 @@ earnings_intro_body_cn:
   page_name: earnings_intro
   text_key: body
   text: |
-    You will earn money in this experiment by proofreading a passage of text and correcting basic spelling, grammatical, and typographical errors contained in the text. You will have a maximum of 2 minutes to complete this task. You may exit the task and view your earnings report before the end of the 2 minute period by clicking the "Submit Corrections" button. Be sure you have completed the task before submitting the corrections, you may not return to the task once you have clicked the "Submit Corrections" button. If you have not manually submitted the corrections by the end of the 2 minute period, your corrections will automatically be submitted and you will be redirected to the earnings report. You will be paid ${{{earnings}}} for each error that you correct properly. You will not be paid for errors that are not properly corrected. You will not be penalized for changes made to portions of the text that did not originally contain an error. There are a total of 5 errors in each passage.
+    You will earn money in this experiment by proofreading a passage of text and correcting basic spelling, grammatical, and typographical errors contained in the text. The passages you are reading are from literary works. The goal is to correct typographical errors and not to convert the language to formal English. Errors will not relate to comma usage. You will have a maximum of 2 minutes to complete this task. You may exit the task and view your earnings report before the end of the 2 minute period by clicking the "Submit Corrections" button. Be sure you have completed the task before submitting the corrections, you may not return to the task once you have clicked the "Submit Corrections" button. If you have not manually submitted the corrections by the end of the 2 minute period, your corrections will automatically be submitted and you will be redirected to the earnings report. You will be paid ${{{earnings}}} for each error that you correct properly. You will not be paid for errors that are not properly corrected. You will not be penalized for changes made to portions of the text that did not originally contain an error. There are five errors in each passage of text.
 
     The earnings report will identify the errors that you corrected properly and the total earnings from the task. The amount earned will be automatically added to your bank account.
 
@@ -65,7 +65,8 @@ earnings_task_title:
 earnings_task_body:
   page_name: earnings_task
   text_key: body
-  text:
+  text: |
+    Take a moment to correct errors in the passage and then click the "Submit" button to advance to the Earnings Report Example. Please do not advance beyond the Earnings Report until instructed to do so.
 
 earnings_report_title:
   page_name: earnings_report
@@ -75,7 +76,8 @@ earnings_report_title:
 earnings_report_body:
   page_name: earnings_report
   text_key: body
-  text:
+  text: |
+    Take a few seconds to review the earnings report and then advance to the next tutorial screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 tax_intro_title:
   page_name: tax_intro
@@ -86,7 +88,7 @@ tax_intro_body:
   page_name: tax_intro
   text_key: body
   text: |
-    When you leave the earnings report, you will be taken to your Individual Income Tax Return. You will be asked to report an amount of income on which you will be taxed. Tax will be calculated as 20% of the income that you report. You will not pay taxes on income that you do not report, and only you will know the true amount of income that you earned.
+    When you leave the earnings report, you will be taken to your Individual Income Tax Return. You will be asked to report an amount of income on which you will be taxed. Tax will be calculated as 20% of the income that you report. You will not pay taxes on income that you do not report.
 
     You can calculate the amount of taxes you would owe on any amount of reported income by entering that income amount into the Individual Income Tax Return form and clicking the "Estimate My Tax" button. Your tax return will not be finalized until you click the "Report Earnings" button. Once you click the "Report Earnings" button, the amount of tax due on the reported earnings will be removed from your bank account.
 
@@ -99,7 +101,7 @@ tax_return_body:
   page_name: tax_return
   text_key: body
   text: |
-    Try entering and calculating tax on different levels of earnings before choosing a level of earnings and finalizing the return.
+    Try entering and calculating tax on different levels of earnings before choosing a level of earnings and finalizing the return by clicking the "Report Earnings" button. Please do not proceed beyond the next tutorial screen until instructed to do so.
 
 disclosure_intro_title:
   page_name: disclosure_intro
@@ -110,7 +112,7 @@ disclosure_intro_body:
   page_name: disclosure_intro
   text_key: body
   text: |
-    When you leave the earnings report, you will be taken to the disclosure report. You must pay 20% of the amount of money that you disclose. You will not pay on money that you do not disclose, and only you will know your true earnings amount.
+    When you leave the earnings report, you will be taken to the disclosure report. You must pay 20% of the amount of money that you disclose. You will not pay on money that you do not disclose.
 
     You can calculate the amount you would pay on any amount of earnings disclosed by entering that earnings amount into the form and clicking the "Estimate Payment" button. Your disclosure will not be finalized until you click the "Disclose Amount" button. Once you click the "Disclose Amount" button, the payment due on the disclosed earnings will be removed from your bank account.
 
@@ -125,7 +127,7 @@ disclosure_report_body:
   page_name: disclosure_report
   text_key: body
   text: |
-    Try entering and calculating the payment on different levels of earnings before choosing a level of earnings and finalizing your disclosure.
+    Try entering and calculating the payment on different levels of earnings before choosing a level of earnings and finalizing your disclosure by clicking the "Disclose Amount" button. Please do not proceed beyond the next tutorial screen until instructed to do so.
 
 audit_intro_title:
   page_name: audit_intro
@@ -138,7 +140,7 @@ audit_intro_body:
   text: |
     Your Income Tax Return may be selected for audit. Audit selection may be made randomly or based on a set of selection criteria. Audit selection and results are completely anonymous. If you are audited, you alone will know that you are being audited and the results of the audit.
 
-    If you are audited and have underreported your income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the amount of unpaid taxes.
+    If you are audited and have underreported your income, you will be required to pay the tax due on the unreported income plus a penalty equal to {{{penalty_rate}}} times the amount of unpaid taxes. All money collected in taxes and audit penalties will be returned to the Department of Accounting and Information Systems.
 
     The following three screens present the audit notification screen and two audit reports assuming first that you earned $1.75 and reported $1.75 and second that you earned $1.75 and reported $0.75.
 
@@ -151,7 +153,7 @@ audit_notify_body:
   page_name: audit_notify
   text_key: body
   text: |
-    This message will appear if you have been selected for an audit.
+    This message will appear if you have been selected for an audit. Please take a few seconds to review the notice and then advance to the next screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 audit_ok_title:
   page_name: audit_ok
@@ -161,7 +163,8 @@ audit_ok_title:
 audit_ok_body:
   page_name: audit_ok
   text_key: body
-  text:
+  text: |
+    Please take a few seconds to review the audit report and then advance to the next screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 audit_error_title:
   page_name: audit_error
@@ -171,7 +174,8 @@ audit_error_title:
 audit_error_body:
   page_name: audit_error
   text_key: body
-  text:
+  text: |
+    Please take a few seconds to review the audit report and then advance to the next screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 doublecheck_intro_title:
   page_name: doublecheck_intro
@@ -184,7 +188,7 @@ doublecheck_intro_body:
   text: |
     The amount of earnings that you disclose may be selected to be double-checked. Selection may be made randomly or based on a set of selection criteria. Selection for and results of being double-checked are completely anonymous. If you are double-checked, you alone will know that you are being double-checked and whether you disclosed the full amount earned or not.
 
-    If you are double-checked and have not disclosed the entire amount earned, you will be required to pay the amount due on the undisclosed amount, plus a fine equal to {{{penalty_rate}}} times the amount of the additional payment.
+    If you are double-checked and have not disclosed the entire amount earned, you will be required to pay the amount due on the undisclosed amount, plus a fine equal to {{{penalty_rate}}} times the amount of the additional payment. All money collected in charges and fines will be returned to the Department of Accounting and Information Systems.
 
     The following three screens present the notification screen and two result reports assuming first that you earned $1.75 and disclosed $1.75 and second that you earned $1.75 and disclosed $0.75.
 
@@ -197,7 +201,7 @@ doublecheck_notify_body:
   page_name: doublecheck_notify
   text_key: body
   text: |
-    This message will appear if your earnings have been selected to be double-checked.
+    This message will appear if your earnings have been selected to be double-checked. Please take a few seconds to review the notice and then advance to the next screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 doublecheck_ok_title:
   page_name: doublecheck_ok
@@ -207,7 +211,8 @@ doublecheck_ok_title:
 doublecheck_ok_body:
   page_name: doublecheck_ok
   text_key: body
-  text:
+  text: |
+    Please take a few seconds to review the results report and then advance to the next screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 doublecheck_error_title:
   page_name: doublecheck_error
@@ -217,7 +222,8 @@ doublecheck_error_title:
 doublecheck_error_body:
   page_name: doublecheck_error
   text_key: body
-  text:
+  text: |
+    Please take a few seconds to review the results report and then advance to the next screen by clicking either the "Proceed" or the "Next" button. Please do not advance beyond the next tutorial screen until instructed to do so.
 
 completing_title:
   page_name: completing
@@ -230,11 +236,11 @@ completing_body:
   text: |
     ## Demographics and Additional Information
 
-    Once you have completed all rounds of the experiment, you will be asked to complete a survey questionnaire that will collect demographics, beliefs, and attitudes that will help us analyze the data from the experiment.
+    Once you have completed all parts of the experiment, you will be asked to complete a series of survey questionnaires that will collect demographics, beliefs, and attitudes that will help us analyze the data from the experiment.
 
     ## Checkout Procedures
 
-    After you have completed the survey questionnaire, you will be released from the experiment and will check out at the reception desk where you will be paid in cash the ending balance in your electronic bank account. All payments will be made in private.
+    After you have completed the survey questionnaires, you will be released from the experiment and will check out at the reception desk where you will be paid in cash the ending balance in your electronic bank account. All payments will be made in private.
 
 complete_title:
   page_name: complete
