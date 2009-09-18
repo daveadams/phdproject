@@ -35,8 +35,8 @@
                   $('error-message').update("Cannot be less than zero.");
                   $('error-message').show();
                   report.commit.disabled = true;
-              } else if(report.reported_earnings.value > <%= sprintf("%0.2f", (@participant.experimental_group.earnings * 5)) %>) {
-                  $('error-message').update("It is not possible to earn more than $<%= sprintf("%0.2f", (@participant.experimental_group.earnings * 5)) %> in a single round.");
+              } else if(report.reported_earnings.value > <%= sprintf("%0.2f", @participant.income_for_current_round) %>) {
+                  $('error-message').update("Invalid entry.");
                   $('error-message').show();
                   report.commit.disabled = true;
               } else {

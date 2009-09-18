@@ -140,9 +140,9 @@ class ExperimentController < ApplicationController
             flash[:error] = "Cannot be less than zero."
             log_event(ActivityLog::ERROR, "Reported earnings was negative.")
             redirect_to(:action => :report)
-          elsif reported_earnings > max_possible_earnings
-            flash[:error] = sprintf("It is not possible to earn more than $%0.2f in a single round.", max_possible_earnings)
-            log_event(ActivityLog::ERROR, sprintf("Reported earnings was greater than $%0.2f.", max_possible_earnings))
+          elsif reported_earnings > @participant.income_for_current_round
+            flash[:error] = "Invalid entry."
+            log_event(ActivityLog::ERROR, "Reported earnings was greater than actual earnings.")
             redirect_to(:action => :report)
           else
             @participant.report_earnings(reported_earnings)
