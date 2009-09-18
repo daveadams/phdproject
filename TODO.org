@@ -2,51 +2,11 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* DONE Prevent bank balance from going below zero [3/3]
-  CLOSED: [2009-09-13 Sun 10:59]
-  - [X] Catch a resulting balance of < zero
-  - [X] And add in an adjustment to fix it
-  - [X] Check it out
-
-* DONE Audit exception on overreporting (already worked!) [2/2]
-  CLOSED: [2009-09-13 Sun 11:05]
-  - [X] Still display failed audit message
-  - [X] But with zero penalties and zero taxes
-
-
-
-* TODO Minor changes [0/4]
-  - [ ] Remove Next button from examples with "Proceed" on them?
-  - [ ] Button on last page to close browser?
+* TODO Minor changes [0/1]
   - [ ] Can /experiment/seconds_remaining and estimate not show up in monitor
         console or activity log?
         ie Is the location update script/logging script
            different than the @participant setting one?
-
-* TODO Finish setting up lab [0/4]
-  - [-] Icons just for the experiment
-    - [X] Try out Mozilla Prism on PC
-    - [X] Minimum goal: no browser chrome
-          AND HOW! Very nice.
-    - [X] Can we do full screen?
-          Probably don't need to.
-    - [ ] Can this be the login shell?
-  - [-] Script to turn off DNS
-    - [X] netsh
-    - [X] Complement script to turn it back on
-    - [ ] Try them both on XP and Vista
-  - [ ] Finish updating the XP machines
-    - [ ] Service Pack 3 verify
-    - [ ] Further patches
-    - [ ] Firefox 3.5
-  - [ ] Non-privileged Windows accounts
-    - [ ] Just for this experiment
-    - [ ] On every machine
-    - [ ] No password
-    - [ ] Password on any other accounts
-    - [ ] Set up Firefox settings appropriately
-      - [ ] Blank home page
-      - [ ] Spellcheck off
 
 * TODO Session detail page [0/4]
   - [ ] Simple list of participants
@@ -102,4 +62,145 @@
 * TODO Global stats [0/2]
   - [ ] Average times, etc
   - [ ] Most found, most missed corrections
+
+
+
+
+
+* TODO Participant checkout page [0/2]
+  - [ ] Show the risk assessment results and the cash earned
+  - [ ] Button to complete checkout
+
+* TODO Doublecheck audit rates
+
+* TODO Update code on ec2 server
+* TODO Update lab IPs
+
+
+* DONE Final minor updates [10/10]
+  CLOSED: [2009-09-17 Thu 20:24]
+  - [X] Tutorial Introduction edits
+  - [X] Tutorial overview edits
+  - [X] Earnings task instructions
+  - [X] Earnings report instructions
+  - [X] Example screen instructions
+  - [X] Completeing tutorial instructions
+  - [X] Earnings task intro tutorial edit
+  - [X] Tutorial Income Tax edit
+  - [X] Tax Audits tutorial addition
+  - [X] Add all questions to context-neutral with a few wording changes
+
+* DONE New risk assessment phase [6/6]
+  CLOSED: [2009-09-18 Fri 00:50]
+  - [X] When everyone is ready, enable the button to go to phase 2
+    - [X] Update view for complete page to reload until everyone is complete
+    - [X] Change current text to shorter message
+    - [X] Should just display the waiting spinner until everyone is done
+    - [X] Then show button instead
+  - [X] Phase 2 main page should just be one form with radio buttons
+    - [X] New controller
+      - [X] Generate the controller
+      - [X] Form itself
+      - [X] Form submission
+      - [X] New fields in participant - gamble0 - gamble9
+      - [X] participant.choices method
+      - [X] participant.choices_made? method
+      - [X] Handle missing input
+    - [X] Need new flag on participant
+    - [X] Need new redirections in all other controllers
+      - [X] tutorial
+      - [X] experiment
+      - [X] survey
+      - [X] complete
+  - [X] Move old experiment complete page to new phase2 complete page
+  - [X] Then send them on to the survey
+  - [X] Update routes to hide "phase2" name from users
+  - [X] Test it out
+
+
+* DONE Disallow reporting more than their income [4/4]
+  CLOSED: [2009-09-17 Thu 20:39]
+  - [X] Switch back to just saying "invalid amount" if they go over what they earned
+  - [X] Update javascript
+    - [X] Tutorial Normal
+    - [X] Tutorial CN
+    - [X] Experiment
+  - [X] Update experiment_controller
+  - [X] Verify
+
+* DONE New survey page/question types [5/5]
+  CLOSED: [2009-09-17 Thu 22:40]
+  - [X] Add intro_text field to survey_page model
+  - [X] Add support for intro text to survey page view
+  - [X] Horizontal display option
+    - [X] Add new flag to question model
+    - [X] Add new rendering to survey page view
+    - [X] Invisible table split into % widths?
+  - [X] Add new survey pages
+    - [X] moral behavior scale
+      - [X] survey_pages
+      - [X] questions
+      - [X] answers
+      - [X] survey_items
+    - [X] honesty personal values scale
+      - [X] survey_pages
+      - [X] questions
+      - [X] answers
+      - [X] survey_items
+    - [X] social attitude scale
+      - [X] survey_pages
+      - [X] questions
+      - [X] answers
+      - [X] survey_items
+    - [X] mastery scale
+      - [X] survey_pages
+      - [X] questions
+      - [X] answers
+      - [X] survey_items
+    - [X] type A personality test
+      - [X] survey_pages
+      - [X] questions
+      - [X] answers
+      - [X] survey_items
+  - [X] Try it out
+
+
+* DONE Prevent bank balance from going below zero [3/3]
+  CLOSED: [2009-09-13 Sun 10:59]
+  - [X] Catch a resulting balance of < zero
+  - [X] And add in an adjustment to fix it
+  - [X] Check it out
+
+* DONE Audit exception on overreporting (already worked!) [2/2]
+  CLOSED: [2009-09-13 Sun 11:05]
+  - [X] Still display failed audit message
+  - [X] But with zero penalties and zero taxes
+
+* DONE Finish setting up lab [4/4]
+  CLOSED: [2009-09-15 Tue 20:02]
+  - [X] Icons just for the experiment
+    - [X] Try out Mozilla Prism on PC
+    - [X] Minimum goal: no browser chrome
+          AND HOW! Very nice.
+    - [X] Can we do full screen?
+          Probably don't need to.
+    - [X] Can this be the login shell?
+  - [X] Script to turn off DNS
+    - [X] netsh
+    - [X] Complement script to turn it back on
+    - [X] Try them both on XP and Vista
+  - [X] Finish updating the XP machines
+    - [X] Service Pack 3 verify
+    - [X] Further patches
+    - [X] Firefox 3.5
+  - [X] Non-privileged Windows accounts
+    - [X] Just for this experiment
+    - [X] On every machine
+    - [X] No password
+    - [X] Password on any other accounts
+    - [X] Set up Firefox settings appropriately
+      - [X] Blank home page
+      - [X] Spellcheck off
+
+
 
