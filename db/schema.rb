@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090912211317) do
+ActiveRecord::Schema.define(:version => 20090918012359) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20090912211317) do
     t.boolean  "fill_in_the_blank", :default => false
     t.integer  "minimum",           :default => 0
     t.integer  "maximum",           :default => 100
+    t.boolean  "horizontal_scale",  :default => false
   end
 
   create_table "sessions", :force => true do |t|
@@ -185,6 +186,7 @@ ActiveRecord::Schema.define(:version => 20090912211317) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "depends_on_answer_id"
+    t.text     "intro_text"
   end
 
   create_table "surveys", :force => true do |t|

@@ -289,3 +289,975 @@ knowaudit2:
   question_id: 17
   answer: "No"
   sequence: 2
+
+mbs01-1:
+  question_id: 101
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs01-2:
+  question_id: 101
+  answer: "2"
+  sequence: 2
+
+mbs01-3:
+  question_id: 101
+  answer: "3"
+  sequence: 3
+
+mbs01-4:
+  question_id: 101
+  answer: "4"
+  sequence: 4
+
+mbs01-5:
+  question_id: 101
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs02-1:
+  question_id: 102
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs02-2:
+  question_id: 102
+  answer: "2"
+  sequence: 2
+
+mbs02-3:
+  question_id: 102
+  answer: "3"
+  sequence: 3
+
+mbs02-4:
+  question_id: 102
+  answer: "4"
+  sequence: 4
+
+mbs02-5:
+  question_id: 102
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs03-1:
+  question_id: 103
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs03-2:
+  question_id: 103
+  answer: "2"
+  sequence: 2
+
+mbs03-3:
+  question_id: 103
+  answer: "3"
+  sequence: 3
+
+mbs03-4:
+  question_id: 103
+  answer: "4"
+  sequence: 4
+
+mbs03-5:
+  question_id: 103
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs04-1:
+  question_id: 104
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs04-2:
+  question_id: 104
+  answer: "2"
+  sequence: 2
+
+mbs04-3:
+  question_id: 104
+  answer: "3"
+  sequence: 3
+
+mbs04-4:
+  question_id: 104
+  answer: "4"
+  sequence: 4
+
+mbs04-5:
+  question_id: 104
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs05-1:
+  question_id: 105
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs05-2:
+  question_id: 105
+  answer: "2"
+  sequence: 2
+
+mbs05-3:
+  question_id: 105
+  answer: "3"
+  sequence: 3
+
+mbs05-4:
+  question_id: 105
+  answer: "4"
+  sequence: 4
+
+mbs05-5:
+  question_id: 105
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs06-1:
+  question_id: 106
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs06-2:
+  question_id: 106
+  answer: "2"
+  sequence: 2
+
+mbs06-3:
+  question_id: 106
+  answer: "3"
+  sequence: 3
+
+mbs06-4:
+  question_id: 106
+  answer: "4"
+  sequence: 4
+
+mbs06-5:
+  question_id: 106
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs07-1:
+  question_id: 107
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs07-2:
+  question_id: 107
+  answer: "2"
+  sequence: 2
+
+mbs07-3:
+  question_id: 107
+  answer: "3"
+  sequence: 3
+
+mbs07-4:
+  question_id: 107
+  answer: "4"
+  sequence: 4
+
+mbs07-5:
+  question_id: 107
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs08-1:
+  question_id: 108
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs08-2:
+  question_id: 108
+  answer: "2"
+  sequence: 2
+
+mbs08-3:
+  question_id: 108
+  answer: "3"
+  sequence: 3
+
+mbs08-4:
+  question_id: 108
+  answer: "4"
+  sequence: 4
+
+mbs08-5:
+  question_id: 108
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs09-1:
+  question_id: 109
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs09-2:
+  question_id: 109
+  answer: "2"
+  sequence: 2
+
+mbs09-3:
+  question_id: 109
+  answer: "3"
+  sequence: 3
+
+mbs09-4:
+  question_id: 109
+  answer: "4"
+  sequence: 4
+
+mbs09-5:
+  question_id: 109
+  answer: "5 Most wrong"
+  sequence: 5
+
+mbs10-1:
+  question_id: 110
+  answer: "1 Least wrong"
+  sequence: 1
+
+mbs10-2:
+  question_id: 110
+  answer: "2"
+  sequence: 2
+
+mbs10-3:
+  question_id: 110
+  answer: "3"
+  sequence: 3
+
+mbs10-4:
+  question_id: 110
+  answer: "4"
+  sequence: 4
+
+mbs10-5:
+  question_id: 110
+  answer: "5 Most wrong"
+  sequence: 5
+
+hpvs01-1:
+  question_id: 201
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs01-2:
+  question_id: 201
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs01-3:
+  question_id: 201
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs02-1:
+  question_id: 202
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs02-2:
+  question_id: 202
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs02-3:
+  question_id: 202
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs03-1:
+  question_id: 203
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs03-2:
+  question_id: 203
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs03-3:
+  question_id: 203
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs04-1:
+  question_id: 204
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs04-2:
+  question_id: 204
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs04-3:
+  question_id: 204
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs05-1:
+  question_id: 205
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs05-2:
+  question_id: 205
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs05-3:
+  question_id: 205
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs06-1:
+  question_id: 206
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs06-2:
+  question_id: 206
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs06-3:
+  question_id: 206
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs07-1:
+  question_id: 207
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs07-2:
+  question_id: 207
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs07-3:
+  question_id: 207
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs08-1:
+  question_id: 208
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs08-2:
+  question_id: 208
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs08-3:
+  question_id: 208
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs09-1:
+  question_id: 209
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs09-2:
+  question_id: 209
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs09-3:
+  question_id: 209
+  answer: "Always Dislike"
+  sequence: 3
+
+hpvs10-1:
+  question_id: 210
+  answer: "Always Admire"
+  sequence: 1
+
+hpvs10-2:
+  question_id: 210
+  answer: "Depends on the Situation"
+  sequence: 2
+
+hpvs10-3:
+  question_id: 210
+  answer: "Always Dislike"
+  sequence: 3
+
+sas01-1:
+  question_id: 301
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas01-2:
+  question_id: 301
+  answer: "2"
+  sequence: 2
+
+sas01-3:
+  question_id: 301
+  answer: "3"
+  sequence: 3
+
+sas01-4:
+  question_id: 301
+  answer: "4"
+  sequence: 4
+
+sas01-5:
+  question_id: 301
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas02-1:
+  question_id: 302
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas02-2:
+  question_id: 302
+  answer: "2"
+  sequence: 2
+
+sas02-3:
+  question_id: 302
+  answer: "3"
+  sequence: 3
+
+sas02-4:
+  question_id: 302
+  answer: "4"
+  sequence: 4
+
+sas02-5:
+  question_id: 302
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas03-1:
+  question_id: 303
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas03-2:
+  question_id: 303
+  answer: "2"
+  sequence: 2
+
+sas03-3:
+  question_id: 303
+  answer: "3"
+  sequence: 3
+
+sas03-4:
+  question_id: 303
+  answer: "4"
+  sequence: 4
+
+sas03-5:
+  question_id: 303
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas04-1:
+  question_id: 304
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas04-2:
+  question_id: 304
+  answer: "2"
+  sequence: 2
+
+sas04-3:
+  question_id: 304
+  answer: "3"
+  sequence: 3
+
+sas04-4:
+  question_id: 304
+  answer: "4"
+  sequence: 4
+
+sas04-5:
+  question_id: 304
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas05-1:
+  question_id: 305
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas05-2:
+  question_id: 305
+  answer: "2"
+  sequence: 2
+
+sas05-3:
+  question_id: 305
+  answer: "3"
+  sequence: 3
+
+sas05-4:
+  question_id: 305
+  answer: "4"
+  sequence: 4
+
+sas05-5:
+  question_id: 305
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas06-1:
+  question_id: 306
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas06-2:
+  question_id: 306
+  answer: "2"
+  sequence: 2
+
+sas06-3:
+  question_id: 306
+  answer: "3"
+  sequence: 3
+
+sas06-4:
+  question_id: 306
+  answer: "4"
+  sequence: 4
+
+sas06-5:
+  question_id: 306
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas07-1:
+  question_id: 307
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas07-2:
+  question_id: 307
+  answer: "2"
+  sequence: 2
+
+sas07-3:
+  question_id: 307
+  answer: "3"
+  sequence: 3
+
+sas07-4:
+  question_id: 307
+  answer: "4"
+  sequence: 4
+
+sas07-5:
+  question_id: 307
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas08-1:
+  question_id: 308
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas08-2:
+  question_id: 308
+  answer: "2"
+  sequence: 2
+
+sas08-3:
+  question_id: 308
+  answer: "3"
+  sequence: 3
+
+sas08-4:
+  question_id: 308
+  answer: "4"
+  sequence: 4
+
+sas08-5:
+  question_id: 308
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas09-1:
+  question_id: 309
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas09-2:
+  question_id: 309
+  answer: "2"
+  sequence: 2
+
+sas09-3:
+  question_id: 309
+  answer: "3"
+  sequence: 3
+
+sas09-4:
+  question_id: 309
+  answer: "4"
+  sequence: 4
+
+sas09-5:
+  question_id: 309
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+sas10-1:
+  question_id: 310
+  answer: "1 Strongly Disagree"
+  sequence: 1
+
+sas10-2:
+  question_id: 310
+  answer: "2"
+  sequence: 2
+
+sas10-3:
+  question_id: 310
+  answer: "3"
+  sequence: 3
+
+sas10-4:
+  question_id: 310
+  answer: "4"
+  sequence: 4
+
+sas10-5:
+  question_id: 310
+  answer: "5 Strongly Agree"
+  sequence: 5
+
+ms01-1:
+  question_id: 401
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms01-2:
+  question_id: 401
+  answer: "Disagree"
+  sequence: 2
+
+ms01-3:
+  question_id: 401
+  answer: "Agree"
+  sequence: 3
+
+ms01-4:
+  question_id: 401
+  answer: "Strongly Agree"
+  sequence: 4
+
+ms02-1:
+  question_id: 402
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms02-2:
+  question_id: 402
+  answer: "Disagree"
+  sequence: 2
+
+ms02-3:
+  question_id: 402
+  answer: "Agree"
+  sequence: 3
+
+ms02-4:
+  question_id: 402
+  answer: "Strongly Agree"
+  sequence: 4
+
+ms03-1:
+  question_id: 403
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms03-2:
+  question_id: 403
+  answer: "Disagree"
+  sequence: 2
+
+ms03-3:
+  question_id: 403
+  answer: "Agree"
+  sequence: 3
+
+ms03-4:
+  question_id: 403
+  answer: "Strongly Agree"
+  sequence: 4
+
+ms04-1:
+  question_id: 404
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms04-2:
+  question_id: 404
+  answer: "Disagree"
+  sequence: 2
+
+ms04-3:
+  question_id: 404
+  answer: "Agree"
+  sequence: 3
+
+ms04-4:
+  question_id: 404
+  answer: "Strongly Agree"
+  sequence: 4
+
+ms05-1:
+  question_id: 405
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms05-2:
+  question_id: 405
+  answer: "Disagree"
+  sequence: 2
+
+ms05-3:
+  question_id: 405
+  answer: "Agree"
+  sequence: 3
+
+ms05-4:
+  question_id: 405
+  answer: "Strongly Agree"
+  sequence: 4
+
+ms06-1:
+  question_id: 406
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms06-2:
+  question_id: 406
+  answer: "Disagree"
+  sequence: 2
+
+ms06-3:
+  question_id: 406
+  answer: "Agree"
+  sequence: 3
+
+ms06-4:
+  question_id: 406
+  answer: "Strongly Agree"
+  sequence: 4
+
+ms07-1:
+  question_id: 407
+  answer: "Strongly Disagree"
+  sequence: 1
+
+ms07-2:
+  question_id: 407
+  answer: "Disagree"
+  sequence: 2
+
+ms07-3:
+  question_id: 407
+  answer: "Agree"
+  sequence: 3
+
+ms07-4:
+  question_id: 407
+  answer: "Strongly Agree"
+  sequence: 4
+
+tapt01-1:
+  question_id: 501
+  answer: "compare it to the top scores in the class."
+  sequence: 1
+
+tapt01-2:
+  question_id: 501
+  answer: "compare it to the average scores in the class."
+  sequence: 2
+
+tapt01-3:
+  question_id: 501
+  answer: "compare it to the lowest scores in the class."
+  sequence: 3
+
+tapt02-1:
+  question_id: 502
+  answer: "hit the mall in a frenzied effort to find something better."
+  sequence: 1
+
+tapt02-2:
+  question_id: 502
+  answer: "forget about your sister's gift and get your mom something that you feel she would like."
+  sequence: 2
+
+tapt02-3:
+  question_id: 502
+  answer: "figure your mom will like anything you give her and get the first thing that comes to your mind."
+  sequence: 3
+
+tapt03-1:
+  question_id: 503
+  answer: "are happy and proud of yourself."
+  sequence: 1
+
+tapt03-2:
+  question_id: 503
+  answer: "put it aside without analyzing and forget about it."
+  sequence: 2
+
+tapt03-3:
+  question_id: 503
+  answer: "keep thinking about all those who have done better than you."
+  sequence: 3
+
+tapt04-1:
+  question_id: 504
+  answer: "keep calling every 5 min."
+  sequence: 1
+
+tapt04-2:
+  question_id: 504
+  answer: "wait an hour or so and then call her/him again."
+  sequence: 2
+
+tapt04-3:
+  question_id: 504
+  answer: "find something else to do."
+  sequence: 3
+
+tapt05-1:
+  question_id: 505
+  answer: "play as well as you can and try to beat them."
+  sequence: 1
+
+tapt05-2:
+  question_id: 505
+  answer: "loosen up your regular strategy and give them some opportunities to score."
+  sequence: 2
+
+tapt05-3:
+  question_id: 505
+  answer: "play well but let them win in the end."
+  sequence: 3
+
+tapt06-1:
+  question_id: 506
+  answer: "be the best at everything."
+  sequence: 1
+
+tapt06-2:
+  question_id: 506
+  answer: "be as good as you can get."
+  sequence: 2
+
+tapt06-3:
+  question_id: 506
+  answer: "enjoy your life and forget about achievements."
+  sequence: 3
+
+tapt07-1:
+  question_id: 507
+  answer: "check the time to make sure you still have enough time and keep working at the same pace as before."
+  sequence: 1
+
+tapt07-2:
+  question_id: 507
+  answer: "get really nervous, thinking you might not have enough time, and start working faster."
+  sequence: 2
+
+tapt07-3:
+  question_id: 507
+  answer: "get angry and start feeling like a loser because someone has beaten you--you speed up considerably, trying to be the next one to walk out."
+  sequence: 3
+
+tapt08-1:
+  question_id: 508
+  answer: "get angry and/or bitter."
+  sequence: 1
+
+tapt08-2:
+  question_id: 508
+  answer: "are happy for her/him--s/he definitely deserved the role."
+  sequence: 2
+
+tapt08-3:
+  question_id: 508
+  answer: "don't care either way."
+  sequence: 3
+
+tapt09-1:
+  question_id: 509
+  answer: "go ahead and explain it again--in a different way."
+  sequence: 1
+
+tapt09-2:
+  question_id: 509
+  answer: "tell her/him that you don't understand very well either--and it's no big deal anyway."
+  sequence: 2
+
+tapt09-3:
+  question_id: 509
+  answer: "get angry with her/him--and silently wonder how come you are friends with such a dummy."
+  sequence: 3
+
+tapt10-1:
+  question_id: 510
+  answer: "work in a group and actively participate."
+  sequence: 1
+
+tapt10-2:
+  question_id: 510
+  answer: "work in a group and let others do most of the work."
+  sequence: 2
+
+tapt10-3:
+  question_id: 510
+  answer: "work alone."
+  sequence: 3
+
+tapt11-1:
+  question_id: 511
+  answer: "Mostly just hang out, doing nothing in particular."
+  sequence: 1
+
+tapt11-2:
+  question_id: 511
+  answer: "Various things--sometimes just hang out, sometimes work on hobbies, do some sports, etc."
+  sequence: 2
+
+tapt11-3:
+  question_id: 511
+  answer: "What free time?"
+  sequence: 3
+
+tapt12-1:
+  question_id: 512
+  answer: "I take it easy and slow down, taking the time to recover."
+  sequence: 1
+
+tapt12-2:
+  question_id: 512
+  answer: "I get plenty of rest so I never get tired."
+  sequence: 2
+
+tapt12-3:
+  question_id: 512
+  answer: "I don't have time for fatigue--I just keep going."
+  sequence: 3
+
+

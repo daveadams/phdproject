@@ -30,6 +30,37 @@ default6:
   survey_id: 1
   sequence: 6
 
+default7mbs:
+  id: 107
+  survey_id: 1
+  sequence: 7
+  intro_text: Evaluate each of the behaviors below as to how morally wrong you believe the behavior to be.
+
+default8hpvs:
+  id: 108
+  survey_id: 1
+  sequence: 8
+  intro_text: |
+    For each characteristic indicate how you view these characteristics in other people: Always Admire, Depends on the Situation, Always Dislike.
+
+default9sas:
+  id: 109
+  survey_id: 1
+  sequence: 9
+  intro_text: The next set of questions describes a set of beliefs that some people may have. After each statement please indicate how strongly you agree with the statement.
+
+default10ms:
+  id: 110
+  survey_id: 1
+  sequence: 10
+  intro_text: The next set of questions describes the way some people feel. After each statement please indicate how strongly you agree with the statement.
+
+default11tapt:
+  id: 111
+  survey_id: 1
+  sequence: 11
+  intro_text: Imagine yourself in the following situations and choose the answer that best describes what you would do.
+
 cn1:
   id: 201
   survey_id: 2
@@ -61,4 +92,35 @@ cn6:
   id: 206
   survey_id: 2
   sequence: 6
+
+cn7mbs:
+  id: 207
+  survey_id: 2
+  sequence: 7
+  intro_text: Evaluate each of the behaviors below as to how morally wrong you believe the behavior to be.
+
+cn8hpvs:
+  id: 208
+  survey_id: 2
+  sequence: 8
+  intro_text: |
+    For each characteristic indicate how you view these characteristics in other people: Always Admire, Depends on the Situation, Always Dislike.
+
+cn9sas:
+  id: 209
+  survey_id: 2
+  sequence: 9
+  intro_text: The next set of questions describes a set of beliefs that some people may have. After each statement please indicate how strongly you agree with the statement.
+
+cn10ms:
+  id: 210
+  survey_id: 2
+  sequence: 10
+  intro_text: The next set of questions describes the way some people feel. After each statement please indicate how strongly you agree with the statement.
+
+cn11tapt:
+  id: 211
+  survey_id: 2
+  sequence: 11
+  intro_text: Imagine yourself in the following situations and choose the answer that best describes what you would do.
 

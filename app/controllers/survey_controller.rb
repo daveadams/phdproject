@@ -4,6 +4,7 @@ class SurveyController < ApplicationController
   def index
     survey_page = @participant.next_survey_page
     if survey_page
+      @intro_text = survey_page.intro_text
       @questions = survey_page.questions
       @answers = {}
       @questions.each do |q|

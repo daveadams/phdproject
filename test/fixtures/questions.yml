@@ -93,3 +93,228 @@ doublecheckprobabilitypartial:
   question: What do you believe was the average probability (from 0 to 100) of your earnings disclosure being double-checked in any period during the experiment in which you reported less than 100% of your earnings?
   fill_in_the_blank: true
 
+
+mbs01:
+  id: 101
+  question: Misrepresenting the value of an investment in order to convince a reasonable individual to invest.
+  horizontal_scale: true
+
+mbs02:
+  id: 102
+  question: "Taking money for one's vote in an election."
+  horizontal_scale: true
+
+mbs03:
+  id: 103
+  question: A man who owns a vacant building he cannot rent sets it on fire to collect insurance proceeds.
+  horizontal_scale: true
+
+mbs04:
+  id: 104
+  question: Forging a check.
+  horizontal_scale: true
+
+mbs05:
+  id: 105
+  question: Lying on a federal income tax return.
+  horizontal_scale: true
+
+mbs06:
+  id: 106
+  question: Keeping extra change given to you by a clerk by mistake.
+  horizontal_scale: true
+
+mbs07:
+  id: 107
+  question: Charging interest above a fair rate when lending money.
+  horizontal_scale: true
+
+mbs08:
+  id: 108
+  question: A legislator accepting a payment to use his influence to help pass a law known to be contrary to public interest.
+  horizontal_scale: true
+
+mbs09:
+  id: 109
+  question: A successful business paying workers less than a living wage.
+  horizontal_scale: true
+
+mbs10:
+  id: 110
+  question: "Lying about a child's age to get reduced admission."
+  horizontal_scale: true
+
+hpvs01:
+  id: 201
+  question: Never cheating or having anything to do with cheating situations, even for a friend.
+
+hpvs02:
+  id: 202
+  question: Always telling the truth, even though it may hurt oneself or others.
+
+hpvs03:
+  id: 203
+  question: Helping a friend during an exam.
+
+hpvs04:
+  id: 204
+  question: "Speaking one's mind truthfully, without regard for the consequences."
+
+hpvs05:
+  id: 205
+  question: Being dishonest in harmless ways.
+
+hpvs06:
+  id: 206
+  question: Sticking up for the truth under all circumstances.
+
+hpvs07:
+  id: 207
+  question: "Going out of one's way to bring dishonest people to justice."
+
+hpvs08:
+  id: 208
+  question: Volunteering information concerning wrongdoing, even if friends are involved.
+
+hpvs09:
+  id: 209
+  question: Using a false ID card to get into restricted places.
+
+hpvs10:
+  id: 210
+  question: Presenting oneself complete and honestly, even if it is unnecessary to do so.
+
+sas01:
+  id: 301
+  question: It is no use worrying about current events or public affairs; I cannot do anything about them anyhow.
+  horizontal_scale: true
+
+sas02:
+  id: 302
+  question: We ought to worry about our own country and let the rest of the world take care of itself.
+  horizontal_scale: true
+
+sas03:
+  id: 303
+  question: When a person does not tell all of his income in order to get out of paying some of his taxes, it is just as bad as stealing money from the government.
+  horizontal_scale: true
+
+sas04:
+  id: 304
+  question: A person who does not vote when he can is not a good citizen.
+  horizontal_scale: true
+
+sas05:
+  id: 305
+  question: Every citizen should take the time to find out about current events even if it means giving up some spare time.
+  horizontal_scale: true
+
+sas06:
+  id: 306
+  question: Why bother to vote when you can do so little with just your one vote.
+  horizontal_scale: true
+
+sas07:
+  id: 307
+  question: "Our country would be a lot better if we didn't have elections and people didn't have to vote so often."
+  horizontal_scale: true
+
+sas08:
+  id: 308
+  question: "It's a good thing the Atlantic Ocean separates us from Europe because then we don't have to worry about them."
+  horizontal_scale: true
+
+sas09:
+  id: 309
+  question: Every person should give some of his time for the good of his town or city.
+  horizontal_scale: true
+
+sas10:
+  id: 310
+  question: "It's more important to work for the good fo the team than to work for your own good."
+  horizontal_scale: true
+
+ms01:
+  id: 401
+  question: You have little control over the things that happen to you.
+  horizontal_scale: true
+
+ms02:
+  id: 402
+  question: There is really no way you can solve some of the problems you have.
+  horizontal_scale: true
+
+ms03:
+  id: 403
+  question: There is little you can do to change many of the important things in your life.
+  horizontal_scale: true
+
+ms04:
+  id: 404
+  question: You often feel helpless in dealing with the problems of life.
+  horizontal_scale: true
+
+ms05:
+  id: 405
+  question: Sometimes you feel that you are being pushed around in life.
+  horizontal_scale: true
+
+ms06:
+  id: 406
+  question: What happens to you in the future mostly depends on you.
+  horizontal_scale: true
+
+ms07:
+  id: 407
+  question: You can do just about anything you really set your mind to.
+  horizontal_scale: true
+
+tapt01:
+  id: 501
+  question: You get an exam back. You
+
+tapt02:
+  id: 502
+  question: "Your mother's birthday is coming up. Your sister tells you that she has a killer gift for her but won't tell you what it is. You"
+
+tapt03:
+  id: 503
+  question: You do well on a paper, according to your classmates and teachers. You
+
+tapt04:
+  id: 504
+  question: You need to talk to your friend about your newest crush. You call her/him but the line is busy and you get the voice mail. You leave a message asking her/him to call you back. Half an hour goes by and s/he has not called back. You
+
+tapt05:
+  id: 505
+  question: You are playing Monopoly with your younger cousins (ages 8 and 12). You
+
+tapt06:
+  id: 506
+  question: Your goal is to
+
+tapt07:
+  id: 507
+  question: You are writing an exam. You know you have 2 hours to finish the 100 multiple-choice questions. After an hour (when you still have 30 questions to go), somebody gets up, hands in the exame booklet and walks out. Ten minutes later another student leaves. You
+
+tapt08:
+  id: 508
+  question: "You take an acting class with your best friend. When the casting of roles for a school play are announced, you realize that you got a small role of the main character's visiting cousin, while your friend was cast as the lead. You"
+
+tapt09:
+  id: 509
+  question: Your friend asks you to help her/him out with a math problem (assume you understand the topic very well). You explain to her/him how you understand it--/he still does not get it. You
+
+tapt10:
+  id: 510
+  question: When you face a very challenging task, how do you prefer to proceed? You would rather
+
+tapt11:
+  id: 511
+  question: What do you prefer to do with your free time?
+
+tapt12:
+  id: 512
+  question: When you are tired, what do you do?
+
+

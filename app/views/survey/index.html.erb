@@ -9,6 +9,26 @@
       <% if question.fill_in_the_blank? %>
         <input type="text" size="3" name="q<%= question.id %>"
            <% if @answers[question.id] %>value="<%= @answers[question.id].answer %>"<% end %> />
+      <% elsif question.horizontal_scale? %>
+        <% percent_split = if question.answers.length == 5
+                             "20"
+                           elsif question.answers.length == 4
+                             "25"
+                           elsif question.answers.length == 3
+                             "33"
+                           end %>
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <% question.answers.each do |a| %>
+              <td style="text-align: center" width="<%= percent_split %>%">
+                <input type="radio" name="q<%= question.id %>"
+                       id="a<%= a.id %>" value="<%= a.id %>" /><br />
+                <label for="a<%= a.id %>"><%=h a.answer %></label>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+        <br />
       <% else %>
         <br />
         <% question.answers.each do |a| %>

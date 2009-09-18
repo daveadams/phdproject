@@ -12,6 +12,10 @@
         <div class="error"><%= flash[:error] %></div>
       <% end %>
 
+      <% if @intro_text %>
+        <p><%=h @intro_text %></p>
+      <% end %>
+
       <%= yield :layout %>
 
     </div>

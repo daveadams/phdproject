@@ -1,0 +1,1 @@
+FIXTURES=experimental_groups,tutorial_texts,questions,answers,survey_pages,survey_items,experiment_texts,source_texts,corrected_texts,corrections rake db:fixtures:load
