@@ -163,6 +163,11 @@ d205howmanyyears:
   question_id: 13
   sequence: 3
 
+d205evercontacted:
+  survey_page_id: 205
+  question_id: 14
+  sequence: 4
+
 d206religious:
   survey_page_id: 206
   question_id: 15
@@ -172,4 +177,24 @@ d206morallywrong:
   survey_page_id: 206
   question_id: 16
   sequence: 2
+
+d206knowaudit:
+  survey_page_id: 206
+  question_id: 17
+  sequence: 3
+
+d206doublecheckprobabilityfull:
+  survey_page_id: 206
+  question_id: 21
+  sequence: 4
+
+d206doublecheckprobabilitypartial:
+  survey_page_id: 206
+  question_id: 22
+  sequence: 5
+
+d206atwhatlevel:
+  survey_page_id: 206
+  question_id: 20
+  sequence: 6
 

@@ -82,3 +82,14 @@ atwhatlevel:
   id: 20
   question: Ignoring any moral or social obligations related to taxpaying, at what level of audit likelihood (from 0 to 100) would you feel comfortable reporting less than 100% of your taxable earnings?
   fill_in_the_blank: true
+
+doublecheckprobabilityfull:
+  id: 21
+  question: What do you believe was the average probability (from 0 to 100) of your earnings disclosure being double-checked in any period during the experiment in which you reported 100% of your earnings?
+  fill_in_the_blank: true
+
+doublecheckprobabilitypartial:
+  id: 22
+  question: What do you believe was the average probability (from 0 to 100) of your earnings disclosure being double-checked in any period during the experiment in which you reported less than 100% of your earnings?
+  fill_in_the_blank: true
+
