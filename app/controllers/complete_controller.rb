@@ -20,6 +20,8 @@ class CompleteController < ApplicationController
       redirect_to(:controller => :tutorial)
     elsif not @participant.experiment_complete
       redirect_to(:controller => :experiment)
+    elsif not @participant.phase2_complete
+      redirect_to(:controller => :phase2)
     elsif not @participant.survey_complete
       redirect_to(:controller => :survey)
     end

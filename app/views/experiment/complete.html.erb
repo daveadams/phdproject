@@ -1,5 +1,29 @@
-<p>You have completed this portion of the experiment. You will now be asked to complete a survey questionnaire that will collect demographics, beliefs, and attitudes that will help us analyze the data from the experiment. Your answers will be anonymous and will be used for research purposes only.</p>
+<html>
+  <head>
+    <meta http-equiv="Expires" content="0" />
+<% if not @participant.experimental_session.round_complete? %>
+    <meta http-equiv="Refresh" content="5" />
+<% end %>
+    <title>Experiment: Please Wait...</title>
+    <%= stylesheet_link_tag("default", :media => :all) %>
+  </head>
 
-<p><%= button_to("Proceed") %></p>
+  <body>
+    <div class="content">
+      <% if @display_bank %>
+        <span class="bank"><%= number_to_currency(@participant.cash) %></span>
+      <% end %>
 
+      <h1>Please Wait...</h1>
+
+      <p>You have completed this portion of the experiment. Please wait for additional instructions for the next part of the experiment.</p>
+
+      <% if @participant.experimental_session.round_complete? %>
+        <p><%= button_to("Proceed") %></p>
+      <% else %>
+        <p><%= image_tag("wait.gif") %></p>
+      <% end %>
+    </div>
+  </body>
+</html>
 

@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta http-equiv="Expires" content="0" />
+    <title>Experiment: <%=h((get_text("title") || @page_title)) %></title>
+    <%= stylesheet_link_tag("default", :media => :all) %>
+  </head>
+
+  <body>
+    <div class="content">
+      <h1><%=h((get_text("title") || @page_title)) %></h1>
+
+      <div class="error" id="error-message"<% if flash[:error] %>><%= flash[:error] %><% else %> style="display:none;"><% end %></div>
+
+      <%= yield :layout %>
+    </div>
+  </body>
+</html>

@@ -200,6 +200,15 @@ class Participant < ActiveRecord::Base
     rand((1/audit_rate).to_i) == 0
   end
 
+  def choices
+    [self.gamble0, self.gamble1, self.gamble2, self.gamble3, self.gamble4,
+     self.gamble5, self.gamble6, self.gamble7, self.gamble8, self.gamble9]
+  end
+
+  def choices_made?
+    not self.choices.include? nil
+  end
+
  protected
   def add_transaction(transaction_type, amount)
     ct = CashTransaction.new do |ct|

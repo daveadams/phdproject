@@ -1,0 +1,80 @@
+<% form_tag(:action => :submit_choices) do %>
+<table border="1" cellspacing="0" cellpadding="3">
+  <tr>
+    <td>&nbsp;</td>
+    <th>Left Side</th>
+    <th>Right Side</th>
+    <th colspan="2">Your Choice</th>
+  </tr>
+  <% 0.upto 9 do |i| %>
+    <tr>
+      <td valign="top">
+        <nobr>Decision <%= i %></nobr>
+      </td>
+      <td>
+        <nobr>
+          $2.00 if throw of die is
+          <% if i == 0 %>
+            0
+          <% else %>
+            0 - <%= i %>
+          <% end %>
+        </nobr>
+        <% if i < 9 %>
+          <br />
+          <nobr>
+            $1.60 if throw of die is
+            <% if i == 8 %>
+              9
+            <% else %>
+              <%= (i + 1) %> - 9
+            <% end %>
+          </nobr>
+        <% end %>
+      </td>
+      <td>
+        <nobr>
+          $3.85 if throw of die is
+          <% if i == 0 %>
+            0
+          <% else %>
+            0 - <%= i %>
+          <% end %>
+        </nobr>
+        <% if i < 9 %>
+          <br />
+          <nobr>
+            $0.10 if throw of die is
+            <% if i == 8 %>
+              9
+            <% else %>
+              <%= (i + 1) %> - 9
+            <% end %>
+          </nobr>
+        <% end %>
+      </td>
+      <td>
+        <nobr>
+          <input type="radio" name="choice<%= i %>" value="L"
+                 id="L<%= i %>"<%= " checked" if @choices[i] == "L" %> />
+          <label for="L<%= i %>">Left</label>
+        </nobr>
+      </td>
+      <td>
+        <nobr>
+          <input type="radio" name="choice<%= i %>" value="R"
+                 id="R<%= i %>"<%= " checked" if @choices[i] == "R" %> />
+          <label for="R<%= i %>">Right</label>
+        </nobr>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <div style="text-align: center">
+        <%= submit_tag("Submit") %>
+      </div>
+    </td>
+  </tr>
+</table>
+<% end %>

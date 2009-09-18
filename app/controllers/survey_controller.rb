@@ -68,6 +68,8 @@ class SurveyController < ApplicationController
       redirect_to(:controller => :tutorial)
     elsif not @participant.experiment_complete
       redirect_to(:controller => :experiment)
+    elsif not @participant.phase2_complete
+      redirect_to(:controller => :phase2)
     end
   end
 end

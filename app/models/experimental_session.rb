@@ -68,7 +68,7 @@ class ExperimentalSession < ActiveRecord::Base
     spec = []
     n.times { spec << properties }
 
-    Participant.create(spec)
+    Participant.create!(spec)
   end
 
   def current_participants
