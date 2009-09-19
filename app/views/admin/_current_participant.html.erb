@@ -16,6 +16,11 @@
   <td>
     <% if current_participant.audited %>
       <span style="color:red"><b>AUDITED</b></span>
+    <% end %>
+    <% if current_participant.last_access < 3.minutes.ago %>
+      <span style="color:red">
+        No activity for <%= time_ago_in_words(current_participant.last_access) %>.
+      </span>
     <% else %>
       &nbsp;
     <% end %>
