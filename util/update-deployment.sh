@@ -10,7 +10,7 @@ MYSQLBACKUPDIR=/apps/backup/phdproject/mysql
 DBLIST="phd_development phd_test phdproject"
 
 # update source
-echo "Updating source code... "
+echo -n "Updating source code... "
 cd $SRCDIR
 git pull >/dev/null
 echo OK
@@ -56,7 +56,7 @@ fi
 BACKUPDIR=$MYSQLBACKUPDIR/$(date +%Y-%m-%d)
 mkdir -p $BACKUPDIR
 
-for DB in DBLIST
+for DB in $DBLIST
 do
     echo -n "Backing up $DB database... "
     mysqldump -u $DB -p$DB $DB > $BACKUPDIR/$DB-$(date +%H%M%S).sql
