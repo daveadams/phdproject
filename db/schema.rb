@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(:version => 20090918031158) do
     t.text     "all_ips"
     t.boolean  "was_forced",                                            :default => false
     t.datetime "paid_at"
-    t.boolean  "phase2_complete",                                       :default => false
     t.string   "gamble0"
     t.string   "gamble1"
     t.string   "gamble2"
@@ -154,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20090918031158) do
     t.string   "gamble7"
     t.string   "gamble8"
     t.string   "gamble9"
+    t.boolean  "phase2_complete",                                       :default => false
   end
 
   create_table "questions", :force => true do |t|

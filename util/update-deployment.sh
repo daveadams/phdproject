@@ -15,11 +15,11 @@ git pull
 
 # make sure app is shut down
 echo -n "Shutting down httpd... "
-$APPDIR/bin/httpd.init stop &>/dev/null
+$APPDIR/bin/httpd.init stop >/dev/null
 echo OK
 
 echo -n "Shutting down mongrel... "
-$APPDIR/bin/mongrel.init stop &>/dev/null
+$APPDIR/bin/mongrel.init stop >/dev/null
 echo OK
 
 # backup the databases
@@ -33,7 +33,15 @@ do
     echo OK
 done
 
-# update the database
+# update the databases
+cd $SRCDIR
+for ENVNAME in development test production
+do
+    echo -n "Updating the $ENVNAME environment... "
+    RAILS_ENV=$ENVNAME rake db:migrate >/dev/null
+    RAILS_ENV=$ENVNAME util/update-fixtures.sh >/dev/null
+    echo OK
+done
 
 # wipe and redeploy each directory
 cd $APPDIR
