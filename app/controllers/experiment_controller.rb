@@ -1,6 +1,7 @@
 class ExperimentController < ApplicationController
   before_filter :check_phase
   before_filter :check_round, :except => [:index, :wait]
+  skip_before_filter :log_page_load, :only => [:estimate, :seconds_remaining]
 
   def index
     redirect_to(:action => :wait)
