@@ -13,6 +13,7 @@
             h current_participant.page
           end %></td>
   <td><%= number_to_currency(current_participant.cash) %></td>
+  <td><%= current_participant.station_number || "&nbsp;" %></td>
   <td>
     <% if current_participant.audited %>
       <span style="color:red"><b>AUDITED</b></span>

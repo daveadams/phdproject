@@ -1,0 +1,23 @@
+<tr class="complete-participant" id="<%= complete_participant.participant_number %>">
+  <td class="participant-number">
+    <%= link_to(h(complete_participant.participant_number),
+                :action => :participant, :id => complete_participant.id) %>
+  </td>
+  <td><%=h complete_participant.experimental_group.name %></td>
+  <td colspan="2">&nbsp;</td>
+  <td><%= number_to_currency(complete_participant.cash) %></td>
+  <td><%= complete_participant.station_number || "&nbsp;" %></td>
+  <td>
+    <% if complete_participant.audited %>
+      <span style="color:red">AUDITED</span>
+    <% end %>
+    <% if complete_participant.was_forced %>
+      <b>FORCED</b>
+    <% end %>
+    <% if complete_participant.paid_at? %>
+      <span style="color:blue"><b>PAID</b></span>
+    <% else %>
+      &nbsp;
+    <% end %>
+  </td>
+</tr>

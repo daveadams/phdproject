@@ -72,7 +72,11 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def current_participants
-    participants.reject { |p| p.last_access.nil? }
+    participants.reject { |p| p.last_access.nil? }.reject { |p| p.all_complete }
+  end
+
+  def complete_participants
+    participants.select { |p| p.all_complete }
   end
 
   def unseen_participants

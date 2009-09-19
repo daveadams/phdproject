@@ -37,6 +37,7 @@
                   { :action => :reset_browser_session, :id => @participant.id },
                   :confirm => "This will disconnect any current session and allow the participant to log in again. Are you sure?",
                   :disabled => !@participant.is_active) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <span id="enable-force-complete-button">
       <%= link_to_function("Force Complete", "if(confirm('Are you sure you want to permanently end this participant\\'s session?')) { $('enable-force-complete-button').hide(); new Effect.Appear('force-complete-button'); }") %>
     </span>
@@ -81,19 +82,17 @@
     <tr>
       <td><b>Last IP/Station</b></td>
       <td>
-        <% if @participant.last_ip =~ /^128.173.185.(1[1-9]|2[0-2])$/ %>
-          <b><%= ($1.to_i - 10).to_s %></b> (<%= @participant.last_ip %>)
-        <% else %>
-          <%= @participant.last_ip %>
-        <% end %>
+        <%= @participant.station %>
       </td>
     </tr>
     <tr>
       <td><b>Experimental Session</b></td>
       <td>
-        <%=h @participant.experimental_session.name %>
         <% if @participant.experimental_session.is_active %>
-          <b>(<%= link_to("current", :action => :status) %>)</b>
+          <b><%= link_to(h(@participant.experimental_session.name), :action => :status) %></b>
+        <% else %>
+          <%= link_to(h(@participant.experimental_session.name),
+                      :action => :session, :id => @participant.experimental_session.id) %></b>
         <% end %>
       </td>
     </tr>

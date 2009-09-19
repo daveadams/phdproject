@@ -20,12 +20,28 @@ tr.unseen-participant
     color: #999;
 }
 
+tr.complete-participant
+{
+    background: #EEE;
+    color: #009;
+}
+
 tr.participants-header th
 {
     border-bottom: 1px solid #DDD;
 }
 
+tr.complete-participants-header th
+{
+    border-bottom: 1px solid #DDD;
+}
+
 tr.current-participant td
+{
+    border-bottom: 1px solid #DDD;
+}
+
+tr.complete-participant td
 {
     border-bottom: 1px solid #DDD;
 }
