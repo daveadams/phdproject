@@ -3,6 +3,8 @@
 set -e
 set -u
 
+echo $(date "+%Y-%m-%d %H:%M:%S") Starting up
+
 MYSQLBACKUPDIR=/apps/backup/phdproject/mysql
 DBLIST="phdproject phd_development phd_test"
 
@@ -15,3 +17,5 @@ do
     mysqldump -u $DB -p$DB $DB > $BACKUPDIR/$DB.sql
     echo OK
 done
+
+echo $(date "+%Y-%m-%d %H:%M:%S") Complete
