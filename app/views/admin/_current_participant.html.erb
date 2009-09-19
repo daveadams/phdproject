@@ -5,7 +5,13 @@
   </td>
   <td><%=h current_participant.experimental_group.name %></td>
   <td><%=h current_participant.phase %><%= (":" + current_participant.round.to_s) if current_participant.phase == "experiment" %></td>
-  <td><%=h current_participant.page %></td>
+  <td><%= if current_participant.page == "estimate"
+            "report"
+          elsif current_participant.page == "seconds_remaining"
+            "work"
+          else
+            h current_participant.page
+          end %></td>
   <td><%= number_to_currency(current_participant.cash) %></td>
   <td>
     <% if current_participant.audited %>
@@ -15,7 +21,8 @@
     <% end %>
   </td>
 </tr>
-<% if current_participant.last_access > 3.seconds.ago %>
+<% if current_participant.last_access > 3.seconds.ago and
+       current_participant.page != "seconds_remaining" %>
   <% javascript_tag do %>
     <%= visual_effect(:highlight, current_participant.participant_number) %>
   <% end %>
