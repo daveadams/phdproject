@@ -222,6 +222,20 @@ class AdminController < ApplicationController
     redirect_to(:action => :sessions)
   end
 
+  def checkout
+    begin
+      @participant = Participant.find(request[:id])
+      if @participant.paid_at? or not @participant.all_complete
+        flash[:error] = "Already checked out."
+        redirect_to(:action => :participant, :id => @participant.id)
+      end
+      @page_title = "Checkout: #{@participant.participant_number}"
+    rescue
+      flash[:error] = "Could not find that participant."
+      redirect_to(:action => :sessions)
+    end
+  end
+
   def mark_paid
     begin
       @participant = Participant.find(request[:id])
@@ -246,7 +260,7 @@ class AdminController < ApplicationController
       @participant.experiment_complete = true
       @participant.survey_complete = true
       @participant.all_complete = true
-      @participant.round = @participant.experimental_group.rounds
+      @participant.round = @participant.experimental_group.rounds + 1
       @participant.is_active = false
       @participant.save
       redirect_to(:action => :participant, :id => @participant.id)

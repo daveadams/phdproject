@@ -29,8 +29,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;
   <% if @participant.all_complete %>
     <% if @participant.paid_at.nil? %>
-      <%= button_to("Mark as Paid",
-                    { :action => :mark_paid, :id => @participant.id }) %>
+      <%= button_to("Checkout", { :action => :checkout, :id => @participant.id }) %>
     <% end %>
   <% else %>
     <%= button_to("Reset Browser Session",

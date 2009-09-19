@@ -1,0 +1,25 @@
+<div id="tools">
+  <p>
+    <%= link_to("Back to Participant Detail",
+                :action => :participant, :id => @participant.id) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to("Back to Session",
+                :action => :session, :id => @participant.experimental_session.id) %>
+  </p>
+</div>
+
+<div>
+  <h2>Total Earned: <b><%= number_to_currency(@participant.cash) %></b></h2>
+</div>
+
+<div style="margin-top:10px;margin-bottom:10px;margin-left:15px;">
+  <% 0.upto 9 do |i| %>
+    Decision <%= i %>: <%= @participant.choices[i] %><br />
+  <% end %>
+</div>
+
+<div style="margin-top: 25px;">
+  <%= button_to("Complete Checkout",
+                { :action => :mark_paid, :id => @participant.id } ) %>
+</div>
+
