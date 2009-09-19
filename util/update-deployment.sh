@@ -10,38 +10,47 @@ MYSQLBACKUPDIR=/apps/backup/phdproject/mysql
 DBLIST="phd_development phd_test phdproject"
 
 # update source
+echo "Updating source code... "
 cd $SRCDIR
-git pull
+git pull >/dev/null
+echo OK
 
 # make sure app is shut down
-echo -n "Shutting down httpd... "
-$APPDIR/bin/httpd.init stop >/dev/null
-echo OK
-
-echo -n "Shutting down mongrel... "
-$APPDIR/bin/mongrel.init stop >/dev/null
-echo OK
-
-echo -n "Verifying... "
-sleep 2
 PSLIST=$(ps aux)
-FAILED=""
 if [ -n "$(grep httpd <<< "$PSLIST")" ]
 then
-    FAILED="httpd"
+    echo -n "Shutting down httpd... "
+    $APPDIR/bin/httpd.init stop >/dev/null
+    echo OK
+
+    echo -n "Verifying... "
+    sleep 2
+    PSLIST=$(ps aux)
+    if [ -n "$(grep httpd <<< "$PSLIST")" ]
+    then
+        echo "ERROR: httpd failed to stop" >&2
+        exit 1
+    fi
+    echo OK
 fi
 
+PSLIST=$(ps aux)
 if [ -n "$(grep mongrel <<< "$PSLIST")" ]
 then
-    FAILED="$FAILED mongrel"
-fi
+    echo -n "Shutting down mongrel... "
+    $APPDIR/bin/mongrel.init stop >/dev/null
+    echo OK
 
-if [ -n "$FAILED" ]
-then
-    echo "ERROR: These services failed to stop: " $FAILED >&2
-    exit 1
+    echo -n "Verifying... "
+    sleep 2
+    PSLIST=$(ps aux)
+    if [ -n "$(grep mongrel <<< "$PSLIST")" ]
+    then
+        echo "ERROR: mongrel failed to stop" >&2
+        exit 1
+    fi
+    echo OK
 fi
-echo OK
 
 # backup the databases
 BACKUPDIR=$MYSQLBACKUPDIR/$(date +%Y-%m-%d)
