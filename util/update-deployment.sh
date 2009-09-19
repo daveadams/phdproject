@@ -22,6 +22,27 @@ echo -n "Shutting down mongrel... "
 $APPDIR/bin/mongrel.init stop >/dev/null
 echo OK
 
+echo -n "Verifying... "
+sleep 2
+PSLIST=$(ps aux)
+FAILED=""
+if [ -n "$(grep httpd <<< "$PSLIST")" ]
+then
+    FAILED="httpd"
+fi
+
+if [ -n "$(grep mongrel <<< "$PSLIST")" ]
+then
+    FAILED="$FAILED mongrel"
+fi
+
+if [ -n "$FAILED" ]
+then
+    echo "ERROR: These services failed to stop: " $FAILED >&2
+    exit 1
+fi
+echo OK
+
 # backup the databases
 BACKUPDIR=$MYSQLBACKUPDIR/$(date +%Y-%m-%d)
 mkdir -p $BACKUPDIR
