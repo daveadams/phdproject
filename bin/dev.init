@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+BINDIR=$(dirname $0)
+
+case "$1" in
+    start)
+        $BINDIR/mongrel.init start
+        $BINDIR/httpd.init start
+        ;;
+    stop)
+        $BINDIR/httpd.init stop
+        $BINDIR/mongrel.init stop
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}" >&2
+        exit 1
+esac
+
+
