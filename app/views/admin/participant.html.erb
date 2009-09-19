@@ -18,6 +18,15 @@
 </div>
 
 <div id="tools">
+  <% if @participant.experimental_session.is_active %>
+    <%= link_to("Current Session", :action => :status) %>
+  <% else %>
+    <%= link_to("Back to Session Detail", :action => :session,
+                :id => @participant.experimental_session.id) %>
+  <% end %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to("Session List", :action => :sessions) %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <% if @participant.all_complete %>
     <% if @participant.paid_at.nil? %>
       <%= button_to("Mark as Paid",
