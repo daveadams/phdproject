@@ -4,6 +4,7 @@ set -e
 set -u
 
 MYSQLBACKUPDIR=/apps/backup/phdproject/mysql
+DBLIST="phdproject phd_development phd_test"
 
 BACKUPDIR=$MYSQLBACKUPDIR/$(date +%Y-%m-%d-%H%M%S)
 mkdir -p $BACKUPDIR
