@@ -267,8 +267,12 @@ class Participant < ActiveRecord::Base
         end,
         # percent reported
         if self.earnings_history[i] and self.reporting_history[i]
-          sprintf("%0.2f", (self.reporting_history[i] /
-                             self.earnings_history[i].amount))
+          if self.earnings_history[i].amount == 0.0
+            ""
+          else
+            sprintf("%0.2f", (self.reporting_history[i] /
+                              self.earnings_history[i].amount))
+          end
         else
           ""
         end,
@@ -282,7 +286,30 @@ class Participant < ActiveRecord::Base
         else
           ""
         end
+        # TODO time spent on work (in seconds)
+        # TODO time spent on message (in seconds)
+        # TODO number of estimates
        ]
+     end,
+     # gamble choices
+     self.gamble0,
+     self.gamble1,
+     self.gamble2,
+     self.gamble3,
+     self.gamble4,
+     self.gamble5,
+     self.gamble6,
+     self.gamble7,
+     self.gamble8,
+     self.gamble9,
+     # TODO:survey answers
+     Question.find(:all, :order => :id).collect do |q|
+       answer = self.answers.find_by_question_id(q.id)
+       if answer.nil?
+         ""
+       else
+         '"' + answer.answer + '"'
+       end
      end
     ].flatten.join(",")
   end
