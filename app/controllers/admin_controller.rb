@@ -79,16 +79,26 @@ class AdminController < ApplicationController
       redirect_to(:action => :sessions)
     end
 
-    return_action = (ExperimentalSession.active == @session) ? :status : :sessions
+    @return_action = request[:return_to] ||
+      ((ExperimentalSession.active == @session) ? :status : :sessions)
+
+    def redirect_back
+      logger.info "DAVE: inside redirect_back: return action is #{@return_action}"
+      if @return_action == :status || @return_action == :sessions
+        redirect_to(:action => @return_action)
+      else
+        redirect_to(:action => @return_action, :id => request[:id])
+      end
+    end
 
     if @session.is_locked_down
       flash[:error] = "Can't add participants to a locked-down session."
-      redirect_to(:action => return_action)
+      redirect_back
     end
 
     if @session.is_complete
       flash[:error] = "Can't add participants to a completed session."
-      redirect_to(:action => return_action)
+      redirect_back
     end
 
     if request.post?
@@ -110,7 +120,7 @@ class AdminController < ApplicationController
           @group = ExperimentalGroup.find(request[:experimental_group_id].to_i)
           @session.create_participants(n, @group.id)
           flash[:highlight] = "#{@group.shortname}#{@session.id}"
-          redirect_to(:action => return_action)
+          redirect_back
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Invalid experimental group selected."
           redirect_to(:action => :add_participants, :id => @session.id)

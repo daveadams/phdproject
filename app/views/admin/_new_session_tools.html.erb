@@ -1,12 +1,16 @@
 <div id="new-session-tools">
-  <%= button_to_remote("Add Participants",
-                       :url => { :action => :add_participants,
-                                 :id => new_session.id },
-                       :method => :get,
-                       :update => "add-participants-target",
-                       :complete => "$('popup-controls').show();") %>
-  <%= button_to("Print Participant Numbers",
-                 { :action => :print, :id => new_session.id }) %>
+  <%= link_to_remote("Add Participants",
+                     :url => { :action => :add_participants,
+                               :id => new_session.id,
+                               :return_to => action_name },
+                     :method => :get,
+                     :update => "add-participants-target",
+                     :complete => "$('controlrow#{new_session.id}').show();") %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to("Print Participant Numbers",
+              { :action => :print, :id => new_session.id },
+              :target => "_blank") %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <% if new_session.is_active %>
     <%= button_to("Lockdown", { :action => :lockdown, :id => @active_session.id },
                   :confirm => "Locking down a session removes all unseen participants. Are you sure you want to lock down '#{@active_session.name}'?",
@@ -18,7 +22,7 @@
                   :method => :post,
                   :confirm => "Do you want to activate '#{new_session.name}'?") %>
   <% end %>
-  <div id="popup-controls" style="display:none;width:500px;">
+  <div id="controlrow<%= new_session.id %>" style="display:none;width:300px;margin-top:20px;">
     <div id="add-participants-target">
     </div>
   </div>

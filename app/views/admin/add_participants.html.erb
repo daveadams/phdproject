@@ -4,6 +4,9 @@
   <div style="text-align:right">
 <% end %>
 <% form_tag do %>
+  <% if request[:return_to] and request[:return_to] != "status" %>
+    <%= hidden_field_tag("return_to", request[:return_to]) %>
+  <% end %>
   <%= hidden_field_tag("id", @session.id) %>
   <%= text_field_tag("n", "1", :size => 2) %>
   <%= select_tag("experimental_group_id",
