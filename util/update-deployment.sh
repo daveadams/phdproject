@@ -17,39 +17,10 @@ echo OK
 
 # make sure app is shut down
 PSLIST=$(ps aux)
-if [ -n "$(grep httpd <<< "$PSLIST")" ]
+if [ -n "$(grep httpd <<< "$PSLIST")" ] || [ -n "$(grep mongrel <<< "$PSLIST")" ]
 then
-    echo -n "Shutting down httpd... "
-    $APPDIR/bin/httpd.init stop >/dev/null
-    echo OK
-
-    echo -n "Verifying... "
-    sleep 2
-    PSLIST=$(ps aux)
-    if [ -n "$(grep httpd <<< "$PSLIST")" ]
-    then
-        echo "ERROR: httpd failed to stop" >&2
-        exit 1
-    fi
-    echo OK
-fi
-
-PSLIST=$(ps aux)
-if [ -n "$(grep mongrel <<< "$PSLIST")" ]
-then
-    echo -n "Shutting down mongrel... "
-    $APPDIR/bin/mongrel.init stop >/dev/null
-    echo OK
-
-    echo -n "Verifying... "
-    sleep 2
-    PSLIST=$(ps aux)
-    if [ -n "$(grep mongrel <<< "$PSLIST")" ]
-    then
-        echo "ERROR: mongrel failed to stop" >&2
-        exit 1
-    fi
-    echo OK
+    echo "ERROR: please stop httpd and mongrel before continuing" >&2
+    exit 1
 fi
 
 # backup the databases
