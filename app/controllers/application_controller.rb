@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
                           :participant_id => @participant.nil? ? nil : @participant.id,
                           :controller => controller_name,
                           :action => action_name,
+                          :round => ((@participant.nil? || controller_name != "experiment") ?
+                                     nil : @participant.round),
                           :details => "#{exception.class}: #{exception}")
     rescue => e
       logger.fatal "FATAL ERROR: Could not create error record in activity log."
@@ -87,6 +89,8 @@ class ApplicationController < ActionController::Base
                        :participant_id => @participant.nil? ? nil : @participant.id,
                        :controller => controller_name,
                        :action => action_name,
+                       :round => ((@participant.nil? || controller_name != "experiment") ?
+                                  nil : @participant.round),
                        :details => details)
   end
 

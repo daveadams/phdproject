@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090918031158) do
+ActiveRecord::Schema.define(:version => 20090920195641) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20090918031158) do
     t.text     "details"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "round"
   end
 
   create_table "answers", :force => true do |t|
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20090918031158) do
     t.text     "all_ips"
     t.boolean  "was_forced",                                            :default => false
     t.datetime "paid_at"
+    t.boolean  "phase2_complete",                                       :default => false
     t.string   "gamble0"
     t.string   "gamble1"
     t.string   "gamble2"
@@ -153,7 +155,6 @@ ActiveRecord::Schema.define(:version => 20090918031158) do
     t.string   "gamble7"
     t.string   "gamble8"
     t.string   "gamble9"
-    t.boolean  "phase2_complete",                                       :default => false
   end
 
   create_table "questions", :force => true do |t|

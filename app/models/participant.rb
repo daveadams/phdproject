@@ -74,6 +74,7 @@ class Participant < ActiveRecord::Base
 
     ActivityLog.create(:event => ActivityLog::REPORT,
                        :participant_id => self.id,
+                       :round => self.round,
                        :details => sprintf("Reported earnings of $%0.2f", amount))
     self.reported_earnings[self.round] = amount
     self.save
@@ -381,6 +382,7 @@ class Participant < ActiveRecord::Base
                   end
     ActivityLog.create(:event => ActivityLog::CASH_TRANSACTION,
                        :participant_id => self.id,
+                       :round => self.round,
                        :details => log_details)
     self.reload
 
@@ -388,6 +390,7 @@ class Participant < ActiveRecord::Base
     if self.cash < 0.0
       ActivityLog.create(:event => ActivityLog::WARNING,
                          :participant_id => self.id,
+                         :round => self.round,
                          :details => "Balance below zero, adding an adjustment back to zero")
 
       ct = CashTransaction.new do |ct|
@@ -400,6 +403,7 @@ class Participant < ActiveRecord::Base
 
       ActivityLog.create(:event => ActivityLog::CASH_TRANSACTION,
                          :participant_id => self.id,
+                         :round => self.round,
                          :details => sprintf("Auto-generated adjustment of $%0.2f", ct.amount))
       self.reload
     end
