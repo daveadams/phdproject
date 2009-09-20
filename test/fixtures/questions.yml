@@ -98,51 +98,71 @@ mbs01:
   id: 101
   question: Misrepresenting the value of an investment in order to convince a reasonable individual to invest.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs02:
   id: 102
   question: "Taking money for one's vote in an election."
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs03:
   id: 103
   question: A man who owns a vacant building he cannot rent sets it on fire to collect insurance proceeds.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs04:
   id: 104
   question: Forging a check.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs05:
   id: 105
   question: Lying on a federal income tax return.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs06:
   id: 106
   question: Keeping extra change given to you by a clerk by mistake.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs07:
   id: 107
   question: Charging interest above a fair rate when lending money.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs08:
   id: 108
   question: A legislator accepting a payment to use his influence to help pass a law known to be contrary to public interest.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs09:
   id: 109
   question: A successful business paying workers less than a living wage.
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 mbs10:
   id: 110
   question: "Lying about a child's age to get reduced admission."
   horizontal_scale: true
+  left_boundary: Least wrong
+  right_boundary: Most wrong
 
 hpvs01:
   id: 201
@@ -188,51 +208,71 @@ sas01:
   id: 301
   question: It is no use worrying about current events or public affairs; I cannot do anything about them anyhow.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas02:
   id: 302
   question: We ought to worry about our own country and let the rest of the world take care of itself.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas03:
   id: 303
   question: When a person does not tell all of his income in order to get out of paying some of his taxes, it is just as bad as stealing money from the government.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas04:
   id: 304
   question: A person who does not vote when he can is not a good citizen.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas05:
   id: 305
   question: Every citizen should take the time to find out about current events even if it means giving up some spare time.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas06:
   id: 306
   question: Why bother to vote when you can do so little with just your one vote.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas07:
   id: 307
   question: "Our country would be a lot better if we didn't have elections and people didn't have to vote so often."
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas08:
   id: 308
   question: "It's a good thing the Atlantic Ocean separates us from Europe because then we don't have to worry about them."
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas09:
   id: 309
   question: Every person should give some of his time for the good of his town or city.
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 sas10:
   id: 310
   question: "It's more important to work for the good fo the team than to work for your own good."
   horizontal_scale: true
+  left_boundary: "Strongly Disagree"
+  right_boundary: "Strongly Agree"
 
 ms01:
   id: 401

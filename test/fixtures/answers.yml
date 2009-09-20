@@ -292,7 +292,7 @@ knowaudit2:
 
 mbs01-1:
   question_id: 101
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs01-2:
@@ -312,12 +312,12 @@ mbs01-4:
 
 mbs01-5:
   question_id: 101
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs02-1:
   question_id: 102
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs02-2:
@@ -337,12 +337,12 @@ mbs02-4:
 
 mbs02-5:
   question_id: 102
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs03-1:
   question_id: 103
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs03-2:
@@ -362,12 +362,12 @@ mbs03-4:
 
 mbs03-5:
   question_id: 103
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs04-1:
   question_id: 104
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs04-2:
@@ -387,12 +387,12 @@ mbs04-4:
 
 mbs04-5:
   question_id: 104
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs05-1:
   question_id: 105
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs05-2:
@@ -412,12 +412,12 @@ mbs05-4:
 
 mbs05-5:
   question_id: 105
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs06-1:
   question_id: 106
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs06-2:
@@ -437,12 +437,12 @@ mbs06-4:
 
 mbs06-5:
   question_id: 106
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs07-1:
   question_id: 107
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs07-2:
@@ -462,12 +462,12 @@ mbs07-4:
 
 mbs07-5:
   question_id: 107
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs08-1:
   question_id: 108
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs08-2:
@@ -487,12 +487,12 @@ mbs08-4:
 
 mbs08-5:
   question_id: 108
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs09-1:
   question_id: 109
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs09-2:
@@ -512,12 +512,12 @@ mbs09-4:
 
 mbs09-5:
   question_id: 109
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 mbs10-1:
   question_id: 110
-  answer: "1 Least wrong"
+  answer: "1"
   sequence: 1
 
 mbs10-2:
@@ -537,7 +537,7 @@ mbs10-4:
 
 mbs10-5:
   question_id: 110
-  answer: "5 Most wrong"
+  answer: "5"
   sequence: 5
 
 hpvs01-1:
@@ -692,7 +692,7 @@ hpvs10-3:
 
 sas01-1:
   question_id: 301
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas01-2:
@@ -712,12 +712,12 @@ sas01-4:
 
 sas01-5:
   question_id: 301
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas02-1:
   question_id: 302
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas02-2:
@@ -737,12 +737,12 @@ sas02-4:
 
 sas02-5:
   question_id: 302
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas03-1:
   question_id: 303
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas03-2:
@@ -762,12 +762,12 @@ sas03-4:
 
 sas03-5:
   question_id: 303
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas04-1:
   question_id: 304
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas04-2:
@@ -787,12 +787,12 @@ sas04-4:
 
 sas04-5:
   question_id: 304
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas05-1:
   question_id: 305
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas05-2:
@@ -812,12 +812,12 @@ sas05-4:
 
 sas05-5:
   question_id: 305
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas06-1:
   question_id: 306
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas06-2:
@@ -837,12 +837,12 @@ sas06-4:
 
 sas06-5:
   question_id: 306
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas07-1:
   question_id: 307
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas07-2:
@@ -862,12 +862,12 @@ sas07-4:
 
 sas07-5:
   question_id: 307
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas08-1:
   question_id: 308
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas08-2:
@@ -887,12 +887,12 @@ sas08-4:
 
 sas08-5:
   question_id: 308
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas09-1:
   question_id: 309
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas09-2:
@@ -912,12 +912,12 @@ sas09-4:
 
 sas09-5:
   question_id: 309
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 sas10-1:
   question_id: 310
-  answer: "1 Strongly Disagree"
+  answer: "1"
   sequence: 1
 
 sas10-2:
@@ -937,7 +937,7 @@ sas10-4:
 
 sas10-5:
   question_id: 310
-  answer: "5 Strongly Agree"
+  answer: "5"
   sequence: 5
 
 ms01-1:

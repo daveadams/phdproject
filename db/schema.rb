@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090920195641) do
+ActiveRecord::Schema.define(:version => 20090920201447) do
 
   create_table "activity_logs", :force => true do |t|
     t.integer  "participant_id"
@@ -165,6 +165,8 @@ ActiveRecord::Schema.define(:version => 20090920195641) do
     t.integer  "minimum",           :default => 0
     t.integer  "maximum",           :default => 100
     t.boolean  "horizontal_scale",  :default => false
+    t.string   "left_boundary"
+    t.string   "right_boundary"
   end
 
   create_table "sessions", :force => true do |t|

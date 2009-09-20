@@ -10,21 +10,37 @@
         <input type="text" size="3" name="q<%= question.id %>"
            <% if @answers[question.id] %>value="<%= @answers[question.id].answer %>"<% end %> />
       <% elsif question.horizontal_scale? %>
-        <% percent_split = if question.answers.length == 5
-                             "20"
-                           elsif question.answers.length == 4
-                             "25"
-                           elsif question.answers.length == 3
-                             "33"
+        <% percent_split = if question.left_boundary and question.right_boundary
+                             if question.answers.length == 5
+                               "15"
+                             elsif question.answers.length == 4
+                               "18"
+                             elsif question.answers.length == 3
+                               "20"
+                             end
+                           else
+                             if question.answers.length == 5
+                               "20"
+                             elsif question.answers.length == 4
+                               "25"
+                             elsif question.answers.length == 3
+                               "33"
+                             end
                            end %>
         <table border="0" cellpadding="0" cellspacing="0">
           <tr>
+            <% if question.left_boundary %>
+              <td><%= question.left_boundary %></td>
+            <% end %>
             <% question.answers.each do |a| %>
               <td style="text-align: center" width="<%= percent_split %>%">
                 <input type="radio" name="q<%= question.id %>"
                        id="a<%= a.id %>" value="<%= a.id %>" /><br />
                 <label for="a<%= a.id %>"><%=h a.answer %></label>
               </td>
+            <% end %>
+            <% if question.right_boundary %>
+              <td><%= question.right_boundary %></td>
             <% end %>
           </tr>
         </table>
