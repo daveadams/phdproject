@@ -237,39 +237,88 @@ class Participant < ActiveRecord::Base
   end
 
   def report_csv
+    timefmt = "%Y-%m-%d %H:%M:%S"
     [
      self.participant_number,
-     self.experimental_group.name
-    ].join(",")
+     self.experimental_group.name,
+     self.first_login? ? self.first_login.strftime(timefmt) : "",
+     self.last_access? ? self.last_access.strftime(timefmt) : "",
+     self.paid_at? ? self.paid_at.strftime(timefmt) : "",
+     sprintf("%0.2f", self.cash),
+     (0..(self.experimental_group.rounds - 1)).collect do |i|
+       [
+        self.earnings_history[i].nil? ? "" : sprintf("%0.2f", self.earnings_history[i].amount),
+        self.reporting_history[i].nil? ? "" : self.reporting_history[i],
+        self.tax_paid_history[i].nil? ? "" : sprintf("%0.2f", self.tax_paid_history[i].amount),
+        # correct tax
+        if self.earnings_history[i]
+          sprintf("%0.2f", -(self.earnings_history[i].amount *
+                             self.experimental_group.tax_rate / 100))
+        else
+          ""
+        end,
+        self.backtax_history[i].nil? ? "" : sprintf("%0.2f", self.backtax_history[i].amount),
+        self.penalty_history[i].nil? ? "" : sprintf("%0.2f", self.penalty_history[i].amount),
+        # audited?
+        if self.reporting_history[i]
+          self.audit_history[i] ? "Y" : "N"
+        else
+          ""
+        end,
+        # percent reported
+        if self.earnings_history[i] and self.reporting_history[i]
+          sprintf("%0.2f", (self.reporting_history[i] /
+                             self.earnings_history[i].amount))
+        else
+          ""
+        end,
+        # compliant?
+        if self.earnings_history[i] and self.reporting_history[i]
+          if self.reporting_history[i] < self.earnings_history[i].amount
+            "N"
+          else
+            "Y"
+          end
+        else
+          ""
+        end
+       ]
+     end
+    ].flatten.join(",")
   end
 
   # stats section
 
   def earnings_history
+    @earnings_history ||=
     (1..self.experimental_group.rounds).collect do |round|
       self.cash_transactions.find_by_transaction_type_and_round("income", round)
     end
   end
 
   def reporting_history
+    @reporting_history ||=
     (1..self.experimental_group.rounds).collect do |round|
       self.reported_earnings[round]
     end
   end
 
   def tax_paid_history
+    @tax_paid_history ||=
     (1..self.experimental_group.rounds).collect do |round|
       self.cash_transactions.find_by_transaction_type_and_round("tax", round)
     end
   end
 
   def backtax_history
+    @backtax_history ||=
     (1..self.experimental_group.rounds).collect do |round|
       self.cash_transactions.find_by_transaction_type_and_round("backtax", round)
     end
   end
 
   def penalty_history
+    @penalty_history ||=
     (1..self.experimental_group.rounds).collect do |round|
       self.cash_transactions.find_by_transaction_type_and_round("penalty", round)
     end
@@ -279,6 +328,7 @@ class Participant < ActiveRecord::Base
     bth = self.backtax_history
     ph = self.penalty_history
 
+    @audit_history ||=
     (0..(self.experimental_group.rounds - 1)).collect do |i|
       not (bth[i].nil? and ph[i].nil?)
     end

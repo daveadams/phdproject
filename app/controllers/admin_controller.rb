@@ -348,13 +348,14 @@ class AdminController < ApplicationController
   end
 
   def session_report
-    begin
+#    begin
       xs = ExperimentalSession.find(request[:id])
       send_data(xs.report_csv, :type => "text/csv",
                 :filename => xs.name.gsub(/[^A-Za-z\-.]/,'-') + ".csv")
-    rescue
-      render :text => "Could not find that session.", :status => 404
-    end
+#    rescue
+#      render(:text => "An error occured. Please contact the administrator.",
+#             :status => 404)
+#    end
   end
 
   def participant

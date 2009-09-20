@@ -1,6 +1,7 @@
 <p>
   <%= link_to("Session List", :action => :sessions) %>
   <% if @experimental_session.is_complete %>
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <%= link_to("Download Data (.csv)",
                 { :action => :session_report, :id => @experimental_session.id }) %>
   <% end %>
