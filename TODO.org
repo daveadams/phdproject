@@ -2,21 +2,23 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* TODO Minor changes [0/1]
-  - [ ] Can /experiment/seconds_remaining and estimate not show up in monitor
-        console or activity log?
-        ie Is the location update script/logging script
-           different than the @participant setting one?
-
-* TODO Session detail page [0/4]
+* TODO Session detail page [0/5]
   - [ ] Simple list of participants
   - [ ] Simple summary status
   - [ ] Links to some functionality
   - [ ] Summary of complete/forced/paid status
+  - [ ] Statistics
+    - [ ] Audits
+    - [ ] Corrections
+    - [ ] $$$
+    - [ ] Timings
+    - [ ] etc
 
-* TODO Section for completed participants in current session [0/2]
-  - [ ] New section for completed participants
-  - [ ] Include an indicator of participant's paid and forced status
+* TODO Add station number to participant detail [3/4]
+  - [X] Method on participant to tell you station
+  - [ ] Update with correct IPs
+  - [X] Pull from there for participant detail page
+  - [X] Add column to session status table
 
 * TODO When a session ends, the status page should handle it gracefully [0/2]
   - [ ] Display a message the first time
@@ -63,19 +65,39 @@
   - [ ] Average times, etc
   - [ ] Most found, most missed corrections
 
-
-
-
-
-* TODO Participant checkout page [0/2]
-  - [ ] Show the risk assessment results and the cash earned
-  - [ ] Button to complete checkout
-
 * TODO Doublecheck audit rates
 
-* TODO Update code on ec2 server
-* TODO Update lab IPs
+* TODO Update lab IPs [0/3]
+  - [ ] In the mind of Dr Ashley
+  - [ ] On computers
+  - [ ] In code
 
+* TODO Secure admin interface
+
+
+
+
+* DONE Participant checkout page [2/2]
+  CLOSED: [2009-09-19 Sat 18:14]
+  - [X] Show the risk assessment results and the cash earned
+  - [X] Button to complete checkout
+
+* DONE Section for completed participants in current session [2/2]
+  CLOSED: [2009-09-19 Sat 17:57]
+  - [X] New section for completed participants
+  - [X] Include an indicator of participant's paid and forced status
+
+* DONE Minor changes [1/1]
+  CLOSED: [2009-09-19 Sat 16:11]
+  - [X] Skip log_page_load for estimate, seconds_remaining
+
+* DONE Get ec2 server ready to go [5/5]
+  CLOSED: [2009-09-19 Sat 15:56]
+  - [X] Repeatable process for updating the code
+  - [X] Script to update updateable fixtures
+  - [X] Switch Rails to production mode
+  - [X] DB backups
+  - [X] Log backups
 
 * DONE Final minor updates [10/10]
   CLOSED: [2009-09-17 Thu 20:24]
@@ -116,7 +138,6 @@
   - [X] Then send them on to the survey
   - [X] Update routes to hide "phase2" name from users
   - [X] Test it out
-
 
 * DONE Disallow reporting more than their income [4/4]
   CLOSED: [2009-09-17 Thu 20:39]
@@ -163,7 +184,6 @@
       - [X] answers
       - [X] survey_items
   - [X] Try it out
-
 
 * DONE Prevent bank balance from going below zero [3/3]
   CLOSED: [2009-09-13 Sun 10:59]
