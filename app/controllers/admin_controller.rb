@@ -396,33 +396,12 @@ class AdminController < ApplicationController
         render :text => "ERROR: Could not find participant."
       end
 
-      @earnings_history = (1..20).collect do |round|
-        @participant.cash_transactions.find_by_transaction_type_and_round("income", round)
-      end
-
-      @reporting_history = (1..20).collect do |round|
-        @participant.reported_earnings[round]
-      end
-
-      @tax_paid_history = (1..20).collect do |round|
-        @participant.cash_transactions.find_by_transaction_type_and_round("tax", round)
-      end
-
-      @backtax_history = (1..20).collect do |round|
-        @participant.cash_transactions.find_by_transaction_type_and_round("backtax", round)
-      end
-
-      @penalty_history = (1..20).collect do |round|
-        @participant.cash_transactions.find_by_transaction_type_and_round("penalty", round)
-      end
-
-      @audit_history = (0..19).collect do |i|
-        if @backtax_history[i].nil? and @penalty_history[i].nil?
-          "No"
-        else
-          "Yes"
-        end
-      end
+      @earnings_history = @participant.earnings_history
+      @reporting_history = @participant.reporting_history
+      @tax_paid_history = @participant.tax_paid_history
+      @backtax_history = @participant.backtax_history
+      @penalty_history = @participant.penalty_history
+      @audit_history = @participant.audit_history.collect { |ah| ah ? "Yes" : "No" }
     end
   end
 end

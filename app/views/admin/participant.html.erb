@@ -91,7 +91,8 @@
           <b><%= link_to(h(@participant.experimental_session.name), :action => :status) %></b>
         <% else %>
           <%= link_to(h(@participant.experimental_session.name),
-                      :action => :session, :id => @participant.experimental_session.id) %></b>
+                      :action => :session_info,
+                      :id => @participant.experimental_session.id) %></b>
         <% end %>
       </td>
     </tr>

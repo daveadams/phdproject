@@ -243,6 +243,47 @@ class Participant < ActiveRecord::Base
     ].join(",")
   end
 
+  # stats section
+
+  def earnings_history
+    (1..self.experimental_group.rounds).collect do |round|
+      self.cash_transactions.find_by_transaction_type_and_round("income", round)
+    end
+  end
+
+  def reporting_history
+    (1..self.experimental_group.rounds).collect do |round|
+      self.reported_earnings[round]
+    end
+  end
+
+  def tax_paid_history
+    (1..self.experimental_group.rounds).collect do |round|
+      self.cash_transactions.find_by_transaction_type_and_round("tax", round)
+    end
+  end
+
+  def backtax_history
+    (1..self.experimental_group.rounds).collect do |round|
+      self.cash_transactions.find_by_transaction_type_and_round("backtax", round)
+    end
+  end
+
+  def penalty_history
+    (1..self.experimental_group.rounds).collect do |round|
+      self.cash_transactions.find_by_transaction_type_and_round("penalty", round)
+    end
+  end
+
+  def audit_history
+    bth = self.backtax_history
+    ph = self.penalty_history
+
+    (0..(self.experimental_group.rounds - 1)).collect do |i|
+      not (bth[i].nil? and ph[i].nil?)
+    end
+  end
+
  protected
   def add_transaction(transaction_type, amount)
     ct = CashTransaction.new do |ct|
