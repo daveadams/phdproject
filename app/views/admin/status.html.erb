@@ -1,41 +1,29 @@
 <h2>Active Session: <b><%=h @active_session.name %></b></h2>
 <p><b><%= link_to("Back to All Sessions", :action => :sessions) %></b></p>
-<div id="session-control">
 <% if @active_session.phase == "tutorial" %>
   <% unless @active_session.is_locked_down %>
-    <%= button_to_remote("Add Participants",
-                         :url => { :action => :add_participants,
-                                   :id => @active_session.id },
-                         :method => :get,
-                         :update => "add-participants-target",
-                         :complete => "$('controlrow#{@active_session.id}').show();") %>
-    <%= button_to("Print Participant Numbers",
-                  { :action => :print, :id => @active_session.id }) %>
-    <%= button_to("Lockdown", { :action => :lockdown, :id => @active_session.id },
-                  :confirm => "Locking down a session removes all unseen participants. Are you sure you want to lock down '#{@active_session.name}'?",
-                  :id => "lockdown-button",
-                  :disabled => (@active_session.current_participants.count < 1)) %>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= render(:partial => "new_session_tools",
+               :locals => { :new_session => @active_session } ) %>
   <% end %>
 <% end %>
 
+<div id="force-close-panel" style="display:none;">
 <%= button_to("Force Close Session", { :action => :force_close },
               :confirm => "THIS SESSION WILL IMMEDIATELY END AND BE UNRECOVERABLE IF YOU CLOSE IT. Are you sure you want to do this?",
               :id => "force-close-button",
               :disabled => true) %>
 </div>
-<div id="controlrow<%= @active_session.id %>" style="display:none;width:500px;">
-  <div id="add-participants-target">
-  </div>
-</div>
 
 <div id="participant-table">
-  <%= render(:partial => "participant_table") %>
+  <%= render(:partial => "participant_table",
+             :locals => { :this_session => @active_session } ) %>
 </div>
 
 <div style="margin-top: 50px; padding-left: 20px;">
   <%= button_to_function("Unlock Force Close Button",
-                         "$('force-close-button').disabled = false") %>
+                         "if(confirm('Are you sure you want to force this session closed?')) " +
+                         "{ $('force-close-button').disabled = false; " +
+                         "new Effect.Appear('force-close-panel'); }") %>
 </div>
 
 <script language="javascript">

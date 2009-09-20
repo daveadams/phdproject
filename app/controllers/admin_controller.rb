@@ -10,7 +10,8 @@ class AdminController < ApplicationController
     @page_title = "Experimental Sessions"
 
     @active_session = ExperimentalSession.active
-    @sessions = ExperimentalSession.find(:all, :order => "is_complete") - [@active_session]
+    @sessions = ExperimentalSession.find(:all,
+                                         :order => "is_complete, was_forced") - [@active_session]
     @groups = ExperimentalGroup.find(:all)
   end
 
@@ -316,7 +317,23 @@ class AdminController < ApplicationController
     end
 
     if request.xhr?
-      render(:partial => "participant_table")
+      render(:partial => "participant_table",
+             :locals => { :this_session => @active_session } )
+    end
+  end
+
+  def session_info
+    begin
+      @experimental_session = ExperimentalSession.find(request[:id])
+      if ExperimentalSession.active and
+          ExperimentalSession.active.id == @experimental_session.id
+        redirect_to(:action => :status)
+      else
+        @page_title = "Session Detail: #{@experimental_session.name}"
+      end
+    rescue
+      flash[:error] = "Could not find that session."
+      redirect_to(:action => :sessions)
     end
   end
 

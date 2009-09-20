@@ -1,0 +1,103 @@
+<p>
+  <%= link_to("Session List", :action => :sessions) %>
+  <% if @experimental_session.is_complete %>
+    <%= link_to("Download Data (.csv)",
+                { :action => :session_report, :id => @experimental_session.id }) %>
+  <% end %>
+</p>
+
+<% unless @experimental_session.is_complete %>
+  <%= render(:partial => "new_session_tools",
+             :locals => { :new_session => @experimental_session } ) %>
+<% end %>
+
+<div id="participant-table">
+  <h2>Participant List</h2>
+  <%= render(:partial => "participant_table",
+             :locals => { :this_session => @experimental_session } ) %>
+</div>
+
+<div style="margin-top:40px;">
+  <h2>Session Details</h2>
+  <table cellspacing="0" cellpadding="5" id="session-details">
+    <tr>
+      <td><b>Created At</b></td>
+      <td>
+        <%= @experimental_session.created_at.strftime("%Y-%m-%d %H:%M:%S") +
+             " (" + time_ago_in_words(@experimental_session.created_at, true) + " ago)" %>
+      </td>
+    </tr>
+    <% if @experimental_session.started_at? %>
+      <tr>
+        <td><b>Started At</b></td>
+        <td>
+          <%= @experimental_session.started_at.strftime("%Y-%m-%d %H:%M:%S") +
+               " (" + time_ago_in_words(@experimental_session.started_at, true) + " ago)" %>
+        </td>
+      </tr>
+    <% end %>
+    <% if @experimental_session.ended_at? %>
+      <tr>
+        <td><b>Ended At</b></td>
+        <td>
+          <%= @experimental_session.ended_at.strftime("%Y-%m-%d %H:%M:%S") +
+               " (" + time_ago_in_words(@experimental_session.ended_at, true) + " ago)" %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><b>Started?</b></td>
+      <td>
+        <%= @experimental_session.started_at? ? "Yes" : "No" %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Active?</b></td>
+      <td>
+        <%= @experimental_session.is_active ? "Yes" : "No" %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Locked Down?</b></td>
+      <td>
+        <%= @experimental_session.is_locked_down ? "Yes" : "No" %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Completed?</b></td>
+      <td>
+        <%= @experimental_session.is_complete ? "Yes" : "No" %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Forced?</b></td>
+      <td>
+        <%= @experimental_session.was_forced ? "Yes" : "No" %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>All Paid?</b></td>
+      <td>
+        <%= @experimental_session.participants.inject(true) { |s,p|
+              s && p.paid_at?
+            } ? "Yes" : "No" %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top: 40px;">
+  <h2>Statistics</h2>
+
+  <p><%= link_to_remote("View Statistics", :update => "session-statistics",
+                        :url => { :action => :session_statistics,
+                                  :id => @experimental_session.id },
+                        :loading => "$('session-statistics-loading').show();",
+                        :complete => "$('session-statistics-loading').hide();") %>
+    <span id="session-statistics-loading" style="display:none;">
+      <%= image_tag("tinywait.gif", :align => "top") %> Loading...
+    </span>
+  </p>
+  <div id="session-statistics">
+  </div>
+</div>

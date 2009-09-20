@@ -21,7 +21,7 @@
   <% if @participant.experimental_session.is_active %>
     <%= link_to("Current Session", :action => :status) %>
   <% else %>
-    <%= link_to("Back to Session Detail", :action => :session,
+    <%= link_to("Back to Session Detail", :action => :session_info,
                 :id => @participant.experimental_session.id) %>
   <% end %>
   &nbsp;&nbsp;&nbsp;&nbsp;

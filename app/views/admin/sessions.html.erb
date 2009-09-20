@@ -19,7 +19,7 @@
 <% if @active_session %>
   <tr class="active-session" id="row<%= @active_session.id %>">
     <td><b>ACTIVE</b></td>
-    <td><%=h @active_session.name %></td>
+    <td><%= link_to(h(@active_session.name), :action => :status) %></td>
     <%= render(:partial => "session_participants",
                :object => @active_session) %>
     <td>
@@ -48,7 +48,7 @@
         &nbsp;
       <% end %>
     </td>
-    <td><%=h session.name %></td>
+    <td><%= link_to(h(session.name), :action => :session_info, :id => session.id) %></td>
     <%= render(:partial => "session_participants",
                :object => session) %>
     <td>

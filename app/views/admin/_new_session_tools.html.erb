@@ -1,0 +1,25 @@
+<div id="new-session-tools">
+  <%= button_to_remote("Add Participants",
+                       :url => { :action => :add_participants,
+                                 :id => new_session.id },
+                       :method => :get,
+                       :update => "add-participants-target",
+                       :complete => "$('popup-controls').show();") %>
+  <%= button_to("Print Participant Numbers",
+                 { :action => :print, :id => new_session.id }) %>
+  <% if new_session.is_active %>
+    <%= button_to("Lockdown", { :action => :lockdown, :id => @active_session.id },
+                  :confirm => "Locking down a session removes all unseen participants. Are you sure you want to lock down '#{@active_session.name}'?",
+                  :id => "lockdown-button",
+                  :disabled => (@active_session.current_participants.count < 1)) %>
+  <% else %>
+    <%= button_to("Activate",
+                  { :action => :activate_session, :id => new_session.id },
+                  :method => :post,
+                  :confirm => "Do you want to activate '#{new_session.name}'?") %>
+  <% end %>
+  <div id="popup-controls" style="display:none;width:500px;">
+    <div id="add-participants-target">
+    </div>
+  </div>
+</div>

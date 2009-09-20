@@ -1,4 +1,4 @@
-div#session-control
+div#session-control, div#new-session-tools, div#force-close-panel
 {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -33,6 +33,7 @@ tr.participants-header th
 
 tr.complete-participants-header th
 {
+    padding-top: 10px;
     border-bottom: 1px solid #DDD;
 }
 

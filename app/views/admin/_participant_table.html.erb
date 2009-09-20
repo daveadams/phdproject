@@ -10,28 +10,28 @@
 </tr>
 
 <%= render :partial => "current_participant",
-          :collection => @active_session.current_participants %>
+          :collection => this_session.current_participants %>
 
-<% if @active_session.unseen_participants.length > 0 %>
+<% if this_session.unseen_participants.length > 0 %>
   <tr class="unseen-participants-header">
     <th colspan="7">Unseen Participants</th>
   </tr>
 <% end %>
 
 <%= render :partial => "unseen_participant",
-          :collection => @active_session.unseen_participants %>
+          :collection => this_session.unseen_participants %>
 
-<% if @active_session.complete_participants.length > 0 %>
+<% if this_session.complete_participants.length > 0 %>
   <tr class="complete-participants-header">
     <th colspan="7">Complete Participants</th>
   </tr>
 <% end %>
 
 <%= render :partial => "complete_participant",
-           :collection => @active_session.complete_participants %>
+           :collection => this_session.complete_participants %>
 </table>
-<% if @active_session.current_participants.length > 0 and
-       not @active_session.is_locked_down %>
+<% if this_session.current_participants.length > 0 and
+       not this_session.is_locked_down %>
   <% javascript_tag do %>
     $('lockdown-button').disabled = false
   <% end %>
