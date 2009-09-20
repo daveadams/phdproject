@@ -2,11 +2,11 @@
 #+STARTUP: hidestars
 #+STARTUP: indent
 
-* TODO Session detail page [0/5]
-  - [ ] Simple list of participants
-  - [ ] Simple summary status
-  - [ ] Links to some functionality
-  - [ ] Summary of complete/forced/paid status
+* TODO Session detail page [4/5]
+  - [X] Simple list of participants
+  - [X] Simple summary status
+  - [X] Links to some functionality
+  - [X] Summary of complete/forced/paid status
   - [ ] Statistics
     - [ ] Audits
     - [ ] Corrections
@@ -24,28 +24,37 @@
   - [ ] Display a message the first time
   - [ ] Then redirect elsewhere (to the session's detail page?)
 
-* TODO Reporting [0/5]
-  - [ ] Add report_csv method to participant
-  - [ ] Move round history collections into participant
-    - [ ] Pull from there for /admin/participant
-    - [ ] Use those for the CSV
-  - [ ] Fields
-    - [ ] Participant Number
-    - [ ] Experimental Group
-    - [ ] For each round:
-      - [ ] earnings
-      - [ ] reported
-      - [ ] paid tax
-      - [ ] correct tax
-      - [ ] audited
-      - [ ] paid backtax
-      - [ ] paid penalties
-      - [ ] percent reported
-      - [ ] compliance
-      - [ ] time spent on experimental message (if appropriate)
-  - [ ] Add report_csv for experimental_session
+* TODO Reporting [5/7]
+  - [X] Add report_csv method to participant
+  - [X] Move round history collections into participant
+    - [X] Pull from there for /admin/participant
+    - [X] Use those for the CSV
+  - [-] Fields
+    - [X] Participant Number
+    - [X] Experimental Group
+    - [X] Start Time
+    - [X] Stop Time
+    - [X] Paid Time
+    - [X] Total Cash
+    - [-] For each round:
+      - [X] earnings
+      - [X] reported
+      - [X] paid tax
+      - [X] correct tax
+      - [X] audited
+      - [X] paid backtax
+      - [X] paid penalties
+      - [X] percent reported
+      - [X] compliance
+      - [ ] time spent on work
+      - [ ] time spent on experimental message
+      - [ ] number of estimates
+    - [X] Gamble Choices
+    - [X] Survey answers
+  - [X] Add report_csv for experimental_session
+  - [X] Add session_report method to admin
+  - [X] Figure out triggering a file download
   - [ ] Add page to admin for selecting experimental sessions to report 
-
 
 * TODO Participant stats [0/8]
   - [ ] Stats expansion link like round history, activity log
@@ -76,6 +85,17 @@
 
 
 
+
+
+* DONE Add options for continuum survey questions [4/4]
+  CLOSED: [2009-09-20 Sun 16:28]
+  - [X] Add fields to model for left and right boundaries
+  - [X] Update fixtures
+  - [X] Update rendering to match
+  - [X] Test it out
+
+* DONE Add round field to activitylog
+  CLOSED: [2009-09-20 Sun 16:02]
 
 * DONE Participant checkout page [2/2]
   CLOSED: [2009-09-19 Sat 18:14]
