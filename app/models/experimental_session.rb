@@ -132,6 +132,10 @@ class ExperimentalSession < ActiveRecord::Base
     end
   end
 
+  def report_csv
+    self.participants.collect { |p| p.report_csv }.join("\n")
+  end
+
  protected
   def validate
     errors.add_to_base("The number of rounds in the experimental groups of the participants in this session do not match.") if max_rounds.nil?

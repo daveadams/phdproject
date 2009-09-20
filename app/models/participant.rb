@@ -236,6 +236,13 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def report_csv
+    [
+     self.participant_number,
+     self.experimental_group.name
+    ].join(",")
+  end
+
  protected
   def add_transaction(transaction_type, amount)
     ct = CashTransaction.new do |ct|

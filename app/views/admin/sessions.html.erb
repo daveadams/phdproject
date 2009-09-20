@@ -59,7 +59,8 @@
                            :complete => "$('controlrow#{session.id}').show();") %>
         <%= link_to("print", :action => :print, :id => session.id) %>
       <% else %>
-        <%= link_to_function("report", "alert('not yet implemented');") %>
+        <%= link_to("report (.csv)",
+                    { :action => :session_report, :id => session.id } ) %>
       <% end %>
 
       <% if session.current_participants.count == 0 and !session.is_complete %>
