@@ -213,18 +213,18 @@ class Participant < ActiveRecord::Base
   def station_number
     # hardcoded for simplicity
     case self.last_ip
-      when "128.173.185.11" then "1"
-      when "128.173.185.12" then "2"
-      when "128.173.185.13" then "3"
-      when "128.173.185.14" then "4"
-      when "128.173.185.15" then "5"
-      when "128.173.185.16" then "6"
-      when "128.173.185.17" then "7"
-      when "128.173.185.18" then "8"
-      when "128.173.185.19" then "9"
-      when "128.173.185.20" then "10"
-      when "128.173.185.21" then "11"
-      when "128.173.185.22" then "12"
+      when "128.173.185.6" then "1"
+      when "128.173.185.7" then "2"
+      when "128.173.185.8" then "3"
+      when "128.173.185.9" then "4"
+      when "128.173.185.10" then "5"
+      when "128.173.185.11" then "6"
+      when "128.173.185.12" then "7"
+      when "128.173.185.13" then "8"
+      when "128.173.185.14" then "9"
+      when "128.173.185.15" then "10"
+      when "128.173.185.16" then "11"
+      when "128.173.185.17" then "12"
       else nil
     end
   end
