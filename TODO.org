@@ -14,12 +14,6 @@
     - [ ] Timings
     - [ ] etc
 
-* TODO Add station number to participant detail [3/4]
-  - [X] Method on participant to tell you station
-  - [ ] Update with correct IPs
-  - [X] Pull from there for participant detail page
-  - [X] Add column to session status table
-
 * TODO When a session ends, the status page should handle it gracefully [0/2]
   - [ ] Display a message the first time
   - [ ] Then redirect elsewhere (to the session's detail page?)
@@ -76,16 +70,25 @@
 
 * TODO Doublecheck audit rates
 
-* TODO Update lab IPs [0/3]
-  - [ ] In the mind of Dr Ashley
-  - [ ] On computers
-  - [ ] In code
-
 * TODO Secure admin interface
 
 
 
 
+
+* DONE Update lab IPs [4/4]
+  CLOSED: [2009-09-21 Mon 12:13]
+  - [X] In the mind of Dr Ashley
+  - [X] On computers
+  - [X] In code
+  - [X] On server
+
+* DONE Add station number to participant detail [4/4]
+  CLOSED: [2009-09-21 Mon 12:05]
+  - [X] Method on participant to tell you station
+  - [X] Update with correct IPs
+  - [X] Pull from there for participant detail page
+  - [X] Add column to session status table
 
 * DONE Add options for continuum survey questions [4/4]
   CLOSED: [2009-09-20 Sun 16:28]
