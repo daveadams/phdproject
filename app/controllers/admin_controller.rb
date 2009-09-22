@@ -351,7 +351,7 @@ class AdminController < ApplicationController
 #    begin
       xs = ExperimentalSession.find(request[:id])
       send_data(xs.report_csv, :type => "text/csv",
-                :filename => xs.name.gsub(/[^A-Za-z\-.]/,'-') + ".csv")
+                :filename => xs.name.gsub(/[^0-9A-Za-z\-.]/,'-') + ".csv")
 #    rescue
 #      render(:text => "An error occured. Please contact the administrator.",
 #             :status => 404)
