@@ -1,126 +1,126 @@
 default1:
   id: 101
   survey_id: 1
-  sequence: 1
+  sequence: 6
 
 default2:
   id: 102
   survey_id: 1
-  sequence: 2
+  sequence: 7
 
 default3:
   id: 103
   survey_id: 1
-  sequence: 3
+  sequence: 8
   depends_on_answer_id: 21
 
 default4:
   id: 104
   survey_id: 1
-  sequence: 4
+  sequence: 9
 
 default5:
   id: 105
   survey_id: 1
-  sequence: 5
+  sequence: 10
   depends_on_answer_id: 43
 
 default6:
   id: 106
   survey_id: 1
-  sequence: 6
+  sequence: 11
 
 default7mbs:
   id: 107
   survey_id: 1
-  sequence: 7
+  sequence: 1
   intro_text: Evaluate each of the behaviors below as to how morally wrong you believe the behavior to be.
 
 default8hpvs:
   id: 108
   survey_id: 1
-  sequence: 8
+  sequence: 2
   intro_text: |
     For each characteristic indicate how you view these characteristics in other people: Always Admire, Depends on the Situation, Always Dislike.
 
 default9sas:
   id: 109
   survey_id: 1
-  sequence: 9
+  sequence: 3
   intro_text: The next set of questions describes a set of beliefs that some people may have. After each statement please indicate how strongly you agree with the statement.
 
 default10ms:
   id: 110
   survey_id: 1
-  sequence: 10
+  sequence: 4
   intro_text: The next set of questions describes the way some people feel. After each statement please indicate how strongly you agree with the statement.
 
 default11tapt:
   id: 111
   survey_id: 1
-  sequence: 11
+  sequence: 5
   intro_text: Imagine yourself in the following situations and choose the answer that best describes what you would do.
 
 cn1:
   id: 201
   survey_id: 2
-  sequence: 1
+  sequence: 6
 
 cn2:
   id: 202
   survey_id: 2
-  sequence: 2
+  sequence: 7
 
 cn3:
   id: 203
   survey_id: 2
-  sequence: 3
+  sequence: 8
   depends_on_answer_id: 21
 
 cn4:
   id: 204
   survey_id: 2
-  sequence: 4
+  sequence: 9
 
 cn5:
   id: 205
   survey_id: 2
-  sequence: 5
+  sequence: 10
   depends_on_answer_id: 43
 
 cn6:
   id: 206
   survey_id: 2
-  sequence: 6
+  sequence: 11
 
 cn7mbs:
   id: 207
   survey_id: 2
-  sequence: 7
+  sequence: 1
   intro_text: Evaluate each of the behaviors below as to how morally wrong you believe the behavior to be.
 
 cn8hpvs:
   id: 208
   survey_id: 2
-  sequence: 8
+  sequence: 2
   intro_text: |
     For each characteristic indicate how you view these characteristics in other people: Always Admire, Depends on the Situation, Always Dislike.
 
 cn9sas:
   id: 209
   survey_id: 2
-  sequence: 9
+  sequence: 3
   intro_text: The next set of questions describes a set of beliefs that some people may have. After each statement please indicate how strongly you agree with the statement.
 
 cn10ms:
   id: 210
   survey_id: 2
-  sequence: 10
+  sequence: 4
   intro_text: The next set of questions describes the way some people feel. After each statement please indicate how strongly you agree with the statement.
 
 cn11tapt:
   id: 211
   survey_id: 2
-  sequence: 11
+  sequence: 5
   intro_text: Imagine yourself in the following situations and choose the answer that best describes what you would do.
 
