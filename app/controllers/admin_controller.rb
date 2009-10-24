@@ -358,6 +358,19 @@ class AdminController < ApplicationController
 #    end
   end
 
+  def full_report
+    report_data = ""
+
+    ExperimentalSession.find(:all, :order => "started_at").each do |xs|
+      next unless xs.is_complete
+      next if xs.name =~ /Test/i
+      report_data += xs.report_csv
+    end
+
+    send_data(report_data, :type => "text/csv",
+              :filename => "full-report.csv")
+  end
+
   def participant
     begin
       if request[:participant_number]

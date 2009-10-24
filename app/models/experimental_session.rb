@@ -133,7 +133,7 @@ class ExperimentalSession < ActiveRecord::Base
   end
 
   def report_csv
-    self.participants.collect { |p| p.report_csv }.join("\n")
+    self.participants.collect { |p| p.report_csv }.join("\n") + "\n"
   end
 
  protected

@@ -241,13 +241,20 @@ class Participant < ActiveRecord::Base
     timefmt = "%Y-%m-%d %H:%M:%S"
     [
      self.participant_number,
-     self.experimental_group.name,
+     case self.experimental_group.name
+     when "Control": 0
+     when "Group One": 1
+     when "Group Two": 2
+     when "Context Neutral": 3
+     end,
      self.first_login? ? self.first_login.strftime(timefmt) : "",
      self.last_access? ? self.last_access.strftime(timefmt) : "",
      self.paid_at? ? self.paid_at.strftime(timefmt) : "",
      sprintf("%0.2f", self.cash),
      (0..(self.experimental_group.rounds - 1)).collect do |i|
        [
+        # number of correct corrections
+        self.correct_corrections.find_all_by_round(i+1).count,
         self.earnings_history[i].nil? ? "" : sprintf("%0.2f", self.earnings_history[i].amount),
         self.reporting_history[i].nil? ? "" : self.reporting_history[i],
         self.tax_paid_history[i].nil? ? "" : sprintf("%0.2f", self.tax_paid_history[i].amount),
@@ -277,12 +284,25 @@ class Participant < ActiveRecord::Base
         else
           ""
         end,
-        # compliant?
+        # discrepancy amount
+        if self.earnings_history[i] and self.reporting_history[i]
+          if self.earnings_history[i].amount == 0.0
+            "0.0"
+          else
+            sprintf("%0.2f", (self.earnings_history[i].amount -
+                              self.reporting_history[i]))
+          end
+        else
+          ""
+        end,
+        # cheated?
         if self.earnings_history[i] and self.reporting_history[i]
           if self.reporting_history[i] < self.earnings_history[i].amount
-            "N"
+            # cheated = 1
+            "1"
           else
-            "Y"
+            # honest = 0
+            "0"
           end
         else
           ""
@@ -309,7 +329,51 @@ class Participant < ActiveRecord::Base
        if answer.nil?
          ""
        else
-         '"' + answer.answer + '"'
+         if q.id >= 201 and q.id <= 210
+           if answer.answer == "Always Admire"
+             "1"
+           elsif answer.answer == "Depends on the Situation"
+             "2"
+           elsif answer.answer == "Always Dislike"
+             "3"
+           else
+             "X"
+           end
+         elsif q.id >= 401 and q.id <= 407
+           if answer.answer == "Strongly Disagree"
+             "a"
+           elsif answer.answer == "Disagree"
+             "b"
+           elsif answer.answer == "Agree"
+             "c"
+           elsif answer.answer == "Strongly Agree"
+             "d"
+           else
+             "X"
+           end
+         elsif q.id >= 501 and q.id <= 512
+           answer.sequence.to_s
+         elsif q.id == 2
+           codes = [nil, "M", "F"]
+           codes[answer.sequence]
+         elsif q.id == 3
+           codes = [nil, "S", "M", "D"]
+           codes[answer.sequence]
+         elsif q.id == 4
+           codes = [nil, "Below", "Average", "Above"]
+           codes[answer.sequence]
+         elsif q.id == 11
+           codes = [nil, "Y", "N", "DK"]
+           codes[answer.sequence]
+         elsif q.id == 12
+           codes = [nil, "Me", "Friend/Family", "Preparer"]
+           codes[answer.sequence]
+         elsif q.id >= 14 and q.id <= 17
+           codes = [nil, "Y", "N"]
+           codes[answer.sequence]
+         else
+           '"' + answer.answer + '"'
+         end
        end
      end
     ].flatten.join(",")
