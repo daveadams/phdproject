@@ -33,11 +33,14 @@ class AdminController < ApplicationController
       end
       if flash[:error]
         redirect_to(:action => :sessions)
+        return
       else
         redirect_to(:action => :status)
+        return
       end
     else
       redirect_to(:action => :sessions)
+      return
     end
   end
 
@@ -77,6 +80,7 @@ class AdminController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "Could not find that experimental session."
       redirect_to(:action => :sessions)
+      return
     end
 
     @return_action = request[:return_to] ||
@@ -86,19 +90,23 @@ class AdminController < ApplicationController
       logger.info "DAVE: inside redirect_back: return action is #{@return_action}"
       if @return_action == :status || @return_action == :sessions
         redirect_to(:action => @return_action)
+        return
       else
         redirect_to(:action => @return_action, :id => request[:id])
+        return
       end
     end
 
     if @session.is_locked_down
       flash[:error] = "Can't add participants to a locked-down session."
       redirect_back
+      return
     end
 
     if @session.is_complete
       flash[:error] = "Can't add participants to a completed session."
       redirect_back
+      return
     end
 
     if request.post?
@@ -106,27 +114,34 @@ class AdminController < ApplicationController
       if n.nil?
         flash[:error] = "You must provide a number of participants to create."
         redirect_to(:action => :add_participants, :id => @session.id)
+        return
       elsif request[:experimental_group_id].nil?
         flash[:error] = "Please select an experimental group."
         redirect_to(:action => :add_participants, :id => @session.id)
+        return
       elsif n <= 0
         flash[:error] = "Please specify a number greater than zero."
         redirect_to(:action => :add_participants, :id => @session.id)
+        return
       elsif n > 100
         flash[:error] = "Cannot create more than 100 participants at once."
         redirect_to(:action => :add_participants, :id => @session.id)
+        return
       else
         begin
           @group = ExperimentalGroup.find(request[:experimental_group_id].to_i)
           @session.create_participants(n, @group.id)
           flash[:highlight] = "#{@group.shortname}#{@session.id}"
           redirect_back
+          return
         rescue ActiveRecord::RecordNotFound
           flash[:error] = "Invalid experimental group selected."
           redirect_to(:action => :add_participants, :id => @session.id)
+          return
         rescue => e
           flash[:error] = "An unexpected error occured when trying to add the participants: #{e}"
           redirect_to(:action => :add_participants, :id => @session.id)
+          return
         end
       end
     else
@@ -239,11 +254,13 @@ class AdminController < ApplicationController
       if @participant.paid_at? or not @participant.all_complete
         flash[:error] = "Already checked out."
         redirect_to(:action => :participant, :id => @participant.id)
+        return
       end
       @page_title = "Checkout: #{@participant.participant_number}"
     rescue
       flash[:error] = "Could not find that participant."
       redirect_to(:action => :sessions)
+      return
     end
   end
 
@@ -255,9 +272,11 @@ class AdminController < ApplicationController
         @participant.save
       end
       redirect_to(:action => :participant, :id => @participant.id)
+      return
     rescue
       flash[:error] = "Could not find that participant."
       redirect_to(:action => :sessions)
+      return
     end
   end
 
@@ -275,9 +294,11 @@ class AdminController < ApplicationController
       @participant.is_active = false
       @participant.save
       redirect_to(:action => :participant, :id => @participant.id)
+      return
     rescue
       flash[:error] = "Could not find that participant."
       redirect_to(:action => :sessions)
+      return
     end
   end
 
@@ -287,9 +308,11 @@ class AdminController < ApplicationController
       @participant.is_active = false
       @participant.save
       redirect_to(:action => :participant, :id => @participant.id)
+      return
     rescue
       flash[:error] = "Could not find that participant."
       redirect_to(:action => :sessions)
+      return
     end
   end
 
@@ -301,6 +324,7 @@ class AdminController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "Could not find that experimental session."
       redirect_to(:action => :sessions)
+      return
     end
 
     render :layout => false
@@ -324,6 +348,7 @@ class AdminController < ApplicationController
 
     if errored
       redirect_to(:action => :sessions)
+      return
     end
 
     if request.xhr?
@@ -338,12 +363,14 @@ class AdminController < ApplicationController
       if ExperimentalSession.active and
           ExperimentalSession.active.id == @experimental_session.id
         redirect_to(:action => :status)
+        return
       else
         @page_title = "Session Detail: #{@experimental_session.name}"
       end
     rescue
       flash[:error] = "Could not find that session."
       redirect_to(:action => :sessions)
+      return
     end
   end
 
@@ -383,12 +410,14 @@ class AdminController < ApplicationController
     rescue
       flash[:error] = "Could not find that participant."
       redirect_to(:action => :sessions)
+      return
     end
   end
 
   def participant_activity_log
     if !request.xhr?
       redirect_to(:action => :sessions)
+      return
     else
       begin
         @participant = Participant.find(request[:id])
@@ -403,6 +432,7 @@ class AdminController < ApplicationController
   def participant_round_history
     if !request.xhr?
       redirect_to(:action => :sessions)
+      return
     else
       begin
         @participant = Participant.find(request[:id])
